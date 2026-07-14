@@ -30,7 +30,23 @@ jobs:
           python-version: "3.13"
       - name: Install pinned pilot tools
         run: python -m pip install "copier==9.16.0" "PyYAML==6.0.3"
-      - name: Execute guarded pilot phase
+      - name: Execute guarded pilot phase and persist diagnostics
         env:
           LAB_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: python orchestration/pilot.py
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          python orchestration/pilot.py 2>&1 | tee /tmp/orchestrate.log
+          status=${PIPESTATUS[0]}
+          set -e
+          git pull --rebase origin main
+          mkdir -p docs/results
+          cp /tmp/orchestrate.log docs/results/orchestrate.log
+          printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/orchestrate-status.json
+          git add docs/results/orchestrate.log docs/results/orchestrate-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: record orchestrator diagnostics"
+            git push origin main
+          fi
+          exit "$status"
