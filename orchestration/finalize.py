@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-# Trigger marker: finalize-preparation-v2
+# Trigger marker: defer-workflows-v1
 
 import json
 import os
@@ -16,6 +16,20 @@ namespace: dict[str, object] = {
 }
 exec(compile(source, str(runner_path), "exec"), namespace)
 pilot = namespace["pilot"]
+
+
+def defer_generated_workflows(repo: Path) -> dict[str, str]:
+    deferred: dict[str, str] = {}
+    workflow_dir = repo / ".github" / "workflows"
+    if not workflow_dir.is_dir():
+        return deferred
+    for path in sorted(workflow_dir.glob("*.y*ml")):
+        if path.name == "lab-ci.yml":
+            continue
+        rel = path.relative_to(repo).as_posix()
+        deferred[rel] = path.read_text(encoding="utf-8")
+        path.unlink()
+    return deferred
 
 
 def main() -> None:
@@ -106,6 +120,7 @@ def main() -> None:
                 "package_name": "sandbox_python_platform",
             },
         )
+        deferred_workflows = defer_generated_workflows(sandbox_platform)
         pilot.add_user_changes(sandbox_platform, "sandbox_python_platform")
         platform_commit = pilot.commit_push(
             sandbox_platform, "feat: generate platform sandbox from v0.1.0"
@@ -115,6 +130,8 @@ def main() -> None:
             "commit": platform_commit,
             "answers": 1,
             "template_version": "v0.1.0",
+            "deferred_workflows": sorted(deferred_workflows),
+            "deferred_reason": "Renovate App intentionally has Workflows: No access",
         }
 
         workspace = repos["sandbox-workspace"]
@@ -135,6 +152,10 @@ def main() -> None:
             json.dumps(report, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+        (result_dir / "platform-workflows.json").write_text(
+            json.dumps(deferred_workflows, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
         (result_dir / "prepare.md").write_text(
             "# Pilot preparation result\n\n"
             f"- Frozen source: `{pilot.SOURCE_REPO}@{pilot.SOURCE_SHA}`\n"
@@ -143,6 +164,7 @@ def main() -> None:
             "- Components are wired by file symlinks and executable Jinja wrappers.\n"
             "- `_components` is readable by Jinja and excluded from generated output.\n"
             "- Three sandboxes exist, including two nested Copier relationships.\n"
+            "- Platform workflow files were deferred for connector-backed publication.\n"
             "- All writes were restricted to `betabitplus-template-lab/*`.\n",
             encoding="utf-8",
         )
