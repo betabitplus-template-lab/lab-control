@@ -39,9 +39,9 @@ jobs:
             -v "$PWD:/usr/src/app" \
             -w /usr/src/app \
             -e RENOVATE_TOKEN \
+            -e RENOVATE_CONFIG_FILE=renovate/config.js \
             -e LOG_LEVEL=debug \
-            renovate/renovate:43.262.4 \
-            --config-file renovate/config.js 2>&1 | tee /tmp/renovate.log
+            renovate/renovate:43.262.4 2>&1 | tee /tmp/renovate.log
           status=${PIPESTATUS[0]}
           printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
           exit "$status"
