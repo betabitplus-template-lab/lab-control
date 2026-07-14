@@ -1,15 +1,3 @@
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_api/types.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/py.typed
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/__init__.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/__init__.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/__init__.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/assembly.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/state.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/models.py
-[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/validation.py
-[32m[1m    create[39m[0m  RTK.md
 [32m[1m    create[39m[0m  LICENSE
 [32m[1m    create[39m[0m  typos.toml
 [32m[1m    create[39m[0m  .markdownlint.yaml
@@ -90,9 +78,9 @@
 [32m[1m    create[39m[0m  .github/workflows/build-ci-image.yml
 
 
-+ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-6jsyu7jn/python-starter-platform /tmp/tmpvxpnd42s/candidate
++ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-bqtfsvfd/python-starter-platform /tmp/tmpgk983c5j/candidate
 
-Copying from template version 0.1.0.post7.dev0+35c58bb
+Copying from template version 0.1.0.post9.dev0+3678c56
 [32m[1m    create[39m[0m  .devcontainer
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile.ci
@@ -211,10 +199,10 @@ Copying from template version 0.1.0.post7.dev0+35c58bb
 + git fetch origin --tags
 + git rev-parse -q --verify refs/tags/v0.1.0
 + git init -b main
-Initialized empty Git repository in /tmp/tmpak88uz9m/fixture/.git/
+Initialized empty Git repository in /tmp/tmp53qaf17i/fixture/.git/
 + git add -A
-+ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m fixture with forbidden directory symlink
-[main (root-commit) 4d6197b] fixture with forbidden directory symlink
++ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m composition fixture
+[main (root-commit) d206e54] composition fixture
  20 files changed, 31 insertions(+)
  create mode 100644 copier.yml
  create mode 100644 payload/binary.bin
@@ -236,15 +224,27 @@ Initialized empty Git repository in /tmp/tmpak88uz9m/fixture/.git/
  create mode 120000 template/templated.txt
  create mode 120000 template/whole-directory
  create mode 100644 template/wrapper.txt
-+ copier copy --defaults --vcs-ref HEAD /tmp/tmpak88uz9m/fixture /tmp/tmpak88uz9m/forbidden-out
++ copier copy --defaults --vcs-ref HEAD /tmp/tmp53qaf17i/fixture /tmp/tmp53qaf17i/out
+
+Copying from template version 0.0.0.post1.dev0+d206e54
+[32m[1m    create[39m[0m  whole-directory
+[32m[1m    create[39m[0m  whole-directory/nested.txt
+[32m[1m    create[39m[0m  binary.bin
+[32m[1m    create[39m[0m  wrapper.txt
+[32m[1m    create[39m[0m  run.sh
+[32m[1m    create[39m[0m  templated.txt
+[32m[1m    create[39m[0m  empty.txt
+[32m[1m    create[39m[0m  plain.txt
+
+
 Traceback (most recent call last):
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 149, in <module>
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 122, in <module>
     pilot.prepare()
     ~~~~~~~~~~~~~^^
   File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 739, in prepare
     report["composition"] = composition_fixture(components)
                             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 100, in composition_fixture
-    assert forbidden.returncode != 0
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 106, in composition_fixture
+    assert pilot.executable(out / "run.sh")
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
 AssertionError
