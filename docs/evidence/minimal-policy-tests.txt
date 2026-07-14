@@ -1,0 +1,11 @@
+test_docs_skeleton (test_policy.PolicyTest.test_docs_skeleton) ... ok
+test_dynamic_private_import_is_rejected (test_policy.PolicyTest.test_dynamic_private_import_is_rejected) ... ok
+test_example_cell_marker (test_policy.PolicyTest.test_example_cell_marker) ... ok
+test_good_project (test_policy.PolicyTest.test_good_project) ... ok
+test_root_internal_import_is_rejected (test_policy.PolicyTest.test_root_internal_import_is_rejected) ... ok
+test_script_must_use_api_cli (test_policy.PolicyTest.test_script_must_use_api_cli) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.035s
+
+OK

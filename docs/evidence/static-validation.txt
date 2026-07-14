@@ -1,0 +1,7 @@
+JSON: 6
+JSON5: 4
+YAML: 7
+HCL: 4
+conflict markers: PASS
+structured parsing: PASS
+shell syntax: PASS
