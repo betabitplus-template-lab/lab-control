@@ -1,0 +1,53 @@
+name: Release Please
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    permissions:
+      contents: read
+    uses: betabitplus-template-lab/automation/.github/workflows/template-acceptance.yml@0000000000000000000000000000000000000000
+    secrets:
+      private-read-token: ${{ secrets.TEMPLATE_READ_TOKEN }}
+  release:
+    needs: acceptance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Mint release App token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          owner: betabitplus-template-lab
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
+      - name: Run Release Please
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        if: steps.release.outputs.release_created == 'true'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exact-SHA release guard
+        if: steps.release.outputs.release_created == 'true'
+        env:
+          TAG: ${{ steps.release.outputs.tag_name }}
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+          EXPECTED_MAIN_SHA: ${{ github.sha }}
+        run: |
+          git fetch --force --tags origin
+          actual="$(git rev-list -n 1 "$TAG")"
+          test "$actual" = "$RELEASE_SHA"
+          test "$actual" = "$EXPECTED_MAIN_SHA"
+          test "$(git branch -r --contains "$actual" | grep -c 'origin/main')" -gt 0
