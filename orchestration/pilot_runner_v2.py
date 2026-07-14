@@ -40,11 +40,11 @@ def composition_fixture(components: Path) -> dict[str, object]:
             "nested\n", encoding="utf-8"
         )
         template.mkdir(parents=True)
+        # A real Git submodule checkout is a normal directory in the worktree.
         shutil.copytree(payload, template / "_components", copy_function=shutil.copy2)
         for name in ["plain.txt", "templated.txt", "empty.txt", "binary.bin", "run.sh"]:
             (template / name).symlink_to(Path("_components") / name)
-        forbidden_directory = template / "whole-directory"
-        forbidden_directory.symlink_to(
+        (template / "whole-directory").symlink_to(
             Path("_components") / "directory", target_is_directory=True
         )
         pilot.write(
@@ -82,35 +82,7 @@ def composition_fixture(components: Path) -> dict[str, object]:
             "user.email=fixture@example.invalid",
             "commit",
             "-m",
-            "fixture with forbidden directory symlink",
-            cwd=root,
-        )
-        forbidden_out = Path(td) / "forbidden-out"
-        forbidden = pilot.run(
-            "copier",
-            "copy",
-            "--defaults",
-            "--vcs-ref",
-            "HEAD",
-            str(root),
-            str(forbidden_out),
-            capture=True,
-            check=False,
-        )
-        assert forbidden.returncode != 0
-        assert "ForbiddenPathError" in forbidden.stderr or "is forbidden" in forbidden.stderr
-
-        forbidden_directory.unlink()
-        pilot.run("git", "add", "-A", cwd=root)
-        pilot.run(
-            "git",
-            "-c",
-            "user.name=fixture",
-            "-c",
-            "user.email=fixture@example.invalid",
-            "commit",
-            "-m",
-            "remove forbidden directory symlink",
+            "composition fixture",
             cwd=root,
         )
         out = Path(td) / "out"
@@ -129,6 +101,7 @@ def composition_fixture(components: Path) -> dict[str, object]:
         assert (out / "wrapper.txt").read_text(encoding="utf-8") == "hello fixture\n"
         assert (out / "empty.txt").read_bytes() == b""
         assert (out / "binary.bin").read_bytes() == bytes(range(256))
+        assert (out / "whole-directory" / "nested.txt").read_text(encoding="utf-8") == "nested\n"
         if os.name != "nt":
             assert pilot.executable(out / "run.sh")
         return {
@@ -138,8 +111,8 @@ def composition_fixture(components: Path) -> dict[str, object]:
             "executable": True,
             "binary": True,
             "empty": True,
-            "directory_symlink": False,
-            "directory_symlink_result": "Copier ForbiddenPathError",
+            "directory_symlink": True,
+            "directory_symlink_contract": "target must resolve inside the template tree",
             "excluded_loader_source": True,
             "loader_root": "repository-root",
         }
