@@ -1,17 +1,11 @@
-[32m[1m    create[39m[0m  .github/actions
-[32m[1m    create[39m[0m  .github/actions/setup-dev-env
-[32m[1m    create[39m[0m  .github/actions/setup-dev-env/action.yml
-[32m[1m    create[39m[0m  .github/workflows
-[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-e2e-slice.yml
-[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-baseline.yml
 [32m[1m    create[39m[0m  .github/workflows/sync-starter-template.yml
 [32m[1m    create[39m[0m  .github/workflows/python-lib-ci-package.yml
 [32m[1m    create[39m[0m  .github/workflows/build-ci-image.yml
 
 
-+ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-uf9wb8i2/python-starter-platform /tmp/tmp2bunjkw4/candidate
++ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-ewhbz7y6/python-starter-platform /tmp/tmpbfe74m7j/candidate
 
-Copying from template version 0.1.0.post2.dev0+895f426
+Copying from template version 0.1.0.post4.dev0+408b0c6
 [32m[1m    create[39m[0m  .devcontainer
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile.ci
@@ -130,10 +124,10 @@ Copying from template version 0.1.0.post2.dev0+895f426
 + git fetch origin --tags
 + git rev-parse -q --verify refs/tags/v0.1.0
 + git init -b main
-Initialized empty Git repository in /tmp/tmpvmgx6fy3/fixture/.git/
+Initialized empty Git repository in /tmp/tmp6d4etpkd/fixture/.git/
 + git add -A
-+ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m fixture
-[main (root-commit) 1d22d96] fixture
++ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m fixture with forbidden directory symlink
+[main (root-commit) 2389a7c] fixture with forbidden directory symlink
  15 files changed, 27 insertions(+)
  create mode 100644 copier.yml
  create mode 100644 payload/binary.bin
@@ -150,9 +144,15 @@ Initialized empty Git repository in /tmp/tmpvmgx6fy3/fixture/.git/
  create mode 120000 template/templated.txt
  create mode 120000 template/whole-directory
  create mode 100644 template/wrapper.txt
-+ copier copy --defaults --vcs-ref HEAD /tmp/tmpvmgx6fy3/fixture /tmp/tmpvmgx6fy3/out
++ copier copy --defaults --vcs-ref HEAD /tmp/tmp6d4etpkd/fixture /tmp/tmp6d4etpkd/forbidden-out
++ git add -A
++ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m remove forbidden directory symlink
+[main 375efbd] remove forbidden directory symlink
+ 1 file changed, 1 deletion(-)
+ delete mode 120000 template/whole-directory
++ copier copy --defaults --vcs-ref HEAD /tmp/tmp6d4etpkd/fixture /tmp/tmp6d4etpkd/out
 
-Copying from template version 0.0.0.post1.dev0+1d22d96
+Copying from template version 0.0.0.post2.dev0+375efbd
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1267, in run_copy
     self._render_template()
@@ -161,7 +161,7 @@ Traceback (most recent call last):
     raise ForbiddenPathError(
         path=src_abspath.relative_to(self.template_copy_root)
     )
-copier.errors.ForbiddenPathError: "whole-directory" is forbidden
+copier.errors.ForbiddenPathError: "_components" is forbidden
 
 During handling of the above exception, another exception occurred:
 
@@ -216,15 +216,15 @@ Traceback (most recent call last):
     ~~~~~^^^^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/shutil.py", line 665, in _rmtree_safe_fd
     orig_st = os.lstat(name, dir_fd=dirfd)
-FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/tmp/tmpvmgx6fy3/out')
+FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/tmp/tmp6d4etpkd/out')
 Traceback (most recent call last):
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 119, in <module>
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 148, in <module>
     pilot.prepare()
     ~~~~~~~~~~~~~^^
   File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 739, in prepare
     report["composition"] = composition_fixture(components)
                             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 87, in composition_fixture
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 116, in composition_fixture
     pilot.run(
     ~~~~~~~~~^
         "copier",
@@ -247,4 +247,4 @@ Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/subprocess.py", line 577, in run
     raise CalledProcessError(retcode, process.args,
                              output=stdout, stderr=stderr)
-subprocess.CalledProcessError: Command '['copier', 'copy', '--defaults', '--vcs-ref', 'HEAD', '/tmp/tmpvmgx6fy3/fixture', '/tmp/tmpvmgx6fy3/out']' returned non-zero exit status 1.
+subprocess.CalledProcessError: Command '['copier', 'copy', '--defaults', '--vcs-ref', 'HEAD', '/tmp/tmp6d4etpkd/fixture', '/tmp/tmp6d4etpkd/out']' returned non-zero exit status 1.
