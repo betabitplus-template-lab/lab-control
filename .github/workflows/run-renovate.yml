@@ -1,0 +1,33 @@
+name: Renovate lab
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Renovate dry-run level
+        type: choice
+        required: true
+        default: extract
+        options: [extract, lookup, full]
+permissions:
+  contents: read
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint Renovate app token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v6.0.3
+      - name: Run pinned Renovate
+        uses: renovatebot/github-action@v46.1.19
+        with:
+          configurationFile: renovate/config.js
+          renovate-version: 43.262.4
+          token: ${{ steps.app-token.outputs.token }}
+        env:
+          RENOVATE_DRY_RUN: ${{ inputs.dry_run }}
+          LOG_LEVEL: debug
