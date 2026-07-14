@@ -1,1 +1,18 @@
-{"failures": ["matrix did not produce result JSON"]}
+{
+  "answers_updated": true,
+  "clean_update": true,
+  "conflict_command_completed": true,
+  "deleted_file": true,
+  "executable_bit_update": true,
+  "failures": [],
+  "mixed_nonconflict_preserved": true,
+  "nested_answers_count": 2,
+  "nested_answers_updated": true,
+  "new_file": true,
+  "new_question_with_default": true,
+  "rename": true,
+  "required_question_without_default_fails": true,
+  "skip_if_exists_preserved": true,
+  "true_conflict_markers": true,
+  "unrelated_user_file_preserved": true
+}

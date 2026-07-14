@@ -1,6 +1,6 @@
-Initialized empty Git repository in /tmp/copier-matrix-80vsnip7/template-source/.git/
-[main (root-commit) 6963adf] template v1
- 8 files changed, 19 insertions(+)
+Initialized empty Git repository in /tmp/copier-matrix-g2zeoxtt/template-source/.git/
+[main (root-commit) b764a73] template v1
+ 9 files changed, 20 insertions(+)
  create mode 100644 copier.yml
  create mode 100644 template/conflict.txt
  create mode 100644 template/mixed.txt
@@ -9,16 +9,18 @@ Initialized empty Git repository in /tmp/copier-matrix-80vsnip7/template-source/
  create mode 100644 template/renamed-old.txt
  create mode 100644 template/separate.txt
  create mode 100644 template/user-owned/seed.txt
-[main bdb605f] template v2
+ create mode 100644 template/{{ _copier_conf.answers_file }}
+[main c10d2cd] template v2
  9 files changed, 9 insertions(+), 6 deletions(-)
  mode change 100644 => 100755 template/mode.sh
  create mode 100644 template/new.txt
  delete mode 100644 template/removed.txt
  rename template/{renamed-old.txt => renamed-new.txt} (100%)
-[main 5fc0a74] template v3 required question
+[main e7310ff] template v3 required question
  1 file changed, 2 insertions(+)
 
 Copying from template version 0.1.0
+[32m[1m    create[39m[0m  .copier-answers.yml
 [32m[1m    create[39m[0m  mode.sh
 [32m[1m    create[39m[0m  user-owned
 [32m[1m    create[39m[0m  user-owned/seed.txt
@@ -29,9 +31,10 @@ Copying from template version 0.1.0
 [32m[1m    create[39m[0m  conflict.txt
 
 
-Initialized empty Git repository in /tmp/copier-matrix-80vsnip7/clean/.git/
-[main (root-commit) 44ff4f2] initial generated state
- 7 files changed, 10 insertions(+)
+Initialized empty Git repository in /tmp/copier-matrix-g2zeoxtt/clean/.git/
+[main (root-commit) 4bf9eaf] initial generated state
+ 8 files changed, 13 insertions(+)
+ create mode 100644 .copier-answers.yml
  create mode 100644 conflict.txt
  create mode 100644 mixed.txt
  create mode 100644 mode.sh
@@ -39,26 +42,101 @@ Initialized empty Git repository in /tmp/copier-matrix-80vsnip7/clean/.git/
  create mode 100644 renamed-old.txt
  create mode 100644 separate.txt
  create mode 100644 user-owned/seed.txt
-[main 092839c] user changes
+[main f788659] user changes
  3 files changed, 3 insertions(+), 2 deletions(-)
  create mode 100644 unrelated-user.txt
-Traceback (most recent call last):
-  File "/home/runner/work/lab-control/lab-control/acceptance/copier_matrix.py", line 183, in <module>
-    main()
-    ~~~~^^
-  File "/home/runner/work/lab-control/lab-control/acceptance/copier_matrix.py", line 114, in main
-    update(clean, "v0.2.0")
-    ~~~~~~^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/lab-control/lab-control/acceptance/copier_matrix.py", line 87, in update
-    return run(
-        "copier",
-    ...<9 lines>...
-        capture=True,
-    )
-  File "/home/runner/work/lab-control/lab-control/acceptance/copier_matrix.py", line 16, in run
-    return subprocess.run(args, cwd=cwd, check=check, text=True, capture_output=capture)
-           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/subprocess.py", line 577, in run
-    raise CalledProcessError(retcode, process.args,
-                             output=stdout, stderr=stderr)
-subprocess.CalledProcessError: Command '('copier', 'update', '--skip-answered', '--defaults', '--answers-file', '.copier-answers.yml', '--vcs-ref', 'v0.2.0')' returned non-zero exit status 1.
+
+Copying from template version 0.1.0
+[32m[1m    create[39m[0m  .copier-answers.yml
+[32m[1m    create[39m[0m  mode.sh
+[32m[1m    create[39m[0m  user-owned
+[32m[1m    create[39m[0m  user-owned/seed.txt
+[32m[1m    create[39m[0m  mixed.txt
+[32m[1m    create[39m[0m  renamed-old.txt
+[32m[1m    create[39m[0m  removed.txt
+[32m[1m    create[39m[0m  separate.txt
+[32m[1m    create[39m[0m  conflict.txt
+
+
+Initialized empty Git repository in /tmp/copier-matrix-g2zeoxtt/conflict/.git/
+[main (root-commit) bf3ebd7] initial generated state
+ 8 files changed, 13 insertions(+)
+ create mode 100644 .copier-answers.yml
+ create mode 100644 conflict.txt
+ create mode 100644 mixed.txt
+ create mode 100644 mode.sh
+ create mode 100644 removed.txt
+ create mode 100644 renamed-old.txt
+ create mode 100644 separate.txt
+ create mode 100644 user-owned/seed.txt
+[main ea753d0] user conflict
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Copying from template version 0.1.0
+[32m[1m    create[39m[0m  .copier-answers.yml
+[32m[1m    create[39m[0m  mode.sh
+[32m[1m    create[39m[0m  user-owned
+[32m[1m    create[39m[0m  user-owned/seed.txt
+[32m[1m    create[39m[0m  mixed.txt
+[32m[1m    create[39m[0m  renamed-old.txt
+[32m[1m    create[39m[0m  removed.txt
+[32m[1m    create[39m[0m  separate.txt
+[32m[1m    create[39m[0m  conflict.txt
+
+
+Initialized empty Git repository in /tmp/copier-matrix-g2zeoxtt/required/.git/
+[main (root-commit) b361225] initial generated state
+ 8 files changed, 13 insertions(+)
+ create mode 100644 .copier-answers.yml
+ create mode 100644 conflict.txt
+ create mode 100644 mixed.txt
+ create mode 100644 mode.sh
+ create mode 100644 removed.txt
+ create mode 100644 renamed-old.txt
+ create mode 100644 separate.txt
+ create mode 100644 user-owned/seed.txt
+Initialized empty Git repository in /tmp/copier-matrix-g2zeoxtt/workspace/.git/
+
+Copying from template version 0.1.0
+[32m[1m    create[39m[0m  .copier-answers.yml
+[32m[1m    create[39m[0m  mode.sh
+[32m[1m    create[39m[0m  user-owned
+[32m[1m    create[39m[0m  user-owned/seed.txt
+[32m[1m    create[39m[0m  mixed.txt
+[32m[1m    create[39m[0m  renamed-old.txt
+[32m[1m    create[39m[0m  removed.txt
+[32m[1m    create[39m[0m  separate.txt
+[32m[1m    create[39m[0m  conflict.txt
+
+
+
+Copying from template version 0.1.0
+[32m[1m    create[39m[0m  .copier-answers.yml
+[32m[1m    create[39m[0m  mode.sh
+[32m[1m    create[39m[0m  user-owned
+[32m[1m    create[39m[0m  user-owned/seed.txt
+[32m[1m    create[39m[0m  mixed.txt
+[32m[1m    create[39m[0m  renamed-old.txt
+[32m[1m    create[39m[0m  removed.txt
+[32m[1m    create[39m[0m  separate.txt
+[32m[1m    create[39m[0m  conflict.txt
+
+
+[main (root-commit) e55e263] two Copier relationships
+ 16 files changed, 26 insertions(+)
+ create mode 100644 packages/runtime/.copier-answers.yml
+ create mode 100644 packages/runtime/conflict.txt
+ create mode 100644 packages/runtime/mixed.txt
+ create mode 100644 packages/runtime/mode.sh
+ create mode 100644 packages/runtime/removed.txt
+ create mode 100644 packages/runtime/renamed-old.txt
+ create mode 100644 packages/runtime/separate.txt
+ create mode 100644 packages/runtime/user-owned/seed.txt
+ create mode 100644 packages/tooling/.copier-answers.yml
+ create mode 100644 packages/tooling/conflict.txt
+ create mode 100644 packages/tooling/mixed.txt
+ create mode 100644 packages/tooling/mode.sh
+ create mode 100644 packages/tooling/removed.txt
+ create mode 100644 packages/tooling/renamed-old.txt
+ create mode 100644 packages/tooling/separate.txt
+ create mode 100644 packages/tooling/user-owned/seed.txt
