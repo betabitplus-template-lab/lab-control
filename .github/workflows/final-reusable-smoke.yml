@@ -1,0 +1,32 @@
+name: Final reusable workflow smoke
+on:
+  workflow_call:
+    inputs:
+      fail-intentionally:
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      LAB_APP_ID:
+        required: true
+permissions:
+  contents: read
+jobs:
+  linux:
+    name: required / reusable-smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify inherited secret without disclosure
+        env:
+          LAB_APP_ID: ${{ secrets.LAB_APP_ID }}
+        run: test -n "$LAB_APP_ID"
+      - name: Verify caller input and failure propagation
+        env:
+          FAIL_INTENTIONALLY: ${{ inputs.fail-intentionally }}
+        run: test "$FAIL_INTENTIONALLY" != true
+  macos:
+    name: representative / reusable-smoke-macos
+    runs-on: macos-latest
+    steps:
+      - name: Cross-platform smoke
+        run: python3 -c 'print("private reusable workflow reached macOS")'
