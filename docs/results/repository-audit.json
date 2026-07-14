@@ -1,0 +1,124 @@
+{
+  "expected_repositories": [
+    "components",
+    "python-lib",
+    "python-internal-package",
+    "python-starter-platform",
+    "sandbox-python-lib",
+    "sandbox-python-platform",
+    "sandbox-workspace",
+    "lab-control"
+  ],
+  "organization": "betabitplus-template-lab",
+  "repositories": {
+    "components": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/components",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": []
+    },
+    "lab-control": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/lab-control",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": []
+    },
+    "python-internal-package": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/python-internal-package",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": [
+        "v0.1.0"
+      ]
+    },
+    "python-lib": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/python-lib",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": [
+        "v0.1.0"
+      ]
+    },
+    "python-starter-platform": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/python-starter-platform",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": [
+        "v0.1.0"
+      ]
+    },
+    "sandbox-python-lib": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/sandbox-python-lib",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": []
+    },
+    "sandbox-python-platform": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/sandbox-python-platform",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": []
+    },
+    "sandbox-workspace": {
+      "archived": false,
+      "branches": [
+        "main"
+      ],
+      "default_branch": "main",
+      "full_name": "betabitplus-template-lab/sandbox-workspace",
+      "open_issues_including_prs": [],
+      "open_pull_requests": [],
+      "private": true,
+      "tags": []
+    }
+  },
+  "safety": {
+    "all_default_main": true,
+    "all_private": true,
+    "all_unarchived": true,
+    "exact_repository_set": true,
+    "production_repositories_queried_or_mutated": 0
+  }
+}
