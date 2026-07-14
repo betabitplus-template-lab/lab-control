@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-# Trigger marker: acceptance-pr-v1
+# Trigger marker: acceptance-pr-v2
 
 import json
 import os
