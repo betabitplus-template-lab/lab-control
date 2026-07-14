@@ -1,0 +1,47 @@
+name: Copier update matrix
+on:
+  push:
+    branches: [main]
+    paths:
+      - acceptance/copier_matrix.py
+      - .github/workflows/copier-matrix.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Mint isolated lab token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned Copier
+        run: python -m pip install "copier==9.16.0"
+      - name: Run matrix
+        run: python acceptance/copier_matrix.py
+      - name: Persist result from Linux lane
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          git pull --rebase origin main
+          git add docs/results/copier-matrix.json
+          if ! git diff --cached --quiet; then
+            git config user.name "Template Lab Acceptance"
+            git config user.email "8123085+betabitplus@users.noreply.github.com"
+            git commit -m "docs: record Copier update matrix"
+            git push origin main
+          fi
