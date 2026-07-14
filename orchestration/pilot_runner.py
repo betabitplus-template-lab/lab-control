@@ -46,6 +46,9 @@ def clean_repo(repo: Path) -> None:
         if child.name in {".git", ".github"}:
             continue
         pilot.safe_rmtree(child)
+    pilot.git(repo, "add", "-A")
+    if pilot.git_output(repo, "status", "--porcelain"):
+        pilot.git(repo, "commit", "-m", "chore: reset isolated lab tree")
 
 
 pilot.run = safe_run
