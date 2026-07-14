@@ -5,6 +5,7 @@ on:
     paths:
       - orchestration/pilot.py
       - orchestration/pilot_runner.py
+      - orchestration/pilot_runner_v2.py
       - orchestration/request.json
       - .github/workflows/orchestrate.yml
   workflow_dispatch:
@@ -38,7 +39,7 @@ jobs:
         run: |
           set +e
           set -o pipefail
-          python orchestration/pilot_runner.py 2>&1 | tee /tmp/orchestrate.log
+          python orchestration/pilot_runner_v2.py 2>&1 | tee /tmp/orchestrate.log
           status=${PIPESTATUS[0]}
           set -e
           git pull --rebase origin main
