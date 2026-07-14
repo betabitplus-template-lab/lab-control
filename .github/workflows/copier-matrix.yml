@@ -1,3 +1,4 @@
+# Acceptance trigger: ci/acceptance-gates
 name: Copier update matrix
 on:
   push:
