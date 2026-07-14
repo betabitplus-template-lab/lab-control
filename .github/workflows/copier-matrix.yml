@@ -33,15 +33,41 @@ jobs:
       - name: Install pinned Copier
         run: python -m pip install "copier==9.16.0"
       - name: Run matrix
-        run: python acceptance/copier_matrix.py
+        id: matrix-run
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          python acceptance/copier_matrix.py 2>&1 | tee /tmp/copier-matrix.log
+          status=${PIPESTATUS[0]}
+          printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
       - name: Persist result from Linux lane
-        if: matrix.os == 'ubuntu-latest'
+        if: always() && matrix.os == 'ubuntu-latest'
+        env:
+          OUTCOME: ${{ steps.matrix-run.outcome }}
+          EXIT_STATUS: ${{ steps.matrix-run.outputs.status }}
         run: |
           git pull --rebase origin main
-          git add docs/results/copier-matrix.json
+          mkdir -p docs/results
+          if [ -f /tmp/copier-matrix.log ]; then
+            tail -n 250 /tmp/copier-matrix.log > docs/results/copier-matrix.log
+          fi
+          if [ ! -f docs/results/copier-matrix.json ]; then
+            printf '{"failures": ["matrix did not produce result JSON"]}\n' > docs/results/copier-matrix.json
+          fi
+          printf '{"outcome": "%s", "exit_status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/copier-matrix-status.json
+          git add docs/results/copier-matrix.json docs/results/copier-matrix.log docs/results/copier-matrix-status.json
           if ! git diff --cached --quiet; then
             git config user.name "Template Lab Acceptance"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
             git commit -m "docs: record Copier update matrix"
             git push origin main
           fi
+          test "$OUTCOME" = success
+      - name: Enforce macOS result
+        if: always() && matrix.os == 'macos-latest'
+        env:
+          OUTCOME: ${{ steps.matrix-run.outcome }}
+        run: test "$OUTCOME" = success
