@@ -1,9 +1,8 @@
 name: Materialize final experiment PR
 
 on:
-  pull_request_target:
-    types: [synchronize, reopened]
-    branches: [main]
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: read
@@ -11,9 +10,10 @@ permissions:
 jobs:
   materialize:
     if: >-
-      github.event.pull_request.number == 9 &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.head.ref == 'experiment/final-platform-20260714'
+      github.event.issue.number == 9 &&
+      github.event.issue.pull_request != null &&
+      github.event.comment.user.login == 'betabitplus' &&
+      github.event.comment.body == '/materialize-final-evidence c26257dfc1e314a8aa8ccd70e77b54152f53fd5a458288f6ab9440c0a2d60110'
     runs-on: ubuntu-latest
     steps:
       - name: Create lab-only content token
@@ -26,10 +26,10 @@ jobs:
           repositories: lab-control
           permission-contents: write
 
-      - name: Checkout exact PR head
+      - name: Checkout fixed experiment branch
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: experiment/final-platform-20260714
           fetch-depth: 0
           persist-credentials: false
 
@@ -39,6 +39,7 @@ jobs:
           echo 'c26257dfc1e314a8aa8ccd70e77b54152f53fd5a458288f6ab9440c0a2d60110  experiments/final-platform/final-assets.tar.gz' | sha256sum --check
           tar -xzf experiments/final-platform/final-assets.tar.gz -C .
           rm experiments/final-platform/final-assets.tar.gz
+          rm -f experiments/final-platform/MATERIALIZE
 
       - name: Link first-stage results to final phase
         shell: bash
