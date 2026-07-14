@@ -1,11 +1,8 @@
 {
-  "dry_run": "extract",
+  "dry_run": null,
   "repositories": [
     "betabitplus-template-lab/python-lib",
     "betabitplus-template-lab/python-internal-package",
-    "betabitplus-template-lab/python-starter-platform",
-    "betabitplus-template-lab/sandbox-python-lib",
-    "betabitplus-template-lab/sandbox-python-platform",
-    "betabitplus-template-lab/sandbox-workspace"
+    "betabitplus-template-lab/python-starter-platform"
   ]
 }
