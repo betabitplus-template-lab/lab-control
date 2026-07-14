@@ -1,0 +1,41 @@
+name: Release lab templates
+on:
+  push:
+    branches: [main]
+    paths:
+      - release/request.json
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint isolated lab token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Create only exact-SHA tags
+        env:
+          LAB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: python release/release.py
+      - name: Persist release evidence
+        run: |
+          git pull --rebase origin main
+          git add docs/results/release.json
+          if ! git diff --cached --quiet; then
+            git config user.name "Template Lab Release Controller"
+            git config user.email "8123085+betabitplus@users.noreply.github.com"
+            git commit -m "docs: record lab template releases"
+            git push origin main
+          fi
