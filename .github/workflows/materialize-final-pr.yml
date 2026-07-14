@@ -1,6 +1,10 @@
 name: Materialize final experiment PR
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - .github/materialize-final.trigger
   issue_comment:
     types: [created]
 
@@ -10,10 +14,11 @@ permissions:
 jobs:
   materialize:
     if: >-
-      github.event.issue.number == 9 &&
+      github.event_name == 'push' ||
+      (github.event.issue.number == 9 &&
       github.event.issue.pull_request != null &&
       github.event.comment.user.login == 'betabitplus' &&
-      github.event.comment.body == '/materialize-final-evidence c26257dfc1e314a8aa8ccd70e77b54152f53fd5a458288f6ab9440c0a2d60110'
+      github.event.comment.body == '/materialize-final-evidence c26257dfc1e314a8aa8ccd70e77b54152f53fd5a458288f6ab9440c0a2d60110')
     runs-on: ubuntu-latest
     steps:
       - name: Create lab-only content token
