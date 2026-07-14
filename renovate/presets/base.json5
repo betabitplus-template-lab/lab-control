@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Lab base: review-gated dependency updates with stable naming and dashboard.",
+  "extends": ["config:recommended"],
+  "automerge": false,
+  "dependencyDashboard": true,
+  "branchPrefix": "renovate-lab/",
+  "labels": ["lab", "dependencies"],
+  "rebaseWhen": "conflicted",
+  "rangeStrategy": "replace",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2
+}

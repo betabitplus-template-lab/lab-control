@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Nested Copier workspace: group all answers-file updates into one review.",
+  "extends": ["local>betabitplus-template-lab/automation//renovate/presets/downstream.json5"],
+  "packageRules": [
+    {
+      "matchManagers": ["copier"],
+      "matchFileNames": ["packages/**/.copier-answers.yml", "packages/**/.copier-answers.yaml"],
+      "groupName": "workspace Copier relationships"
+    }
+  ]
+}

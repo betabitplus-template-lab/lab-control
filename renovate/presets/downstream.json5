@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Managed downstream: Copier, package and reusable-workflow ref updates.",
+  "extends": ["local>betabitplus-template-lab/automation//renovate/presets/base.json5"],
+  "enabledManagers": ["copier", "github-actions", "pep621", "uv"],
+  "baseBranches": ["dev"],
+  "packageRules": [
+    {
+      "matchManagers": ["copier"],
+      "labels": ["lab", "template-update"],
+      "groupName": "Copier template updates"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "pinDigests": true,
+      "labels": ["lab", "workflow-dependency"]
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": ["uv lock"],
+    "fileFilters": ["uv.lock"],
+    "executionMode": "branch"
+  }
+}
