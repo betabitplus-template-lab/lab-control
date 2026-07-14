@@ -36,6 +36,8 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
         env:
           LOG_LEVEL: debug
+          LOG_FILE: /tmp/renovate.log
+          LOG_FILE_LEVEL: debug
       - name: Persist run result
         if: always()
         shell: bash
@@ -45,8 +47,13 @@ jobs:
           git pull --rebase origin main
           mkdir -p docs/results
           cp renovate/request.json docs/results/renovate-request.json
+          if [ -f /tmp/renovate.log ]; then
+            tail -n 300 /tmp/renovate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > docs/results/renovate.log
+          else
+            printf 'Renovate did not create LOG_FILE.\n' > docs/results/renovate.log
+          fi
           printf '{"outcome": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/renovate-status.json
-          git add docs/results/renovate-request.json docs/results/renovate-status.json
+          git add docs/results/renovate-request.json docs/results/renovate-status.json docs/results/renovate.log
           if ! git diff --cached --quiet; then
             git config user.name "Template Lab Renovate Controller"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
