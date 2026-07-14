@@ -1,13 +1,12 @@
 name: Renovate lab
 on:
+  push:
+    branches: [main]
+    paths:
+      - renovate/config.js
+      - renovate/request.json
+      - .github/workflows/run-renovate.yml
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: Renovate dry-run level
-        type: choice
-        required: true
-        default: extract
-        options: [extract, lookup, full]
 permissions:
   contents: read
 jobs:
@@ -22,12 +21,36 @@ jobs:
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
       - uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - name: Validate guarded request
+        run: node -e 'require("./renovate/config.js")'
       - name: Run pinned Renovate
+        id: renovate
+        continue-on-error: true
         uses: renovatebot/github-action@v46.1.19
         with:
           configurationFile: renovate/config.js
           renovate-version: 43.262.4
           token: ${{ steps.app-token.outputs.token }}
         env:
-          RENOVATE_DRY_RUN: ${{ inputs.dry_run }}
           LOG_LEVEL: debug
+      - name: Persist run result
+        if: always()
+        shell: bash
+        env:
+          OUTCOME: ${{ steps.renovate.outcome }}
+        run: |
+          git pull --rebase origin main
+          mkdir -p docs/results
+          cp renovate/request.json docs/results/renovate-request.json
+          printf '{"outcome": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/renovate-status.json
+          git add docs/results/renovate-request.json docs/results/renovate-status.json
+          if ! git diff --cached --quiet; then
+            git config user.name "Template Lab Renovate Controller"
+            git config user.email "8123085+betabitplus@users.noreply.github.com"
+            git commit -m "ci: record Renovate run result"
+            git push origin main
+          fi
+          test "$OUTCOME" = success
