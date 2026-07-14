@@ -8,6 +8,13 @@ on:
       - orchestration/pilot_runner.py
       - orchestration/pilot_runner_v2.py
       - .github/workflows/orchestrate.yml
+  pull_request:
+    paths:
+      - orchestration/finalize.py
+      - orchestration/pilot.py
+      - orchestration/pilot_runner.py
+      - orchestration/pilot_runner_v2.py
+      - .github/workflows/orchestrate.yml
   workflow_dispatch:
 concurrency:
   group: template-pilot-preparation
@@ -45,15 +52,20 @@ jobs:
           python orchestration/finalize.py 2>&1 | tee /tmp/orchestrate.log
           status=${PIPESTATUS[0]}
           set -e
-          git pull --rebase origin main
+          mkdir -p /tmp/pilot-evidence
+          tail -n 250 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > /tmp/pilot-evidence/orchestrate.log
+          printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > /tmp/pilot-evidence/orchestrate-status.json
+          [ ! -f docs/results/prepare.json ] || cp docs/results/prepare.json /tmp/pilot-evidence/prepare.json
+          [ ! -f docs/results/prepare.md ] || cp docs/results/prepare.md /tmp/pilot-evidence/prepare.md
+          git fetch origin main
+          git checkout -B evidence-main origin/main
           mkdir -p docs/results
-          tail -n 250 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > docs/results/orchestrate.log
-          printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/orchestrate-status.json
+          cp /tmp/pilot-evidence/* docs/results/
           git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git config user.name "Template Lab Orchestrator"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
             git commit -m "docs: record finalized pilot preparation"
-            git push origin main
+            git push origin HEAD:main
           fi
           exit "$status"
