@@ -1,3 +1,9 @@
 {
-  "releases": []
+  "releases": [
+    {
+      "repository": "betabitplus-template-lab/python-lib",
+      "commit": "8e0be803c19e50ee722eab8dc57222b576ecc87c",
+      "tag": "v0.3.0"
+    }
+  ]
 }
