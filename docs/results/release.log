@@ -1,15 +1,5 @@
-Cloning into '/tmp/release-lab-j8hnk4ta/python-lib'...
+Cloning into '/tmp/release-lab-fa837_c7/python-lib'...
 From https://github.com/betabitplus-template-lab/python-lib
  * branch            main       -> FETCH_HEAD
 To https://github.com/betabitplus-template-lab/python-lib.git
- * [new tag]         v0.2.0 -> v0.2.0
-Cloning into '/tmp/release-lab-j8hnk4ta/python-internal-package'...
-From https://github.com/betabitplus-template-lab/python-internal-package
- * branch            main       -> FETCH_HEAD
-To https://github.com/betabitplus-template-lab/python-internal-package.git
- * [new tag]         v0.2.0 -> v0.2.0
-Cloning into '/tmp/release-lab-j8hnk4ta/python-starter-platform'...
-From https://github.com/betabitplus-template-lab/python-starter-platform
- * branch            main       -> FETCH_HEAD
-To https://github.com/betabitplus-template-lab/python-starter-platform.git
- * [new tag]         v0.2.0 -> v0.2.0
+ * [new tag]         v0.3.0 -> v0.3.0
