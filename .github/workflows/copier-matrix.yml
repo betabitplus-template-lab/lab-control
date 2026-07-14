@@ -5,6 +5,10 @@ on:
     paths:
       - acceptance/copier_matrix.py
       - .github/workflows/copier-matrix.yml
+  pull_request:
+    paths:
+      - acceptance/copier_matrix.py
+      - .github/workflows/copier-matrix.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -49,21 +53,26 @@ jobs:
           OUTCOME: ${{ steps.matrix-run.outcome }}
           EXIT_STATUS: ${{ steps.matrix-run.outputs.status }}
         run: |
-          git pull --rebase origin main
-          mkdir -p docs/results
+          mkdir -p /tmp/matrix-evidence
           if [ -f /tmp/copier-matrix.log ]; then
-            tail -n 250 /tmp/copier-matrix.log > docs/results/copier-matrix.log
+            tail -n 250 /tmp/copier-matrix.log > /tmp/matrix-evidence/copier-matrix.log
           fi
-          if [ ! -f docs/results/copier-matrix.json ]; then
-            printf '{"failures": ["matrix did not produce result JSON"]}\n' > docs/results/copier-matrix.json
+          if [ -f docs/results/copier-matrix.json ]; then
+            cp docs/results/copier-matrix.json /tmp/matrix-evidence/copier-matrix.json
+          else
+            printf '{"failures": ["matrix did not produce result JSON"]}\n' > /tmp/matrix-evidence/copier-matrix.json
           fi
-          printf '{"outcome": "%s", "exit_status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/copier-matrix-status.json
+          printf '{"outcome": "%s", "exit_status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > /tmp/matrix-evidence/copier-matrix-status.json
+          git fetch origin main
+          git checkout -B evidence-main origin/main
+          mkdir -p docs/results
+          cp /tmp/matrix-evidence/* docs/results/
           git add docs/results/copier-matrix.json docs/results/copier-matrix.log docs/results/copier-matrix-status.json
           if ! git diff --cached --quiet; then
             git config user.name "Template Lab Acceptance"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
             git commit -m "docs: record Copier update matrix"
-            git push origin main
+            git push origin HEAD:main
           fi
           test "$OUTCOME" = success
       - name: Enforce macOS result
