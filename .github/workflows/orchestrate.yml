@@ -44,7 +44,7 @@ jobs:
           set -e
           git pull --rebase origin main
           mkdir -p docs/results
-          sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' /tmp/orchestrate.log > docs/results/orchestrate.log
+          tail -n 250 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > docs/results/orchestrate.log
           printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/orchestrate-status.json
           git add docs/results/orchestrate.log docs/results/orchestrate-status.json
           if ! git diff --cached --quiet; then
