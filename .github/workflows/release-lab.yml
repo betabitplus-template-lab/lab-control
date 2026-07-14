@@ -4,6 +4,11 @@ on:
     branches: [main]
     paths:
       - release/request.json
+  pull_request:
+    paths:
+      - release/request.json
+      - release/release.py
+      - .github/workflows/release-lab.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,16 +31,69 @@ jobs:
         with:
           python-version: "3.13"
       - name: Create only exact-SHA tags
+        id: release
+        continue-on-error: true
         env:
           LAB_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: python release/release.py
-      - name: Persist release evidence
+        shell: bash
         run: |
-          git pull --rebase origin main
-          git add docs/results/release.json
-          if ! git diff --cached --quiet; then
+          set +e
+          set -o pipefail
+          python release/release.py 2>&1 | tee /tmp/release.log
+          status=${PIPESTATUS[0]}
+          printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+      - name: Assemble release evidence
+        if: always()
+        env:
+          OUTCOME: ${{ steps.release.outcome }}
+          EXIT_STATUS: ${{ steps.release.outputs.status }}
+        shell: bash
+        run: |
+          mkdir -p /tmp/release-evidence
+          if [ -f docs/results/release.json ]; then
+            cp docs/results/release.json /tmp/release-evidence/release.json
+          else
+            printf '{"releases": []}\n' > /tmp/release-evidence/release.json
+          fi
+          if [ -f /tmp/release.log ]; then
+            tail -n 200 /tmp/release.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > /tmp/release-evidence/release.log
+          fi
+          printf '{"outcome": "%s", "exit_status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > /tmp/release-evidence/release-status.json
+      - name: Upload release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-evidence
+          path: /tmp/release-evidence
+          if-no-files-found: error
+      - name: Persist release evidence to main
+        if: always()
+        shell: bash
+        run: |
+          success=false
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git checkout -B evidence-main origin/main
+            mkdir -p docs/results
+            cp /tmp/release-evidence/* docs/results/
+            git add docs/results/release.json docs/results/release.log docs/results/release-status.json
+            if git diff --cached --quiet; then
+              success=true
+              break
+            fi
             git config user.name "Template Lab Release Controller"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
             git commit -m "docs: record lab template releases"
-            git push origin main
-          fi
+            if git push origin HEAD:main; then
+              success=true
+              break
+            fi
+            sleep $((attempt * 2))
+          done
+          test "$success" = true
+      - name: Enforce release result
+        if: always()
+        env:
+          OUTCOME: ${{ steps.release.outcome }}
+        run: test "$OUTCOME" = success
