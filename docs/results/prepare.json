@@ -1,0 +1,127 @@
+{
+  "components_initial_sha": "1f233492f3f66fdf17096cdb9462e4d38a04e8fc",
+  "composition": {
+    "binary": true,
+    "directory_symlink": true,
+    "directory_symlink_contract": "target must resolve inside the template tree",
+    "empty": true,
+    "excluded_loader_source": true,
+    "executable_symlink_preserves_mode": false,
+    "executable_wrapper_preserves_mode": true,
+    "jinja_include": true,
+    "jinja_symlink": true,
+    "loader_root": "repository-root",
+    "text_symlink": true
+  },
+  "safety": {
+    "allowed_write_owner": "betabitplus-template-lab",
+    "production_mutations": 0,
+    "source_detached_clean": true
+  },
+  "sandboxes": {
+    "sandbox-python-lib": {
+      "answers": 1,
+      "commit": "44338f44450f293865db3d621d4e52551e74baac",
+      "template_version": "v0.1.0"
+    },
+    "sandbox-python-platform": {
+      "answers": 1,
+      "commit": "03ec39abd7dc05c0d435d4acde1369e9e0b09250",
+      "deferred_reason": "Renovate App intentionally has Workflows: No access",
+      "deferred_workflows": [
+        ".github/workflows/build-ci-image.yml",
+        ".github/workflows/python-lib-ci-baseline.yml",
+        ".github/workflows/python-lib-ci-e2e-slice.yml",
+        ".github/workflows/python-lib-ci-package.yml"
+      ],
+      "template_version": "v0.1.0"
+    },
+    "sandbox-workspace": {
+      "answers": 2,
+      "commit": "95ef8430faff6327f0368ea087de88b6e4c1c952",
+      "template_version": "v0.1.0"
+    }
+  },
+  "source": {
+    "repository": "betabitplus/py-lib-starter",
+    "sha": "d59582375855cff69fb165e467dc5847bc75ca99"
+  },
+  "templates": {
+    "python-internal-package": {
+      "commit": "6d8f285748ff73ea79e51668f4b04eb47f6d91bf",
+      "parity_custom": {
+        "files": 143,
+        "ignored": [
+          ".copier-answers.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "parity_defaults": {
+        "files": 143,
+        "ignored": [
+          ".copier-answers.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "profile": "python-internal-package",
+      "tag_v0.1.0": "7a1ca493a64a8eb4aaeeafbd6e364861f2f7493c",
+      "wiring_files": 143
+    },
+    "python-lib": {
+      "commit": "2e9fcd85c791a2dadae0c8d1ee527c5d6e118286",
+      "parity_custom": {
+        "files": 167,
+        "ignored": [
+          ".copier-answers.yml",
+          ".github/workflows/sync-starter-template.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "parity_defaults": {
+        "files": 167,
+        "ignored": [
+          ".copier-answers.yml",
+          ".github/workflows/sync-starter-template.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "profile": "python-lib-standard",
+      "tag_v0.1.0": "fe9e812d6df96e3a2629f3c09f791cd859120247",
+      "wiring_files": 170
+    },
+    "python-starter-platform": {
+      "commit": "1444126d8bdb430ce06b5a990bfe3ea302ad4d60",
+      "parity_custom": {
+        "files": 74,
+        "ignored": [
+          ".copier-answers.yml",
+          ".github/workflows/sync-starter-template.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "parity_defaults": {
+        "files": 74,
+        "ignored": [
+          ".copier-answers.yml",
+          ".github/workflows/sync-starter-template.yml",
+          "_copier_answers.platform.yml",
+          "_copier_answers.yml",
+          "renovate.json5"
+        ]
+      },
+      "profile": "python-starter-platform",
+      "tag_v0.1.0": "3428aafa01f25c84b02291530a1b5ada4853006a",
+      "wiring_files": 76
+    }
+  }
+}
