@@ -2,7 +2,7 @@ name: Materialize final experiment PR
 
 on:
   pull_request_target:
-    types: [synchronize]
+    types: [synchronize, reopened]
     branches: [main]
 
 permissions:
