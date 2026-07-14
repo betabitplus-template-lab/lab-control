@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import textwrap
 import tempfile
 from pathlib import Path
@@ -39,7 +40,7 @@ def composition_fixture(components: Path) -> dict[str, object]:
             "nested\n", encoding="utf-8"
         )
         template.mkdir(parents=True)
-        (template / "_components").symlink_to(payload, target_is_directory=True)
+        shutil.copytree(payload, template / "_components", copy_function=shutil.copy2)
         for name in ["plain.txt", "templated.txt", "empty.txt", "binary.bin", "run.sh"]:
             (template / name).symlink_to(Path("_components") / name)
         forbidden_directory = template / "whole-directory"
