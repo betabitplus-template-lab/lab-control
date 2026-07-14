@@ -42,7 +42,9 @@ jobs:
           python-version: "3.13"
       - name: Install pinned pilot tools
         run: python -m pip install "copier==9.16.0" "PyYAML==6.0.3"
-      - name: Finalize preparation and persist diagnostics
+      - name: Run preparation finalizer
+        id: finalize
+        continue-on-error: true
         env:
           LAB_TOKEN: ${{ steps.app-token.outputs.token }}
         shell: bash
@@ -51,21 +53,58 @@ jobs:
           set -o pipefail
           python orchestration/finalize.py 2>&1 | tee /tmp/orchestrate.log
           status=${PIPESTATUS[0]}
-          set -e
-          mkdir -p /tmp/pilot-evidence
-          tail -n 250 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > /tmp/pilot-evidence/orchestrate.log
-          printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > /tmp/pilot-evidence/orchestrate-status.json
-          [ ! -f docs/results/prepare.json ] || cp docs/results/prepare.json /tmp/pilot-evidence/prepare.json
-          [ ! -f docs/results/prepare.md ] || cp docs/results/prepare.md /tmp/pilot-evidence/prepare.md
-          git fetch origin main
-          git checkout -B evidence-main origin/main
-          mkdir -p docs/results
-          cp /tmp/pilot-evidence/* docs/results/
-          git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md 2>/dev/null || true
-          if ! git diff --cached --quiet; then
+          printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+      - name: Assemble sanitized evidence
+        if: always()
+        shell: bash
+        env:
+          OUTCOME: ${{ steps.finalize.outcome }}
+          EXIT_STATUS: ${{ steps.finalize.outputs.status }}
+        run: |
+          mkdir -p evidence
+          if [ -f /tmp/orchestrate.log ]; then
+            tail -n 300 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > evidence/orchestrate.log
+          else
+            printf 'Finalizer did not create a log.\n' > evidence/orchestrate.log
+          fi
+          printf '{"outcome": "%s", "status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > evidence/orchestrate-status.json
+          [ ! -f docs/results/prepare.json ] || cp docs/results/prepare.json evidence/prepare.json
+          [ ! -f docs/results/prepare.md ] || cp docs/results/prepare.md evidence/prepare.md
+      - name: Upload preparation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preparation-evidence
+          path: evidence
+          if-no-files-found: error
+      - name: Persist evidence to main with retry
+        if: always()
+        shell: bash
+        run: |
+          success=false
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git checkout -B evidence-main origin/main
+            mkdir -p docs/results
+            cp evidence/* docs/results/
+            git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md 2>/dev/null || true
+            if git diff --cached --quiet; then
+              success=true
+              break
+            fi
             git config user.name "Template Lab Orchestrator"
             git config user.email "8123085+betabitplus@users.noreply.github.com"
             git commit -m "docs: record finalized pilot preparation"
-            git push origin HEAD:main
-          fi
-          exit "$status"
+            if git push origin HEAD:main; then
+              success=true
+              break
+            fi
+            sleep $((attempt * 2))
+          done
+          test "$success" = true
+      - name: Enforce finalizer result
+        if: always()
+        env:
+          OUTCOME: ${{ steps.finalize.outcome }}
+        run: test "$OUTCOME" = success
