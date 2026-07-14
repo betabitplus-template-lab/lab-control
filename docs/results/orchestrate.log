@@ -1,8 +1,8 @@
 + git config --global user.name Template Lab Orchestrator
 + git config --global user.email 8123085+betabitplus@users.noreply.github.com
 + git config --global url.https://x-access-token:<redacted>@github.com/.insteadOf https://github.com/
-+ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-cscrhlaz/py-lib-starter
-Cloning into '/tmp/template-lab-cscrhlaz/py-lib-starter'...
++ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-b9th7s2s/py-lib-starter
+Cloning into '/tmp/template-lab-b9th7s2s/py-lib-starter'...
 + git fetch origin d59582375855cff69fb165e467dc5847bc75ca99
 From https://github.com/betabitplus/py-lib-starter
  * branch            d59582375855cff69fb165e467dc5847bc75ca99 -> FETCH_HEAD
@@ -10,23 +10,23 @@ From https://github.com/betabitplus/py-lib-starter
 HEAD is now at d595823 fix: make fleet doctor resilient to GitHub API failures (#296)
 + git rev-parse HEAD
 + git status --porcelain
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-cscrhlaz/components
-Cloning into '/tmp/template-lab-cscrhlaz/components'...
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-internal-package.git /tmp/template-lab-cscrhlaz/python-internal-package
-Cloning into '/tmp/template-lab-cscrhlaz/python-internal-package'...
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-lib.git /tmp/template-lab-cscrhlaz/python-lib
-Cloning into '/tmp/template-lab-cscrhlaz/python-lib'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-b9th7s2s/components
+Cloning into '/tmp/template-lab-b9th7s2s/components'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-internal-package.git /tmp/template-lab-b9th7s2s/python-internal-package
+Cloning into '/tmp/template-lab-b9th7s2s/python-internal-package'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-lib.git /tmp/template-lab-b9th7s2s/python-lib
+Cloning into '/tmp/template-lab-b9th7s2s/python-lib'...
 Submodule 'template/_components' (https://github.com/betabitplus-template-lab/components.git) registered for path 'template/_components'
-Cloning into '/tmp/template-lab-cscrhlaz/python-lib/template/_components'...
+Cloning into '/tmp/template-lab-b9th7s2s/python-lib/template/_components'...
 Submodule path 'template/_components': checked out '1f233492f3f66fdf17096cdb9462e4d38a04e8fc'
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-starter-platform.git /tmp/template-lab-cscrhlaz/python-starter-platform
-Cloning into '/tmp/template-lab-cscrhlaz/python-starter-platform'...
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-python-lib.git /tmp/template-lab-cscrhlaz/sandbox-python-lib
-Cloning into '/tmp/template-lab-cscrhlaz/sandbox-python-lib'...
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-python-platform.git /tmp/template-lab-cscrhlaz/sandbox-python-platform
-Cloning into '/tmp/template-lab-cscrhlaz/sandbox-python-platform'...
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-workspace.git /tmp/template-lab-cscrhlaz/sandbox-workspace
-Cloning into '/tmp/template-lab-cscrhlaz/sandbox-workspace'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/python-starter-platform.git /tmp/template-lab-b9th7s2s/python-starter-platform
+Cloning into '/tmp/template-lab-b9th7s2s/python-starter-platform'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-python-lib.git /tmp/template-lab-b9th7s2s/sandbox-python-lib
+Cloning into '/tmp/template-lab-b9th7s2s/sandbox-python-lib'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-python-platform.git /tmp/template-lab-b9th7s2s/sandbox-python-platform
+Cloning into '/tmp/template-lab-b9th7s2s/sandbox-python-platform'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/sandbox-workspace.git /tmp/template-lab-b9th7s2s/sandbox-workspace
+Cloning into '/tmp/template-lab-b9th7s2s/sandbox-workspace'...
 + git rev-parse HEAD
 + git submodule deinit -f --all
 Cleared directory 'template/_components'
@@ -37,187 +37,187 @@ rm 'template/_components'
 + git add -A
 + git status --porcelain
 + git commit -m chore: reset isolated lab tree
-[main b43c5a9] chore: reset isolated lab tree
- 177 files changed, 12303 deletions(-)
+[main 544130d] chore: reset isolated lab tree
+ 177 files changed, 1488 deletions(-)
  delete mode 100644 .gitmodules
  delete mode 100644 README.md
  delete mode 100644 SOURCE.yml
+ delete mode 100644 WIRING.json
  delete mode 100644 copier.yml
  delete mode 100644 renovate.json5
- delete mode 100644 template/.agents/skills/changed/SKILL.md
- delete mode 100644 template/.agents/skills/changed/agents/openai.yaml
- delete mode 100644 template/.agents/skills/code-guardrails/SKILL.md
- delete mode 100644 template/.agents/skills/code-guardrails/agents/openai.yaml
- delete mode 100644 template/.agents/skills/finish-worktree/SKILL.md
- delete mode 100644 template/.agents/skills/finish-worktree/agents/openai.yaml
- delete mode 100644 template/.agents/skills/git-finish/SKILL.md
- delete mode 100644 template/.agents/skills/git-finish/agents/openai.yaml
- delete mode 100644 template/.agents/skills/git-finish/references/pull_request_template.md
- delete mode 100644 template/.agents/skills/handoff/SKILL.md
- delete mode 100644 template/.agents/skills/handoff/agents/openai.yaml
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/SKILL.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/agents/openai.yaml
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/implementation_notes_template.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/implementation_phase_template.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/plan_root_readme_template.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/planning-protocol.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/02-discovery-stage.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/03-implementation-plan-structure.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/04-phase-rules.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/06-implementation-boundaries.md
- delete mode 100644 template/.agents/skills/plan-internal-from-contract/references/protocol/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/SKILL.md
- delete mode 100644 template/.agents/skills/python-library-rules/agents/openai.yaml
- delete mode 100644 template/.agents/skills/python-library-rules/references/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/authoring/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/authoring/reference_authoring_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/comment_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/comment_traceability_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/config_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/defaults_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/docstring_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/exceptions_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/logging_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/core/public_api_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/dependencies_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/docs_organization_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/docs_rules_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/index_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/principles_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/system_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/usage_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/docs/vertical_slice_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/README.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/e2e_test_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/property_based_testing_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/test_file_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/tests_routing_pattern.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/verification_doc_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/references/verification/workbench_script_template.md
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/__init__.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/context.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/markdown.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/python_source.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/reporting.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/_shared/runner.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/check_docs_shape.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/core/__init__.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/core/docstring_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/__init__.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/dependencies_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/index_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/principles_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/system_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/usage_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/docs/vertical_slice_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/__init__.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/e2e_test_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/property_based_testing_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/test_file_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/verification_doc_template.py
- delete mode 100644 template/.agents/skills/python-library-rules/scripts/verification/workbench_script_template.py
- delete mode 100644 template/.agents/skills/warmup/SKILL.md
- delete mode 100644 template/.agents/skills/warmup/agents/openai.yaml
- delete mode 100644 template/.devcontainer/Dockerfile
- delete mode 100644 template/.devcontainer/Dockerfile.ci
- delete mode 100644 template/.devcontainer/devcontainer.json
- delete mode 100644 template/.editorconfig
- delete mode 100644 template/.envrc
- delete mode 100644 template/.github/MAINTAINER_SETUP.md
- delete mode 100644 template/.github/actions/setup-dev-env/action.yml
- delete mode 100644 template/.github/pull_request_template.md
- delete mode 100755 template/.github/scripts/install-sync-validation-tools.sh
- delete mode 100644 template/.github/workflows/build-ci-image.yml
- delete mode 100644 template/.github/workflows/ci.yml
- delete mode 100644 template/.github/workflows/python-lib-ci-baseline.yml
- delete mode 100644 template/.github/workflows/python-lib-ci-e2e-slice.yml
- delete mode 100644 template/.github/workflows/python-lib-ci-package.yml
- delete mode 100644 template/.github/workflows/release.yml
- delete mode 100644 template/.github/workflows/sync-starter-template.yml
- delete mode 100644 template/.gitignore
- delete mode 100644 template/.gitleaks.toml
- delete mode 100644 template/.markdown-link-check.json
- delete mode 100644 template/.markdownlint.yaml
- delete mode 100644 template/.mdformat.toml
- delete mode 100644 template/.pre-commit-config.yaml
- delete mode 100644 template/.vscode/extensions.json
- delete mode 100644 template/.vscode/settings.json
- delete mode 100644 template/AGENTS.md
- delete mode 100644 template/CHANGELOG.md
- delete mode 100644 template/CONTRIBUTING.md
- delete mode 100644 template/LICENSE
- delete mode 100644 template/MANIFEST.in
- delete mode 100644 template/README.md
- delete mode 100644 template/RTK.md
- delete mode 100644 template/SETUP.md
- delete mode 100644 template/[[[ _copier_conf.answers_file ]]]
+ delete mode 120000 template/.agents/skills/changed/SKILL.md
+ delete mode 120000 template/.agents/skills/changed/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/code-guardrails/SKILL.md
+ delete mode 120000 template/.agents/skills/code-guardrails/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/finish-worktree/SKILL.md
+ delete mode 120000 template/.agents/skills/finish-worktree/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/git-finish/SKILL.md
+ delete mode 120000 template/.agents/skills/git-finish/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/git-finish/references/pull_request_template.md
+ delete mode 120000 template/.agents/skills/handoff/SKILL.md
+ delete mode 120000 template/.agents/skills/handoff/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/SKILL.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/implementation_notes_template.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/implementation_phase_template.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/plan_root_readme_template.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/planning-protocol.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/02-discovery-stage.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/03-implementation-plan-structure.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/04-phase-rules.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/06-implementation-boundaries.md
+ delete mode 120000 template/.agents/skills/plan-internal-from-contract/references/protocol/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/SKILL.md
+ delete mode 120000 template/.agents/skills/python-library-rules/agents/openai.yaml
+ delete mode 120000 template/.agents/skills/python-library-rules/references/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/authoring/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/authoring/reference_authoring_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/comment_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/comment_traceability_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/config_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/defaults_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/docstring_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/exceptions_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/logging_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/core/public_api_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/dependencies_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/docs_organization_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/docs_rules_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/index_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/principles_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/system_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/usage_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/docs/vertical_slice_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/README.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/e2e_test_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/property_based_testing_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/test_file_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/tests_routing_pattern.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/verification_doc_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/references/verification/workbench_script_template.md
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/__init__.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/context.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/markdown.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/python_source.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/reporting.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/_shared/runner.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/check_docs_shape.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/core/__init__.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/core/docstring_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/__init__.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/dependencies_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/index_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/principles_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/system_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/usage_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/docs/vertical_slice_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/__init__.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/e2e_test_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/property_based_testing_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/test_file_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/verification_doc_template.py
+ delete mode 120000 template/.agents/skills/python-library-rules/scripts/verification/workbench_script_template.py
+ delete mode 120000 template/.agents/skills/warmup/SKILL.md
+ delete mode 120000 template/.agents/skills/warmup/agents/openai.yaml
+ delete mode 120000 template/.devcontainer/Dockerfile
+ delete mode 120000 template/.devcontainer/Dockerfile.ci
+ delete mode 120000 template/.devcontainer/devcontainer.json
+ delete mode 120000 template/.editorconfig
+ delete mode 120000 template/.envrc
+ delete mode 120000 template/.github/MAINTAINER_SETUP.md
+ delete mode 120000 template/.github/actions/setup-dev-env/action.yml
+ delete mode 120000 template/.github/pull_request_template.md
+ delete mode 120000 template/.github/scripts/install-sync-validation-tools.sh
+ delete mode 120000 template/.github/workflows/build-ci-image.yml
+ delete mode 120000 template/.github/workflows/ci.yml
+ delete mode 120000 template/.github/workflows/python-lib-ci-baseline.yml
+ delete mode 120000 template/.github/workflows/python-lib-ci-e2e-slice.yml
+ delete mode 120000 template/.github/workflows/python-lib-ci-package.yml
+ delete mode 120000 template/.github/workflows/release.yml
+ delete mode 120000 template/.gitignore
+ delete mode 120000 template/.gitleaks.toml
+ delete mode 120000 template/.markdown-link-check.json
+ delete mode 120000 template/.markdownlint.yaml
+ delete mode 120000 template/.mdformat.toml
+ delete mode 120000 template/.pre-commit-config.yaml
+ delete mode 120000 template/.vscode/extensions.json
+ delete mode 120000 template/.vscode/settings.json
+ delete mode 120000 template/AGENTS.md
+ delete mode 120000 template/CHANGELOG.md
+ delete mode 120000 template/CONTRIBUTING.md
+ delete mode 120000 template/LICENSE
+ delete mode 120000 template/MANIFEST.in
+ delete mode 120000 template/README.md
+ delete mode 120000 template/RTK.md
+ delete mode 120000 template/SETUP.md
+ delete mode 120000 template/[[[ _copier_conf.answers_file ]]]
  delete mode 160000 template/_components
- delete mode 100644 template/docs/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/architecture/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/architecture/concepts/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/architecture/concepts/public-boundary-and-errors.md
- delete mode 100644 template/docs/[[[ package_name ]]]/architecture/flows/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/architecture/system.md
- delete mode 100644 template/docs/[[[ package_name ]]]/dependencies.md
- delete mode 100644 template/docs/[[[ package_name ]]]/usage.md
- delete mode 100644 template/docs/[[[ package_name ]]]/verification/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/verification/e2e/README.md
- delete mode 100644 template/docs/[[[ package_name ]]]/verification/e2e/public-boundary.md
- delete mode 100644 template/docs/[[[ package_name ]]]/verification/public-boundary-and-errors.md
- delete mode 100644 template/docs/[[[ package_name ]]]/verification/workbench.md
- delete mode 100644 template/examples/[[[ package_name ]]]/__init__.py
- delete mode 100644 template/examples/[[[ package_name ]]]/config_demo.py
- delete mode 100644 template/examples/__init__.py
- delete mode 100644 template/pyproject.toml
+ delete mode 120000 template/docs/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/architecture/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/architecture/concepts/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/architecture/concepts/public-boundary-and-errors.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/architecture/flows/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/architecture/system.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/dependencies.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/usage.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/verification/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/verification/e2e/README.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/verification/e2e/public-boundary.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/verification/public-boundary-and-errors.md
+ delete mode 120000 template/docs/[[[ package_name ]]]/verification/workbench.md
+ delete mode 120000 template/examples/[[[ package_name ]]]/__init__.py
+ delete mode 120000 template/examples/[[[ package_name ]]]/config_demo.py
+ delete mode 120000 template/examples/__init__.py
+ delete mode 120000 template/pyproject.toml
  delete mode 100644 template/renovate.json5
- delete mode 100644 template/scripts/README.md
- delete mode 100755 template/scripts/env/doctor.sh
- delete mode 100644 template/scripts/env/project_config.sh
- delete mode 100644 template/scripts/env/secrets.sh
- delete mode 100755 template/scripts/env/setup.sh
- delete mode 100644 template/src/[[[ package_name ]]]/__init__.py
- delete mode 100644 template/src/[[[ package_name ]]]/_api/__init__.py
- delete mode 100644 template/src/[[[ package_name ]]]/_api/config.py
- delete mode 100644 template/src/[[[ package_name ]]]/_api/defaults.py
- delete mode 100644 template/src/[[[ package_name ]]]/_api/errors.py
- delete mode 100644 template/src/[[[ package_name ]]]/_api/types.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/__init__.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/config/__init__.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/config/assembly.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/config/models.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/config/state.py
- delete mode 100644 template/src/[[[ package_name ]]]/_internal/config/validation.py
- delete mode 100644 template/src/[[[ package_name ]]]/py.typed
- delete mode 100644 template/tests/README.md
- delete mode 100644 template/tests/[[[ package_name ]]]/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/conftest.py
- delete mode 100644 template/tests/[[[ package_name ]]]/e2e/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/e2e/examples/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/e2e/examples/test_examples_smoke.py
- delete mode 100644 template/tests/[[[ package_name ]]]/e2e/public_boundary/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/e2e/public_boundary/test_public_config_pipeline.py
- delete mode 100644 template/tests/[[[ package_name ]]]/integration/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/integration/test_config_lifecycle.py
- delete mode 100644 template/tests/[[[ package_name ]]]/property_based/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/property_based/internal/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/property_based/public_contract/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/property_based/public_contract/test_config_contract.py
- delete mode 100644 template/tests/[[[ package_name ]]]/support/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/unit/__init__.py
- delete mode 100644 template/tests/[[[ package_name ]]]/unit/test_public_package.py
- delete mode 100644 template/tests/__init__.py
- delete mode 100644 template/tests/conftest.py
- delete mode 100644 template/typos.toml
- delete mode 100644 template/workbench/[[[ package_name ]]]/__init__.py
- delete mode 100644 template/workbench/__init__.py
- delete mode 100755 tests/render-smoke.sh
+ delete mode 120000 template/scripts/README.md
+ delete mode 120000 template/scripts/env/doctor.sh
+ delete mode 120000 template/scripts/env/project_config.sh
+ delete mode 120000 template/scripts/env/secrets.sh
+ delete mode 120000 template/scripts/env/setup.sh
+ delete mode 120000 template/src/[[[ package_name ]]]/__init__.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_api/__init__.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_api/config.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_api/defaults.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_api/errors.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_api/types.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/__init__.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/config/__init__.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/config/assembly.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/config/models.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/config/state.py
+ delete mode 120000 template/src/[[[ package_name ]]]/_internal/config/validation.py
+ delete mode 120000 template/src/[[[ package_name ]]]/py.typed
+ delete mode 120000 template/tests/README.md
+ delete mode 120000 template/tests/[[[ package_name ]]]/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/conftest.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/e2e/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/e2e/examples/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/e2e/examples/test_examples_smoke.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/e2e/public_boundary/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/e2e/public_boundary/test_public_config_pipeline.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/integration/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/integration/test_config_lifecycle.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/property_based/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/property_based/internal/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/property_based/public_contract/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/property_based/public_contract/test_config_contract.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/support/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/unit/__init__.py
+ delete mode 120000 template/tests/[[[ package_name ]]]/unit/test_public_package.py
+ delete mode 120000 template/tests/__init__.py
+ delete mode 120000 template/tests/conftest.py
+ delete mode 120000 template/typos.toml
+ delete mode 120000 template/workbench/[[[ package_name ]]]/__init__.py
+ delete mode 120000 template/workbench/__init__.py
+ delete mode 100755 tests/template_acceptance.py
 + git submodule add -b main https://github.com/betabitplus-template-lab/components.git template/_components
-Cloning into '/tmp/template-lab-cscrhlaz/python-lib/template/_components'...
+Cloning into '/tmp/template-lab-b9th7s2s/python-lib/template/_components'...
 + git checkout 1f233492f3f66fdf17096cdb9462e4d38a04e8fc
 Note: switching to '1f233492f3f66fdf17096cdb9462e4d38a04e8fc'.
 
@@ -238,11 +238,10 @@ Turn off this advice by setting config variable advice.detachedHead to false
 
 HEAD is now at 1f23349 chore: import template components snapshot
 + git add -A
-warning: unable to access 'template/.gitignore': Too many levels of symbolic links
 + git status --porcelain
 + git commit -m feat: implement isolated python-lib-standard Copier template
-[main ef8ca0b] feat: implement isolated python-lib-standard Copier template
- 177 files changed, 1488 insertions(+)
+[main 4e09d20] feat: implement isolated python-lib-standard Copier template
+ 177 files changed, 1661 insertions(+)
  create mode 100644 .gitmodules
  create mode 100644 README.md
  create mode 100644 SOURCE.yml
@@ -335,14 +334,14 @@ warning: unable to access 'template/.gitignore': Too many levels of symbolic lin
  create mode 120000 template/.github/MAINTAINER_SETUP.md
  create mode 120000 template/.github/actions/setup-dev-env/action.yml
  create mode 120000 template/.github/pull_request_template.md
- create mode 120000 template/.github/scripts/install-sync-validation-tools.sh
+ create mode 100755 template/.github/scripts/install-sync-validation-tools.sh
  create mode 120000 template/.github/workflows/build-ci-image.yml
  create mode 120000 template/.github/workflows/ci.yml
  create mode 120000 template/.github/workflows/python-lib-ci-baseline.yml
  create mode 120000 template/.github/workflows/python-lib-ci-e2e-slice.yml
  create mode 120000 template/.github/workflows/python-lib-ci-package.yml
  create mode 120000 template/.github/workflows/release.yml
- create mode 120000 template/.gitignore
+ create mode 100644 template/.gitignore
  create mode 120000 template/.gitleaks.toml
  create mode 120000 template/.markdown-link-check.json
  create mode 120000 template/.markdownlint.yaml
@@ -380,10 +379,10 @@ warning: unable to access 'template/.gitignore': Too many levels of symbolic lin
  create mode 120000 template/pyproject.toml
  create mode 100644 template/renovate.json5
  create mode 120000 template/scripts/README.md
- create mode 120000 template/scripts/env/doctor.sh
+ create mode 100755 template/scripts/env/doctor.sh
  create mode 120000 template/scripts/env/project_config.sh
  create mode 120000 template/scripts/env/secrets.sh
- create mode 120000 template/scripts/env/setup.sh
+ create mode 100755 template/scripts/env/setup.sh
  create mode 120000 template/src/[[[ package_name ]]]/__init__.py
  create mode 120000 template/src/[[[ package_name ]]]/_api/__init__.py
  create mode 120000 template/src/[[[ package_name ]]]/_api/config.py
@@ -421,15 +420,14 @@ warning: unable to access 'template/.gitignore': Too many levels of symbolic lin
  create mode 120000 template/workbench/__init__.py
  create mode 100755 tests/template_acceptance.py
 + git push origin main
-remote: warning: object 46708e0862b827bdcf7df6dae761f0e7227e4f17: gitignoreSymlink: .gitignore is a symlink        
 To https://github.com/betabitplus-template-lab/python-lib.git
-   fe9e812..ef8ca0b  main -> main
+   ef8ca0b..4e09d20  main -> main
 + git rev-parse HEAD
 + git init -b main
-Initialized empty Git repository in /tmp/tmpowyw8f6n/baseline-template/.git/
+Initialized empty Git repository in /tmp/tmp310bitg4/baseline-template/.git/
 + git add -A
 + git -c user.name=baseline -c user.email=baseline@example.invalid commit -m baseline
-[main (root-commit) 8567cd1] baseline
+[main (root-commit) 81724a9] baseline
  171 files changed, 12258 insertions(+)
  create mode 100644 copier.yml
  create mode 100644 template/.agents/skills/changed/SKILL.md
@@ -602,9 +600,9 @@ Initialized empty Git repository in /tmp/tmpowyw8f6n/baseline-template/.git/
  create mode 100644 template/typos.toml
  create mode 100644 template/workbench/[[[ package_name ]]]/__init__.py
  create mode 100644 template/workbench/__init__.py
-+ copier copy --defaults --vcs-ref HEAD /tmp/tmpowyw8f6n/baseline-template /tmp/tmp929dkgzy/base
++ copier copy --defaults --vcs-ref HEAD /tmp/tmp310bitg4/baseline-template /tmp/tmpa9s5wgfy/base
 
-Copying from template version 0.0.0.post1.dev0+8567cd1
+Copying from template version 0.0.0.post1.dev0+81724a9
 [32m[1m    create[39m[0m  .devcontainer
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile.ci
@@ -844,9 +842,9 @@ Copying from template version 0.0.0.post1.dev0+8567cd1
 [32m[1m    create[39m[0m  .github/MAINTAINER_SETUP.md
 
 
-+ copier copy --defaults --vcs-ref HEAD /tmp/template-lab-cscrhlaz/python-lib /tmp/tmp929dkgzy/candidate
++ copier copy --defaults --vcs-ref HEAD /tmp/template-lab-b9th7s2s/python-lib /tmp/tmpa9s5wgfy/candidate
 
-Copying from template version 0.1.0.post2.dev0+ef8ca0b
+Copying from template version 0.1.0.post4.dev0+4e09d20
 [32m[1m    create[39m[0m  .devcontainer
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile.ci
@@ -858,243 +856,94 @@ Copying from template version 0.1.0.post2.dev0+ef8ca0b
 [32m[1m    create[39m[0m  scripts/env
 [32m[1m    create[39m[0m  scripts/env/secrets.sh
 [32m[1m    create[39m[0m  scripts/env/project_config.sh
-[32m[1m    create[39m[0m  scripts/env/setup.sh
-[32m[1m    create[39m[0m  scripts/env/doctor.sh
-[32m[1m    create[39m[0m  .vscode
-[32m[1m    create[39m[0m  .vscode/settings.json
-[32m[1m    create[39m[0m  .vscode/extensions.json
-[32m[1m    create[39m[0m  README.md
-[32m[1m    create[39m[0m  docs
-[32m[1m    create[39m[0m  docs/sample_lib
-[32m[1m    create[39m[0m  docs/sample_lib/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/architecture
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/system.md
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/flows
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/flows/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/concepts
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/concepts/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/architecture/concepts/public-boundary-and-errors.md
-[32m[1m    create[39m[0m  docs/sample_lib/usage.md
-[32m[1m    create[39m[0m  docs/sample_lib/dependencies.md
-[32m[1m    create[39m[0m  docs/sample_lib/verification
-[32m[1m    create[39m[0m  docs/sample_lib/verification/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/verification/e2e
-[32m[1m    create[39m[0m  docs/sample_lib/verification/e2e/README.md
-[32m[1m    create[39m[0m  docs/sample_lib/verification/e2e/public-boundary.md
-[32m[1m    create[39m[0m  docs/sample_lib/verification/workbench.md
-[32m[1m    create[39m[0m  docs/sample_lib/verification/public-boundary-and-errors.md
-[32m[1m    create[39m[0m  docs/README.md
-[32m[1m    create[39m[0m  .mdformat.toml
-[32m[1m    create[39m[0m  src
-[32m[1m    create[39m[0m  src/sample_lib
-[32m[1m    create[39m[0m  src/sample_lib/_api
-[32m[1m    create[39m[0m  src/sample_lib/_api/__init__.py
-[32m[1m    create[39m[0m  src/sample_lib/_api/config.py
-[32m[1m    create[39m[0m  src/sample_lib/_api/defaults.py
-[32m[1m    create[39m[0m  src/sample_lib/_api/errors.py
-[32m[1m    create[39m[0m  src/sample_lib/_api/types.py
-[32m[1m    create[39m[0m  src/sample_lib/py.typed
-[32m[1m    create[39m[0m  src/sample_lib/__init__.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal
-[32m[1m    create[39m[0m  src/sample_lib/_internal/__init__.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config/__init__.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config/assembly.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config/state.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config/models.py
-[32m[1m    create[39m[0m  src/sample_lib/_internal/config/validation.py
-[32m[1m    create[39m[0m  renovate.json5
-[32m[1m    create[39m[0m  RTK.md
-[32m[1m    create[39m[0m  LICENSE
-[32m[1m    create[39m[0m  pyproject.toml
-[32m[1m    create[39m[0m  .copier-answers.yml
-[32m[1m    create[39m[0m  CHANGELOG.md
-[32m[1m    create[39m[0m  CONTRIBUTING.md
-[32m[1m    create[39m[0m  AGENTS.md
-[32m[1m    create[39m[0m  typos.toml
-[32m[1m    create[39m[0m  .markdownlint.yaml
-[32m[1m    create[39m[0m  .agents
-[32m[1m    create[39m[0m  .agents/skills
-[32m[1m    create[39m[0m  .agents/skills/warmup
-[32m[1m    create[39m[0m  .agents/skills/warmup/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/warmup/agents
-[32m[1m    create[39m[0m  .agents/skills/warmup/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/finish-worktree
-[32m[1m    create[39m[0m  .agents/skills/finish-worktree/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/finish-worktree/agents
-[32m[1m    create[39m[0m  .agents/skills/finish-worktree/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/agents
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/plan_root_readme_template.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/README.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/03-implementation-plan-structure.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/02-discovery-stage.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/06-implementation-boundaries.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/04-phase-rules.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/implementation_phase_template.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/implementation_notes_template.md
-[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/planning-protocol.md
-[32m[1m    create[39m[0m  .agents/skills/changed
-[32m[1m    create[39m[0m  .agents/skills/changed/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/changed/agents
-[32m[1m    create[39m[0m  .agents/skills/changed/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/git-finish
-[32m[1m    create[39m[0m  .agents/skills/git-finish/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/git-finish/agents
-[32m[1m    create[39m[0m  .agents/skills/git-finish/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/git-finish/references
-[32m[1m    create[39m[0m  .agents/skills/git-finish/references/pull_request_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/core
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/core/__init__.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/core/docstring_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/__init__.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/usage_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/index_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/system_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/principles_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/vertical_slice_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/docs/dependencies_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/__init__.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/context.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/python_source.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/runner.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/reporting.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/_shared/markdown.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/check_docs_shape.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/property_based_testing_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/__init__.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/test_file_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/verification_doc_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/workbench_script_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/scripts/verification/e2e_test_template.py
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/agents
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/comment_traceability_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/README.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/config_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/docstring_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/defaults_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/public_api_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/comment_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/exceptions_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/core/logging_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/authoring
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/authoring/README.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/authoring/reference_authoring_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/README.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/docs_rules_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/README.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/index_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/vertical_slice_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/system_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/docs_organization_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/usage_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/principles_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/docs/dependencies_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/README.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/tests_routing_pattern.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/test_file_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/workbench_script_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/e2e_test_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/verification_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/python-library-rules/references/verification/property_based_testing_doc_template.md
-[32m[1m    create[39m[0m  .agents/skills/code-guardrails
-[32m[1m    create[39m[0m  .agents/skills/code-guardrails/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/code-guardrails/agents
-[32m[1m    create[39m[0m  .agents/skills/code-guardrails/agents/openai.yaml
-[32m[1m    create[39m[0m  .agents/skills/handoff
-[32m[1m    create[39m[0m  .agents/skills/handoff/SKILL.md
-[32m[1m    create[39m[0m  .agents/skills/handoff/agents
-[32m[1m    create[39m[0m  .agents/skills/handoff/agents/openai.yaml
-[32m[1m    create[39m[0m  .envrc
-[32m[1m    create[39m[0m  MANIFEST.in
-[32m[1m    create[39m[0m  .editorconfig
-[32m[1m    create[39m[0m  .gitleaks.toml
-[32m[1m    create[39m[0m  tests
-[32m[1m    create[39m[0m  tests/sample_lib
-[32m[1m    create[39m[0m  tests/sample_lib/support
-[32m[1m    create[39m[0m  tests/sample_lib/support/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/e2e
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/public_boundary
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/public_boundary/test_public_config_pipeline.py
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/public_boundary/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/examples
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/examples/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/e2e/examples/test_examples_smoke.py
-[32m[1m    create[39m[0m  tests/sample_lib/property_based
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/public_contract
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/public_contract/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/public_contract/test_config_contract.py
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/internal
-[32m[1m    create[39m[0m  tests/sample_lib/property_based/internal/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/integration
-[32m[1m    create[39m[0m  tests/sample_lib/integration/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/integration/test_config_lifecycle.py
-[32m[1m    create[39m[0m  tests/sample_lib/conftest.py
-[32m[1m    create[39m[0m  tests/sample_lib/unit
-[32m[1m    create[39m[0m  tests/sample_lib/unit/__init__.py
-[32m[1m    create[39m[0m  tests/sample_lib/unit/test_public_package.py
-[32m[1m    create[39m[0m  tests/README.md
-[32m[1m    create[39m[0m  tests/__init__.py
-[32m[1m    create[39m[0m  tests/conftest.py
-[32m[1m    create[39m[0m  .gitignore
-[32m[1m    create[39m[0m  workbench
-[32m[1m    create[39m[0m  workbench/sample_lib
-[32m[1m    create[39m[0m  workbench/sample_lib/__init__.py
-[32m[1m    create[39m[0m  workbench/__init__.py
-[32m[1m    create[39m[0m  .markdown-link-check.json
-[36m identical[39m[0m  .copier-answers.yml
-[32m[1m    create[39m[0m  examples
-[32m[1m    create[39m[0m  examples/sample_lib
-[32m[1m    create[39m[0m  examples/sample_lib/__init__.py
-[32m[1m    create[39m[0m  examples/sample_lib/config_demo.py
-[32m[1m    create[39m[0m  examples/__init__.py
-[32m[1m    create[39m[0m  .github
-[32m[1m    create[39m[0m  .github/scripts
-[32m[1m    create[39m[0m  .github/scripts/install-sync-validation-tools.sh
-[32m[1m    create[39m[0m  .github/pull_request_template.md
-[32m[1m    create[39m[0m  .github/actions
-[32m[1m    create[39m[0m  .github/actions/setup-dev-env
-[32m[1m    create[39m[0m  .github/actions/setup-dev-env/action.yml
-[32m[1m    create[39m[0m  .github/workflows
-[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-e2e-slice.yml
-[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-baseline.yml
-[32m[1m    create[39m[0m  .github/workflows/release.yml
-[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-package.yml
-[32m[1m    create[39m[0m  .github/workflows/build-ci-image.yml
-[32m[1m    create[39m[0m  .github/workflows/ci.yml
-[32m[1m    create[39m[0m  .github/MAINTAINER_SETUP.md
-
-
 Traceback (most recent call last):
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner.py", line 57, in <module>
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/bin/copier", line 6, in <module>
+    sys.exit(CopierApp.run())
+             ~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/plumbum/cli/application.py", line 999, in run
+    inst_app, retcode = subapp.run(argv, exit=False)
+                        ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/plumbum/cli/application.py", line 994, in run
+    retcode = inst.main(*tailargs)
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 275, in main
+    return _handle_exceptions(inner)
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 80, in _handle_exceptions
+    exit_code = method()
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 257, in inner
+    run_copy(
+    ~~~~~~~~^
+        template_src,
+        ^^^^^^^^^^^^^
+    ...<13 lines>...
+        skip_tasks=self.skip_tasks,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1713, in run_copy
+    with Worker(
+         ~~~~~~^
+        src_path=src_path,
+        ^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+        skip_tasks=skip_tasks,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ) as worker:
+    ^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 284, in __exit__
+    raise value
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1740, in run_copy
+    worker.run_copy()
+    ~~~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 106, in _wrapper
+    return func(*args, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1267, in run_copy
+    self._render_template()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 813, in _render_template
+    self._render_file(src_relpath, dst_relpath, extra_context=ctx or {})
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 847, in _render_file
+    new_content = tpl.render(
+                  ~~~~~~~~~~^
+        **self._render_context(), **(extra_context or {})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).encode()
+    ^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/tmp/copier._vcs.clone.6dosakz6/template/scripts/env/setup.sh", line 1, in top-level template code
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/jinja2/loaders.py", line 209, in get_source
+    raise TemplateNotFound(
+    ...<2 lines>...
+    )
+jinja2.exceptions.TemplateNotFound: '_components/repo-shell/dev-environment/template/scripts/env/setup.sh' not found in search path: '/tmp/copier._vcs.clone.6dosakz6'
+Traceback (most recent call last):
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner.py", line 223, in <module>
     pilot.prepare()
     ~~~~~~~~~~~~~^^
   File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 721, in prepare
     info["parity_defaults"] = parity_test(source, repo, profile)
                               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 541, in parity_test
-    raise PilotError(
-        f"parity failed for {repo.name}/{data or 'defaults'}: missing={missing[:20]} extra={extra[:20]} changed={changed[:20]}"
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 519, in parity_test
+    render(repo, candidate, data)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 486, in render
+    run(*args)
+    ~~~^^^^^^^
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner.py", line 28, in safe_run
+    return subprocess.run(
+           ~~~~~~~~~~~~~~^
+        cmd,
+        ^^^^
+    ...<4 lines>...
+        check=check,
+        ^^^^^^^^^^^^
     )
-pilot.PilotError: parity failed for python-lib/defaults: missing=[] extra=[] changed=['.github/scripts/install-sync-validation-tools.sh', 'scripts/env/doctor.sh', 'scripts/env/setup.sh']
+    ^
+  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['copier', 'copy', '--defaults', '--vcs-ref', 'HEAD', '/tmp/template-lab-b9th7s2s/python-lib', '/tmp/tmpa9s5wgfy/candidate']' returned non-zero exit status 1.
