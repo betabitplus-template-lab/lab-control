@@ -1,5 +1,5 @@
 {
-  "request_id": "template-c2-diagnostics",
+  "request_id": "template-c2-rebase-after-ci-fix",
   "dry_run": null,
   "repositories": [
     "betabitplus-template-lab/python-lib",
