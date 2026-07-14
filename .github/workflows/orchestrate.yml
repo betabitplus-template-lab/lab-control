@@ -1,14 +1,17 @@
-name: Orchestrate template pilot
+name: Finalize template pilot preparation
 on:
   push:
     branches: [main]
     paths:
+      - orchestration/finalize.py
       - orchestration/pilot.py
       - orchestration/pilot_runner.py
       - orchestration/pilot_runner_v2.py
-      - orchestration/request.json
       - .github/workflows/orchestrate.yml
   workflow_dispatch:
+concurrency:
+  group: template-pilot-preparation
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -32,23 +35,25 @@ jobs:
           python-version: "3.13"
       - name: Install pinned pilot tools
         run: python -m pip install "copier==9.16.0" "PyYAML==6.0.3"
-      - name: Execute guarded pilot phase and persist diagnostics
+      - name: Finalize preparation and persist diagnostics
         env:
           LAB_TOKEN: ${{ steps.app-token.outputs.token }}
         shell: bash
         run: |
           set +e
           set -o pipefail
-          python orchestration/pilot_runner_v2.py 2>&1 | tee /tmp/orchestrate.log
+          python orchestration/finalize.py 2>&1 | tee /tmp/orchestrate.log
           status=${PIPESTATUS[0]}
           set -e
           git pull --rebase origin main
           mkdir -p docs/results
           tail -n 250 /tmp/orchestrate.log | sed -E 's/(x-access-token:)[^@[:space:]]+@/\1<redacted>@/g; s/ghs_[A-Za-z0-9_]+/<redacted>/g' > docs/results/orchestrate.log
           printf '{"status": %s, "run_id": "%s", "sha": "%s"}\n' "$status" "$GITHUB_RUN_ID" "$GITHUB_SHA" > docs/results/orchestrate-status.json
-          git add docs/results/orchestrate.log docs/results/orchestrate-status.json
+          git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md 2>/dev/null || true
           if ! git diff --cached --quiet; then
-            git commit -m "ci: record orchestrator diagnostics"
+            git config user.name "Template Lab Orchestrator"
+            git config user.email "8123085+betabitplus@users.noreply.github.com"
+            git commit -m "docs: record finalized pilot preparation"
             git push origin main
           fi
           exit "$status"
