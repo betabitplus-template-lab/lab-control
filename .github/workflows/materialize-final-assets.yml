@@ -1,0 +1,99 @@
+name: Materialize final experiment assets
+
+on:
+  push:
+    branches:
+      - experiment/final-platform-20260714
+    paths:
+      - experiments/final-platform/final-assets.tar.gz
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout experiment branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Detect payload
+        id: payload
+        shell: bash
+        run: |
+          if [[ -f experiments/final-platform/final-assets.tar.gz ]]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify and extract payload
+        if: steps.payload.outputs.exists == 'true'
+        shell: bash
+        run: |
+          echo 'c26257dfc1e314a8aa8ccd70e77b54152f53fd5a458288f6ab9440c0a2d60110  experiments/final-platform/final-assets.tar.gz' | sha256sum --check
+          tar -xzf experiments/final-platform/final-assets.tar.gz -C .
+          rm experiments/final-platform/final-assets.tar.gz
+
+      - name: Link first-stage results to final phase
+        if: steps.payload.outputs.exists == 'true'
+        shell: bash
+        run: |
+          marker='## Final production-shaped phase'
+          if ! grep -Fq "$marker" docs/results/results.md; then
+            cat >> docs/results/results.md <<'EOF'
+
+## Final production-shaped phase
+
+The first-stage evidence above remains unchanged. The final platform-minimization phase is documented separately in:
+
+- [`final-experiment-results.md`](final-experiment-results.md)
+- [`replacement-matrix.md`](replacement-matrix.md)
+- [`minimal-custom-surface.md`](minimal-custom-surface.md)
+- [`production-gap-analysis.md`](production-gap-analysis.md)
+- ADR 0002 and ADR 0003
+
+The final phase concludes **CONDITIONAL GO**: the composed Copier/Renovate design is sound and removes the custom lifecycle engine, while production rollout remains conditional on organization-level private reusable-workflow access, ruleset-capable GitHub licensing, and live OpenTofu/Renovate acceptance runs with lab-only administrative credentials.
+EOF
+          fi
+
+      - name: Validate materialized tree
+        if: steps.payload.outputs.exists == 'true'
+        shell: bash
+        run: |
+          git diff --check
+          test -f docs/results/final-experiment-results.md
+          test -f docs/results/replacement-matrix.json
+          test -f docs/adr/0002-production-target-architecture.md
+          test -f docs/adr/0003-minimal-policy-tooling.md
+          test -f experiments/minimal-policy/py_lib_policy.py
+          test -f provisioning/main.tf
+          test -f renovate/presets/base.json5
+
+      - name: Commit materialized assets
+        if: steps.payload.outputs.exists == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git commit -m 'experiment: publish final platform evidence'
+
+          askpass="$(mktemp)"
+          cat > "$askpass" <<'EOF'
+#!/bin/sh
+case "$1" in
+  *Username*) printf '%s\n' x-access-token ;;
+  *Password*) printf '%s\n' "$GH_TOKEN" ;;
+  *) printf '\n' ;;
+esac
+EOF
+          chmod 700 "$askpass"
+          GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0 \
+            git push origin HEAD:experiment/final-platform-20260714
+          rm -f "$askpass"
