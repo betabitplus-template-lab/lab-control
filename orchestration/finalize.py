@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-# Trigger marker: defer-workflows-v1
+# Trigger marker: finalize-deferred-workflows-pr
 
 import json
 import os
