@@ -1,11 +1,98 @@
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_api/types.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/py.typed
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/__init__.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/__init__.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/__init__.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/assembly.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/state.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/models.py
+[32m[1m    create[39m[0m  src/custom_python_starter_platform/_internal/config/validation.py
+[32m[1m    create[39m[0m  RTK.md
+[32m[1m    create[39m[0m  LICENSE
+[32m[1m    create[39m[0m  typos.toml
+[32m[1m    create[39m[0m  .markdownlint.yaml
+[32m[1m    create[39m[0m  .agents
+[32m[1m    create[39m[0m  .agents/skills
+[32m[1m    create[39m[0m  .agents/skills/warmup
+[32m[1m    create[39m[0m  .agents/skills/warmup/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/warmup/agents
+[32m[1m    create[39m[0m  .agents/skills/warmup/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/finish-worktree
+[32m[1m    create[39m[0m  .agents/skills/finish-worktree/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/finish-worktree/agents
+[32m[1m    create[39m[0m  .agents/skills/finish-worktree/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/agents
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/plan_root_readme_template.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/README.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/03-implementation-plan-structure.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/02-discovery-stage.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/06-implementation-boundaries.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/04-phase-rules.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/implementation_phase_template.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/implementation_notes_template.md
+[32m[1m    create[39m[0m  .agents/skills/plan-internal-from-contract/references/planning-protocol.md
+[32m[1m    create[39m[0m  .agents/skills/changed
+[32m[1m    create[39m[0m  .agents/skills/changed/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/changed/agents
+[32m[1m    create[39m[0m  .agents/skills/changed/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/git-finish
+[32m[1m    create[39m[0m  .agents/skills/git-finish/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/git-finish/agents
+[32m[1m    create[39m[0m  .agents/skills/git-finish/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/git-finish/references
+[32m[1m    create[39m[0m  .agents/skills/git-finish/references/pull_request_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/agents
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/policy_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/toolkit_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/guide_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/index_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/requirements_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/usage_template.md
+[32m[1m    create[39m[0m  .agents/skills/starter-docs-rules/references/guard_template.md
+[32m[1m    create[39m[0m  .agents/skills/code-guardrails
+[32m[1m    create[39m[0m  .agents/skills/code-guardrails/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/code-guardrails/agents
+[32m[1m    create[39m[0m  .agents/skills/code-guardrails/agents/openai.yaml
+[32m[1m    create[39m[0m  .agents/skills/handoff
+[32m[1m    create[39m[0m  .agents/skills/handoff/SKILL.md
+[32m[1m    create[39m[0m  .agents/skills/handoff/agents
+[32m[1m    create[39m[0m  .agents/skills/handoff/agents/openai.yaml
+[32m[1m    create[39m[0m  .envrc
+[32m[1m    create[39m[0m  .editorconfig
+[32m[1m    create[39m[0m  .gitleaks.toml
+[32m[1m    create[39m[0m  .gitignore
+[32m[1m    create[39m[0m  .markdown-link-check.json
+[32m[1m    create[39m[0m  .copier-answers.yml
+[32m[1m    create[39m[0m  .github
+[32m[1m    create[39m[0m  .github/scripts
+[32m[1m    create[39m[0m  .github/scripts/install-sync-validation-tools.sh
+[32m[1m    create[39m[0m  .github/actions
+[32m[1m    create[39m[0m  .github/actions/setup-dev-env
+[32m[1m    create[39m[0m  .github/actions/setup-dev-env/action.yml
+[32m[1m    create[39m[0m  .github/workflows
+[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-e2e-slice.yml
+[32m[1m    create[39m[0m  .github/workflows/python-lib-ci-baseline.yml
 [32m[1m    create[39m[0m  .github/workflows/sync-starter-template.yml
 [32m[1m    create[39m[0m  .github/workflows/python-lib-ci-package.yml
 [32m[1m    create[39m[0m  .github/workflows/build-ci-image.yml
 
 
-+ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-ewhbz7y6/python-starter-platform /tmp/tmpbfe74m7j/candidate
++ copier copy --defaults --vcs-ref HEAD --data project_name=custom-python-starter-platform --data package_name=custom_python_starter_platform --data author_name=Template Lab --data github_owner=betabitplus-template-lab /tmp/template-lab-6jsyu7jn/python-starter-platform /tmp/tmpvxpnd42s/candidate
 
-Copying from template version 0.1.0.post4.dev0+408b0c6
+Copying from template version 0.1.0.post7.dev0+35c58bb
 [32m[1m    create[39m[0m  .devcontainer
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile
 [32m[1m    create[39m[0m  .devcontainer/Dockerfile.ci
@@ -124,11 +211,11 @@ Copying from template version 0.1.0.post4.dev0+408b0c6
 + git fetch origin --tags
 + git rev-parse -q --verify refs/tags/v0.1.0
 + git init -b main
-Initialized empty Git repository in /tmp/tmp6d4etpkd/fixture/.git/
+Initialized empty Git repository in /tmp/tmpak88uz9m/fixture/.git/
 + git add -A
 + git -c user.name=fixture -c user.email=fixture@example.invalid commit -m fixture with forbidden directory symlink
-[main (root-commit) 2389a7c] fixture with forbidden directory symlink
- 15 files changed, 27 insertions(+)
+[main (root-commit) 4d6197b] fixture with forbidden directory symlink
+ 20 files changed, 31 insertions(+)
  create mode 100644 copier.yml
  create mode 100644 payload/binary.bin
  create mode 100644 payload/directory/nested.txt
@@ -136,7 +223,12 @@ Initialized empty Git repository in /tmp/tmp6d4etpkd/fixture/.git/
  create mode 100644 payload/plain.txt
  create mode 100755 payload/run.sh
  create mode 100644 payload/templated.txt
- create mode 120000 template/_components
+ create mode 100644 template/_components/binary.bin
+ create mode 100644 template/_components/directory/nested.txt
+ create mode 100644 template/_components/empty.txt
+ create mode 100644 template/_components/plain.txt
+ create mode 100755 template/_components/run.sh
+ create mode 100644 template/_components/templated.txt
  create mode 120000 template/binary.bin
  create mode 120000 template/empty.txt
  create mode 120000 template/plain.txt
@@ -144,107 +236,15 @@ Initialized empty Git repository in /tmp/tmp6d4etpkd/fixture/.git/
  create mode 120000 template/templated.txt
  create mode 120000 template/whole-directory
  create mode 100644 template/wrapper.txt
-+ copier copy --defaults --vcs-ref HEAD /tmp/tmp6d4etpkd/fixture /tmp/tmp6d4etpkd/forbidden-out
-+ git add -A
-+ git -c user.name=fixture -c user.email=fixture@example.invalid commit -m remove forbidden directory symlink
-[main 375efbd] remove forbidden directory symlink
- 1 file changed, 1 deletion(-)
- delete mode 120000 template/whole-directory
-+ copier copy --defaults --vcs-ref HEAD /tmp/tmp6d4etpkd/fixture /tmp/tmp6d4etpkd/out
-
-Copying from template version 0.0.0.post2.dev0+375efbd
++ copier copy --defaults --vcs-ref HEAD /tmp/tmpak88uz9m/fixture /tmp/tmpak88uz9m/forbidden-out
 Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1267, in run_copy
-    self._render_template()
-    ~~~~~~~~~~~~~~~~~~~~~^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 786, in _render_template
-    raise ForbiddenPathError(
-        path=src_abspath.relative_to(self.template_copy_root)
-    )
-copier.errors.ForbiddenPathError: "_components" is forbidden
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/bin/copier", line 6, in <module>
-    sys.exit(CopierApp.run())
-             ~~~~~~~~~~~~~^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/plumbum/cli/application.py", line 999, in run
-    inst_app, retcode = subapp.run(argv, exit=False)
-                        ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/plumbum/cli/application.py", line 994, in run
-    retcode = inst.main(*tailargs)
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 275, in main
-    return _handle_exceptions(inner)
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 80, in _handle_exceptions
-    exit_code = method()
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_cli.py", line 257, in inner
-    run_copy(
-    ~~~~~~~~^
-        template_src,
-        ^^^^^^^^^^^^^
-    ...<13 lines>...
-        skip_tasks=self.skip_tasks,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1713, in run_copy
-    with Worker(
-         ~~~~~~^
-        src_path=src_path,
-        ^^^^^^^^^^^^^^^^^^
-    ...<23 lines>...
-        skip_tasks=skip_tasks,
-        ^^^^^^^^^^^^^^^^^^^^^^
-    ) as worker:
-    ^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 284, in __exit__
-    raise value
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1740, in run_copy
-    worker.run_copy()
-    ~~~~~~~~~~~~~~~^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 106, in _wrapper
-    return func(*args, **kwargs)
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/site-packages/copier/_main.py", line 1276, in run_copy
-    rmtree(self.subproject.local_abspath)
-    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/shutil.py", line 763, in rmtree
-    _rmtree_safe_fd(stack, onexc)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/shutil.py", line 704, in _rmtree_safe_fd
-    onexc(func, path, err)
-    ~~~~~^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/shutil.py", line 665, in _rmtree_safe_fd
-    orig_st = os.lstat(name, dir_fd=dirfd)
-FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/tmp/tmp6d4etpkd/out')
-Traceback (most recent call last):
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 148, in <module>
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 149, in <module>
     pilot.prepare()
     ~~~~~~~~~~~~~^^
   File "/home/runner/work/lab-control/lab-control/orchestration/pilot.py", line 739, in prepare
     report["composition"] = composition_fixture(components)
                             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 116, in composition_fixture
-    pilot.run(
-    ~~~~~~~~~^
-        "copier",
-        ^^^^^^^^^
-    ...<5 lines>...
-        str(out),
-        ^^^^^^^^^
-    )
-    ^
-  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner.py", line 28, in safe_run
-    return subprocess.run(
-           ~~~~~~~~~~~~~~^
-        cmd,
-        ^^^^
-    ...<4 lines>...
-        check=check,
-        ^^^^^^^^^^^^
-    )
-    ^
-  File "/opt/hostedtoolcache/Python/3.13.14/x64/lib/python3.13/subprocess.py", line 577, in run
-    raise CalledProcessError(retcode, process.args,
-                             output=stdout, stderr=stderr)
-subprocess.CalledProcessError: Command '['copier', 'copy', '--defaults', '--vcs-ref', 'HEAD', '/tmp/tmp6d4etpkd/fixture', '/tmp/tmp6d4etpkd/out']' returned non-zero exit status 1.
+  File "/home/runner/work/lab-control/lab-control/orchestration/pilot_runner_v2.py", line 100, in composition_fixture
+    assert forbidden.returncode != 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
