@@ -1,169 +1,222 @@
-         "packages/runtime/README.md",
-         "packages/runtime/.copier-answers.yml",
-         "packages/runtime/.editorconfig",
-         "packages/runtime/README.md",
-         "packages/tooling/.copier-answers.yml",
-         "packages/tooling/.editorconfig",
-         "packages/tooling/README.md"
+           "versioning": "hashicorp",
+           "extractVersion": "^v(?<version>.*)$"
+         },
+         "terragrunt": {
+           "commitMessageTopic": "Terragrunt dependency {{depName}}",
+           "managerFilePatterns": ["/(^|/)terragrunt\\.hcl$/"]
+         },
+         "terragrunt-version": {
+           "managerFilePatterns": ["/(^|/)\\.terragrunt-version$/"],
+           "versioning": "hashicorp",
+           "extractVersion": "^v(?<version>.+)$"
+         },
+         "tflint-plugin": {
+           "commitMessageTopic": "TFLint plugin {{depName}}",
+           "managerFilePatterns": ["/\\.tflint\\.hcl$/"],
+           "extractVersion": "^v(?<version>.*)$"
+         },
+         "travis": {
+           "managerFilePatterns": ["/^\\.travis\\.ya?ml$/"],
+           "major": {"enabled": false},
+           "versioning": "node"
+         },
+         "typst": {"managerFilePatterns": ["/\\.typ$/"]},
+         "unity3d": {"managerFilePatterns": ["**/ProjectSettings/ProjectVersion.txt"]},
+         "velaci": {"managerFilePatterns": ["/(^|/)\\.vela\\.ya?ml$/"]},
+         "vendir": {
+           "commitMessageTopic": "vendir {{depName}}",
+           "managerFilePatterns": ["/(^|/)vendir\\.yml$/"]
+         },
+         "woodpecker": {
+           "managerFilePatterns": ["/^\\.woodpecker(?:/[^/]+)?\\.ya?ml$/"]
+         },
+         "xcodegen": {"managerFilePatterns": ["**/project.yml"], "pinDigests": false},
+         "regex": {"pinDigests": false},
+         "jsonata": {"pinDigests": false},
+         "renovateUsername": "betabitplus-template-lab-renovate[bot]",
+         "repository": "betabitplus-template-lab/sandbox-workspace",
+         "parentOrg": "betabitplus-template-lab",
+         "topLevelOrg": "betabitplus-template-lab",
+         "errors": [],
+         "warnings": [],
+         "branchList": [],
+         "defaultBranch": "main",
+         "isFork": false,
+         "repoFingerprint": "6923e8e44bc53808f73a4ae554826bc3f7a5681689c518d81c1b76566c961e713bba74cdf537831ca67f652ce3827dd4caa99622c3c242f79b5c74eeced0948e",
+         "baseBranch": "main",
+         "repoIsOnboarded": true,
+         "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+         "renovateJsonPresent": true
+       },
+       "hostRules": [
+         {
+           "matchHost": "api.github.com",
+           "token": "***********",
+           "hostType": "github",
+           "resolvedHost": "api.github.com"
+         }
        ]
-DEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: latest commit (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
+DEBUG: findIssue(Dependency Dashboard) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Found issue 2 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/issues/2 (etag=W/"07c88433bd28876a961c28b18d1e849fdc382a6525a8edcd7215d324235217b2", lastModified=Tue, 14 Jul 2026 16:59:25 GMT) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: No baseBranches (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: extract() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: latest commit (repository=betabitplus-template-lab/sandbox-workspace)
        "branchName": "main",
-       "latestCommitDate": "2026-07-14T16:59:47.000Z",
-       "sha": "b35d9c3720901f1e9ca5032b455aa85235201d13"
-DEBUG: Checking if we can automerge branch (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: mergeStatus=no automerge (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: getBranchPr(renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: findPr(renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Found PR #1 (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Found existing PR (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/python-internal-package (v0.1.0 -> v0.2.0) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/python-internal-package (v0.1.0 -> v0.2.0) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/python-internal-package (etag=W/"bf4a7768b12dad72bc8acd3171fb201d5c605b252d3c8ebe4076080762a98919", lastModified=Tue, 14 Jul 2026 16:53:05 GMT) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/python-internal-package/git/trees/main (etag=W/"82e32b54a0ef09fda5bc811e85b4d299f2ddd64b314c76f67f80330282458372", lastModified=Tue, 14 Jul 2026 16:53:05 GMT) (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Processing existing PR (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: Pull Request #1 does not need updating (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
-DEBUG: getBranchPr(renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x) (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: findPr(renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: Found PR #1 (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/contents/renovate.json5 (etag="bfab8f1344bd4bd8f7ab8886d59fe927ea556fe2", lastModified=Tue, 14 Jul 2026 16:59:47 GMT) (repository=betabitplus-template-lab/sandbox-workspace)
+       "latestCommitDate": "2026-07-14T17:10:50.000Z",
+       "sha": "b4c1645c026eeb6eaa0a5d8ccc17883b7f67ffbd"
+DEBUG: Using file pattern: /(^|/)\.copier-answers(\..+)?\.ya?ml/ for manager copier (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Matched 2 file(s) for manager copier: packages/runtime/.copier-answers.yml, packages/tooling/.copier-answers.yml (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: manager extract durations (ms) (repository=betabitplus-template-lab/sandbox-workspace)
+       "managers": {"copier": 5}
+DEBUG: Found copier package files (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Found 2 package file(s) (repository=betabitplus-template-lab/sandbox-workspace)
+ INFO: Dependency extraction complete (repository=betabitplus-template-lab/sandbox-workspace, baseBranch=main)
+       "stats": {
+         "managers": {"copier": {"fileCount": 2, "depCount": 2}},
+         "total": {"fileCount": 2, "depCount": 2}
+       }
+DEBUG: PackageFiles.add() - Package file saved for base branch (repository=betabitplus-template-lab/sandbox-workspace, baseBranch=main)
+DEBUG: Package releases lookups complete (repository=betabitplus-template-lab/sandbox-workspace, baseBranch=main)
+DEBUG: Repository libYears (repository=betabitplus-template-lab/sandbox-workspace)
+       "libYears": {"managers": {"copier": 0}, "total": 0},
+       "dependencyStatus": {"outdated": 0, "total": 1}
+DEBUG: branchifyUpgrades (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: detectSemanticCommits() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: getCommitMessages (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: semanticCommits: score=5 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: semanticCommits: enabled (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: 0 flattened updates found:  (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Returning 0 branch(es) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: packageFiles with updates (repository=betabitplus-template-lab/sandbox-workspace, baseBranch=main)
+       "config": {
+         "copier": [
+           {
+             "deps": [
+               {
+                 "datasource": "git-tags",
+                 "depName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
+                 "packageName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
+                 "depType": "template",
+                 "currentValue": "v0.2.0",
+                 "updates": [],
+                 "versioning": "pep440",
+                 "warnings": [],
+                 "sourceUrl": "https://github.com/betabitplus-template-lab/python-internal-package",
+                 "currentVersion": "v0.2.0",
+                 "fixedVersion": "v0.2.0"
+               }
+             ],
+             "packageFile": "packages/runtime/.copier-answers.yml"
+           },
+           {
+             "deps": [
+               {
+                 "datasource": "git-tags",
+                 "depName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
+                 "packageName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
+                 "depType": "template",
+                 "currentValue": "v0.2.0",
+                 "updates": [],
+                 "versioning": "pep440",
+                 "warnings": [],
+                 "sourceUrl": "https://github.com/betabitplus-template-lab/python-internal-package",
+                 "currentVersion": "v0.2.0",
+                 "fixedVersion": "v0.2.0"
+               }
+             ],
+             "packageFile": "packages/tooling/.copier-answers.yml"
+           }
+         ]
+       }
+DEBUG: detectSemanticCommits() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: semanticCommits: returning "enabled" from cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: processRepo() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Processing 0 branches:  (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: 0 PRs are currently open (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: ConcurrentPRs count = 0 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: 0 already existing branches found. (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Branches count = 0 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Calculating PRs created so far in this hour currentHourStart=2026-07-14T17:00:00.000Z (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: 0 PRs have been created so far in this hour. (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: HourlyPRs count = 0 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Calculating commits so far in this hour currentHourStart=2026-07-14T17:00:00.000Z (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: 0 commits so far in this hour. (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: HourlyCommits count = 0 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/contents/renovate.json5 (etag="bfab8f1344bd4bd8f7ab8886d59fe927ea556fe2", lastModified=Tue, 14 Jul 2026 17:10:50 GMT) (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Ensuring Dependency Dashboard (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Checking packageFiles for deprecated or replacement packages (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/issues/2 from 2026-07-14T17:09:14.206Z (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/issues/2 from 2026-07-14T17:12:13.645Z (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: No changes to dependency dashboard issue needed (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/issues/2 from 2026-07-14T17:12:14.691Z (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: ensureIssue(Dependency Dashboard) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/issues/2 from 2026-07-14T17:12:14.893Z (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Patching issue (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issue updated (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-workspace)
        "reconfigureBranch": "renovate-lab/reconfigure"
 DEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-workspace)
-       "branchList": [
-         "renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x"
-       ],
+       "branchList": [],
        "renovateBranches": [
          "renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x"
        ]
-DEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-workspace)
-DEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: remainingBranches=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findPr(renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: branch.isModified(): using git to calculate against baseBranch "main" (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: branch.isModified() = false (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: setCachedModifiedResult(): Branch cache not present (repository=betabitplus-template-lab/sandbox-workspace)
+ INFO: Deleting orphan branch (repository=betabitplus-template-lab/sandbox-workspace, branch=renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x)
+DEBUG: Deleted remote branch: renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: No local branch to delete with name: renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-workspace)
        "cacheModified": undefined,
-       "baseBranches": [{"branchName": "main", "sha": "b35d9c3720901f1e9ca5032b455aa85235201d13"}],
-       "branches": [
-         {
-           "automerge": false,
-           "baseBranch": "main",
-           "baseBranchSha": "b35d9c3720901f1e9ca5032b455aa85235201d13",
-           "branchName": "renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x",
-           "branchSha": "9a8be1e8f2ee2a2def9bee6c19ffba99d1b9fea2",
-           "isModified": false,
-           "isPristine": false
-         }
-       ],
+       "baseBranches": [{"branchName": "main", "sha": "b4c1645c026eeb6eaa0a5d8ccc17883b7f67ffbd"}],
+       "branches": [],
        "defaultBranch": "main",
        "inactiveBranches": []
-DEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-workspace)
-       "branchesInformation": [
-         {
-           "branchName": "renovate-lab/https-github.com-betabitplus-template-lab-python-internal-package.git-0.x",
-           "prNo": 1,
-           "prTitle": "chore(deps): update dependency https://github.com/betabitplus-template-lab/python-internal-package.git to v0.2.0",
-           "result": "done",
-           "upgrades": [
-             {
-               "datasource": "git-tags",
-               "depName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
-               "displayPending": "",
-               "fixedVersion": "v0.1.0",
-               "currentVersion": "v0.1.0",
-               "currentValue": "v0.1.0",
-               "newValue": "v0.2.0",
-               "newVersion": "v0.2.0",
-               "packageFile": "packages/tooling/.copier-answers.yml",
-               "updateType": "minor",
-               "packageName": "https://github.com/betabitplus-template-lab/python-internal-package.git"
-             },
-             {
-               "datasource": "git-tags",
-               "depName": "https://github.com/betabitplus-template-lab/python-internal-package.git",
-               "displayPending": "",
-               "fixedVersion": "v0.1.0",
-               "currentVersion": "v0.1.0",
-               "currentValue": "v0.1.0",
-               "newValue": "v0.2.0",
-               "newVersion": "v0.2.0",
-               "packageFile": "packages/runtime/.copier-answers.yml",
-               "updateType": "minor",
-               "packageName": "https://github.com/betabitplus-template-lab/python-internal-package.git"
-             }
-           ]
-         }
-       ]
-DEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-workspace)
-       "updateSummary": [
-         {
-           "baseBranch": "main",
-           "total": 2,
-           "vulnerabilityAlert": 0,
-           "updates": {"minor": 2},
-           "managers": {
-             "copier": {"total": 2, "vulnerabilityAlert": 0, "updates": {"minor": 2}}
-           }
-         }
-       ]
 DEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-workspace)
-       "stats": {"total": 1, "open": 1, "closed": 0, "merged": 0}
-DEBUG: Repository result: done, status: onboarded, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-workspace)
+       "stats": {"total": 1, "open": 0, "closed": 0, "merged": 1}
+DEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-workspace)
 DEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-workspace)
-       "splits": {"init": 2099, "onboarding": 1, "extract": 238, "lookup": 310, "update": 35475},
-       "total": 38452
+       "splits": {"init": 3388, "onboarding": 0, "extract": 293, "lookup": 503, "update": 1},
+       "total": 6840
 DEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-workspace)
-       "get": {"count": 10, "avgMs": 1, "medianMs": 1, "maxMs": 5, "totalMs": 11},
-       "set": {"count": 6, "avgMs": 4, "medianMs": 4, "maxMs": 5, "totalMs": 21}
-DEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-workspace)
-       "github-releases": {"https://github.com": {"hit": 0, "miss": 0, "set": 0, "skip": 1}},
-       "pypi": {"https://pypi.org/pypi": {"hit": 1, "miss": 0, "set": 0, "skip": 0}},
-       "github-tags": {"https://api.github.com": {"hit": 0, "miss": 0, "set": 0, "skip": 1}}
+       "get": {"count": 2, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "set": {"count": 2, "avgMs": 4, "medianMs": 4, "maxMs": 4, "totalMs": 8}
 DEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-workspace)
        "hosts": {
          "api.github.com": {
-           "count": 15,
-           "reqAvgMs": 184,
-           "reqMedianMs": 178,
-           "reqMaxMs": 303,
+           "count": 9,
+           "reqAvgMs": 290,
+           "reqMedianMs": 251,
+           "reqMaxMs": 697,
            "queueAvgMs": 0,
            "queueMedianMs": 0,
            "queueMaxMs": 1
          }
        },
-       "requests": 15
+       "requests": 9
 DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-workspace)
        "https://api.github.com": {
-         "/repos/betabitplus-template-lab/python-internal-package": {
-           "hit": 0,
-           "miss": 1
-         },
-         "/repos/betabitplus-template-lab/python-internal-package/git/trees/main": {
-           "hit": 0,
-           "miss": 1
-         },
          "/repos/betabitplus-template-lab/sandbox-workspace/contents/renovate.json5": {
            "hit": 0,
            "miss": 1
          },
-         "/repos/betabitplus-template-lab/sandbox-workspace/issues/1/comments": {
-           "hit": 1,
-           "miss": 1
-         },
          "/repos/betabitplus-template-lab/sandbox-workspace/issues/2": {
-           "hit": 1,
+           "hit": 3,
            "miss": 1
          },
          "/repos/betabitplus-template-lab/sandbox-workspace/pulls": {
@@ -172,72 +225,32 @@ DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-worksp
          }
        }
 DEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-workspace)
-       "git-tags": {"count": 2, "avgMs": 219, "medianMs": 219, "maxMs": 219, "totalMs": 437}
+       "git-tags": {"count": 2, "avgMs": 486, "medianMs": 486, "maxMs": 486, "totalMs": 972}
 DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-workspace)
        "stats": {
-         "count": 4,
-         "avgMs": 203,
-         "medianMs": 186.335401,
-         "maxMs": 618.841501,
-         "totalMs": 811.103286
+         "count": 1,
+         "avgMs": 481,
+         "medianMs": 480.751781,
+         "maxMs": 480.751781,
+         "totalMs": 480.751781
        },
        "datasources": {
          "git-tags": {
            "stats": {
-             "count": 2,
-             "avgMs": 94,
-             "medianMs": 186.335401,
-             "maxMs": 186.335401,
-             "totalMs": 188.796999
+             "count": 1,
+             "avgMs": 481,
+             "medianMs": 480.751781,
+             "maxMs": 480.751781,
+             "totalMs": 480.751781
            },
            "registryUrls": {
              "": {
                "stats": {
-                 "count": 2,
-                 "avgMs": 94,
-                 "medianMs": 186.335401,
-                 "maxMs": 186.335401,
-                 "totalMs": 188.796999
-               }
-             }
-           }
-         },
-         "github-releases": {
-           "stats": {
-             "count": 1,
-             "avgMs": 3,
-             "medianMs": 3.464786,
-             "maxMs": 3.464786,
-             "totalMs": 3.464786
-           },
-           "registryUrls": {
-             "https://github.com": {
-               "stats": {
                  "count": 1,
-                 "avgMs": 3,
-                 "medianMs": 3.464786,
-                 "maxMs": 3.464786,
-                 "totalMs": 3.464786
-               }
-             }
-           }
-         },
-         "github-tags": {
-           "stats": {
-             "count": 1,
-             "avgMs": 619,
-             "medianMs": 618.841501,
-             "maxMs": 618.841501,
-             "totalMs": 618.841501
-           },
-           "registryUrls": {
-             "https://api.github.com": {
-               "stats": {
-                 "count": 1,
-                 "avgMs": 619,
-                 "medianMs": 618.841501,
-                 "maxMs": 618.841501,
-                 "totalMs": 618.841501
+                 "avgMs": 481,
+                 "medianMs": 480.751781,
+                 "maxMs": 480.751781,
+                 "totalMs": 480.751781
                }
              }
            }
@@ -246,55 +259,42 @@ DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandb
 DEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-workspace)
        "count": 0,
        "hits": {}
-DEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-workspace, branch=[object Object])
        "other": {
-         "count": 38,
-         "avgMs": 30,
-         "medianMs": 8.02816,
-         "maxMs": 190.46784,
-         "totalMs": 1139
+         "count": 13,
+         "avgMs": 41,
+         "medianMs": 4.332544,
+         "maxMs": 482.874112,
+         "totalMs": 536
        },
        "clone": {
-         "count": 2,
-         "avgMs": 253,
-         "medianMs": 491.73888,
-         "maxMs": 491.73888,
-         "totalMs": 506
+         "count": 1,
+         "avgMs": 1566,
+         "medianMs": 1565.761792,
+         "maxMs": 1565.761792,
+         "totalMs": 1566
        },
        "checkout": {
-         "count": 4,
-         "avgMs": 15,
-         "medianMs": 10.884864,
-         "maxMs": 28.04352,
-         "totalMs": 60
-       },
-       "reset": {
-         "count": 5,
-         "avgMs": 10,
-         "medianMs": 9.564928,
-         "maxMs": 11.266048,
-         "totalMs": 50
-       },
-       "merge": {
-         "count": 2,
-         "avgMs": 129,
-         "medianMs": 198.859776,
-         "maxMs": 198.859776,
-         "totalMs": 258
-       },
-       "clean": {
          "count": 1,
-         "avgMs": 58,
-         "medianMs": 57.64736,
-         "maxMs": 57.64736,
-         "totalMs": 58
+         "avgMs": 14,
+         "medianMs": 13.90592,
+         "maxMs": 13.90592,
+         "totalMs": 14
+       },
+       "reset": {"count": 1, "avgMs": 6, "medianMs": 5.990144, "maxMs": 5.990144, "totalMs": 6},
+       "push": {
+         "count": 1,
+         "avgMs": 1013,
+         "medianMs": 1012.716288,
+         "maxMs": 1012.716288,
+         "totalMs": 1013
        }
  INFO: Repository finished (repository=betabitplus-template-lab/sandbox-workspace)
        "cloned": true,
-       "durationMs": 38452,
+       "durationMs": 6840,
        "result": "done",
-       "status": "onboarded",
+       "status": "activated",
        "enabled": true,
        "onboarded": true
 DEBUG: Checking file package cache for expired items
-DEBUG: Deleted 0 of 15 file cached entries in 10ms
+DEBUG: Deleted 0 of 6 file cached entries in 6ms
