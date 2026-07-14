@@ -42,6 +42,7 @@ def clean_repo(repo: Path) -> None:
         ".gitmodules",
         check=False,
     )
+    pilot.safe_rmtree(repo / ".git" / "modules" / "template" / "_components")
     for child in repo.iterdir():
         if child.name in {".git", ".github"}:
             continue
