@@ -1,3 +1,19 @@
 {
-  "releases": []
+  "releases": [
+    {
+      "repository": "betabitplus-template-lab/python-lib",
+      "commit": "c95e5dfda98677def34cc656aba9945b4e6eddd5",
+      "tag": "v0.2.0"
+    },
+    {
+      "repository": "betabitplus-template-lab/python-internal-package",
+      "commit": "88f484f5f0dd7bcfd748585bcd5c13eb19f8b0a0",
+      "tag": "v0.2.0"
+    },
+    {
+      "repository": "betabitplus-template-lab/python-starter-platform",
+      "commit": "06bba8f30d0bf22a05b430861b8115e1e68b5304",
+      "tag": "v0.2.0"
+    }
+  ]
 }
