@@ -40,10 +40,15 @@ def composition_fixture(components: Path) -> dict[str, object]:
             "nested\n", encoding="utf-8"
         )
         template.mkdir(parents=True)
-        # A real Git submodule checkout is a normal directory in the worktree.
         shutil.copytree(payload, template / "_components", copy_function=shutil.copy2)
-        for name in ["plain.txt", "templated.txt", "empty.txt", "binary.bin", "run.sh"]:
+        for name in ["plain.txt", "templated.txt", "empty.txt", "binary.bin"]:
             (template / name).symlink_to(Path("_components") / name)
+        (template / "run-symlink.sh").symlink_to(Path("_components") / "run.sh")
+        pilot.write(
+            template / "run-wrapper.sh",
+            '[[% include "template/_components/run.sh" %]]',
+            0o755,
+        )
         (template / "whole-directory").symlink_to(
             Path("_components") / "directory", target_is_directory=True
         )
@@ -103,12 +108,14 @@ def composition_fixture(components: Path) -> dict[str, object]:
         assert (out / "binary.bin").read_bytes() == bytes(range(256))
         assert (out / "whole-directory" / "nested.txt").read_text(encoding="utf-8") == "nested\n"
         if os.name != "nt":
-            assert pilot.executable(out / "run.sh")
+            assert not pilot.executable(out / "run-symlink.sh")
+            assert pilot.executable(out / "run-wrapper.sh")
         return {
             "text_symlink": True,
             "jinja_symlink": True,
             "jinja_include": True,
-            "executable": True,
+            "executable_symlink_preserves_mode": False,
+            "executable_wrapper_preserves_mode": True,
             "binary": True,
             "empty": True,
             "directory_symlink": True,
