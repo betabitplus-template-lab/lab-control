@@ -71,6 +71,7 @@ jobs:
           printf '{"outcome": "%s", "status": "%s", "run_id": "%s", "sha": "%s"}\n' "$OUTCOME" "$EXIT_STATUS" "$GITHUB_RUN_ID" "$GITHUB_SHA" > evidence/orchestrate-status.json
           [ ! -f docs/results/prepare.json ] || cp docs/results/prepare.json evidence/prepare.json
           [ ! -f docs/results/prepare.md ] || cp docs/results/prepare.md evidence/prepare.md
+          [ ! -f docs/results/platform-workflows.json ] || cp docs/results/platform-workflows.json evidence/platform-workflows.json
       - name: Upload preparation evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -88,7 +89,7 @@ jobs:
             git checkout -B evidence-main origin/main
             mkdir -p docs/results
             cp evidence/* docs/results/
-            git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md 2>/dev/null || true
+            git add docs/results/orchestrate.log docs/results/orchestrate-status.json docs/results/prepare.json docs/results/prepare.md docs/results/platform-workflows.json 2>/dev/null || true
             if git diff --cached --quiet; then
               success=true
               break
