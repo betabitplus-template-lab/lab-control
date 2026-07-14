@@ -1,1 +1,72 @@
-Renovate did not create LOG_FILE.
+Unable to find image 'renovate/renovate:43.262.4' locally
+43.262.4: Pulling from renovate/renovate
+ca2678b20700: Pulling fs layer
+b2d428553b28: Pulling fs layer
+61f9e2e16df0: Pulling fs layer
+2a72fc00f237: Pulling fs layer
+09cf9dbe3059: Pulling fs layer
+152ce08ba636: Pulling fs layer
+f026f93bee32: Pulling fs layer
+3026f2e1f7ad: Pulling fs layer
+c6ece74d2e43: Pulling fs layer
+20e0cab3033d: Pulling fs layer
+1e87ae4c8880: Pulling fs layer
+13201419ec7b: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+2a72fc00f237: Waiting
+09cf9dbe3059: Waiting
+152ce08ba636: Waiting
+f026f93bee32: Waiting
+3026f2e1f7ad: Waiting
+c6ece74d2e43: Waiting
+20e0cab3033d: Waiting
+1e87ae4c8880: Waiting
+13201419ec7b: Waiting
+4f4fb700ef54: Waiting
+b2d428553b28: Download complete
+ca2678b20700: Verifying Checksum
+ca2678b20700: Download complete
+61f9e2e16df0: Verifying Checksum
+61f9e2e16df0: Download complete
+2a72fc00f237: Verifying Checksum
+2a72fc00f237: Download complete
+09cf9dbe3059: Verifying Checksum
+09cf9dbe3059: Download complete
+3026f2e1f7ad: Verifying Checksum
+3026f2e1f7ad: Download complete
+f026f93bee32: Verifying Checksum
+f026f93bee32: Download complete
+c6ece74d2e43: Verifying Checksum
+c6ece74d2e43: Download complete
+1e87ae4c8880: Verifying Checksum
+1e87ae4c8880: Download complete
+13201419ec7b: Verifying Checksum
+13201419ec7b: Download complete
+152ce08ba636: Verifying Checksum
+152ce08ba636: Download complete
+4f4fb700ef54: Verifying Checksum
+4f4fb700ef54: Download complete
+20e0cab3033d: Verifying Checksum
+20e0cab3033d: Download complete
+ca2678b20700: Pull complete
+b2d428553b28: Pull complete
+61f9e2e16df0: Pull complete
+2a72fc00f237: Pull complete
+09cf9dbe3059: Pull complete
+152ce08ba636: Pull complete
+f026f93bee32: Pull complete
+3026f2e1f7ad: Pull complete
+c6ece74d2e43: Pull complete
+20e0cab3033d: Pull complete
+1e87ae4c8880: Pull complete
+13201419ec7b: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+Status: Downloaded newer image for renovate/renovate:43.262.4
+ INFO: Renovate started
+       "renovateVersion": "43.262.4"
+DEBUG: Using RE2 regex engine
+DEBUG: Parsing configs
+DEBUG: No config file found on disk - skipping
+DEBUG: No additional config file found specified - skipping
+error: unknown option '--config-file'
