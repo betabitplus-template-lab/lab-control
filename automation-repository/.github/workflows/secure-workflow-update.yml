@@ -1,0 +1,100 @@
+name: Trusted workflow ref update
+on:
+  workflow_dispatch:
+    inputs:
+      repository-name:
+        description: repository name in the isolated lab
+        required: true
+        type: string
+      workflow-path:
+        description: exact caller workflow path
+        required: true
+        type: string
+      old-sha:
+        required: true
+        type: string
+      new-sha:
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate bounded request
+        env:
+          REPOSITORY_NAME: ${{ inputs.repository-name }}
+          WORKFLOW_PATH: ${{ inputs.workflow-path }}
+          OLD_SHA: ${{ inputs.old-sha }}
+          NEW_SHA: ${{ inputs.new-sha }}
+        run: |
+          [[ "$REPOSITORY_NAME" =~ ^[a-zA-Z0-9_.-]+$ ]]
+          [[ "$WORKFLOW_PATH" == .github/workflows/*.yml || "$WORKFLOW_PATH" == .github/workflows/*.yaml ]]
+          [[ "$OLD_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$NEW_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$OLD_SHA" != "$NEW_SHA"
+      - name: Mint publisher token for one repository
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.WORKFLOW_PUBLISHER_APP_ID }}
+          private-key: ${{ secrets.WORKFLOW_PUBLISHER_PRIVATE_KEY }}
+          owner: betabitplus-template-lab
+          repositories: ${{ inputs.repository-name }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          repository: betabitplus-template-lab/${{ inputs.repository-name }}
+          token: ${{ steps.app-token.outputs.token }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Replace exactly one immutable reusable-workflow ref
+        env:
+          WORKFLOW_PATH: ${{ inputs.workflow-path }}
+          OLD_SHA: ${{ inputs.old-sha }}
+          NEW_SHA: ${{ inputs.new-sha }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          path = Path(os.environ['WORKFLOW_PATH'])
+          if not path.is_file() or path.parent.as_posix() != '.github/workflows':
+              raise SystemExit('refusing non-workflow path')
+          text = path.read_text()
+          old, new = os.environ['OLD_SHA'], os.environ['NEW_SHA']
+          if text.count(old) != 1:
+              raise SystemExit('expected exactly one old SHA occurrence')
+          updated = text.replace(old, new)
+          if old in updated or updated.count(new) < 1:
+              raise SystemExit('unexpected replacement result')
+          path.write_text(updated)
+          PY
+          git diff --check -- "$WORKFLOW_PATH"
+          test "$(git diff --name-only | wc -l | tr -d ' ')" = 1
+      - name: Open reviewable PR without merging
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          NEW_SHA: ${{ inputs.new-sha }}
+          WORKFLOW_PATH: ${{ inputs.workflow-path }}
+        run: |
+          branch="trusted-workflow-ref/${NEW_SHA:0:12}"
+          git config user.name 'workflow-publisher[bot]'
+          git config user.email 'workflow-publisher[bot]@users.noreply.github.com'
+          git checkout -b "$branch"
+          git add -- "$WORKFLOW_PATH"
+          git commit -m "chore(ci): update reusable workflow ref"
+          askpass="$RUNNER_TEMP/git-askpass.sh"
+          cat > "$askpass" <<'SH'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *Password*) printf '%s\n' "$GH_TOKEN" ;;
+          esac
+          SH
+          chmod 700 "$askpass"
+          GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0 git push --set-upstream origin "$branch"
+          rm -f "$askpass"
+          gh pr create --base dev --head "$branch" --title 'chore(ci): update reusable workflow ref' --body 'Bounded exact-SHA workflow update. Manual review and required CI remain mandatory.'

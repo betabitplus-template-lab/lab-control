@@ -1,0 +1,26 @@
+name: Ensure promotion PR
+on:
+  push:
+    branches: [dev]
+permissions:
+  contents: read
+  pull-requests: write
+concurrency:
+  group: promotion-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  ensure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Ensure one dev to main PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch origin dev main
+          if git diff --quiet origin/main...origin/dev; then exit 0; fi
+          existing="$(gh pr list --base main --head dev --state open --json number --jq '.[0].number // empty')"
+          test -n "$existing" || gh pr create --base main --head dev --title 'chore: promote dev to main' --body 'Idempotent promotion proposal; merge remains review-gated.'

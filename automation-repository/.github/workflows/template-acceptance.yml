@@ -1,0 +1,76 @@
+name: Template acceptance
+on:
+  workflow_call:
+    inputs:
+      copier-version:
+        type: string
+        default: "9.16.0"
+      template-subdirectory:
+        type: string
+        default: "template"
+      run-windows:
+        type: boolean
+        default: true
+    secrets:
+      private-read-token:
+        required: true
+permissions:
+  contents: read
+jobs:
+  accept:
+    name: template acceptance / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          token: ${{ secrets.private-read-token }}
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
+      - name: Generic source checks
+        shell: bash
+        env:
+          TEMPLATE_SUBDIRECTORY: ${{ inputs.template-subdirectory }}
+        run: |
+          [[ "$TEMPLATE_SUBDIRECTORY" =~ ^[a-zA-Z0-9_./-]+$ ]]
+          test -z "$(find -L "$TEMPLATE_SUBDIRECTORY" -type l -print)"
+          git diff --check
+          ! git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ':!*.md'
+      - name: Render representative project
+        shell: bash
+        env:
+          COPIER_VERSION: ${{ inputs.copier-version }}
+          GH_TOKEN: ${{ secrets.private-read-token }}
+        run: |
+          [[ "$COPIER_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          uvx --from "copier==$COPIER_VERSION" copier copy --trust --defaults . "$RUNNER_TEMP/rendered"
+          test -f "$RUNNER_TEMP/rendered/.copier-answers.yml" -o -f "$RUNNER_TEMP/rendered/.copier-answers.yaml"
+  windows:
+    if: inputs.run-windows
+    name: template acceptance / windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          token: ${{ secrets.private-read-token }}
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
+      - shell: pwsh
+        env:
+          COPIER_VERSION: ${{ inputs.copier-version }}
+          GH_TOKEN: ${{ secrets.private-read-token }}
+        run: |
+          if ($env:COPIER_VERSION -notmatch '^\d+\.\d+\.\d+$') { exit 2 }
+          uvx --from "copier==$env:COPIER_VERSION" copier copy --trust --defaults . "$env:RUNNER_TEMP/rendered"
+          if (-not (Test-Path "$env:RUNNER_TEMP/rendered")) { exit 1 }
