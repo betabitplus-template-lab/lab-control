@@ -6,6 +6,7 @@ on:
       - experiment/final-platform-20260714
     paths:
       - experiments/final-platform/final-assets.tar.gz
+      - .github/workflows/materialize-final-assets.yml
 
 permissions:
   contents: write
