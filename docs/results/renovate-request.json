@@ -1,9 +1,9 @@
 {
-  "request_id": "template-c2-rebase-after-ci-fix",
+  "request_id": "downstream-v0.2.0",
   "dry_run": null,
   "repositories": [
-    "betabitplus-template-lab/python-lib",
-    "betabitplus-template-lab/python-internal-package",
-    "betabitplus-template-lab/python-starter-platform"
+    "betabitplus-template-lab/sandbox-python-lib",
+    "betabitplus-template-lab/sandbox-python-platform",
+    "betabitplus-template-lab/sandbox-workspace"
   ]
 }
