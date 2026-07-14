@@ -1,72 +1,300 @@
-Unable to find image 'renovate/renovate:43.262.4' locally
-43.262.4: Pulling from renovate/renovate
-ca2678b20700: Pulling fs layer
-b2d428553b28: Pulling fs layer
-61f9e2e16df0: Pulling fs layer
-2a72fc00f237: Pulling fs layer
-09cf9dbe3059: Pulling fs layer
-152ce08ba636: Pulling fs layer
-f026f93bee32: Pulling fs layer
-3026f2e1f7ad: Pulling fs layer
-c6ece74d2e43: Pulling fs layer
-20e0cab3033d: Pulling fs layer
-1e87ae4c8880: Pulling fs layer
-13201419ec7b: Pulling fs layer
-4f4fb700ef54: Pulling fs layer
-2a72fc00f237: Waiting
-09cf9dbe3059: Waiting
-152ce08ba636: Waiting
-f026f93bee32: Waiting
-3026f2e1f7ad: Waiting
-c6ece74d2e43: Waiting
-20e0cab3033d: Waiting
-1e87ae4c8880: Waiting
-13201419ec7b: Waiting
-4f4fb700ef54: Waiting
-b2d428553b28: Download complete
-ca2678b20700: Verifying Checksum
-ca2678b20700: Download complete
-61f9e2e16df0: Verifying Checksum
-61f9e2e16df0: Download complete
-2a72fc00f237: Verifying Checksum
-2a72fc00f237: Download complete
-09cf9dbe3059: Verifying Checksum
-09cf9dbe3059: Download complete
-3026f2e1f7ad: Verifying Checksum
-3026f2e1f7ad: Download complete
-f026f93bee32: Verifying Checksum
-f026f93bee32: Download complete
-c6ece74d2e43: Verifying Checksum
-c6ece74d2e43: Download complete
-1e87ae4c8880: Verifying Checksum
-1e87ae4c8880: Download complete
-13201419ec7b: Verifying Checksum
-13201419ec7b: Download complete
-152ce08ba636: Verifying Checksum
-152ce08ba636: Download complete
-4f4fb700ef54: Verifying Checksum
-4f4fb700ef54: Download complete
-20e0cab3033d: Verifying Checksum
-20e0cab3033d: Download complete
-ca2678b20700: Pull complete
-b2d428553b28: Pull complete
-61f9e2e16df0: Pull complete
-2a72fc00f237: Pull complete
-09cf9dbe3059: Pull complete
-152ce08ba636: Pull complete
-f026f93bee32: Pull complete
-3026f2e1f7ad: Pull complete
-c6ece74d2e43: Pull complete
-20e0cab3033d: Pull complete
-1e87ae4c8880: Pull complete
-13201419ec7b: Pull complete
-4f4fb700ef54: Pull complete
-Digest: sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
-Status: Downloaded newer image for renovate/renovate:43.262.4
- INFO: Renovate started
+       },
+       "requests": 3
+DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-python-lib)
+       "https://api.github.com": {
+         "/repos/betabitplus-template-lab/sandbox-python-lib/pulls": {
+           "hit": 0,
+           "miss": 1
+         }
+       }
+DEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-python-lib)
+DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-python-lib)
+       "stats": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "datasources": {}
+DEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-python-lib)
+       "count": 0,
+       "hits": {}
+DEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-python-lib)
+       "other": {
+         "count": 12,
+         "avgMs": 50,
+         "medianMs": 7.329536,
+         "maxMs": 511.159552,
+         "totalMs": 599
+       },
+       "clone": {
+         "count": 1,
+         "avgMs": 1166,
+         "medianMs": 1166.488064,
+         "maxMs": 1166.488064,
+         "totalMs": 1167
+       },
+       "checkout": {
+         "count": 1,
+         "avgMs": 31,
+         "medianMs": 31.178752,
+         "maxMs": 31.178752,
+         "totalMs": 32
+       },
+       "reset": {
+         "count": 1,
+         "avgMs": 12,
+         "medianMs": 11.992832,
+         "maxMs": 11.992832,
+         "totalMs": 12
+       }
+ INFO: Repository finished (repository=betabitplus-template-lab/sandbox-python-lib)
+       "cloned": true,
+       "durationMs": 3684,
+       "result": undefined,
+       "status": undefined,
+       "enabled": undefined,
+       "onboarded": undefined
+DEBUG: Reinitializing hostRules for repo
+DEBUG: Clearing hostRules
+DEBUG: Adding token authentication for api.github.com (hostType=github) to hostRules
+ INFO: Repository started (repository=betabitplus-template-lab/sandbox-python-platform)
        "renovateVersion": "43.262.4"
-DEBUG: Using RE2 regex engine
-DEBUG: Parsing configs
-DEBUG: No config file found on disk - skipping
-DEBUG: No additional config file found specified - skipping
-error: unknown option '--config-file'
+DEBUG: Using localDir: /tmp/renovate/repos/github/betabitplus-template-lab/sandbox-python-platform (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: initRepo("betabitplus-template-lab/sandbox-python-platform") (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: hostRules: authentication already set for api.github.com (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Using queue: host=api.github.com, concurrency=16 (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: betabitplus-template-lab/sandbox-python-platform default branch = main (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Issues cache: Adding 0 issues to reconcile queue (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Using app token for git init (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: fetchBranchCommits(): url=https://**redacted**@github.com/betabitplus-template-lab/sandbox-python-platform.git (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Resetting npmrc (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Resetting npmrc (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: checkOnboarding() (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: isOnboarded() (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findPr(renovate/configure, Configure Renovate, !open) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: PR cache: cached data not found, creating new cache (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: PR cache: initial fetch (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-python-platform/pulls?per_page=100&state=all&sort=updated&direction=desc&page=1 (etag="e8025d1ee6fb6269707fc7afbd71e0e1f738fd558bb8d81baf99e5244d4b1725", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: PR cache: Filtered 0 PRs to 0 (user=betabitplus-template-lab-renovate[bot]) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: PR cache: getPrList success (repository=betabitplus-template-lab/sandbox-python-platform)
+       "pullsTotal": 0,
+       "requestsTotal": 1,
+       "apiQuotaAffected": true,
+       "durationMs": 256
+DEBUG: findPr(renovate/configure, chore: Configure Renovate, !open) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(renovate.json) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: syncGit(): Initializing git repository into /tmp/renovate/repos/github/betabitplus-template-lab/sandbox-python-platform (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Performing blobless clone (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: git clone completed (repository=betabitplus-template-lab/sandbox-python-platform)
+       "durationMs": 1103
+DEBUG: latest repository commit (repository=betabitplus-template-lab/sandbox-python-platform)
+       "latestCommit": {
+         "hash": "3b09192851fff9b0cf844433ea56454cd5d6b621",
+         "date": "2026-07-14T16:36:45+03:00",
+         "message": "ci: add isolated downstream validation",
+         "refs": "HEAD -> main, origin/main, origin/HEAD",
+         "body": "",
+         "author_name": "betabitplus",
+         "author_email": "8123085+betabitplus@users.noreply.github.com"
+       }
+DEBUG: Current branch SHA: 3b09192851fff9b0cf844433ea56454cd5d6b621 (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(renovate.jsonc) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(renovate.json5) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.github/renovate.json) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.github/renovate.jsonc) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.github/renovate.json5) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.gitlab/renovate.json) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.gitlab/renovate.jsonc) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.gitlab/renovate.json5) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.renovaterc) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.renovaterc.json) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.renovaterc.jsonc) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: findFile(.renovaterc.json5) (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: config file not found (repository=betabitplus-template-lab/sandbox-python-platform)
+ INFO: Repository is disabled - skipping (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: config.repoIsOnboarded=undefined (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: No defaultBranch set - skipping branch pruning (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Repository result: disabled-no-config, status: disabled, enabled: false, onboarded: undefined (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: Skipping the rest to the Renovate run due to error in `init` phase (repository=betabitplus-template-lab/sandbox-python-platform)
+       "error": {
+         "message": "disabled-no-config",
+         "stack": "Error: disabled-no-config\n    at isOnboarded (file:///usr/local/renovate/lib/workers/repository/onboarding/branch/check.ts:154:11)\n    at checkOnboardingBranch (file:///usr/local/renovate/lib/workers/repository/onboarding/branch/index.ts:37:27)\n    at getRepoConfig (file:///usr/local/renovate/lib/workers/repository/init/config.ts:13:12)\n    at initRepo (file:///usr/local/renovate/lib/workers/repository/init/index.ts:58:12)\n    at instrument.attributes (file:///usr/local/renovate/lib/workers/repository/index.ts:83:18)\n    at renovateRepository (file:///usr/local/renovate/lib/workers/repository/index.ts:58:39)\n    at instrument.attributes (file:///usr/local/renovate/lib/workers/global/index.ts:235:11)\n    at start (file:///usr/local/renovate/lib/workers/global/index.ts:220:7)\n    at file:///usr/local/renovate/lib/renovate.ts:28:22"
+       }
+DEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-python-platform)
+       "splits": {"init": 0, "onboarding": 0, "extract": 0, "lookup": 0, "update": 0},
+       "total": 2278
+DEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-python-platform)
+       "get": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "set": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0}
+DEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-python-platform)
+       "hosts": {
+         "api.github.com": {
+           "count": 2,
+           "reqAvgMs": 284,
+           "reqMedianMs": 315,
+           "reqMaxMs": 315,
+           "queueAvgMs": 0,
+           "queueMedianMs": 0,
+           "queueMaxMs": 0
+         }
+       },
+       "requests": 2
+DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-python-platform)
+       "https://api.github.com": {
+         "/repos/betabitplus-template-lab/sandbox-python-platform/pulls": {
+           "hit": 0,
+           "miss": 1
+         }
+       }
+DEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-python-platform)
+DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-python-platform)
+       "stats": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "datasources": {}
+DEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-python-platform)
+       "count": 0,
+       "hits": {}
+DEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-python-platform)
+       "other": {
+         "count": 17,
+         "avgMs": 33,
+         "medianMs": 6.19008,
+         "maxMs": 468.796928,
+         "totalMs": 568
+       },
+       "clone": {
+         "count": 1,
+         "avgMs": 1102,
+         "medianMs": 1101.956608,
+         "maxMs": 1101.956608,
+         "totalMs": 1102
+       }
+ INFO: Repository finished (repository=betabitplus-template-lab/sandbox-python-platform)
+       "cloned": true,
+       "durationMs": 2278,
+       "result": "disabled-no-config",
+       "status": "disabled",
+       "enabled": false,
+       "onboarded": undefined
+DEBUG: Reinitializing hostRules for repo
+DEBUG: Clearing hostRules
+DEBUG: Adding token authentication for api.github.com (hostType=github) to hostRules
+ INFO: Repository started (repository=betabitplus-template-lab/sandbox-workspace)
+       "renovateVersion": "43.262.4"
+DEBUG: Using localDir: /tmp/renovate/repos/github/betabitplus-template-lab/sandbox-workspace (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: initRepo("betabitplus-template-lab/sandbox-workspace") (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: hostRules: authentication already set for api.github.com (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Using queue: host=api.github.com, concurrency=16 (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: betabitplus-template-lab/sandbox-workspace default branch = main (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Issues cache: Adding 0 issues to reconcile queue (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Using app token for git init (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: fetchBranchCommits(): url=https://**redacted**@github.com/betabitplus-template-lab/sandbox-workspace.git (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Resetting npmrc (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Resetting npmrc (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: checkOnboarding() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: isOnboarded() (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findPr(renovate/configure, Configure Renovate, !open) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: PR cache: cached data not found, creating new cache (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: PR cache: initial fetch (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-workspace/pulls?per_page=100&state=all&sort=updated&direction=desc&page=1 (etag="e8025d1ee6fb6269707fc7afbd71e0e1f738fd558bb8d81baf99e5244d4b1725", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: PR cache: Filtered 0 PRs to 0 (user=betabitplus-template-lab-renovate[bot]) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: PR cache: getPrList success (repository=betabitplus-template-lab/sandbox-workspace)
+       "pullsTotal": 0,
+       "requestsTotal": 1,
+       "apiQuotaAffected": true,
+       "durationMs": 268
+DEBUG: findPr(renovate/configure, chore: Configure Renovate, !open) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(renovate.json) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: syncGit(): Initializing git repository into /tmp/renovate/repos/github/betabitplus-template-lab/sandbox-workspace (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Performing blobless clone (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: git clone completed (repository=betabitplus-template-lab/sandbox-workspace)
+       "durationMs": 1134
+DEBUG: latest repository commit (repository=betabitplus-template-lab/sandbox-workspace)
+       "latestCommit": {
+         "hash": "5354ffb932cbd4de153a926fa8662508b3465a9a",
+         "date": "2026-07-14T16:36:54+03:00",
+         "message": "ci: add isolated workspace validation",
+         "refs": "HEAD -> main, origin/main, origin/HEAD",
+         "body": "",
+         "author_name": "betabitplus",
+         "author_email": "8123085+betabitplus@users.noreply.github.com"
+       }
+DEBUG: Current branch SHA: 5354ffb932cbd4de153a926fa8662508b3465a9a (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(renovate.jsonc) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(renovate.json5) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.github/renovate.json) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.github/renovate.jsonc) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.github/renovate.json5) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.gitlab/renovate.json) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.gitlab/renovate.jsonc) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.gitlab/renovate.json5) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.renovaterc) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.renovaterc.json) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.renovaterc.jsonc) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: findFile(.renovaterc.json5) (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: config file not found (repository=betabitplus-template-lab/sandbox-workspace)
+ INFO: Repository is disabled - skipping (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: config.repoIsOnboarded=undefined (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: No defaultBranch set - skipping branch pruning (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Repository result: disabled-no-config, status: disabled, enabled: false, onboarded: undefined (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: Skipping the rest to the Renovate run due to error in `init` phase (repository=betabitplus-template-lab/sandbox-workspace)
+       "error": {
+         "message": "disabled-no-config",
+         "stack": "Error: disabled-no-config\n    at isOnboarded (file:///usr/local/renovate/lib/workers/repository/onboarding/branch/check.ts:154:11)\n    at checkOnboardingBranch (file:///usr/local/renovate/lib/workers/repository/onboarding/branch/index.ts:37:27)\n    at getRepoConfig (file:///usr/local/renovate/lib/workers/repository/init/config.ts:13:12)\n    at initRepo (file:///usr/local/renovate/lib/workers/repository/init/index.ts:58:12)\n    at instrument.attributes (file:///usr/local/renovate/lib/workers/repository/index.ts:83:18)\n    at renovateRepository (file:///usr/local/renovate/lib/workers/repository/index.ts:58:39)\n    at instrument.attributes (file:///usr/local/renovate/lib/workers/global/index.ts:235:11)\n    at start (file:///usr/local/renovate/lib/workers/global/index.ts:220:7)\n    at file:///usr/local/renovate/lib/renovate.ts:28:22"
+       }
+DEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-workspace)
+       "splits": {"init": 0, "onboarding": 0, "extract": 0, "lookup": 0, "update": 0},
+       "total": 2366
+DEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-workspace)
+       "get": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "set": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0}
+DEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-workspace)
+       "hosts": {
+         "api.github.com": {
+           "count": 2,
+           "reqAvgMs": 311,
+           "reqMedianMs": 356,
+           "reqMaxMs": 356,
+           "queueAvgMs": 1,
+           "queueMedianMs": 1,
+           "queueMaxMs": 1
+         }
+       },
+       "requests": 2
+DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-workspace)
+       "https://api.github.com": {
+         "/repos/betabitplus-template-lab/sandbox-workspace/pulls": {
+           "hit": 0,
+           "miss": 1
+         }
+       }
+DEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-workspace)
+DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-workspace)
+       "stats": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
+       "datasources": {}
+DEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-workspace)
+       "count": 0,
+       "hits": {}
+DEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-workspace)
+       "other": {
+         "count": 17,
+         "avgMs": 34,
+         "medianMs": 5.933824,
+         "maxMs": 480.992,
+         "totalMs": 579
+       },
+       "clone": {
+         "count": 1,
+         "avgMs": 1133,
+         "medianMs": 1133.18016,
+         "maxMs": 1133.18016,
+         "totalMs": 1134
+       }
+ INFO: Repository finished (repository=betabitplus-template-lab/sandbox-workspace)
+       "cloned": true,
+       "durationMs": 2366,
+       "result": "disabled-no-config",
+       "status": "disabled",
+       "enabled": false,
+       "onboarded": undefined
+DEBUG: Checking file package cache for expired items
+DEBUG: Deleted 0 of 0 file cached entries in 5ms
