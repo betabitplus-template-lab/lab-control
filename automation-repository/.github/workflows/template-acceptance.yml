@@ -47,9 +47,12 @@ jobs:
         shell: bash
         env:
           COPIER_VERSION: ${{ inputs.copier-version }}
-          GH_TOKEN: ${{ secrets.private-read-token }}
+          PRIVATE_READ_TOKEN: ${{ secrets.private-read-token }}
         run: |
           [[ "$COPIER_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          export GIT_CONFIG_COUNT=1
+          export GIT_CONFIG_KEY_0="url.https://x-access-token:${PRIVATE_READ_TOKEN}@github.com/.insteadOf"
+          export GIT_CONFIG_VALUE_0="https://github.com/"
           uvx --from "copier==$COPIER_VERSION" copier copy --trust --defaults . "$RUNNER_TEMP/rendered"
           test -f "$RUNNER_TEMP/rendered/.copier-answers.yml" -o -f "$RUNNER_TEMP/rendered/.copier-answers.yaml"
   windows:
@@ -69,8 +72,11 @@ jobs:
       - shell: pwsh
         env:
           COPIER_VERSION: ${{ inputs.copier-version }}
-          GH_TOKEN: ${{ secrets.private-read-token }}
+          PRIVATE_READ_TOKEN: ${{ secrets.private-read-token }}
         run: |
           if ($env:COPIER_VERSION -notmatch '^\d+\.\d+\.\d+$') { exit 2 }
+          $env:GIT_CONFIG_COUNT = "1"
+          $env:GIT_CONFIG_KEY_0 = "url.https://x-access-token:$env:PRIVATE_READ_TOKEN@github.com/.insteadOf"
+          $env:GIT_CONFIG_VALUE_0 = "https://github.com/"
           uvx --from "copier==$env:COPIER_VERSION" copier copy --trust --defaults . "$env:RUNNER_TEMP/rendered"
           if (-not (Test-Path "$env:RUNNER_TEMP/rendered")) { exit 1 }
