@@ -2,43 +2,36 @@
 
 ## Result
 
-**Implementation PASS; private cross-repository execution currently NEGATIVE PASS.**
+**PASS for private cross-repository reuse, exact-SHA selection, secret inheritance, failure propagation and cancellation. One corrected private Copier clone path requires handoff-03 revalidation.**
 
-A representative private reusable workflow was committed to `lab-control` at exact SHA `8947060677a2f051351a56df48d6f50f37a37987`. A downstream caller was committed at `39cd279c9f96a32f467dbfa1aa1014714489e757` and opened as [sandbox-python-platform#3](https://github.com/betabitplus-template-lab/sandbox-python-platform/pull/3).
+The final private implementation was published in `betabitplus-template-lab/automation` at commit `a5cd8112c8e8b221dceb397c1e882a9a25148b86`, tag `v0.1.0`. Organization access for private callers was enabled. The downstream caller remains [sandbox-python-platform#3](https://github.com/betabitplus-template-lab/sandbox-python-platform/pull/3) with automerge disabled.
 
 ## Caller reduction
 
-The caller is 12 YAML lines and contains only trigger, read permission, exact reusable-workflow ref, one input and `secrets: inherit`. The reusable implementation owns Linux/macOS jobs, stable check names and secret presence validation.
+The caller contains only trigger, read permission, immutable reusable-workflow ref, inputs and inherited secrets. The reusable implementation owns OS matrices, stable check names and validation behavior. Workflow implementation changes require only a reviewable exact-SHA ref bump; template-generated product/config changes still use Copier.
 
-The prepared production caller example is 14 lines. Representative copied Python CI is approximately 45–70 lines per repository, so central reuse removes most workflow-body duplication. Workflow implementation changes require only a ref bump; template-generated product/config changes still use Copier.
+## Live acceptance
 
-## Live evidence
+| Acceptance | Result | Evidence |
+|---|---|---|
+| Linux/macOS execution, inherited secret presence, read-only permissions | PASS | run `29375576270` |
+| intentional failure propagation | NEGATIVE_PASS | run `29375625874`, conclusion failure |
+| cancellation propagation | NEGATIVE_PASS | run `29375658789`, conclusion cancelled |
+| tagged `automation@v0.1.0` ref | PASS | run `29375727768` |
+| final exact 40-character automation SHA | PASS | run `29375763651` |
+| actionlint and zizmor review of reusable set | PASS | handoff-02 workflow evidence |
+| automerge | disabled | PR metadata audit |
 
-| Evidence | Result |
-|---|---|
-| downstream validation run `29371632671` | PASS |
-| private reusable caller run `29371633018` | FAIL before jobs |
-| jobs returned for failed reusable run | empty list |
-| caller pinned to 40-character source SHA | PASS |
-| automerge | disabled |
+This supersedes the earlier `lab-control` pre-job failure `29371633018`: that run correctly exposed that private source-workflow sharing is an administrative setting, not repository content. After publishing the dedicated `automation` repository and enabling organization access, the private call worked.
 
-The most likely explanation is missing private workflow access/sharing on the source repository. This is an inference from the pre-job failure, not a claimed GitHub diagnostic string. Handoff 02 must enable organization access for the final `automation` repository and repeat the run.
+## Private Copier authentication finding
 
-## Designed acceptance after access enablement
+The reusable template acceptance workflow initially authenticated `actions/checkout` but Copier performed an independent temporary Git clone. That clone could not read the private components submodule. The corrected workflow sets an ephemeral process-environment Git URL rewrite from the masked read token on Linux/macOS/Windows, keeps `persist-credentials:false`, and does not write credentials to repository config or artifacts.
 
-- private source and private caller;
-- explicit inputs;
-- `secrets: inherit` without secret disclosure;
-- `permissions: contents: read` in caller and callee;
-- Linux required job plus macOS representative job;
-- stable required check name;
-- intentional failure input proves failure propagation;
-- cancellation remains native GitHub job cancellation;
-- caller cannot elevate permissions beyond caller grant;
-- exact SHA and tagged refs compared; exact SHA selected.
+The corrected path is in `lab-control#9` commit `51dcb45cd8c06ff0e2d1540df095b07f88b0f124`. Live cross-platform revalidation is assigned to handoff-03 and is the only remaining reusable-template acceptance gap.
 
 ## Updating the reusable ref
 
-Renovate's GitHub Actions manager can detect reusable workflow `uses:` refs. The permission problem remains: modifying `.github/workflows` requires Workflows write for an App token. The recommended model keeps that permission away from Renovate and uses the bounded trusted updater in `automation/.github/workflows/secure-workflow-update.yml`.
+Renovate can detect reusable workflow `uses:` refs, but the main Renovate App intentionally has no Workflows write permission. The selected model uses `automation/.github/workflows/secure-workflow-update.yml` with a separate selected-repository App.
 
-The updater validates one selected repository, one workflow path and two exact SHAs, changes exactly one occurrence, verifies that no other file changed, and opens a PR to `dev`. It never merges. This preserves least privilege and reviewability at the cost of 99 lines of narrowly scoped workflow logic.
+The updater validates one repository, one workflow path and two exact SHAs, changes exactly one occurrence, proves no other file changed and opens a PR to `dev`. It never merges. This preserves least privilege and reviewability at the cost of a bounded 99-line optional workflow.
