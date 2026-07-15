@@ -2,18 +2,26 @@
 
 ## Result
 
-**Static implementation: PASS. Live apply/no-drift: DEFERRED. Private rulesets: BLOCKED by current GitHub plan.**
+**Architecture/design PASS. Handoff-02 repository-only apply FAIL before write because of one provider-schema mismatch. Corrected implementation awaits handoff-03 live apply/no-drift. Private rulesets remain BLOCKED by the current GitHub plan.**
 
-The configuration under `provisioning/` pins OpenTofu `1.12.0` and GitHub provider `6.6.0`, creates one private repository, controls merge settings/topics, creates `main` from bootstrapped `dev`, switches the default branch, writes a non-secret Actions variable, optionally grants Renovate App access, and defines optional branch/tag rulesets.
+The configuration under `provisioning/` pins OpenTofu `1.12.0` and GitHub provider `6.6.0`. It creates one private repository, controls merge settings/topics, creates `main` from bootstrapped `dev`, switches the default branch, writes a non-secret Actions variable, optionally grants Renovate App access and defines feature-gated branch/tag rulesets.
+
+## Handoff-02 result
+
+OpenTofu correctly stopped before creating `sandbox-provisioned`. Provider 6.6.0 rejected `allowed_merge_methods` inside two `github_repository_ruleset.rules.pull_request` blocks. No manual repository substitute was created, so the failed apply produced no partial lab mutation.
+
+The unsupported fields were removed in `lab-control#9` commit `7f241a8d0e56b408a2a70f0085e6d307c1acbf42`. Squash-only behavior is still declared by repository merge settings (`allow_merge_commit=false`, `allow_rebase_merge=false`, `allow_squash_merge=true`). The ruleset continues to require a PR, review, resolved threads, no deletion/force-push and the selected status check where the GitHub plan supports it.
 
 ## Required two-phase sequence
 
-1. `tofu apply -var=bootstrap_complete=false` creates the empty repository.
-2. `bootstrap.sh` runs Copier locally, initializes Git, commits and pushes the first `dev` branch.
-3. `tofu apply -var=bootstrap_complete=true` creates `main`, sets `dev` as default, applies variables/App access and (where supported) rulesets.
-4. A subsequent `tofu plan` must show no unexplained drift.
+1. repository-only `tofu apply` creates `sandbox-provisioned`;
+2. `bootstrap.sh` runs Copier locally, initializes Git, commits and pushes the first `dev` branch;
+3. post-bootstrap apply creates `main`, sets `dev` as default, applies variables/App access and optional rulesets;
+4. a subsequent `tofu plan` must show no unexplained drift;
+5. repeat apply/bootstrap and one import/partial-state recovery case prove idempotency;
+6. cleanup archives rather than unexpectedly deleting evidence.
 
-The two phases are real platform behavior, not hidden behind a Python state machine. The provider cannot set a default branch before the target ref exists.
+The two phases are explicit platform behavior, not hidden behind a Python state machine. The provider cannot set a default branch before the target ref exists.
 
 ## Onboarding replacement map
 
@@ -33,22 +41,14 @@ The two phases are real platform behavior, not hidden behind a Python state mach
 | promotion PR | thin GitHub workflow |
 | validation | reusable CI and OpenTofu plan |
 
-## Idempotency design
-
-- OpenTofu state owns repository settings; repeat plan is the drift signal.
-- Copier bootstrap refuses a non-empty destination and a second first push.
-- Repository import is supported rather than re-creating an existing repository.
-- Partial creation is recovered with ordinary `tofu import`/apply and Git commands; no recovery framework is introduced.
-- Cleanup defaults to archive-on-destroy; the experiment must not delete evidence unexpectedly.
-
 ## Secrets and state
 
-No repository secret is modeled. Provider credentials are supplied from environment/App-token generation and are not variables committed to state. The only example Actions variable is non-sensitive.
+No repository secret is modeled. Provider credentials are supplied through environment/App-token generation and are not committed variables. The only example Actions variable is non-sensitive. Handoff-03 must inspect state JSON and returned artifacts for credential-like values before reporting success.
 
-## Negative result
+## Ruleset blocker
 
-Handoff 01 received HTTP 403 for rulesets on every private lab repository because the current account plan does not expose the feature. The HCL keeps rulesets behind an explicit feature flag defaulting to false. A production rollout must either upgrade/enable the capability or document and test a branch-protection fallback.
+Every private ruleset attempt returned GitHub's plan-related HTTP 403. `enable_rulesets` remains explicit and defaults false. The experiment does not silently claim branch-protection fallback parity. Production must either obtain private-ruleset capability or approve and separately test a documented lower-fidelity fallback.
 
-## Remaining live evidence
+## Remaining evidence
 
-The exact handoff 02 must create `sandbox-provisioned`, execute both apply phases, capture JSON plans, re-run bootstrap/apply, test an import/partial case, and archive the repository. Until that evidence exists, the provisioning result is not marked fully accepted.
+Handoff-03 must run provider validation, repository-only apply, Copier bootstrap, post-bootstrap apply, clean second plan, repeat/idempotency, one import/partial-state recovery and archive cleanup. Until those live steps pass, R03/T01/T03 remain revalidation-required rather than PASS.
