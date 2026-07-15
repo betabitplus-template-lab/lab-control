@@ -1,16 +1,18 @@
 {
-  "schema": "final-experiment-results/v3",
+  "schema": "final-experiment-results/v4",
   "date": "2026-07-15",
   "architecture_result": "CONDITIONAL_GO",
+  "experiment_acceptance": "INCOMPLETE",
   "production_mutations": 0,
   "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
   "current_dev_head_at_audit": "d59582375855cff69fb165e467dc5847bc75ca99",
   "metrics": {
     "current_root_and_tooling_custom_loc": 11466,
     "current_strict_template_update_lifecycle_loc": 6673,
-    "projected_required_custom_lifecycle_loc_upper_bound": 151,
+    "projected_required_custom_lifecycle_loc": 165,
     "projected_unique_policy_loc": 196,
-    "projected_total_custom_non_product_loc_upper_bound": 359,
+    "projected_wiring_loc": 12,
+    "projected_total_custom_non_product_loc": 373,
     "runtime_product_library_loc": 2133,
     "commands_total": 25,
     "commands_delete": 8,
@@ -20,45 +22,50 @@
   },
   "handoff_02": {
     "bundle_sha256": "5894d7468d2a5473e44c649fccebbff139c79f391b044014992de495b1ef18d6",
-    "source_head": "a97f42cf351a57e824001876b8d2d3bdbc8f5fe2",
-    "status_counts": {"PASS": 40, "NEGATIVE_PASS": 6, "FAIL": 10, "BLOCKED": 5},
-    "production_mutations": 0,
-    "automerge_enabled": false
+    "status_counts": {"PASS": 40, "NEGATIVE_PASS": 6, "FAIL": 10, "BLOCKED": 5}
   },
-  "live_checks": [
-    {"id":"production-isolation","status":"PASS","evidence":"handoff-01 and handoff-02 production audits; zero writes; baseline/dev/tags unchanged"},
-    {"id":"credential-rotation-and-scan","status":"PASS","evidence":"Renovate App key rotated; old keys deleted; handoff-01 scanned 536 files/26.8 MB with zero findings; handoff-02 temporary credentials revoked"},
-    {"id":"inventory-and-matrix","status":"PASS","evidence":"replacement-matrix.json covers 127 production modules and all 25 commands"},
-    {"id":"private-reusable-workflows","status":"PASS","evidence":"automation@a5cd8112c8e8b221dceb397c1e882a9a25148b86; Linux/macOS run 29375576270; tagged run 29375727768; final exact-SHA run 29375763651"},
-    {"id":"reusable-failure-propagation","status":"NEGATIVE_PASS","evidence":"failure run 29375625874; cancellation run 29375658789"},
-    {"id":"renovate-private-presets-and-discovery","status":"PASS","evidence":"allowlist extract/lookup/full, org/topic discovery, live PR creation and idempotent rerun passed; automerge false"},
-    {"id":"dev-main-process-shape","status":"PASS","evidence":"sandbox-process created with dev default; safe update PR #1 passed run 29376918751; exactly one promotion PR #2"},
-    {"id":"promotion-controller-implementation","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 P04 found unauthenticated fetch; corrected in lab-control commit d8ad5ad902bf7780573219752a7889ec222227b2"},
-    {"id":"opentofu-static-and-live","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 found provider 6.6.0 schema mismatch before write; corrected in commit 7f241a8d0e56b408a2a70f0085e6d307c1acbf42; sandbox-provisioned still absent"},
-    {"id":"private-rulesets","status":"BLOCKED","evidence":"GitHub plan HTTP 403 for private branch/tag rulesets"},
-    {"id":"release-please-live","status":"PASS","evidence":"python-lib v0.4.0 release 354133543 at 0477653722f8a8b125e2bd3963b37d4a0d10c153; v0.4.1 release 354137656 at 1a4fabe2c0449c5fe92d745eea0f9494c6fed160"},
-    {"id":"prepared-release-workflow","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 L04 exposed private Copier clone auth; corrected in commits 51dcb45cd8c06ff0e2d1540df095b07f88b0f124 and 0bf9ee3f3412f899c88d76e363dc8e72d28f623e"},
-    {"id":"lock-baseline-and-nested-regeneration","status":"PASS","evidence":"sandbox-process#3 run 29377905812; both nested workspace locks regenerated idempotently with private Git auth"},
-    {"id":"legacy-answer-copier-update","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 K03 failed on absent hidden template_profile; compatibility fix is python-lib#19"},
-    {"id":"nested-workspace-ci","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 K05 found historical v0.2.0 hardcode; fixture fix is sandbox-workspace#8"},
-    {"id":"pep508-git-dependency-renovate","status":"REVALIDATION_REQUIRED","evidence":"custom regex manager added in commit 8d055e4965f81f7b6de4fded82fe5dde15efd18d"},
-    {"id":"component-wiring-edges","status":"PASS","evidence":"new file, explicit wiring, broken symlink negative, rename and 165-link clean audit exercised"},
-    {"id":"private-components-negative-credential","status":"NEGATIVE_PASS","evidence":"credential without components read failed recursive clone; adding read succeeded; deploy keys revoked"},
-    {"id":"quality-rule-parity","status":"PASS","evidence":"legacy/direct quality 8/8 and residual policy 12/12 parity"},
-    {"id":"minimal-policy-real-baseline","status":"REVALIDATION_REQUIRED","evidence":"handoff-02 D03 found version-fallback/example-initializer false positives; corrected checker has eight local tests"},
-    {"id":"wheel-sdist-smoke","status":"PASS","evidence":"build, metadata and isolated wheel/sdist installs passed"},
-    {"id":"prepared-direct-packaging-chain","status":"REVALIDATION_REQUIRED","evidence":"self-contained pinned uvx chain corrected in commit 0a28b2f32543504c42879c127dc44f56529a6051"},
-    {"id":"runtime-classification","status":"PASS","evidence":"2,133 LOC classified PRODUCT_LIBRARY and removed from platform-lifecycle denominator"},
-    {"id":"security-hardening","status":"PASS","evidence":"immutable action SHAs, digest-pinned Renovate, scripts disabled, least-privilege tokens, actionlint/zizmor reusable workflow review"}
+  "handoff_03": {
+    "bundle_sha256": "4e541e17fc23872bc9203576debbb63f017d53b7a259eeb9955fd72fae98fb47",
+    "source_head": "9a6ae4d347ed07bd58af3d5d194d3af579a5d415",
+    "status_counts": {"PASS": 8, "NEGATIVE_PASS": 0, "FAIL": 4, "BLOCKED": 0},
+    "passed_ids": ["S03", "S04", "R03", "T01", "L04", "K05", "D03", "D05"],
+    "failed_ids": ["P04", "T03", "K03", "K06"],
+    "unchanged_blocked_ids": ["P06", "T04", "L05"],
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "credential_findings": 0,
+    "scope_deviation": "All 11 lab repositories were changed to public; restore to private before final acceptance."
+  },
+  "accepted_live_evidence": [
+    {"id":"private-reusable-workflows","status":"PASS","evidence":"private exact-SHA calls, Linux/macOS, failure and cancellation propagation"},
+    {"id":"renovate-private-presets-and-discovery","status":"PASS","evidence":"private presets, allowlist phases, topic discovery, reviewed live PRs and idempotency"},
+    {"id":"release-please-v0.4-line","status":"PASS","evidence":"v0.4.0, v0.4.1 and v0.4.2; v0.4.2 release 354387791 at 2940bc355da2a957e0deb6c1660ce57293e9674b"},
+    {"id":"opentofu-create","status":"PASS","evidence":"sandbox-provisioned created only by OpenTofu and initially verified private"},
+    {"id":"nested-workspace","status":"PASS","evidence":"sandbox-workspace#8 merged; PR #5 run 29412193159; two equal v0.2.1 answers and idempotent locks"},
+    {"id":"minimal-policy-real-baseline","status":"PASS","evidence":"baseline d594c0dd80908f89bc5a534681f27765fb985c4b accepted by corrected and legacy checks"},
+    {"id":"direct-packaging-chain","status":"PASS","evidence":"wheel and sdist metadata/install/import/pytest passed"},
+    {"id":"production-isolation","status":"PASS","evidence":"all handoffs report zero production mutations"}
   ],
-  "remediation_prs": [
-    {"repository":"betabitplus-template-lab/lab-control","pr":9,"status":"draft"},
-    {"repository":"betabitplus-template-lab/python-lib","pr":19,"head":"fb701f47f4fd94d1db562cc0eb183bdce3619aaa","status":"draft"},
-    {"repository":"betabitplus-template-lab/sandbox-workspace","pr":8,"head":"ba4eedbb165f1a643e0f3441cfdd85e77497edee","status":"draft"}
+  "remaining_functional_revalidation": [
+    {"id":"P04","status":"REVALIDATION_REQUIRED","correction":"repository-scoped gh PR commands; commit 80a0a70b2f2ab1fe78b26f8ebcdc8c09a6c5d382"},
+    {"id":"T03","status":"REVALIDATION_REQUIRED","correction":"remote dev guard before render/commit; commit 74413a8c31dc9315e7c8f0859af0898f43ff91fc"},
+    {"id":"K03","status":"REVALIDATION_REQUIRED","correction":"component patch removes legacy template hook and forces deterministic lock metadata; commit ec9b692bccf4856e3a8049d9368a3613af942789"},
+    {"id":"K06","status":"REVALIDATION_REQUIRED","correction":"literal managers plus grouped shared-root-tag update; commit 6d792bfa88df3b2bd6b973f428427a6db2fe450c"}
   ],
-  "remaining_blockers": [
-    "Private branch and tag rulesets are unavailable on the current GitHub plan.",
-    "Corrected handoff-02 failures require the bounded live handoff-03 revalidation before PR #9 can leave draft."
+  "external_blockers": [
+    {"id":"P06","status":"BLOCKED","reason":"private branch ruleset/protection capability returns plan-related HTTP 403"},
+    {"id":"T04","status":"BLOCKED","reason":"OpenTofu private ruleset phase returns plan-related HTTP 403"},
+    {"id":"L05","status":"BLOCKED","reason":"private immutable release-tag ruleset returns plan-related HTTP 403"}
   ],
-  "next_evidence": "docs/results/local-agent-handoff-03.md"
+  "public_fallback": {
+    "status": "SUPPLEMENTARY_ONLY",
+    "passed": ["P06_PUBLIC_FALLBACK", "T04_PUBLIC_FALLBACK", "L05_PUBLIC_FALLBACK"],
+    "required_cleanup": "Remove only recorded fallback controls and restore all 11 lab repositories to private."
+  },
+  "security_remediation": {
+    "status": "REVALIDATION_REQUIRED",
+    "changes": "Inherited lab workflows pinned to exact action SHAs, selected repositories and explicit permissions; checkout credentials disabled; concurrency and job names added.",
+    "required_check": "actionlint and zizmor --pedantic --offline on current PR head"
+  },
+  "next_evidence": "docs/results/local-agent-handoff-04.md"
 }
