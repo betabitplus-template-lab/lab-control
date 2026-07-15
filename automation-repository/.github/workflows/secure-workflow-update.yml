@@ -16,10 +16,14 @@ on:
       new-sha:
         required: true
         type: string
+concurrency:
+  group: trusted-workflow-ref-${{ inputs.repository-name }}
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
   update:
+    name: Open exact-SHA workflow update PR
     runs-on: ubuntu-latest
     steps:
       - name: Validate bounded request
