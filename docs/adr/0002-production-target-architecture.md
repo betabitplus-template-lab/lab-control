@@ -1,13 +1,13 @@
 # ADR 0002: Production target architecture with commodity lifecycle tools
 
-- Status: Proposed — conditional acceptance
+- Status: Proposed — architecture validated; rollout conditions remain open
 - Date: 2026-07-15
 - Scope: production design only; no production migration in this ADR
 - Baseline: `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`
 
 ## Context
 
-The legacy platform implements template assembly, manifests/builds, update wrappers, a downstream registry, fleet reporting/synchronization, repository onboarding and generic quality wrappers. The isolated first stage proved composed private Copier templates. The final stage asks which owned logic remains necessary when commodity tools are used directly.
+The legacy platform implements template assembly, manifests/builds, update wrappers, a downstream registry, fleet reporting/synchronization, repository onboarding and generic quality wrappers. The isolated stages proved composed private Copier templates and tested which owned logic remains necessary when commodity tools are used directly.
 
 ## Decision
 
@@ -25,7 +25,7 @@ The legacy platform implements template assembly, manifests/builds, update wrapp
 12. Use Release Please for release PR, changelog, tag and GitHub Release; require template acceptance and verify exact main SHA.
 13. Use direct quality/package tools without compatibility wrappers.
 14. Keep only a small `py-lib-policy` checker for unique organization conventions.
-15. Treat `py-lib-runtime` as an independent product library and normal Renovate dependency.
+15. Treat `py-lib-runtime` as product code and an ordinary Renovate dependency. While runtime and tooling share one root repository tag, detect them separately but group their ref update into one lock-safe PR.
 16. Do not build a new central fleet service. Renovate dashboards, GitHub PR/check state and OpenTofu plans are authoritative operational signals.
 
 ## Target topology
@@ -34,7 +34,7 @@ The legacy platform implements template assembly, manifests/builds, update wrapp
 components
   ↓ Renovate git-submodules PR
 profile Copier template ── Release Please ── immutable tag
-  ↓ Renovate Copier PR
+  ↓ Renovate Copier PR + exact uv lock
 managed downstream dev
   ↓ reusable CI / review
 promotion PR
@@ -52,11 +52,11 @@ Renovate dashboards + GitHub checks + OpenTofu plan → fleet visibility
 - no custom template/update engine;
 - no custom registry or fleet synchronizer in delivery;
 - normal PR diffs and native Copier conflicts;
-- independent, reproducible versions and simple rollback;
+- independent, reproducible template versions and simple rollback;
 - central CI changes without Copier file updates;
 - repository configuration drift becomes a plan;
-- least-privilege identities can be separated by function;
-- owned code expresses only organization policy.
+- least-privilege identities are separated by function;
+- owned code expresses only organization policy or thin coordination.
 
 ### Costs
 
@@ -65,7 +65,8 @@ Renovate dashboards + GitHub checks + OpenTofu plan → fleet visibility
 - workflow caller refs still need controlled updates;
 - first repository bootstrap is inherently two-phase;
 - private rulesets require a suitable GitHub plan;
-- multiple commodity tools require disciplined version/SHA/digest pinning.
+- multiple commodity tools require disciplined version/SHA/digest pinning;
+- packages sharing one root Git tag must be updated as one ref group until separately released.
 
 ## Rejected alternatives
 
@@ -76,6 +77,16 @@ Renovate dashboards + GitHub checks + OpenTofu plan → fleet visibility
 - mandatory custom fleet dashboard;
 - Copier tasks executing routine lock refresh.
 
+## Evidence state
+
+Private reusable workflows, Renovate private preset/topic discovery, Release Please through `v0.4.2`, private cross-platform template acceptance, OpenTofu repository creation, nested locks, restricted components credentials, quality parity, policy parity and direct packaging have live positive evidence.
+
 ## Acceptance condition
 
-This ADR becomes Accepted for production rollout only after private reusable workflow access, topic autodiscovery, OpenTofu no-drift, Release Please, lock refresh, tag protection and restricted-components credential tests pass in the isolated lab, and the private-ruleset capability decision is resolved.
+This ADR becomes Accepted for production rollout only after:
+
+1. all eleven lab repositories are restored to private;
+2. P04, T03, K03 and K06 pass the bounded handoff-04 live revalidation;
+3. current workflows pass actionlint and `zizmor --pedantic --offline`;
+4. the private P06/T04/L05 capability decision is resolved through a suitable plan or an explicitly approved lower-fidelity private fallback;
+5. the incremental migration and rollback plan is reviewed before any production write.
