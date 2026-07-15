@@ -25,6 +25,7 @@ DOCS_SKELETON = (
     "verification/README.md",
 )
 
+
 @dataclass(frozen=True)
 class Violation:
     path: Path
@@ -86,7 +87,8 @@ def check_console_scripts(root: Path, pyproject: dict[str, object], primary: str
     cli_path = root / "src" / primary / "_api" / "cli.py"
     tree = _parse(cli_path) if cli_path.is_file() else None
     declared = {
-        node.name for node in (tree.body if tree else ())
+        node.name
+        for node in (tree.body if tree else ())
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and not node.name.startswith("_")
     }
     out: list[Violation] = []
@@ -116,7 +118,9 @@ def _allowed_root_statement(node: ast.stmt, package: str) -> bool:
         targets = node.targets if isinstance(node, ast.Assign) else [node.target]
         return all(isinstance(target, ast.Name) and target.id in {"__all__", "__version__"} for target in targets)
     if isinstance(node, ast.Try):
-        return all(_allowed_root_statement(child, package) for branch in (node.body, node.handlers, node.orelse, node.finalbody) for child in (branch if isinstance(branch, list) else branch.body))
+        statements = [*node.body, *node.orelse, *node.finalbody]
+        statements.extend(statement for handler in node.handlers for statement in handler.body)
+        return all(_allowed_root_statement(statement, package) for statement in statements)
     return False
 
 
@@ -165,6 +169,8 @@ def check_examples(root: Path) -> list[Violation]:
     if not examples.exists():
         return out
     for path in sorted(examples.rglob("*.py")):
+        if path.name == "__init__.py":
+            continue
         try:
             first = path.read_text(encoding="utf-8").splitlines()[0].strip()
         except (OSError, UnicodeDecodeError, IndexError):
@@ -219,6 +225,7 @@ def main(argv: list[str] | None = None) -> int:
     for violation in violations:
         print(violation.render(args.root.resolve()))
     return 1 if violations else 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
