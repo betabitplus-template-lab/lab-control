@@ -12,15 +12,11 @@ jobs:
   ensure:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
-        with:
-          fetch-depth: 0
-          persist-credentials: false
       - name: Ensure one dev to main PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git fetch origin dev main
-          if git diff --quiet origin/main...origin/dev; then exit 0; fi
+          ahead="$(gh api "repos/${GITHUB_REPOSITORY}/compare/main...dev" --jq '.ahead_by')"
+          test "$ahead" -gt 0 || exit 0
           existing="$(gh pr list --base main --head dev --state open --json number --jq '.[0].number // empty')"
           test -n "$existing" || gh pr create --base main --head dev --title 'chore: promote dev to main' --body 'Idempotent promotion proposal; merge remains review-gated.'
