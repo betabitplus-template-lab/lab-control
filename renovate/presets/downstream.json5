@@ -38,6 +38,8 @@
     },
     {
       "matchManagers": ["custom.regex"],
+      "matchPackageNames": ["py-lib-runtime", "py-lib-tooling"],
+      "groupName": "Shared Python Git packages",
       "labels": ["lab", "python-git-dependency"]
     },
     {
