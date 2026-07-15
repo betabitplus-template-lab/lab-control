@@ -1,8 +1,8 @@
 + git config --global user.name Template Lab Orchestrator
 + git config --global user.email 8123085+betabitplus@users.noreply.github.com
 + git config --global url.https://x-access-token:<redacted>@github.com/.insteadOf https://github.com/
-+ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-finalize-q97gxb7c/py-lib-starter
-Cloning into '/tmp/template-lab-finalize-q97gxb7c/py-lib-starter'...
++ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-finalize-0anyoe19/py-lib-starter
+Cloning into '/tmp/template-lab-finalize-0anyoe19/py-lib-starter'...
 + git fetch origin d59582375855cff69fb165e467dc5847bc75ca99
 From https://github.com/betabitplus/py-lib-starter
  * branch            d59582375855cff69fb165e467dc5847bc75ca99 -> FETCH_HEAD
@@ -10,8 +10,8 @@ From https://github.com/betabitplus/py-lib-starter
 HEAD is now at d595823 fix: make fleet doctor resilient to GitHub API failures (#296)
 + git rev-parse HEAD
 + git status --porcelain
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-finalize-q97gxb7c/components
-Cloning into '/tmp/template-lab-finalize-q97gxb7c/components'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-finalize-0anyoe19/components
+Cloning into '/tmp/template-lab-finalize-0anyoe19/components'...
 + git rev-parse HEAD
 Traceback (most recent call last):
   File "/home/runner/work/lab-control/lab-control/orchestration/finalize.py", line 174, in <module>
