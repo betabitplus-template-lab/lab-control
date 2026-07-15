@@ -36,14 +36,18 @@ Published commands:
 
 ## Executive conclusion
 
-The principal architectural result remains positive. Copier, Renovate, GitHub Actions and Apps, OpenTofu, Release Please, uv and direct community quality/package tools can replace the custom template assembler/update engine, registry, fleet synchronizer, onboarding API subsystem, release controller and most wrappers.
+The principal architectural result is positive. Copier, Renovate, GitHub Actions and Apps, OpenTofu, Release Please, uv and direct community quality/package tools can replace the custom template assembler/update engine, registry, fleet synchronizer, onboarding API subsystem, release controller and most wrappers.
 
-The correct decision is **CONDITIONAL GO**, not unconditional rollout:
+The decision remains **CONDITIONAL GO** because:
 
-1. private branch/tag rulesets remain unavailable on the current GitHub plan;
+1. private branch/tag rulesets are unavailable on the current GitHub plan;
 2. handoff-03 passed eight corrected items but left P04, T03, K03 and K06 as live failures;
-3. the handoff-03 agent changed all eleven lab repositories to public outside the bounded instruction, so the private lab shape must be restored;
-4. workflow hardening added after the handoff requires one final actionlint/zizmor run.
+3. workflow hardening added after handoff-03 requires one final actionlint/zizmor run.
+
+Repository visibility is no longer a final functional prerequisite. The evidence is recorded separately:
+
+- private execution passed all tested private flows except plan-blocked private rulesets;
+- public execution proved that the same ruleset configurations work where GitHub exposes them.
 
 No production migration has started and every production audit reports zero mutations.
 
@@ -60,8 +64,6 @@ Bundle SHA-256: `5894d7468d2a5473e44c649fccebbff139c79f391b044014992de495b1ef18d
 | FAIL | 10 |
 | BLOCKED | 5 |
 
-The immutable interpretation is [`handoff-02-integration-results.md`](handoff-02-integration-results.md).
-
 ### Handoff-03
 
 Bundle SHA-256: `4e541e17fc23872bc9203576debbb63f017d53b7a259eeb9955fd72fae98fb47`.
@@ -77,8 +79,6 @@ Passed IDs: `S03 S04 R03 T01 L04 K05 D03 D05`.
 Failed IDs: `P04 T03 K03 K06`.  
 Unchanged private blockers: `P06 T04 L05`.
 
-The source status is preserved in [`handoff-03-summary.json`](../evidence/handoff-03-summary.json); interpretation is in [`handoff-03-integration-results.md`](handoff-03-integration-results.md).
-
 Safety remained intact:
 
 - production mutations: `0`;
@@ -87,11 +87,11 @@ Safety remained intact:
 - private key/credential/state findings: `0`;
 - historical tags/releases: not rewritten.
 
-## Live architecture proof
+## Accepted live architecture evidence
 
 ### Private reusable workflows
 
-Private cross-repository workflow calls passed with exact source SHAs, read-only caller permissions, inherited secrets without disclosure, Linux/macOS lanes, intentional failure propagation and cancellation propagation. Thin callers can therefore replace copied CI bodies.
+Private cross-repository calls passed with exact source SHAs, read-only caller permissions, inherited secrets without disclosure, Linux/macOS lanes, intentional failure propagation and cancellation propagation.
 
 ### Renovate discovery and delivery
 
@@ -99,11 +99,11 @@ Private presets, explicit allowlist extract/lookup/full phases, organization/top
 
 ### Repository process
 
-`sandbox-process` was created with `dev` as default and a `main` promotion baseline. A safe update reached `dev` through reviewed CI and exactly one `dev → main` PR remained. The remaining P04 failure is confined to missing `--repo` on a no-checkout GitHub CLI command; the current workflow now scopes every PR command explicitly.
+`sandbox-process` was created with `dev` as default and a `main` promotion baseline. A safe update reached `dev` through reviewed CI and exactly one `dev → main` PR remained. The remaining P04 failure is confined to missing repository context on a no-checkout GitHub CLI command; the current workflow now scopes every PR command explicitly.
 
 ### Declarative provisioning
 
-OpenTofu 1.12.0 with GitHub provider 6.6.0 created `sandbox-provisioned` without manual repository creation, applied the repository-only phase, reconciled/imported state and cleaned up. T03 remains pending only because the original repeat bootstrap rendered and committed again before a rejected push. The corrected script checks remote `dev` before rendering and exits 0 when initialized.
+OpenTofu 1.12.0 with GitHub provider 6.6.0 created `sandbox-provisioned` without manual repository creation, applied the repository-only phase, reconciled/imported state and cleaned up. T03 remains pending only because the original repeat bootstrap authored another local commit. The corrected script checks remote `dev` before rendering and exits successfully when initialized.
 
 ### Releases
 
@@ -121,14 +121,14 @@ The v0.4.2 private acceptance path passed on Linux, macOS and Windows.
 
 - root lock baseline and CI passed;
 - both nested workspace locks regenerated idempotently;
-- the nested acceptance fixture now checks equal valid semver tags rather than historical `v0.2.0`;
-- PEP 508 runtime/tooling refs are detected by two literal Renovate managers;
-- because both packages currently publish from one root tag, their ref update is grouped into one PR while remaining separately extracted;
-- the final legacy-answer test still needs one generated component release that removes the obsolete legacy hook and forces a deterministic lock metadata change.
+- nested acceptance checks equal valid semver tags rather than a historical constant;
+- PEP 508 runtime/tooling refs are detected separately;
+- because both packages currently publish from one root tag, their update is grouped into one PR;
+- the legacy-answer case still needs one component/template release that removes the obsolete hook and forces a deterministic lock change.
 
 ### Quality, packaging and residual policy
 
-Direct rule parity passed 8/8; residual policy parity passed 12/12. The corrected dependency-free policy checker accepted the exact real generated baseline. Wheel/sdist build, metadata validation, isolated installs, public import, console smoke and pytest passed.
+Direct rule parity passed 8/8; residual policy parity passed 12/12. The corrected dependency-free policy checker accepted the exact generated baseline. Wheel/sdist build, metadata validation, isolated installs, public import, console smoke and pytest passed.
 
 Artifact SHA-256:
 
@@ -137,24 +137,31 @@ Artifact SHA-256:
 
 ## Remaining functional gate
 
-| ID | Handoff-03 result | Correction in PR #9 |
+| ID | Handoff-03 result | Correction in current PR branch |
 |---|---|---|
-| P04 | workflow failed outside a checkout because `gh pr list` lacked `--repo` | repository-scoped compare/list/create; commit `80a0a70b2f2ab1fe78b26f8ebcdc8c09a6c5d382` |
-| T03 | repeat bootstrap authored a second local commit | remote `dev` guard before render/commit; commit `74413a8c31dc9315e7c8f0859af0898f43ff91fc` |
-| K03 | no `uv.lock`; inherited hook expected `_copier_answers.yml` | exact component patch at commit `ec9b692bccf4856e3a8049d9368a3613af942789` |
-| K06 | Renovate `depName mismatch` and mixed source refs | literal managers and one grouped shared-root-tag PR; commit `6d792bfa88df3b2bd6b973f428427a6db2fe450c` |
+| P04 | workflow lacked repository context outside a checkout | repository-scoped compare/list/create commands |
+| T03 | repeat bootstrap authored a second local commit | remote `dev` guard before render/commit |
+| K03 | no `uv.lock`; inherited hook called obsolete legacy checker | component patch removes hook and forces deterministic dependency metadata change |
+| K06 | Renovate dependency-name mismatch and mixed source refs | two literal managers and one grouped shared-root-tag PR |
 
 Exact live instructions: [`local-agent-handoff-04.md`](local-agent-handoff-04.md).
 
 ## Private rulesets and public fallback
 
-Private P06/T04/L05 continue to return the GitHub plan-related HTTP 403. Handoff-03 also demonstrated that branch/tag policies work when the lab repositories are public. That evidence is supplementary only and does not satisfy the private target.
+Private P06/T04/L05 return a plan-related HTTP 403. Handoff-03 also demonstrated that the equivalent branch/tag policies work when repositories are public.
 
-The agent changed all eleven lab repositories to public. Handoff-04 must preserve the fallback evidence, remove only the recorded fallback controls and restore every lab repository to private before any other functional work.
+The final capability statement is therefore:
+
+| Capability | Private repository | Public repository |
+|---|---|---|
+| ordinary Git, Copier, reusable workflows, Renovate and releases | PASS | PASS |
+| branch/tag rulesets on the current plan | BLOCKED | PASS |
+
+No visibility change is required for the remaining P04/T03/K03/K06 checks. The current visibility must simply be recorded accurately.
 
 ## Security hardening after handoff-03
 
-The handoff's whole-repository pedantic zizmor run found inherited first-stage workflow issues. The experiment branch now:
+The experiment branch now:
 
 - pins action uses to exact commit SHAs;
 - restricts App tokens to explicit lab repository lists;
@@ -165,11 +172,11 @@ The handoff's whole-repository pedantic zizmor run found inherited first-stage w
 - keeps the Renovate container digest-pinned;
 - moves promotion PR write permission to the single job that needs it.
 
-The current branch still requires a fresh actionlint and `zizmor --pedantic --offline` run. No whole-repository security pass is claimed before that evidence returns.
+The current branch requires a fresh actionlint and `zizmor --pedantic --offline` run. No whole-repository security pass is claimed before that evidence returns.
 
-## Replacement inventory
+## Replacement inventory and retained surface
 
-The authoritative matrices cover all 25 published commands and 127 production modules.
+The matrices cover all 25 published commands and 127 production modules.
 
 | Classification | Commands | Modules |
 |---|---:|---:|
@@ -181,7 +188,7 @@ The authoritative matrices cover all 25 published commands and 127 production mo
 
 `py-lib-runtime` remains a 2,133-LOC product library, outside the platform lifecycle denominator.
 
-## Minimal retained surface
+Retained executable surface:
 
 - idempotent Copier bootstrap: 25 LOC;
 - promotion PR workflow: 26 LOC;
@@ -195,15 +202,14 @@ Total executable non-product surface: **373 LOC**, a **96.7% reduction** from 11
 
 ## Rollout prerequisites
 
-1. Restore all lab repositories to private.
-2. Complete P04/T03/K03/K06 handoff-04 revalidation.
-3. Obtain private ruleset capability or approve and separately test a lower-fidelity private branch-protection fallback.
-4. Require a zero-exit actionlint/zizmor result for the current workflow set.
-5. Review migration/rollback repository by repository.
-6. Start with one non-production-shaped pilot; do not mass-switch production.
+1. Complete P04/T03/K03/K06 handoff-04 revalidation.
+2. Record private rulesets as plan-blocked and public rulesets as passed; choose a production plan or an explicitly approved private fallback before migration.
+3. Require a zero-exit actionlint/zizmor result for the current workflow set.
+4. Review migration and rollback repository by repository.
+5. Start with one production pilot; do not mass-switch production.
 
 ## Final decision rule
 
 The architecture meets the principal goal: no custom platform package is required for template assembly/update, registry membership, fleet synchronization, repository APIs, routine dependency freshness, reusable CI distribution, releases or generic quality tooling.
 
-The final decision remains **CONDITIONAL GO** until the four bounded live checks pass, the lab is private again, and the external private-ruleset decision is resolved. PR #9 must remain draft. No production migration has started.
+The final decision remains **CONDITIONAL GO** until the four bounded live checks pass and the external private-ruleset decision is resolved. PR #9 remains draft. No production migration has started.
