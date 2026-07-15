@@ -1,14 +1,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Managed downstream: Copier, package and reusable-workflow ref updates.",
+  "description": "Managed downstream: Copier, package, PEP 508 Git and reusable-workflow ref updates.",
   "extends": ["local>betabitplus-template-lab/automation//renovate/presets/base.json5"],
-  "enabledManagers": ["copier", "github-actions", "pep621", "uv"],
+  "enabledManagers": ["copier", "custom.regex", "github-actions", "pep621", "uv"],
   "baseBranches": ["dev"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
+      "matchStrings": [
+        "(?<depName>py-lib-(?:runtime|tooling))\\s*@\\s*git\\+https://github\\.com/(?<packageName>betabitplus/py-lib-starter)\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-(?:runtime|tooling)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
+  ],
   "packageRules": [
     {
       "matchManagers": ["copier"],
       "labels": ["lab", "template-update"],
       "groupName": "Copier template updates"
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "labels": ["lab", "python-git-dependency"]
     },
     {
       "matchManagers": ["github-actions"],
