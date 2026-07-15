@@ -1,224 +1,152 @@
-# Local agent handoff 04: restore privacy and close the final four failures
+# Local agent handoff 04: final unresolved live checks only
 
 ## Objective
 
-Restore the isolated lab to its required private shape, then revalidate only the four handoff-03 failures corrected in the current experiment branch:
+Run only the remaining live checks that cannot be completed through the GitHub connector alone:
 
 ```text
 P04 T03 K03 K06
 ```
 
-Do not repeat already accepted phases except where one of these four items requires a dependency. Do not redesign the architecture.
+Do not repeat acceptance items already marked PASS. Do not redesign the architecture.
 
 Source:
 
 - repository: `betabitplus-template-lab/lab-control`;
 - branch: `experiment/final-platform-20260714`;
 - draft PR: `lab-control#9`;
-- evidence interpretation: `docs/results/handoff-03-integration-results.md`;
-- component patch: `experiments/remediation/k03-components.patch`.
+- interpretation of the previous run: `docs/results/handoff-03-integration-results.md`;
+- K03 component patch: `experiments/remediation/k03-components.patch`.
 
-## Absolute safety
+## Access and visibility policy
 
-1. No write may target `betabitplus/*`.
-2. Production baseline remains `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`.
-3. Production mutation audit must run before and after all work.
-4. Autmerge remains disabled.
-5. Do not merge or modify `sandbox-python-lib#3`.
-6. Do not rewrite/delete historical tags, releases, C1/C2/C3 or prior evidence.
-7. Never print tokens, private keys, authorization headers, signed JWTs or credential-bearing URLs.
-8. Use environment-only credentials and redact command logs.
-9. Stop before a command if its resolved write target is outside the allowlists below.
-10. Do not run the public fallback again.
+Use the existing working credential. Do **not** create, rotate or replace GitHub App keys, PATs, SSH keys, deploy keys or Apps merely to reduce permissions.
 
-## Visibility restoration — mandatory first phase
+Broad access inside the isolated lab is acceptable for this final test. The only hard access boundary is:
 
-Handoff-03 changed all eleven lab repositories to public outside the bounded instruction. Before functional work:
+- writes are allowed only in `betabitplus-template-lab/*`;
+- no write may target `betabitplus/*`;
+- do not run Renovate, OpenTofu or mutation scripts against production repositories.
 
-1. Capture current repository visibility, archive/default-branch state, rulesets and branch protections.
-2. Preserve the existing public-fallback evidence.
-3. Remove only the public-fallback controls after verifying their exact repository/name/target:
-   - `python-lib` ruleset `18987692`, `immutable-v0.4-release-tags`;
-   - `sandbox-provisioned` rulesets `18987811`, `18987816`, `18987819`;
-   - public fallback branch protections on `sandbox-process/dev` and `sandbox-process/main`.
-4. Change all eleven repositories below to `private`.
-5. Verify `private=true` and `visibility=private` for every repository.
-6. Verify no unexpected rule/protection was deleted.
-7. Recheck private P06/T04/L05. Keep them `BLOCKED` if GitHub still returns the plan-related HTTP 403.
-8. Do not substitute public behavior for the private result.
+Do not change repository visibility as part of this handoff. Preserve the existing evidence:
 
-Repositories to restore:
+- private repositories: all supported private flows passed except private rulesets, which are blocked by the current GitHub plan;
+- public repositories: the equivalent ruleset shapes were exercised successfully;
+- report both facts separately in the final report.
 
-```text
-automation
-components
-lab-control
-python-internal-package
-python-lib
-python-starter-platform
-sandbox-process
-sandbox-provisioned
-sandbox-python-lib
-sandbox-python-platform
-sandbox-workspace
-```
+## Safety
 
-If an archived repository cannot change visibility, unarchive only for the visibility operation and restore its intended archive state afterward. Record every such mutation.
+1. Run a production mutation audit before and after the work.
+2. Autmerge remains disabled.
+3. Do not merge or modify `sandbox-python-lib#3`.
+4. Do not rewrite or delete historical tags, releases, C1/C2/C3 or prior evidence.
+5. Never print tokens, private keys, authorization headers, signed JWTs or credential-bearing URLs.
+6. Keep credentials in environment variables and redact logs.
+7. Stop before a command if its resolved write target is outside `betabitplus-template-lab/*`.
 
-## Functional write allowlist
+## Current implementation
 
-After visibility restoration, functional writes are limited to:
+Check out the current head of `experiment/final-platform-20260714`, not the old handoff-03 SHA.
 
-```text
-betabitplus-template-lab/lab-control
-betabitplus-template-lab/automation
-betabitplus-template-lab/components
-betabitplus-template-lab/python-lib
-betabitplus-template-lab/sandbox-process
-betabitplus-template-lab/sandbox-provisioned
-```
+The relevant corrections are already committed:
 
-## Pinned tools
+- P04: all `gh pr` operations are explicitly scoped with `--repo "$GITHUB_REPOSITORY"`;
+- T03: `provisioning/bootstrap.sh` checks remote `dev` before rendering or committing and exits successfully when the repository is already initialized;
+- K03: `experiments/remediation/k03-components.patch` removes the obsolete `py-lib-template-check` pre-push hook and changes a deterministic dependency constraint so `uv lock` must update in the same Copier PR;
+- K06: runtime and tooling use separate literal Renovate managers, explicit dependency names and one grouped shared-root-tag update.
 
-Record exact versions/references:
+## Static check of the current head
 
-- OpenTofu `1.12.0`;
-- GitHub provider `integrations/github 6.6.0`;
-- actionlint `1.7.12`;
-- zizmor `1.27.0`;
-- Copier `9.16.0`;
-- Renovate `43.262.4`;
-- Renovate image digest `sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe`;
-- the exact uv version used.
-
-## 1. Static/security revalidation
-
-Check out the current PR #9 head, not the handoff-03 source SHA.
-
-Run actionlint over every workflow under:
-
-```text
-.github/workflows/
-automation-repository/.github/workflows/
-release-please/
-tooling/
-```
-
-Run:
+Run only these static checks because the workflows changed after handoff-03:
 
 ```bash
+actionlint $(find .github/workflows automation-repository/.github/workflows release-please tooling -type f \( -name '*.yml' -o -name '*.yaml' \))
 zizmor --pedantic --offline .
 bash -n provisioning/bootstrap.sh
-python3 experiments/minimal-policy/tests/test_policy.py
-python3 -m py_compile experiments/minimal-policy/py_lib_policy.py
 ```
 
-The branch contains hardening for inherited workflows: exact action SHAs, selected-repository App tokens, explicit App permissions, `persist-credentials:false`, temporary askpass, concurrency and named jobs.
+Record exact exit codes. Do not weaken or suppress a finding merely to obtain a zero exit code.
 
-Do not claim whole-repository zizmor success unless its exit code is zero. If any residual remains, return exact file/line/audit and do not weaken the checker.
+## P04 — corrected promotion controller
 
-## 2. P04 — promotion controller
-
-Publish the corrected `automation-repository/.github/workflows/ensure-promotion-pr.yml` to a new reviewable `automation` commit. Do not rewrite an existing tag. Pin the downstream caller to the exact automation commit SHA.
+Publish the current corrected `automation-repository/.github/workflows/ensure-promotion-pr.yml` to a reviewable commit in `automation`. Do not rewrite an existing tag. Pin the caller to the exact automation commit SHA.
 
 On `sandbox-process`:
 
-1. Ensure `dev` is ahead of `main`.
-2. Keep exactly one open `dev → main` PR (`#2` may be reused).
-3. Trigger the corrected workflow.
-4. Require a successful run.
-5. Verify the compare API reports the correct ahead count.
-6. Verify both `gh pr list` and `gh pr create` are explicitly scoped with `--repo`.
-7. Trigger again and prove no duplicate PR is created.
-8. Verify automerge remains false and the promotion PR remains unmerged.
+1. ensure `dev` is ahead of `main`;
+2. keep exactly one open `dev → main` PR (`#2` may be reused);
+3. trigger the corrected workflow;
+4. require a successful run;
+5. verify the compare API reports the correct ahead count;
+6. trigger it a second time and prove no duplicate promotion PR is created;
+7. verify automerge is false.
 
-Expected: P04 `PASS`.
+Expected result: `P04 = PASS`.
 
-## 3. T03 — idempotent bootstrap
+## T03 — bootstrap idempotency only
 
-Use the corrected `provisioning/bootstrap.sh` from PR #9.
+Use the already provisioned `sandbox-provisioned` repository and the current `provisioning/bootstrap.sh`.
 
-The first bootstrap and OpenTofu repository creation are already accepted under R03/T01. Revalidate only the failed repeat behavior against `sandbox-provisioned`:
+Do not repeat the complete OpenTofu experiment. Only prove the corrected second-run behavior:
 
-1. Capture remote `dev` and `main` SHAs.
-2. Run the corrected bootstrap with the same repository/template inputs.
-3. It must detect remote `refs/heads/dev` before rendering or committing, print the already-initialized result, and exit 0.
-4. Run it a second time; the result must be identical.
-5. Prove no local generated commit was pushed and remote branch SHAs are unchanged.
-6. Import/reconcile the repository with OpenTofu as needed.
-7. Require a no-drift plan.
-8. Restore the intended private/archive state during cleanup.
+1. confirm remote `refs/heads/dev` already exists;
+2. run `bootstrap.sh` again with the same repository/template/ref inputs;
+3. require exit code `0`;
+4. verify no new commit, branch or rejected push was produced;
+5. run one OpenTofu plan and require no unexplained changes;
+6. preserve the existing archive state after the check.
 
-Expected: T03 `PASS`.
+Expected result: `T03 = PASS`.
 
-## 4. K03 — legacy answers, template update and exact lock refresh
+## K03 — legacy-answer Copier update with a real lock change
 
-Apply `experiments/remediation/k03-components.patch` exactly to `components` on a reviewable branch.
+Use the current `python-lib@v0.4.2` line and the patch in `experiments/remediation/k03-components.patch`.
 
-The patch must:
-
-- remove the obsolete `py-lib-template-check` pre-push hook that assumes `_copier_answers.yml`;
-- change the generated Pyright constraint from `>=1.1.410` to `>=1.1.411`, providing a deterministic lock-metadata change;
-- make no unrelated component changes.
-
-Then:
-
-1. Open a components PR, run available validation, review and merge normally.
-2. Update only the `python-lib` `_components` gitlink to the exact merged components commit.
-3. Run private template acceptance.
-4. Merge through review and publish the next immutable patch release after `v0.4.2`; do not move old tags.
-5. Recreate or update the legacy-answer Renovate/Copier PR in `sandbox-process`.
-6. The same PR must contain:
+1. Apply the patch to a reviewable branch in `components`.
+2. Validate the component/template acceptance path.
+3. Publish the resulting template change through an ordinary reviewable lab PR and a new immutable patch tag. Do not move existing tags.
+4. Start from the same old downstream answer shape that omits hidden `template_profile`.
+5. Let Renovate/Copier create the downstream update PR.
+6. Require the same PR to contain:
    - `.copier-answers.yml`;
-   - `.pre-commit-config.yaml`;
-   - `pyproject.toml`;
-   - `uv.lock`.
-7. The only post-upgrade command is exact `uv lock`.
-8. Run `uv lock --check`, full CI and the full pre-push hook set.
-9. Verify no command references `py-lib-template-check`.
-10. Rerun Renovate and prove idempotency/no duplicate.
-11. Keep automerge false.
+   - generated template changes;
+   - `uv.lock` changed by the deterministic dependency constraint;
+7. run `uv lock --check` and the ordinary CI;
+8. rerun Renovate and prove no duplicate or additional change;
+9. verify the obsolete `py-lib-template-check` hook is absent;
+10. verify automerge is false.
 
-Expected: K03 `PASS`.
+Expected result: `K03 = PASS`.
 
-## 5. K06 — grouped PEP 508 Git package update
+## K06 — grouped PEP 508 Git dependency update
 
-Publish the current corrected downstream preset from PR #9 to a new exact `automation` commit. It contains two literal regex managers:
+Publish the current `renovate/presets/downstream.json5` to `automation` and pin the consumer to the exact automation commit.
 
-- `py-lib-runtime`;
-- `py-lib-tooling`.
+Use an existing lab downstream fixture. Set both Git dependencies one valid root tag behind the current production source tag:
 
-They are independently extracted but grouped into one update because both packages currently use the same `betabitplus/py-lib-starter` root tag.
+```text
+py-lib-runtime @ git+https://github.com/betabitplus/py-lib-starter.git@vX.Y.Z#subdirectory=packages/py-lib-runtime
+py-lib-tooling @ git+https://github.com/betabitplus/py-lib-starter.git@vX.Y.Z#subdirectory=packages/py-lib-tooling
+```
 
-Use a temporary `sandbox-process` branch/fixture where both refs are the same valid production tag behind `v0.32.4`. Do not create an invalid mixed-ref lock state.
+Reading production tags as a datasource is allowed. Writing to production is forbidden.
 
-1. Run Renovate extract/lookup/full dry phases.
-2. Verify two distinct dependencies, exact package name `betabitplus/py-lib-starter`, GitHub-tags datasource, semver extraction without the leading `v`, and no unrelated PEP 508 match.
-3. Verify there is no `depName mismatch`.
-4. Run one reviewed live update.
-5. Require one grouped PR updating both refs to the same current root tag and regenerating `uv.lock`.
-6. Run full CI and `uv lock --check`.
-7. Rerun Renovate and prove no duplicate/change.
-8. Clean up only the temporary fixture branch after preserving evidence.
-9. Keep automerge false.
+Run Renovate `extract`, `lookup` and `full` dry phases, then one reviewed live run. Verify:
 
-Expected: K06 `PASS`.
+1. runtime is extracted as `py-lib-runtime`;
+2. tooling is extracted as `py-lib-tooling`;
+3. both use package `betabitplus/py-lib-starter` and GitHub tags datasource;
+4. no unrelated PEP 508 URL is extracted;
+5. both updates are grouped into one PR because they share one root tag stream;
+6. both refs move to the same tag;
+7. `uv.lock` is included and `uv lock --check` passes;
+8. CI passes;
+9. automerge is false;
+10. a second Renovate run creates no duplicate or additional change.
 
-## 6. Final audits
+Expected result: `K06 = PASS`.
 
-Repeat:
-
-- visibility audit: all eleven lab repositories private;
-- production baseline/dev/tag audit: zero mutations;
-- automerge audit across every lab PR;
-- `sandbox-python-lib#3` state/head audit;
-- credential scan over logs, artifacts and OpenTofu state;
-- old tag/release immutability audit;
-- temporary branch/key/ruleset/protection cleanup audit.
-
-P06/T04/L05 remain `BLOCKED` unless private endpoints genuinely work after restoration. Public-fallback PASS evidence remains supplementary and must not replace them.
-
-## Return bundle
+## Final report
 
 Return one ZIP containing:
 
@@ -227,41 +155,31 @@ handoff-04/
   report.md
   report.json
   command-log.redacted.txt
-  visibility/
   static/
-  automation/
-  promotion/
-  provisioning/
-  components/
-  template-release/
-  lock-refresh/
-  renovate/
+  p04/
+  t03/
+  k03/
+  k06/
   security/
 ```
 
-`report.json` must contain:
+`report.json` must contain exactly these functional IDs:
 
 ```text
-functional_acceptance:
-  P04
-  T03
-  K03
-  K06
+P04 T03 K03 K06
 ```
 
-Each functional ID uses exactly one status: `PASS`, `NEGATIVE_PASS`, `BLOCKED` or `FAIL`.
+For each use only `PASS`, `NEGATIVE_PASS`, `BLOCKED` or `FAIL` and include exact repository, PR, workflow run, commit, tag, release and artifact identifiers plus evidence paths.
 
-Also include separate fields for:
+Also include:
 
-- all eleven before/after visibility records;
-- deleted public-fallback rule/protection IDs;
-- unchanged private blockers P06/T04/L05;
-- actionlint and zizmor exit codes;
-- every repository/PR/run/commit/tag/release/artifact ID;
-- every lab mutation and cleanup;
-- production mutations;
+- current visibility of every lab repository, without changing it;
+- the already established capability statement: private rulesets `BLOCKED` by plan, public ruleset fallback `PASS`;
+- all lab mutations and cleanup actions performed in this handoff;
+- production mutation audit before and after;
 - automerge audit;
-- `sandbox-python-lib#3`;
-- credential scan.
+- current state of `sandbox-python-lib#3`;
+- credential scan summary;
+- actionlint and zizmor exit codes.
 
-Do not mark a functional item `PASS` from static inspection when its section requires live execution.
+Do not mark an item PASS from static inspection when its section requires a live run.
