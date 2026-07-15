@@ -10,10 +10,14 @@ on:
       - acceptance/copier_matrix.py
       - .github/workflows/copier-matrix.yml
   workflow_dispatch:
+concurrency:
+  group: copier-matrix-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
   matrix:
+    name: Copier matrix / ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -22,16 +26,27 @@ jobs:
     steps:
       - name: Mint isolated lab token
         id: app-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90
         with:
           app-id: ${{ secrets.LAB_APP_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-      - uses: actions/checkout@v6.0.3
+          repositories: |
+            components
+            python-lib
+            python-internal-package
+            python-starter-platform
+            sandbox-python-lib
+            sandbox-python-platform
+            sandbox-workspace
+            lab-control
+          permission-contents: write
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
-      - uses: actions/setup-python@v6
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.13"
       - name: Install pinned Copier
@@ -52,7 +67,19 @@ jobs:
         env:
           OUTCOME: ${{ steps.matrix-run.outcome }}
           EXIT_STATUS: ${{ steps.matrix-run.outputs.status }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
+          askpass="$RUNNER_TEMP/git-askpass.sh"
+          cat > "$askpass" <<'SH'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *Password*) printf '%s\n' "$GH_TOKEN" ;;
+          esac
+          SH
+          chmod 700 "$askpass"
+          export GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0
+          trap 'rm -f "$askpass"' EXIT
           mkdir -p /tmp/matrix-evidence
           if [ -f /tmp/copier-matrix.log ]; then
             tail -n 250 /tmp/copier-matrix.log > /tmp/matrix-evidence/copier-matrix.log
