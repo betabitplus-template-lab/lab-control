@@ -1,7 +1,8 @@
 {
-  "request_id": "downstream-c3-conflict",
   "dry_run": null,
   "repositories": [
-    "betabitplus-template-lab/sandbox-python-lib"
+    "betabitplus-template-lab/python-lib",
+    "betabitplus-template-lab/python-internal-package",
+    "betabitplus-template-lab/python-starter-platform"
   ]
 }
