@@ -9,8 +9,22 @@
       "customType": "regex",
       "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
       "matchStrings": [
-        "(?<depName>py-lib-(?:runtime|tooling))\\s*@\\s*git\\+https://github\\.com/(?<packageName>betabitplus/py-lib-starter)\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-(?:runtime|tooling)"
+        "py-lib-runtime\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-runtime"
       ],
+      "depNameTemplate": "py-lib-runtime",
+      "packageNameTemplate": "betabitplus/py-lib-starter",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
+      "matchStrings": [
+        "py-lib-tooling\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-tooling"
+      ],
+      "depNameTemplate": "py-lib-tooling",
+      "packageNameTemplate": "betabitplus/py-lib-starter",
       "datasourceTemplate": "github-tags",
       "versioningTemplate": "semver",
       "extractVersionTemplate": "^v(?<version>.*)$"
