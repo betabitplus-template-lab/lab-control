@@ -68,7 +68,6 @@ resource "github_repository_ruleset" "dev" {
     deletion         = true
     non_fast_forward = true
     pull_request {
-      allowed_merge_methods             = ["squash"]
       required_approving_review_count   = 1
       required_review_thread_resolution = true
       dismiss_stale_reviews_on_push     = true
@@ -101,7 +100,6 @@ resource "github_repository_ruleset" "main" {
     deletion         = true
     non_fast_forward = true
     pull_request {
-      allowed_merge_methods             = ["squash"]
       required_approving_review_count   = 1
       required_review_thread_resolution = true
       dismiss_stale_reviews_on_push     = true
