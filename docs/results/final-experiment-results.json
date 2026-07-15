@@ -1,5 +1,5 @@
 {
-  "schema": "final-experiment-results/v4",
+  "schema": "final-experiment-results/v5",
   "date": "2026-07-15",
   "architecture_result": "CONDITIONAL_GO",
   "experiment_acceptance": "INCOMPLETE",
@@ -34,7 +34,7 @@
     "production_mutations": 0,
     "automerge_enabled": false,
     "credential_findings": 0,
-    "scope_deviation": "All 11 lab repositories were changed to public; restore to private before final acceptance."
+    "scope_deviation": "All 11 lab repositories were changed to public. Preserve the evidence and record current visibility; restoration is not required for the remaining functional checks."
   },
   "accepted_live_evidence": [
     {"id":"private-reusable-workflows","status":"PASS","evidence":"private exact-SHA calls, Linux/macOS, failure and cancellation propagation"},
@@ -47,20 +47,31 @@
     {"id":"production-isolation","status":"PASS","evidence":"all handoffs report zero production mutations"}
   ],
   "remaining_functional_revalidation": [
-    {"id":"P04","status":"REVALIDATION_REQUIRED","correction":"repository-scoped gh PR commands; commit 80a0a70b2f2ab1fe78b26f8ebcdc8c09a6c5d382"},
-    {"id":"T03","status":"REVALIDATION_REQUIRED","correction":"remote dev guard before render/commit; commit 74413a8c31dc9315e7c8f0859af0898f43ff91fc"},
-    {"id":"K03","status":"REVALIDATION_REQUIRED","correction":"component patch removes legacy template hook and forces deterministic lock metadata; commit ec9b692bccf4856e3a8049d9368a3613af942789"},
-    {"id":"K06","status":"REVALIDATION_REQUIRED","correction":"literal managers plus grouped shared-root-tag update; commit 6d792bfa88df3b2bd6b973f428427a6db2fe450c"}
+    {"id":"P04","status":"REVALIDATION_REQUIRED","correction":"repository-scoped GitHub CLI compare/list/create commands"},
+    {"id":"T03","status":"REVALIDATION_REQUIRED","correction":"remote dev guard before render/commit"},
+    {"id":"K03","status":"REVALIDATION_REQUIRED","correction":"component patch removes legacy template hook and forces deterministic lock metadata change"},
+    {"id":"K06","status":"REVALIDATION_REQUIRED","correction":"literal runtime/tooling managers plus one grouped shared-root-tag update"}
   ],
   "external_blockers": [
     {"id":"P06","status":"BLOCKED","reason":"private branch ruleset/protection capability returns plan-related HTTP 403"},
     {"id":"T04","status":"BLOCKED","reason":"OpenTofu private ruleset phase returns plan-related HTTP 403"},
     {"id":"L05","status":"BLOCKED","reason":"private immutable release-tag ruleset returns plan-related HTTP 403"}
   ],
-  "public_fallback": {
-    "status": "SUPPLEMENTARY_ONLY",
-    "passed": ["P06_PUBLIC_FALLBACK", "T04_PUBLIC_FALLBACK", "L05_PUBLIC_FALLBACK"],
-    "required_cleanup": "Remove only recorded fallback controls and restore all 11 lab repositories to private."
+  "visibility_capability": {
+    "private": {
+      "ordinary_platform_flows": "PASS",
+      "rulesets": "BLOCKED_BY_PLAN"
+    },
+    "public": {
+      "ordinary_platform_flows": "PASS",
+      "rulesets": "PASS"
+    },
+    "visibility_change_required_for_handoff_04": false
+  },
+  "access_policy": {
+    "new_credentials_required": false,
+    "existing_lab_credential_allowed": true,
+    "hard_boundary": "No writes outside betabitplus-template-lab/*"
   },
   "security_remediation": {
     "status": "REVALIDATION_REQUIRED",
