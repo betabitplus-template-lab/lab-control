@@ -1,5 +1,10 @@
 # Production-shaped template platform experiment: final result
 
+Date: 2026-07-15  
+Organization: `betabitplus-template-lab`  
+Frozen/read-only production baseline: `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`  
+Primary implementation: [lab-control#9](https://github.com/betabitplus-template-lab/lab-control/pull/9)
+
 ```text
 Architecture result:
     CONDITIONAL GO
@@ -7,260 +12,257 @@ Architecture result:
 Production repositories changed:
     0
 
-Current custom lifecycle LOC:
-    6,673
+Current root + tooling custom source:
+    11,466 LOC
 
-Projected required custom lifecycle LOC:
-    151
+Current strict template/update lifecycle:
+    6,673 LOC
 
-Commands removable:
-    8
+Projected required custom lifecycle:
+    <= 151 LOC
 
-Commands replaced:
-    14
+Projected unique policy checker:
+    196 LOC
 
-Commands retained:
-    2 legacy commands collapsed into one 191-LOC policy checker
+Projected executable non-product custom surface:
+    <= 359 LOC
 
-Main remaining risks:
-    Private-repository rulesets are unavailable on the current GitHub plan.
-    Private reusable-workflow sharing must be enabled and re-tested.
-    Live topic discovery, OpenTofu no-drift, Release Please and lock-refresh
-    evidence require lab-administrative execution that the primary environment
-    cannot perform.
+Published commands:
+    8 delete
+    14 replace
+    2 collapse into one policy checker
+    1 optional developer utility deferred
 ```
 
-Date: 2026-07-15  
-Organization: `betabitplus-template-lab`  
-Frozen and current informational production baseline: `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`  
-Implementation PR: [lab-control#9](https://github.com/betabitplus-template-lab/lab-control/pull/9)
+## Executive conclusion
 
-## Executive answer
+The target architecture is sound. Mature tools can own template generation and three-way updates, dependency and component PRs, repository discovery, reusable CI, repository configuration, releases, locks and generic quality/package checks. The custom template/update engine, registry, fleet synchronizer, repository API subsystem and most wrappers are not required in the target delivery path.
 
-The target architecture is technically sound and removes the custom template/update engine, downstream registry, fleet synchronizer, manifest/build assembler and most quality wrappers from the delivery path. The evidence supports a **CONDITIONAL GO** for production design, not an unconditional rollout.
+The result remains **CONDITIONAL GO**, not unconditional GO, for two reasons:
 
-The condition is operational rather than architectural: the current lab account cannot apply rulesets to private repositories, and several acceptance items require a lab-only administrative identity and locally installed Renovate/OpenTofu tooling. The prepared implementations are bounded and reviewable; unexecuted checks are explicitly marked `DEFERRED` rather than represented as passes.
+1. private branch/tag rulesets return GitHub plan-related HTTP 403;
+2. handoff-02 found implementation defects that have been corrected but still require bounded live revalidation before the main experiment PR can leave draft.
 
-The minimum owned surface is:
+No production migration has started. All writes were restricted to `betabitplus-template-lab/*`.
 
-1. one 191-LOC stdlib-only policy checker for genuinely organization-specific Python conventions;
-2. a 15-LOC repository bootstrap coordinator;
-3. a 26-line idempotent `dev → main` promotion workflow;
-4. an 11-line Renovate dry-run/digest guard;
-5. a 99-line optional trusted workflow-ref updater because the main Renovate App intentionally has no Workflows permission;
-6. a 12-line generic component wiring check.
+## Handoff-02 scorecard
 
-The first three mandatory lifecycle items total **52 substantive lines**. Including the preferred separate workflow updater produces **151 custom lifecycle lines**. The generic wiring guard adds 12 lines and the unique policy checker adds 191, for an exact executable non-product surface of **354 lines**. This is a 96.9% reduction from the current 11,466 root/tooling source LOC and a 97.7% reduction from the 6,673 LOC strict lifecycle subset.
+The returned handoff-02 bundle has SHA-256 `5894d7468d2a5473e44c649fccebbff139c79f391b044014992de495b1ef18d6` and contains 370 evidence files.
 
-## 1. What was checked
+| Status | Count |
+|---|---:|
+| PASS | 40 |
+| NEGATIVE_PASS | 6 |
+| FAIL | 10 |
+| BLOCKED | 5 |
 
-- Frozen-source inventory of all requested root, tooling, runtime, scripts, workflows, actions, components, manifests and generated builds.
-- Every published root and `py-lib-tooling` command, entry point, implementation group, tests, responsibility and replacement.
-- Current versus projected LOC, excluding tests and generated fixtures from production logic.
-- Official capabilities of Copier, Renovate, GitHub Actions/rulesets/Apps, OpenTofu GitHub provider, Release Please and the requested Python quality/package tools.
-- Central Renovate preset design, topic-based discovery controller and allowlisted lock refresh.
-- Private reusable workflow design and a real caller PR using an exact commit SHA.
-- `dev → main` caller/process design with an idempotent promotion PR workflow.
-- Two-phase OpenTofu repository provisioning design.
-- Release Please design with acceptance gating and exact-SHA verification.
-- Component add/remove/rename wiring semantics and the necessity of `WIRING.json`.
-- Private credential model and current token/log hygiene.
-- Direct community-tool replacements for quality and packaging wrappers.
-- Residual architecture policy and `py-lib-runtime` classification.
-- Fleet visibility decomposition and supply-chain hardening.
+The original statuses are preserved in [`handoff-02-report.json`](../evidence/handoff-02-report.json). The exact interpretation and remediation mapping is in [`handoff-02-integration-results.md`](handoff-02-integration-results.md).
 
-## 2. First-stage evidence intentionally not repeated
+Safety invariants remained true:
 
-The first stage remains authoritative for:
+- production mutations: `0`;
+- automerge enabled: `false`;
+- `sandbox-python-lib#3`: open and unmerged;
+- old v0.1.0-v0.3.0 tags and C1/C2/C3 evidence: unchanged;
+- temporary credentials: revoked;
+- disclosed credential findings: `0`.
 
-- three independent Copier templates;
-- exact-SHA private components submodules;
-- Renovate submodule and Copier PRs;
-- grouped nested Copier relationships;
-- preservation of user changes and visible conflicts;
-- one-gitlink rollback;
-- Linux/macOS/Windows private checkout/render;
-- production mutations equal to zero.
+## Live evidence now proved
 
-The deliberate conflict PR remains open and unmerged: [sandbox-python-lib#3](https://github.com/betabitplus-template-lab/sandbox-python-lib/pull/3). Existing tags `v0.1.0`, `v0.2.0`, `v0.3.0`, C1/C2/C3 commits, artifacts, `results.md` history and ADR 0001 were not rewritten.
+### Private reusable workflows
 
-## 3. New positive results
+The private `automation` repository was created and published at `a5cd8112c8e8b221dceb397c1e882a9a25148b86`, tag `v0.1.0`. Organization access for private callers was enabled.
 
-### Security and isolation
+- Linux/macOS, inherited-secret and read-only caller verification: run `29375576270`;
+- intentional failure propagation: run `29375625874`;
+- cancellation propagation: run `29375658789`;
+- tagged ref: run `29375727768`;
+- final exact-SHA ref: run `29375763651`.
 
-The local handoff proved that the final Renovate installation token sees exactly the eight lab repositories and has no production push/admin access. The previously unrotated App private key was replaced, all old keys were deleted, a new installation token succeeded, and current logs/artifacts were scanned: 536 files, 26.8 MB and zero credential findings.
+The caller remains reviewable in `sandbox-python-platform#3`; automerge is disabled.
 
-### Inventory and replacement proof
+### Renovate private presets and fleet discovery
 
-`replacement-matrix.json` covers 127 production modules and all 25 published commands. Current source totals are:
+The private base/template/downstream/workspace presets were published and consumed. Explicit allowlist `extract`, `lookup` and `full` phases passed. Organization/topic discovery selected the expected managed, template, downstream, workspace and untagged fixtures while skipping the disabled repository. One reviewed live run created the expected PRs; rerun created no duplicates. All observed Renovate PRs had `auto_merge=null`.
+
+This proves that GitHub topics plus repository-local `.copier-answers.yml` relationships can replace the custom downstream registry for delivery operations.
+
+### `dev → main` repository shape
+
+`sandbox-process` was bootstrapped with `dev` as default and `main` as the promotion baseline. A safe update PR passed CI and merged to `dev`: `sandbox-process#1`, run `29376918751`. Exactly one promotion PR remained open: `sandbox-process#2`.
+
+The initially prepared promotion workflow failed because it removed checkout credentials and then executed an unauthenticated `git fetch`. The corrected workflow uses the authenticated GitHub compare and PR APIs and no checkout. Its live rerun is assigned to handoff-03.
+
+### Release Please
+
+Release Please produced two real patch lines without rewriting historical tags:
+
+| Release | Main/tag target | Release ID |
+|---|---|---:|
+| `python-lib@v0.4.0` | `0477653722f8a8b125e2bd3963b37d4a0d10c153` | `354133543` |
+| `python-lib@v0.4.1` | `1a4fabe2c0449c5fe92d745eea0f9494c6fed160` | `354137656` |
+
+Conventional commits, release PRs, acceptance gating, tags and GitHub releases were exercised. The prepared reusable acceptance workflow exposed a private Copier temporary-clone authentication gap. The workflow now supplies only an ephemeral masked Git URL rewrite on Linux/macOS/Windows and retains `persist-credentials:false`; the exact-SHA release guard now uses the GitHub API and handles annotated/lightweight tags.
+
+### Locks and ordinary dependencies
+
+- exact `uv.lock` baseline and CI: `sandbox-process#3`, run `29377905812`;
+- a real setuptools change flowed components → template release → downstream;
+- both nested workspace locks regenerated idempotently with private Git authentication;
+- unrelated lock state remained stable.
+
+Two fixture/manager gaps were found and corrected:
+
+- old answers omitted the later hidden `template_profile`; compatibility fix: draft `python-lib#19`;
+- nested acceptance hardcoded historical `v0.2.0`; dynamic same-semver fix: draft `sandbox-workspace#8`;
+- PEP 508 Git dependencies were not extracted by `pep621`; a constrained Renovate regex manager now covers only `py-lib-runtime` and `py-lib-tooling`, backed by GitHub tags and the exact `uv lock` post task.
+
+### Component wiring edges
+
+The experiment exercised:
+
+- new component file with no implicit template output;
+- explicit symlink/output wiring;
+- broken-symlink negative case;
+- rename case;
+- generated audit of 165 symlinks with zero broken links in the final positive state.
+
+A generic filesystem/git check is sufficient. A custom lifecycle registry such as `WIRING.json` is not required.
+
+### Private access negative test
+
+A temporary credential that could read template/downstream repositories but not components failed recursive private clone as expected. Adding components read succeeded. All temporary deploy keys were revoked and private key files removed. This validates the separate components-read requirement without broadening the main credential.
+
+### Tooling reduction
+
+- legacy/direct quality behavior: 8/8 parity;
+- residual policy rules: 12/12 parity;
+- wheel and sdist build, metadata checks and isolated installs: pass;
+- reusable workflow actionlint/zizmor review: pass.
+
+Handoff-02 correctly found that the first direct packaging workflow assumed `twine` and `check-wheel-contents` existed in the project environment and omitted `.copier-answers.yml` from check-manifest. The corrected workflow runs pinned tools through `uvx` and explicitly ignores only the Copier answers file.
+
+The minimal policy checker was corrected to accept the generated `PackageNotFoundError` version fallback and to exempt example-package `__init__.py` files from the `# %%` notebook-cell convention. Eight local tests pass; live real-baseline parity is assigned to handoff-03.
+
+## Replacement inventory
+
+The authoritative machine-readable matrix is [`replacement-matrix.json`](replacement-matrix.json); the human view is [`replacement-matrix.md`](replacement-matrix.md). It covers all 25 published commands and 127 production modules.
+
+| Classification | Commands | Result |
+|---|---:|---|
+| DELETE | 8 | no compatibility wrapper retained |
+| REPLACE | 14 | mature tool/direct command owns responsibility |
+| RETAIN_MINIMAL | 2 → 1 checker | organization-specific static conventions only |
+| DEFER | 1 | optional running-loop developer utility outside platform architecture |
+
+Source inventory:
 
 | Surface | LOC |
 |---|---:|
 | `src/py_lib_starter` | 4,692 |
 | `py-lib-tooling` | 6,774 |
-| strict template/update lifecycle subset | 6,673 |
+| strict lifecycle subset | 6,673 |
 | registry/fleet | 841 |
 | onboarding | 1,827 |
 | quality/smoke wrappers | 711 |
 | old unique-policy candidate | 968 |
 | `py-lib-runtime` product library | 2,133 |
 
-### Minimal policy
+`py-lib-runtime` is a product/runtime library, not platform lifecycle machinery. It remains independently versioned and updated as an ordinary dependency. Individual helpers can be studied later, but its 2,133 LOC are excluded from the platform-lifecycle reduction denominator.
 
-The prototype is one dependency-free CLI/pre-commit hook. It covers only conventions not adequately represented by import-linter/Ruff/Pyright: console entry-point routing through `_api.cli`, declaration-only root initializers, literal dynamic private imports, `# %%` examples, and the required directory/docs skeleton. Six unit tests pass.
-
-### Reusable workflow implementation
-
-A private `workflow_call` implementation was committed at `lab-control@8947060677a2f051351a56df48d6f50f37a37987`. A 12-line exact-SHA caller was opened as [sandbox-python-platform#3](https://github.com/betabitplus-template-lab/sandbox-python-platform/pull/3). The existing downstream validation run `29371632671` passed, proving the caller commit itself preserved the downstream template state.
-
-### Declarative platform implementation
-
-The experiment branch contains:
-
-- four Renovate presets and a guarded topic-discovery controller;
-- reusable library CI and template acceptance workflows;
-- idempotent promotion PR and bounded trusted workflow updater;
-- OpenTofu repository, branch, topic, variable, App-access and optional ruleset resources;
-- a two-phase Copier bootstrap;
-- Release Please configuration and exact-SHA guard;
-- direct quality and packaging toolchain;
-- generic component wiring checks.
-
-Static validation passed for JSON, JSON5 preprocessing, YAML parsing, Python compile/tests and shell syntax.
-
-## 4. New negative results
-
-### Private rulesets are unavailable on the current plan
-
-Every private lab repository returned HTTP 403 with GitHub's plan-upgrade/public-visibility message. This is not an OpenTofu/provider defect. The production target requires either a GitHub plan that exposes private rulesets or an explicitly accepted branch-protection fallback with reduced parity.
-
-### Private reusable workflow call currently fails before creating jobs
-
-The caller run `29371633018` failed with an empty job list. Because the referenced workflow file exists at the exact SHA and the downstream validation passed, the strongest inference is that private workflow sharing/access for the source repository is not enabled. This is useful negative evidence: repository content alone is insufficient; provisioning must enable Actions access for private callers. The PR remains unmerged.
-
-### Live administrative checks remain unexecuted
-
-Handoff 01 intentionally did not install/run Renovate, OpenTofu, actionlint or zizmor, did not create repositories, did not change topics/default branches/rulesets, and did not dispatch releases. The primary environment subsequently ran `zizmor 1.27.0`; its first audit found injection/credential/permission problems, those workflows were corrected, and the final offline regular audit reports zero findings. Those constraints prevented honest live acceptance for topic discovery, no-drift provisioning, `dev → main`, Release Please, lock refresh, tag protection and restricted-credential failure.
-
-## 5. Selected community tools
-
-| Responsibility | Selected mechanism | Custom implementation removed |
-|---|---|---|
-| project generation/update/conflicts | Copier CLI and answers file | template answer/check/update wrappers |
-| component updates | Renovate `git-submodules` | component sync/orchestration |
-| downstream template updates | Renovate `copier` | fleet sync and custom update engine |
-| dependencies/locks | Renovate managers + exact `uv lock` post task | shared ref normalizer/lock controller |
-| repository discovery | topics + Renovate autodiscovery | downstream registry |
-| CI distribution | private reusable workflows | copied workflow bodies |
-| repository settings | OpenTofu GitHub provider | Python onboarding API subsystem |
-| releases | Release Please + required acceptance + exact-SHA guard | custom release controller |
-| import architecture | import-linter + Ruff/Pyright | most project-structure checker code |
-| metrics/audit | radon, flake8 plugins, pip-audit directly | quality wrappers |
-| package verification | uv, twine, check-wheel-contents, check-manifest | custom smoke modules |
-| workflow lint/security | actionlint + zizmor | ad-hoc workflow validation |
-
-## 6. Rejected candidates
-
-- Backstage and similar developer portals: excessive service/infrastructure for a small repository fleet.
-- A new manifest assembler or generic platform framework: recreates the lifecycle engine being removed.
-- Copier tasks for routine lock refresh: executable-template trust surface is broader than the exact allowlisted Renovate command.
-- Giving the main Renovate App Workflows write: unnecessary privilege if the bounded updater remains small and review-gated.
-- Persistent PATs: GitHub App installation tokens provide shorter lifetime and repository selection.
-- A mandatory central fleet service: Renovate dashboards, PR/check status and OpenTofu plans already expose delivery health.
-
-## 7. Replacement matrix
-
-The authoritative machine-readable matrix is [`replacement-matrix.json`](replacement-matrix.json); the human view is [`replacement-matrix.md`](replacement-matrix.md). Summary:
-
-| Classification | Commands | Modules |
-|---|---:|---:|
-| DELETE | 8 | 44 |
-| REPLACE | 14 | 40 |
-| RETAIN_MINIMAL | 2 → one checker | 6 |
-| PRODUCT_LIBRARY | 0 | 26 |
-| DEFER | 1 | 11 |
-
-## 8. Residual custom surface
-
-The exact responsibility, LOC, dependency and maintenance decision is in [`minimal-custom-surface.md`](minimal-custom-surface.md). No retained component implements template generation, Copier update, fleet membership, repository APIs, package release orchestration or runtime configuration.
-
-## 9. Permission model
-
-The least-privilege model is documented in [`permission-model.md`](permission-model.md). Key decision: main Renovate does **not** receive Workflows permission. Workflow ref changes are applied by a separate selected-repository App through a bounded updater that can only replace one exact SHA in one workflow file and opens a reviewable PR.
-
-## 10. Production target architecture
-
-ADR 0002 records the target:
+## Target architecture
 
 ```text
 private components repository
         ↓ exact gitlink
 independently released Copier templates
-        ↓ Renovate Copier PR
+        ↓ Renovate Copier PR + exact uv lock
 downstream dev branch
-        ↓ reusable CI + required review
-promotion PR
+        ↓ private reusable CI + required review
+single idempotent promotion PR
         ↓
 main
 ```
 
-OpenTofu owns repository configuration; GitHub owns policy/CI execution; Renovate owns discovery and PR creation; Copier owns generation and three-way updates; Release Please owns release PR/changelog/tag; optional `py-lib-policy` owns only organization-specific static conventions.
+Ownership boundaries:
 
-## 11. Production rollout prerequisites
+- Copier: generation and three-way downstream update/conflicts;
+- Renovate: submodule, Copier, package, workflow-ref discovery and PR creation;
+- GitHub topics: fleet membership/lane metadata;
+- reusable Actions workflows: CI/acceptance distribution;
+- OpenTofu: repository settings, branches, topics, variables and App installation access;
+- Release Please: release PR, changelog, tag and release;
+- direct community tools: quality, security and package verification;
+- optional `py-lib-policy`: only conventions generic tools cannot express.
 
-1. Obtain private rulesets capability or approve a documented lower-fidelity branch-protection fallback.
-2. Create production Apps with selected-repository installation and the permission split in `permission-model.md`.
-3. Publish automation workflows and Renovate presets, enable private workflow access and pin immutable refs.
-4. Execute all Renovate dry stages against a production-shaped non-production organization.
-5. Apply OpenTofu to one representative repository and require a clean second plan.
-6. Complete Release Please, lock refresh, negative private-access and tag immutability checks.
-7. Review the migration plan and rollback criteria before any production mutation.
+The main Renovate App does not receive Workflows write permission. A separate selected-repository publisher may perform one bounded exact-SHA replacement and open a reviewable PR.
 
-## 12. Migration plan without executing production migration
+## Remediated failures requiring handoff-03
 
-1. Inventory production repository settings and current generated workflow divergence read-only.
-2. Establish automation/components/template repositories and Apps.
-3. Import or model one pilot repository in OpenTofu without changing application code.
-4. Add topics, minimal Renovate config and thin workflow callers through normal PRs to `dev`.
-5. Establish `.copier-answers.yml` baseline and run a no-change Copier verification.
-6. Enable Renovate dry discovery, then one live pilot PR with automerge off.
-7. Promote pilot `dev → main` manually after required checks/review.
-8. Observe at least one component, template, package and workflow-ref update cycle.
-9. Expand repository by repository; never mass-switch the fleet in one operation.
-10. Delete legacy registry/assembler/tooling only after the last consumer has left it.
+| IDs | Corrected location |
+|---|---|
+| S03, D05 | `lab-control#9` commit `0a28b2f3` |
+| S04, R03, T01, T03 | `lab-control#9` commit `7f241a8d` |
+| P04 | `lab-control#9` commit `d8ad5ad9` |
+| L04 | `lab-control#9` commits `51dcb45c`, `0bf9ee3f` |
+| D03 | `lab-control#9` commits `25f78794`, `7113f926` |
+| K06 | `lab-control#9` commit `8d055e49` |
+| K03 | `python-lib#19` |
+| K05 | `sandbox-workspace#8` |
 
-## 13. Rollback plan
+The bounded execution instructions are [`local-agent-handoff-03.md`](local-agent-handoff-03.md). Previously passing phases must not be repeated unnecessarily.
 
-- Component regression: revert the template gitlink to the previous exact commit.
-- Template regression: pin downstream answers to the previous immutable template tag and run Copier update/revert PR.
-- Reusable workflow regression: revert the exact caller SHA.
-- Repository configuration regression: revert the OpenTofu configuration and apply after reviewing the plan.
-- Release regression: never move/delete published tags; publish a corrected next version.
-- Migration regression: remove the managed topic and disable repository-local Renovate config; existing code remains ordinary Git history.
+## External blockers
 
-## 14. Known limitations
+These remain `BLOCKED` rather than silently substituted:
 
-- Rulesets on private lab repositories are blocked by the current plan.
-- Private reusable-workflow access has not yet been enabled; current run is intentional negative evidence.
-- Provider configuration is static-validated, not yet live-applied.
-- `actionlint 1.7.12` was not available in the primary environment; `zizmor 1.27.0` was run successfully with zero final findings.
-- A runtime replacement study can simplify individual `py-lib-runtime` helpers later, but the package is not lifecycle/platform code and does not block this architecture decision.
-- The optional running-loop utility is deliberately deferred from platform architecture.
+- P06: private branch rulesets/protections;
+- T04: OpenTofu private ruleset phase;
+- L05: immutable private release-tag ruleset.
 
-## 15. Exact evidence
+The current GitHub plan returns HTTP 403 for these private repository operations. Production requires a plan with private rulesets or an explicitly accepted lower-fidelity branch-protection fallback documented as a deviation.
 
-- Implementation and reports: [lab-control#9](https://github.com/betabitplus-template-lab/lab-control/pull/9)
-- Reusable caller negative/positive downstream evidence: [sandbox-python-platform#3](https://github.com/betabitplus-template-lab/sandbox-python-platform/pull/3)
-- Reusable caller workflow run: `29371633018` — failure before jobs
-- Downstream validation on the same commit: `29371632671` — success
-- Existing conflict evidence: [sandbox-python-lib#3](https://github.com/betabitplus-template-lab/sandbox-python-lib/pull/3), run `29353371296`
-- First-stage rollback acceptance: run `29353504047`
-- Frozen/current production source: `d59582375855cff69fb165e467dc5847bc75ca99`
-- Handoff security evidence: `docs/evidence/handoff-01-summary.json` in the experiment branch
-- Machine-readable final status: [`final-experiment-results.json`](final-experiment-results.json)
+## Security and supply chain
 
-## Final decision rule
+The final implementation uses:
 
-The experiment succeeds at its principal architectural objective: custom code is no longer required for template assembly/update, registry membership, fleet synchronization, repository APIs, routine dependency freshness, CI distribution or generic quality tooling. The remaining code expresses only organization policy or coordinates mature tools.
+- immutable action SHAs;
+- pinned Copier/OpenTofu/provider/tool versions for acceptance;
+- digest-pinned Renovate image and dry-run progression;
+- Renovate scripts disabled;
+- one exact allowlisted `uv lock` post-upgrade command;
+- selected-repository GitHub App tokens;
+- no persistent PAT architecture;
+- `persist-credentials:false` where checkout is used;
+- secret values excluded from reports, artifacts and OpenTofu state;
+- reviewable PRs and automerge false.
 
-The release is **CONDITIONAL GO** until the explicitly listed private-plan and live-administration acceptance gaps are closed. No production migration has started.
+## Migration plan — not executed
+
+1. Obtain private-ruleset capability or approve the documented fallback.
+2. Create production Apps with the permission split in `permission-model.md`.
+3. Publish automation/components/template repositories and immutable refs.
+4. Import/model one representative repository in OpenTofu read-only first.
+5. Add topics, local Renovate preset and thin callers through an ordinary PR to `dev`.
+6. Establish a no-change Copier baseline.
+7. Run Renovate allowlist extract/lookup/full, then one live pilot PR with automerge off.
+8. Require a clean second OpenTofu plan and one complete component/template/package/workflow update cycle.
+9. Promote manually `dev → main` after review.
+10. Expand repository by repository; remove legacy lifecycle code only after the last consumer leaves it.
+
+## Rollback
+
+- component regression: revert one template gitlink;
+- template regression: pin the previous immutable template tag and run a normal Copier PR;
+- workflow regression: revert the caller's exact automation SHA;
+- repository configuration regression: review and apply the reverted OpenTofu plan;
+- release regression: publish a corrected next tag; never move/delete a published tag;
+- migration regression: remove managed topic/local Renovate config while ordinary Git history remains intact.
+
+## Final decision
+
+The principal architectural objective succeeds: custom code is no longer required for template assembly/update, fleet registry/synchronization, repository API orchestration, routine dependency freshness, CI body distribution, release bookkeeping or generic quality/package wrappers.
+
+**Final current status: CONDITIONAL GO.**
+
+The only external architectural blocker is private ruleset availability. The corrected implementation defects must receive the narrowly scoped handoff-03 live evidence before `lab-control#9`, `python-lib#19` and `sandbox-workspace#8` can leave draft. Production remains untouched.
