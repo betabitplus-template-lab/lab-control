@@ -53,9 +53,9 @@ jobs:
       - uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
       - run: uv sync --frozen --all-groups
       - run: uv build
-      - run: uv run twine check dist/*
-      - run: uv run check-wheel-contents dist/*.whl
-      - run: uv run check-manifest
+      - run: uvx --from "twine==6.2.0" twine check dist/*
+      - run: uvx --from "check-wheel-contents==0.6.3" check-wheel-contents dist/*.whl
+      - run: uv run check-manifest --ignore ".copier-answers.yml"
       - name: Isolated wheel and sdist smoke
         env:
           IMPORT_NAME: ${{ inputs.import-name }}
@@ -68,11 +68,7 @@ jobs:
             uv pip install --python "$venv/bin/python" "$artifact"
             [[ "$IMPORT_NAME" =~ ^[a-zA-Z_][a-zA-Z0-9_.]*$ ]]
             [[ -z "$CONSOLE_SCRIPT" || "$CONSOLE_SCRIPT" =~ ^[a-zA-Z0-9_.-]+$ ]]
-            IMPORT_NAME="$IMPORT_NAME" "$venv/bin/python" - <<'PY'
-            import importlib
-            import os
-            importlib.import_module(os.environ["IMPORT_NAME"])
-            PY
+            IMPORT_NAME="$IMPORT_NAME" "$venv/bin/python" -c 'import importlib, os; importlib.import_module(os.environ["IMPORT_NAME"])'
             if test -n "$CONSOLE_SCRIPT"; then "$venv/bin/$CONSOLE_SCRIPT" --help >/dev/null; fi
           done
       - run: uv run pytest -q
