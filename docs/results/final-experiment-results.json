@@ -1,11 +1,10 @@
 {
   "schema": "final-experiment-results/v5",
-  "date": "2026-07-15",
+  "date": "2026-07-16",
   "architecture_result": "CONDITIONAL_GO",
-  "experiment_acceptance": "INCOMPLETE",
+  "experiment_acceptance": "INCOMPLETE_ONE_LIVE_CHECK",
   "production_mutations": 0,
   "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
-  "current_dev_head_at_audit": "d59582375855cff69fb165e467dc5847bc75ca99",
   "metrics": {
     "current_root_and_tooling_custom_loc": 11466,
     "current_strict_template_update_lifecycle_loc": 6673,
@@ -20,63 +19,54 @@
     "commands_collapsed_to_policy": 2,
     "commands_defer_optional_utility": 1
   },
-  "handoff_02": {
-    "bundle_sha256": "5894d7468d2a5473e44c649fccebbff139c79f391b044014992de495b1ef18d6",
-    "status_counts": {"PASS": 40, "NEGATIVE_PASS": 6, "FAIL": 10, "BLOCKED": 5}
-  },
-  "handoff_03": {
-    "bundle_sha256": "4e541e17fc23872bc9203576debbb63f017d53b7a259eeb9955fd72fae98fb47",
-    "source_head": "9a6ae4d347ed07bd58af3d5d194d3af579a5d415",
-    "status_counts": {"PASS": 8, "NEGATIVE_PASS": 0, "FAIL": 4, "BLOCKED": 0},
-    "passed_ids": ["S03", "S04", "R03", "T01", "L04", "K05", "D03", "D05"],
-    "failed_ids": ["P04", "T03", "K03", "K06"],
-    "unchanged_blocked_ids": ["P06", "T04", "L05"],
+  "handoff_04": {
+    "bundle_sha256": "ffa83d8f2d252d5a42be4dda64d3185b30dd253c83a84683096b3eb59bbdc136",
+    "source_head": "a1b1555239681195028f8e7eb38a48f47880c191",
+    "status_counts": {"PASS": 3, "NEGATIVE_PASS": 0, "FAIL": 1, "BLOCKED": 0},
+    "passed_ids": ["P04", "T03", "K03"],
+    "failed_ids": ["K06"],
     "production_mutations": 0,
     "automerge_enabled": false,
-    "credential_findings": 0,
-    "scope_deviation": "All 11 lab repositories were changed to public. Preserve the evidence and record current visibility; restoration is not required for the remaining functional checks."
+    "credential_findings": 0
   },
   "accepted_live_evidence": [
-    {"id":"private-reusable-workflows","status":"PASS","evidence":"private exact-SHA calls, Linux/macOS, failure and cancellation propagation"},
-    {"id":"renovate-private-presets-and-discovery","status":"PASS","evidence":"private presets, allowlist phases, topic discovery, reviewed live PRs and idempotency"},
-    {"id":"release-please-v0.4-line","status":"PASS","evidence":"v0.4.0, v0.4.1 and v0.4.2; v0.4.2 release 354387791 at 2940bc355da2a957e0deb6c1660ce57293e9674b"},
-    {"id":"opentofu-create","status":"PASS","evidence":"sandbox-provisioned created only by OpenTofu and initially verified private"},
-    {"id":"nested-workspace","status":"PASS","evidence":"sandbox-workspace#8 merged; PR #5 run 29412193159; two equal v0.2.1 answers and idempotent locks"},
-    {"id":"minimal-policy-real-baseline","status":"PASS","evidence":"baseline d594c0dd80908f89bc5a534681f27765fb985c4b accepted by corrected and legacy checks"},
-    {"id":"direct-packaging-chain","status":"PASS","evidence":"wheel and sdist metadata/install/import/pytest passed"},
-    {"id":"production-isolation","status":"PASS","evidence":"all handoffs report zero production mutations"}
+    {"id": "P04", "status": "PASS", "evidence": "promotion run 29422268451 attempts 1 and 2; exactly one PR sandbox-process#2"},
+    {"id": "T03", "status": "PASS", "evidence": "repeat bootstrap and OpenTofu plan exit 0; refs unchanged"},
+    {"id": "K03", "status": "PASS", "evidence": "python-lib v0.4.3 release 354495776; sandbox-process#10; CI 29424887496"},
+    {"id": "private_ordinary_flows", "status": "PASS"},
+    {"id": "public_ruleset_fallback", "status": "PASS"},
+    {"id": "production_isolation", "status": "PASS", "evidence": "zero production mutations across all handoffs"}
   ],
   "remaining_functional_revalidation": [
-    {"id":"P04","status":"REVALIDATION_REQUIRED","correction":"repository-scoped GitHub CLI compare/list/create commands"},
-    {"id":"T03","status":"REVALIDATION_REQUIRED","correction":"remote dev guard before render/commit"},
-    {"id":"K03","status":"REVALIDATION_REQUIRED","correction":"component patch removes legacy template hook and forces deterministic lock metadata change"},
-    {"id":"K06","status":"REVALIDATION_REQUIRED","correction":"literal runtime/tooling managers plus one grouped shared-root-tag update"}
+    {
+      "id": "K06",
+      "status": "REVALIDATION_REQUIRED",
+      "reason": "handoff-04 live replacement lost v and failed to group runtime/tooling",
+      "correction": "v outside currentValue; matchDepNames; minimumGroupSize 2",
+      "lab_control_commits": [
+        "88e756cdead0ffb751c55af50483b6fd48faaf9f",
+        "0dbdc7448f201e129670768b4e6d5b2d231e23a2"
+      ],
+      "automation_pr": 1,
+      "automation_commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
+    }
   ],
   "external_blockers": [
-    {"id":"P06","status":"BLOCKED","reason":"private branch ruleset/protection capability returns plan-related HTTP 403"},
-    {"id":"T04","status":"BLOCKED","reason":"OpenTofu private ruleset phase returns plan-related HTTP 403"},
-    {"id":"L05","status":"BLOCKED","reason":"private immutable release-tag ruleset returns plan-related HTTP 403"}
+    {"id": "P06", "status": "BLOCKED", "reason": "private branch ruleset capability returns plan-related HTTP 403"},
+    {"id": "T04", "status": "BLOCKED", "reason": "OpenTofu private ruleset phase returns plan-related HTTP 403"},
+    {"id": "L05", "status": "BLOCKED", "reason": "private immutable release-tag ruleset returns plan-related HTTP 403"}
   ],
-  "visibility_capability": {
-    "private": {
-      "ordinary_platform_flows": "PASS",
-      "rulesets": "BLOCKED_BY_PLAN"
-    },
-    "public": {
-      "ordinary_platform_flows": "PASS",
-      "rulesets": "PASS"
-    },
-    "visibility_change_required_for_handoff_04": false
+  "public_fallback": {
+    "status": "PASS_SUPPLEMENTARY",
+    "passed": ["P06_PUBLIC_FALLBACK", "T04_PUBLIC_FALLBACK", "L05_PUBLIC_FALLBACK"],
+    "current_lab_visibility": "PUBLIC"
   },
-  "access_policy": {
-    "new_credentials_required": false,
-    "existing_lab_credential_allowed": true,
-    "hard_boundary": "No writes outside betabitplus-template-lab/*"
+  "static_security": {
+    "handoff_04_actionlint_exit": 0,
+    "handoff_04_zizmor_exit": 12,
+    "handoff_04_zizmor_findings": {"low": 1, "medium": 0, "high": 0},
+    "low_finding_correction_commit": "415487ffeb5beba6b0c622f96033421328a32c75",
+    "final_rerun_required": true
   },
-  "security_remediation": {
-    "status": "REVALIDATION_REQUIRED",
-    "changes": "Inherited lab workflows pinned to exact action SHAs, selected repositories and explicit permissions; checkout credentials disabled; concurrency and job names added.",
-    "required_check": "actionlint and zizmor --pedantic --offline on current PR head"
-  },
-  "next_evidence": "docs/results/local-agent-handoff-04.md"
+  "next_evidence": "K06-only live rerun against automation@1554ac4295daa4c75d983ddab0fca1442b33e675"
 }
