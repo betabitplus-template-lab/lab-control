@@ -1,6 +1,6 @@
 # Production-shaped template platform experiment: final result
 
-Date: 2026-07-15  
+Date: 2026-07-16  
 Organization: `betabitplus-template-lab`  
 Frozen/read-only production baseline: `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`  
 Primary implementation: [lab-control#9](https://github.com/betabitplus-template-lab/lab-control/pull/9)
@@ -10,13 +10,10 @@ Architecture decision:
     CONDITIONAL GO
 
 Experiment acceptance:
-    INCOMPLETE — four corrected live items require final revalidation
+    INCOMPLETE — one corrected live K06 check remains
 
 Production repositories changed:
     0
-
-Current root + tooling custom source:
-    11,466 LOC
 
 Current strict template/update lifecycle:
     6,673 LOC
@@ -36,147 +33,120 @@ Published commands:
 
 ## Executive conclusion
 
-The principal architectural result is positive. Copier, Renovate, GitHub Actions and Apps, OpenTofu, Release Please, uv and direct community quality/package tools can replace the custom template assembler/update engine, registry, fleet synchronizer, onboarding API subsystem, release controller and most wrappers.
+The architectural conclusion is stable. Copier, Renovate, GitHub Actions/Apps, OpenTofu, Release Please, uv and direct community quality/package tools replace the custom template assembler/update engine, registry, fleet synchronizer, onboarding API subsystem, release controller and most wrappers. No replacement platform service or lifecycle package is required.
 
-The decision remains **CONDITIONAL GO** because:
+Handoff-04 closed P04, T03 and K03. K06 remains the only unaccepted functional item. Its failure is deterministic Renovate preset behavior, not permissions, credentials, repository visibility or the GitHub plan. The two defects are fixed and published in review; one live Renovate rerun is required before the experiment can be declared functionally complete.
 
-1. private branch/tag rulesets are unavailable on the current GitHub plan;
-2. handoff-03 passed eight corrected items but left P04, T03, K03 and K06 as live failures;
-3. workflow hardening added after handoff-03 requires one final actionlint/zizmor run.
+The decision remains **CONDITIONAL GO** because private rulesets are unavailable on the current GitHub plan. Equivalent public ruleset shapes passed, so the report records private and public capability separately rather than treating the tariff limitation as an implementation failure.
 
-Repository visibility is no longer a final functional prerequisite. The evidence is recorded separately:
+No production migration has started. Every production audit reports zero mutations.
 
-- private execution passed all tested private flows except plan-blocked private rulesets;
-- public execution proved that the same ruleset configurations work where GitHub exposes them.
+## Handoff-04 scorecard
 
-No production migration has started and every production audit reports zero mutations.
+Bundle SHA-256: `ffa83d8f2d252d5a42be4dda64d3185b30dd253c83a84683096b3eb59bbdc136`.
 
-## Evidence scorecards
+| ID | Status | Result |
+|---|---|---|
+| P04 | PASS | promotion controller succeeded twice against one `dev → main` PR, with no duplicate and no automerge |
+| T03 | PASS | repeat bootstrap exited 0 without mutation; subsequent OpenTofu plan was clean |
+| K03 | PASS | `python-lib@v0.4.3` produced a legacy-answer Copier PR containing generated changes and a real `uv.lock` update; CI passed |
+| K06 | FAIL | live replacement dropped the literal `v` and runtime/tooling were assigned separate branches instead of one group |
 
-### Handoff-02
+The immutable summary is [`handoff-04-summary.json`](../evidence/handoff-04-summary.json); the evidence interpretation is [`handoff-04-integration-results.md`](handoff-04-integration-results.md).
 
-Bundle SHA-256: `5894d7468d2a5473e44c649fccebbff139c79f391b044014992de495b1ef18d6`.
+## Accepted final live evidence
 
-| Status | Count |
-|---|---:|
-| PASS | 40 |
-| NEGATIVE_PASS | 6 |
-| FAIL | 10 |
-| BLOCKED | 5 |
+### P04 — promotion controller
 
-### Handoff-03
+- automation commit: `9b90c1df2d69ed3c8c2fa27e11f78e2b940a386a`;
+- caller commit: `a41a511c9656faed0bfa053ead2d67e381f3a5b3`;
+- promotion PR: `sandbox-process#2`, `dev → main`, open, automerge false;
+- workflow run `29422268451`, attempts 1 and 2 both successful;
+- compare result remained `ahead_by=7`;
+- second run created no duplicate PR.
 
-Bundle SHA-256: `4e541e17fc23872bc9203576debbb63f017d53b7a259eeb9955fd72fae98fb47`.
+### T03 — bootstrap idempotency
 
-| Status | Count |
-|---|---:|
-| PASS | 8 |
-| NEGATIVE_PASS | 0 |
-| FAIL | 4 |
-| BLOCKED among the 12 revalidated IDs | 0 |
+- repository: `sandbox-provisioned`;
+- remote `dev` already existed;
+- repeat bootstrap exit: `0`;
+- `dev` and `main` remained at `2a79e75a46131b496a621384c7b62441734f245c`;
+- no new commit, branch or rejected push;
+- OpenTofu plan exit: `0`, no unexplained changes.
 
-Passed IDs: `S03 S04 R03 T01 L04 K05 D03 D05`.  
-Failed IDs: `P04 T03 K03 K06`.  
-Unchanged private blockers: `P06 T04 L05`.
+### K03 — legacy answers and real lock change
 
-Safety remained intact:
+- `components#5` merged the remediation component;
+- `python-lib#21` published the rendered component change;
+- release PR `python-lib#22` produced immutable tag `v0.4.3` at `5df5992c7af0bf4393b712525573699c36cd6c9b`;
+- GitHub release ID: `354495776`;
+- downstream PR: `sandbox-process#10`, open, mergeable, automerge false;
+- changed files: `.copier-answers.yml`, `.pre-commit-config.yaml`, `pyproject.toml`, `uv.lock`;
+- obsolete `py-lib-template-check` hook absent;
+- `uv lock --check` passed;
+- CI run `29424887496` passed on Linux and macOS;
+- rerunning Renovate changed neither the head nor PR count.
 
+The K06 run inadvertently pruned some stale Renovate branches. The agent restored the recorded refs, reopened PRs `#4`, `#5` and `#10`, rebuilt `#10` from current `dev`, and reran its CI successfully. The mutation and cleanup audit records the entire sequence.
+
+## K06 failure and correction
+
+Handoff-04 proved extraction and lookup for both dependencies:
+
+```text
+py-lib-runtime @ ...py-lib-starter.git@v0.32.3#subdirectory=packages/py-lib-runtime
+py-lib-tooling @ ...py-lib-starter.git@v0.32.3#subdirectory=packages/py-lib-tooling
+```
+
+Both resolved through package `betabitplus/py-lib-starter`, datasource `github-tags`, with update `v0.32.3 → v0.32.4`. The live update failed for two configuration reasons:
+
+1. `currentValue` included `v`, while `extractVersionTemplate` normalized the new version to digits. Renovate therefore wrote `@0.32.4`, and the literal `@v...` manager could not re-extract the updated file.
+2. The package rule matched dependency aliases through `matchPackageNames`, but both records have the shared source package name `betabitplus/py-lib-starter`. Their distinct aliases are `depName` values.
+
+The correction now:
+
+- keeps literal `v` outside the captured `currentValue`;
+- matches the group with `matchDepNames`;
+- requires `minimumGroupSize: 2`, preventing a partial shared-source update;
+- includes a Node regression test for extraction, replacement, re-extraction and grouping.
+
+Reviewable implementation:
+
+- `lab-control#9` commits `88e756cdead0ffb751c55af50483b6fd48faaf9f` and `0dbdc7448f201e129670768b4e6d5b2d231e23a2`;
+- `automation#1`, exact commit `1554ac4295daa4c75d983ddab0fca1442b33e675`, draft, automerge disabled.
+
+Only a K06 live rerun remains. No other acceptance phase needs repeating.
+
+## Private and public capability
+
+Current lab visibility is public and was not changed in handoff-04.
+
+| Capability | Private repositories | Public repositories |
+|---|---|---|
+| ordinary Git, Copier, reusable workflow, Renovate and release flows | PASS | PASS |
+| branch/tag rulesets on the current plan | BLOCKED — HTTP 403 | PASS |
+
+This is a tariff/capability boundary, not an architecture defect. Production rollout must either obtain private-ruleset capability or explicitly accept and test a lower-fidelity private branch-protection alternative.
+
+## Security and safety
+
+Handoff-04 results:
+
+- actionlint 1.7.12: exit `0`;
+- `bash -n provisioning/bootstrap.sh`: exit `0`;
+- zizmor 1.27.0 pedantic/offline: one low finding, zero medium/high;
 - production mutations: `0`;
-- automerge: disabled across 53 inspected PRs;
-- `sandbox-python-lib#3`: open, unmerged and unchanged;
-- private key/credential/state findings: `0`;
-- historical tags/releases: not rewritten.
+- visibility mutations: `0`;
+- automerge enables: `0`;
+- credentials created or rotated: `0`;
+- credential/private-key/header/credential-URL scan findings: `0`;
+- `sandbox-python-lib#3`: open, unmerged and unchanged.
 
-## Accepted live architecture evidence
-
-### Private reusable workflows
-
-Private cross-repository calls passed with exact source SHAs, read-only caller permissions, inherited secrets without disclosure, Linux/macOS lanes, intentional failure propagation and cancellation propagation.
-
-### Renovate discovery and delivery
-
-Private presets, explicit allowlist extract/lookup/full phases, organization/topic discovery, reviewed live PR creation and idempotent reruns passed with automerge disabled. Topics plus repository-local Copier relationships can replace the custom downstream registry.
-
-### Repository process
-
-`sandbox-process` was created with `dev` as default and a `main` promotion baseline. A safe update reached `dev` through reviewed CI and exactly one `dev → main` PR remained. The remaining P04 failure is confined to missing repository context on a no-checkout GitHub CLI command; the current workflow now scopes every PR command explicitly.
-
-### Declarative provisioning
-
-OpenTofu 1.12.0 with GitHub provider 6.6.0 created `sandbox-provisioned` without manual repository creation, applied the repository-only phase, reconciled/imported state and cleaned up. T03 remains pending only because the original repeat bootstrap authored another local commit. The corrected script checks remote `dev` before rendering and exits successfully when initialized.
-
-### Releases
-
-Release Please produced immutable patch releases without moving historical tags:
-
-| Release | Main/tag target | Release ID |
-|---|---|---:|
-| `python-lib@v0.4.0` | `0477653722f8a8b125e2bd3963b37d4a0d10c153` | `354133543` |
-| `python-lib@v0.4.1` | `1a4fabe2c0449c5fe92d745eea0f9494c6fed160` | `354137656` |
-| `python-lib@v0.4.2` | `2940bc355da2a957e0deb6c1660ce57293e9674b` | `354387791` |
-
-The v0.4.2 private acceptance path passed on Linux, macOS and Windows.
-
-### Locks, nested relationships and ordinary dependencies
-
-- root lock baseline and CI passed;
-- both nested workspace locks regenerated idempotently;
-- nested acceptance checks equal valid semver tags rather than a historical constant;
-- PEP 508 runtime/tooling refs are detected separately;
-- because both packages currently publish from one root tag, their update is grouped into one PR;
-- the legacy-answer case still needs one component/template release that removes the obsolete hook and forces a deterministic lock change.
-
-### Quality, packaging and residual policy
-
-Direct rule parity passed 8/8; residual policy parity passed 12/12. The corrected dependency-free policy checker accepted the exact generated baseline. Wheel/sdist build, metadata validation, isolated installs, public import, console smoke and pytest passed.
-
-Artifact SHA-256:
-
-- wheel: `d0a4f11f563aeded804fd86ecf82e576f3d1589b454b62055a55223c35553041`;
-- sdist: `b88e32fd2068ec8aab65fe9f07a21cc4bfb2c00aeb00ac160369a3ab01933fcc`.
-
-## Remaining functional gate
-
-| ID | Handoff-03 result | Correction in current PR branch |
-|---|---|---|
-| P04 | workflow lacked repository context outside a checkout | repository-scoped compare/list/create commands |
-| T03 | repeat bootstrap authored a second local commit | remote `dev` guard before render/commit |
-| K03 | no `uv.lock`; inherited hook called obsolete legacy checker | component patch removes hook and forces deterministic dependency metadata change |
-| K06 | Renovate dependency-name mismatch and mixed source refs | two literal managers and one grouped shared-root-tag PR |
-
-Exact live instructions: [`local-agent-handoff-04.md`](local-agent-handoff-04.md).
-
-## Private rulesets and public fallback
-
-Private P06/T04/L05 return a plan-related HTTP 403. Handoff-03 also demonstrated that the equivalent branch/tag policies work when repositories are public.
-
-The final capability statement is therefore:
-
-| Capability | Private repository | Public repository |
-|---|---|---|
-| ordinary Git, Copier, reusable workflows, Renovate and releases | PASS | PASS |
-| branch/tag rulesets on the current plan | BLOCKED | PASS |
-
-No visibility change is required for the remaining P04/T03/K03/K06 checks. The current visibility must simply be recorded accurately.
-
-## Security hardening after handoff-03
-
-The experiment branch now:
-
-- pins action uses to exact commit SHAs;
-- restricts App tokens to explicit lab repository lists;
-- requests explicit App permissions;
-- uses `persist-credentials:false`;
-- uses temporary askpass only around required pushes;
-- adds workflow concurrency and job names;
-- keeps the Renovate container digest-pinned;
-- moves promotion PR write permission to the single job that needs it.
-
-The current branch requires a fresh actionlint and `zizmor --pedantic --offline` run. No whole-repository security pass is claimed before that evidence returns.
+The single zizmor finding requested an explanatory comment for the necessary `pull-requests: write` permission. The comment was already present immediately above it; it is now inline in commit `415487ffeb5beba6b0c622f96033421328a32c75` so the audit can associate it with the permission. A final static rerun accompanies K06.
 
 ## Replacement inventory and retained surface
 
-The matrices cover all 25 published commands and 127 production modules.
+The matrix still covers all 25 commands and 127 production modules.
 
 | Classification | Commands | Modules |
 |---|---:|---:|
@@ -186,9 +156,7 @@ The matrices cover all 25 published commands and 127 production modules.
 | PRODUCT_LIBRARY | 0 | 26 |
 | DEFER | 1 | 11 |
 
-`py-lib-runtime` remains a 2,133-LOC product library, outside the platform lifecycle denominator.
-
-Retained executable surface:
+Retained executable non-product surface:
 
 - idempotent Copier bootstrap: 25 LOC;
 - promotion PR workflow: 26 LOC;
@@ -200,16 +168,10 @@ Retained executable surface:
 Preferred lifecycle total: **165 LOC**, a **97.5% reduction** from 6,673 strict lifecycle LOC.  
 Total executable non-product surface: **373 LOC**, a **96.7% reduction** from 11,466 root/tooling LOC.
 
-## Rollout prerequisites
-
-1. Complete P04/T03/K03/K06 handoff-04 revalidation.
-2. Record private rulesets as plan-blocked and public rulesets as passed; choose a production plan or an explicitly approved private fallback before migration.
-3. Require a zero-exit actionlint/zizmor result for the current workflow set.
-4. Review migration and rollback repository by repository.
-5. Start with one production pilot; do not mass-switch production.
+`py-lib-runtime` remains a 2,133-LOC product library and is excluded from the lifecycle denominator.
 
 ## Final decision rule
 
-The architecture meets the principal goal: no custom platform package is required for template assembly/update, registry membership, fleet synchronization, repository APIs, routine dependency freshness, reusable CI distribution, releases or generic quality tooling.
+After one successful K06 rerun, the isolated experiment is functionally complete. The architecture decision will still be **CONDITIONAL GO** until the private-ruleset capability decision is resolved.
 
-The final decision remains **CONDITIONAL GO** until the four bounded live checks pass and the external private-ruleset decision is resolved. PR #9 remains draft. No production migration has started.
+PR #9 remains draft until the K06 live evidence and final static rerun are incorporated. No production migration has started.
