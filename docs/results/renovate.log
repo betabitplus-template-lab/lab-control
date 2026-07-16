@@ -1,3 +1,9 @@
+             "x-github-media-type": "github.v3",
+             "x-accepted-github-permissions": "administration=read",
+             "x-github-api-version-selected": "2022-11-28",
+             "access-control-expose-headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset, Warning",
+             "access-control-allow-origin": "*",
+             "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
              "x-frame-options": "deny",
              "x-content-type-options": "nosniff",
              "x-xss-protection": "0",
@@ -7,11 +13,11 @@
              "transfer-encoding": "chunked",
              "server": "github.com",
              "x-ratelimit-limit": "5000",
-             "x-ratelimit-remaining": "4941",
+             "x-ratelimit-remaining": "4932",
              "x-ratelimit-reset": "1784196754",
-             "x-ratelimit-used": "59",
+             "x-ratelimit-used": "68",
              "x-ratelimit-resource": "core",
-             "x-github-request-id": "303A:10BA0B:13D0DF3:45ED418:6A58A273"
+             "x-github-request-id": "AC32:CCCC4:1F5F5B3:6ECAF33:6A58A2AE"
            },
            "httpVersion": "1.1",
            "retryCount": 0
@@ -57,7 +63,7 @@ DEBUG: commitHourlyLimit of the upgrades present in this branch (repository=beta
 DEBUG: commitHourlyLimit of this branch is unlimited, because at least one of the upgrade has it's commitHourlyLimit set to "No limit" ie. 0 or null (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Checking if PR has been edited (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Found existing branch PR #3 (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
-DEBUG: Checking schedule(schedule=at any time, tz=null, now=2026-07-16T09:20:52.196Z) (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
+DEBUG: Checking schedule(schedule=at any time, tz=null, now=2026-07-16T09:21:51.422Z) (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: No schedule defined (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Force rebase because branch needs updating (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Using reuseExistingBranch: false (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
@@ -73,10 +79,10 @@ DEBUG: Updated 1 package files (repository=betabitplus-template-lab/python-start
 DEBUG: Updated 1 lock files (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
        "updatedArtifacts": ["template/_components"]
 DEBUG: Getting comments for #3 (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
-DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/3/comments?per_page=100 (etag="22a396577775fc065066282d72c1044706ece6c08d96babeb60dbfe26b6177b0", lastModified=undefined) (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
+DEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/3/comments?per_page=100 (etag="1973f7358d149c44530c7ccb1a8a4cdfffe799176a04786d57fe2798eee721dd", lastModified=undefined) (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Found 0 comments (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Getting comments for #3 (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
-DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/3/comments?per_page=100 from 2026-07-16T09:20:52.558Z (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
+DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/3/comments?per_page=100 from 2026-07-16T09:21:51.716Z (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: Found 0 comments (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: isBranchConflicted(main, renovate-lab/template-components) (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
 DEBUG: branch.isConflicted(): using cached result "false" (repository=betabitplus-template-lab/python-starter-platform, branch=renovate-lab/template-components)
@@ -88,7 +94,7 @@ DEBUG: git commit (repository=betabitplus-template-lab/python-starter-platform, 
        "result": {
          "author": null,
          "branch": "renovate-lab/template-components",
-         "commit": "884ff65c80974d1e9e528c58c1443eab81609afe",
+         "commit": "6aa0b38fbe521ef970016e87cca0d8d43cef7104",
          "root": false,
          "summary": {"changes": 1, "insertions": 1, "deletions": 0}
        }
@@ -125,7 +131,7 @@ DEBUG: Config does not need migration (repository=betabitplus-template-lab/pytho
 DEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/python-starter-platform)
 DEBUG: Ensuring Dependency Dashboard (repository=betabitplus-template-lab/python-starter-platform)
 DEBUG: Checking packageFiles for deprecated or replacement packages (repository=betabitplus-template-lab/python-starter-platform)
-DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/2 from 2026-07-16T09:20:50.656Z (repository=betabitplus-template-lab/python-starter-platform)
+DEBUG: http cache: Using cached response: https://api.github.com/repos/betabitplus-template-lab/python-starter-platform/issues/2 from 2026-07-16T09:21:50.486Z (repository=betabitplus-template-lab/python-starter-platform)
 DEBUG: Issues cache: Updating issue 2 in cache (repository=betabitplus-template-lab/python-starter-platform)
 DEBUG: No changes to dependency dashboard issue needed (repository=betabitplus-template-lab/python-starter-platform)
 DEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/python-starter-platform)
@@ -203,8 +209,8 @@ DEBUG: repository problems (repository=betabitplus-template-lab/python-starter-p
          "⚠️ WARN: Cannot access vulnerability alerts. Please ensure permissions have been granted."
        ]
 DEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/python-starter-platform)
-       "splits": {"init": 2683, "onboarding": 0, "extract": 295, "lookup": 40, "update": 2328},
-       "total": 5705
+       "splits": {"init": 1807, "onboarding": 0, "extract": 240, "lookup": 38, "update": 1598},
+       "total": 3939
 DEBUG: Package cache statistics (repository=betabitplus-template-lab/python-starter-platform)
        "get": {"count": 1, "avgMs": 1, "medianMs": 1, "maxMs": 1, "totalMs": 1},
        "set": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0}
@@ -212,9 +218,9 @@ DEBUG: HTTP statistics (repository=betabitplus-template-lab/python-starter-platf
        "hosts": {
          "api.github.com": {
            "count": 11,
-           "reqAvgMs": 219,
-           "reqMedianMs": 197,
-           "reqMaxMs": 376,
+           "reqAvgMs": 163,
+           "reqMedianMs": 157,
+           "reqMaxMs": 278,
            "queueAvgMs": 0,
            "queueMedianMs": 0,
            "queueMaxMs": 1
@@ -245,7 +251,7 @@ DEBUG: HTTP cache statistics (repository=betabitplus-template-lab/python-starter
          }
        }
 DEBUG: Lookup statistics (repository=betabitplus-template-lab/python-starter-platform)
-       "git-refs": {"count": 1, "avgMs": 2, "medianMs": 2, "maxMs": 2, "totalMs": 2}
+       "git-refs": {"count": 1, "avgMs": 1, "medianMs": 1, "maxMs": 1, "totalMs": 1}
 DEBUG: getReleases statistics summary (repository=betabitplus-template-lab/python-starter-platform)
        "stats": {"count": 0, "avgMs": 0, "medianMs": 0, "maxMs": 0, "totalMs": 0},
        "datasources": {}
@@ -255,46 +261,40 @@ DEBUG: Cache fallback URLs (repository=betabitplus-template-lab/python-starter-p
 DEBUG: Git operations statistics (repository=betabitplus-template-lab/python-starter-platform)
        "other": {
          "count": 28,
-         "avgMs": 27,
-         "medianMs": 6.788608,
-         "maxMs": 309.392896,
-         "totalMs": 748
+         "avgMs": 20,
+         "medianMs": 6.774016,
+         "maxMs": 127.945984,
+         "totalMs": 560
        },
        "clone": {
          "count": 2,
-         "avgMs": 365,
-         "medianMs": 718.14144,
-         "maxMs": 718.14144,
-         "totalMs": 731
+         "avgMs": 147,
+         "medianMs": 281.070848,
+         "maxMs": 281.070848,
+         "totalMs": 294
        },
-       "checkout": {
-         "count": 5,
-         "avgMs": 10,
-         "medianMs": 9.773056,
-         "maxMs": 11.68256,
-         "totalMs": 51
-       },
-       "reset": {"count": 6, "avgMs": 9, "medianMs": 9.282048, "maxMs": 9.897728, "totalMs": 55},
+       "checkout": {"count": 5, "avgMs": 10, "medianMs": 9.5872, "maxMs": 13.106688, "totalMs": 52},
+       "reset": {"count": 6, "avgMs": 9, "medianMs": 9.030144, "maxMs": 9.952256, "totalMs": 54},
        "merge": {
          "count": 2,
          "avgMs": 35,
-         "medianMs": 58.322432,
-         "maxMs": 58.322432,
-         "totalMs": 71
+         "medianMs": 57.954048,
+         "maxMs": 57.954048,
+         "totalMs": 70
        },
        "clean": {
          "count": 1,
          "avgMs": 57,
-         "medianMs": 57.386496,
-         "maxMs": 57.386496,
+         "medianMs": 57.21728,
+         "maxMs": 57.21728,
          "totalMs": 58
        }
  INFO: Repository finished (repository=betabitplus-template-lab/python-starter-platform)
        "cloned": true,
-       "durationMs": 5705,
+       "durationMs": 3939,
        "result": "done",
        "status": "activated",
        "enabled": true,
        "onboarded": true
 DEBUG: Checking file package cache for expired items
-DEBUG: Deleted 0 of 25 file cached entries in 9ms
+DEBUG: Deleted 0 of 25 file cached entries in 7ms
