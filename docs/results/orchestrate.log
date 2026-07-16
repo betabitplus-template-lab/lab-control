@@ -1,8 +1,8 @@
 + git config --global user.name Template Lab Orchestrator
 + git config --global user.email 8123085+betabitplus@users.noreply.github.com
 + git config --global url.https://x-access-token:<redacted>@github.com/.insteadOf https://github.com/
-+ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-finalize-5gm3mouu/py-lib-starter
-Cloning into '/tmp/template-lab-finalize-5gm3mouu/py-lib-starter'...
++ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-finalize-u2lhlyti/py-lib-starter
+Cloning into '/tmp/template-lab-finalize-u2lhlyti/py-lib-starter'...
 + git fetch origin d59582375855cff69fb165e467dc5847bc75ca99
 From https://github.com/betabitplus/py-lib-starter
  * branch            d59582375855cff69fb165e467dc5847bc75ca99 -> FETCH_HEAD
@@ -10,8 +10,8 @@ From https://github.com/betabitplus/py-lib-starter
 HEAD is now at d595823 fix: make fleet doctor resilient to GitHub API failures (#296)
 + git rev-parse HEAD
 + git status --porcelain
-+ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-finalize-5gm3mouu/components
-Cloning into '/tmp/template-lab-finalize-5gm3mouu/components'...
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-finalize-u2lhlyti/components
+Cloning into '/tmp/template-lab-finalize-u2lhlyti/components'...
 + git rev-parse HEAD
 Traceback (most recent call last):
   File "/home/runner/work/lab-control/lab-control/orchestration/finalize.py", line 174, in <module>
@@ -21,4 +21,4 @@ Traceback (most recent call last):
     raise pilot.PilotError(
         f"prepare must finish before C2: components={components_sha}"
     )
-pilot.PilotError: prepare must finish before C2: components=fc63fd8a65cd329819059c73d8653b30c71da0d7
+pilot.PilotError: prepare must finish before C2: components=f95df193b56e6ee51f2a1fd3c36bca7d91efbdf5
