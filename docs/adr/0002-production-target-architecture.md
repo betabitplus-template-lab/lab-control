@@ -1,7 +1,7 @@
 # ADR 0002: Production target architecture with commodity lifecycle tools
 
-- Status: Proposed — architecture validated; rollout conditions remain open
-- Date: 2026-07-15
+- Status: Proposed — architecture validated; one functional rerun and rollout conditions remain
+- Date: 2026-07-16
 - Scope: production design only; no production migration in this ADR
 - Baseline: `betabitplus/py-lib-starter@d59582375855cff69fb165e467dc5847bc75ca99`
 
@@ -79,14 +79,17 @@ Renovate dashboards + GitHub checks + OpenTofu plan → fleet visibility
 
 ## Evidence state
 
-Private reusable workflows, Renovate private preset/topic discovery, Release Please through `v0.4.2`, private cross-platform template acceptance, OpenTofu repository creation, nested locks, restricted components credentials, quality parity, policy parity and direct packaging have live positive evidence.
+Live positive evidence now covers private reusable workflows, private Renovate presets/topic discovery, Release Please through `v0.4.3`, private cross-platform template acceptance, OpenTofu creation and repeat-bootstrap idempotency, promotion PR idempotency, nested and legacy-answer lock updates, restricted components credentials, quality/policy parity and direct packaging.
+
+Handoff-04 passed P04, T03 and K03. K06 failed because the regex replacement dropped the literal `v` and the grouping rule matched `packageName` instead of `depName`. Both defects are corrected in `lab-control#9` and reviewable `automation#1`; only the live grouped-PR rerun remains.
+
+Private rulesets remain plan-blocked; the equivalent public resource shapes passed. Repository visibility is recorded as experimental state and is not itself an architecture acceptance condition.
 
 ## Acceptance condition
 
 This ADR becomes Accepted for production rollout only after:
 
-1. all eleven lab repositories are restored to private;
-2. P04, T03, K03 and K06 pass the bounded handoff-04 live revalidation;
-3. current workflows pass actionlint and `zizmor --pedantic --offline`;
-4. the private P06/T04/L05 capability decision is resolved through a suitable plan or an explicitly approved lower-fidelity private fallback;
-5. the incremental migration and rollback plan is reviewed before any production write.
+1. K06 creates one grouped runtime/tooling ref PR with a valid regenerated lock, green CI, no duplicate on rerun and automerge false;
+2. current workflows pass final actionlint and `zizmor --pedantic --offline` revalidation;
+3. the private P06/T04/L05 capability decision is resolved through a suitable plan or an explicitly approved lower-fidelity private fallback;
+4. the incremental migration and rollback plan is reviewed before any production write.
