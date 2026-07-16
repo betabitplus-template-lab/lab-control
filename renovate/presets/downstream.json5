@@ -9,7 +9,7 @@
       "customType": "regex",
       "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
       "matchStrings": [
-        "py-lib-runtime\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-runtime"
+        "py-lib-runtime\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@v(?<currentValue>\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-runtime"
       ],
       "depNameTemplate": "py-lib-runtime",
       "packageNameTemplate": "betabitplus/py-lib-starter",
@@ -21,7 +21,7 @@
       "customType": "regex",
       "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
       "matchStrings": [
-        "py-lib-tooling\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@(?<currentValue>v\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-tooling"
+        "py-lib-tooling\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@v(?<currentValue>\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-tooling"
       ],
       "depNameTemplate": "py-lib-tooling",
       "packageNameTemplate": "betabitplus/py-lib-starter",
@@ -37,9 +37,13 @@
       "groupName": "Copier template updates"
     },
     {
+      "description": "Keep runtime and tooling on the same root tag from their shared source repository.",
       "matchManagers": ["custom.regex"],
-      "matchPackageNames": ["py-lib-runtime", "py-lib-tooling"],
+      "matchDatasources": ["github-tags"],
+      "matchDepNames": ["py-lib-runtime", "py-lib-tooling"],
       "groupName": "Shared Python Git packages",
+      "groupSlug": "shared-python-git-packages",
+      "minimumGroupSize": 2,
       "labels": ["lab", "python-git-dependency"]
     },
     {
