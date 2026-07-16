@@ -1,8 +1,8 @@
 {
-  "schema": "final-experiment-results/v5",
+  "schema": "final-experiment-results/v6",
   "date": "2026-07-16",
   "architecture_result": "CONDITIONAL_GO",
-  "experiment_acceptance": "INCOMPLETE_ONE_LIVE_CHECK",
+  "experiment_acceptance": "FUNCTIONALLY_COMPLETE",
   "production_mutations": 0,
   "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
   "metrics": {
@@ -25,6 +25,38 @@
     "status_counts": {"PASS": 3, "NEGATIVE_PASS": 0, "FAIL": 1, "BLOCKED": 0},
     "passed_ids": ["P04", "T03", "K03"],
     "failed_ids": ["K06"],
+    "historical_result": true,
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "credential_findings": 0
+  },
+  "k06_final": {
+    "archive_sha256": "7a32d84eb1e11468bd9d4de49be6857e509c47d1a99e8f7e1e26e9f7e63ad811",
+    "source_head": "db66b9aa6062d316548ef85cb0a7daa24303ce01",
+    "status_counts": {"PASS": 1, "NEGATIVE_PASS": 0, "FAIL": 0, "BLOCKED": 0},
+    "passed_ids": ["K06"],
+    "preset": {
+      "repository": "betabitplus-template-lab/automation",
+      "pull_request": 1,
+      "commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
+    },
+    "consumer": {
+      "repository": "betabitplus-template-lab/sandbox-process",
+      "base_commit": "1a512157bcf29e205812c416d84a653f52aa9254",
+      "pull_request": 11,
+      "branch": "renovate-lab/shared-python-git-packages",
+      "head_commit": "23180206f1df692ca3d0627edc69c86aadd19454"
+    },
+    "workflow_run": {
+      "id": 29487631571,
+      "conclusion": "success",
+      "job_ids": [87585796258, 87585796277]
+    },
+    "changed_files": ["pyproject.toml", "uv.lock"],
+    "uv_lock_check_exit": 0,
+    "second_renovate_run_exit": 0,
+    "duplicate_prs": 0,
+    "unrelated_renovate_items_changed": 0,
     "production_mutations": 0,
     "automerge_enabled": false,
     "credential_findings": 0
@@ -33,40 +65,41 @@
     {"id": "P04", "status": "PASS", "evidence": "promotion run 29422268451 attempts 1 and 2; exactly one PR sandbox-process#2"},
     {"id": "T03", "status": "PASS", "evidence": "repeat bootstrap and OpenTofu plan exit 0; refs unchanged"},
     {"id": "K03", "status": "PASS", "evidence": "python-lib v0.4.3 release 354495776; sandbox-process#10; CI 29424887496"},
+    {"id": "K06", "status": "PASS", "evidence": "sandbox-process#11 grouped runtime/tooling v0.32.4 update; uv.lock; CI 29487631571; idempotent rerun"},
     {"id": "private_ordinary_flows", "status": "PASS"},
     {"id": "public_ruleset_fallback", "status": "PASS"},
-    {"id": "production_isolation", "status": "PASS", "evidence": "zero production mutations across all handoffs"}
+    {"id": "production_isolation", "status": "PASS", "evidence": "zero production mutations across all experiment stages"}
   ],
-  "remaining_functional_revalidation": [
-    {
-      "id": "K06",
-      "status": "REVALIDATION_REQUIRED",
-      "reason": "handoff-04 live replacement lost v and failed to group runtime/tooling",
-      "correction": "v outside currentValue; matchDepNames; minimumGroupSize 2",
-      "lab_control_commits": [
-        "88e756cdead0ffb751c55af50483b6fd48faaf9f",
-        "0dbdc7448f201e129670768b4e6d5b2d231e23a2"
-      ],
-      "automation_pr": 1,
-      "automation_commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
-    }
-  ],
-  "external_blockers": [
+  "remaining_functional_revalidation": [],
+  "external_rollout_blockers": [
     {"id": "P06", "status": "BLOCKED", "reason": "private branch ruleset capability returns plan-related HTTP 403"},
     {"id": "T04", "status": "BLOCKED", "reason": "OpenTofu private ruleset phase returns plan-related HTTP 403"},
     {"id": "L05", "status": "BLOCKED", "reason": "private immutable release-tag ruleset returns plan-related HTTP 403"}
   ],
-  "public_fallback": {
-    "status": "PASS_SUPPLEMENTARY",
-    "passed": ["P06_PUBLIC_FALLBACK", "T04_PUBLIC_FALLBACK", "L05_PUBLIC_FALLBACK"],
-    "current_lab_visibility": "PUBLIC"
+  "visibility_capability": {
+    "current_lab_visibility": "PUBLIC",
+    "private_ordinary_flows": "PASS",
+    "private_rulesets": "BLOCKED_BY_PLAN",
+    "public_rulesets": "PASS",
+    "visibility_change_required_for_experiment_completion": false
   },
   "static_security": {
-    "handoff_04_actionlint_exit": 0,
-    "handoff_04_zizmor_exit": 12,
-    "handoff_04_zizmor_findings": {"low": 1, "medium": 0, "high": 0},
-    "low_finding_correction_commit": "415487ffeb5beba6b0c622f96033421328a32c75",
-    "final_rerun_required": true
+    "renovate_regression_exit": 0,
+    "actionlint_exit": 0,
+    "zizmor_pedantic_offline_exit": 0,
+    "zizmor_findings": 0,
+    "status": "PASS"
   },
-  "next_evidence": "K06-only live rerun against automation@1554ac4295daa4c75d983ddab0fca1442b33e675"
+  "safety": {
+    "production_mutations": 0,
+    "visibility_mutations_in_final_rerun": 0,
+    "automerge_enables": 0,
+    "credentials_created_or_rotated": 0,
+    "credential_findings": 0,
+    "sandbox_python_lib_pr3_modified": false,
+    "sandbox_python_lib_pr3_head": "82542cf617b2d55b2b609f5f53654e16e44f36bb"
+  },
+  "next_agent_handoff": null,
+  "production_migration_started": false,
+  "primary_pr_should_remain_draft": true
 }
