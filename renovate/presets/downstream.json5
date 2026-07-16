@@ -1,0 +1,60 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Managed downstream: Copier, package, PEP 508 Git and reusable-workflow ref updates.",
+  "extends": ["local>betabitplus-template-lab/automation//renovate/presets/base.json5"],
+  "enabledManagers": ["copier", "custom.regex", "github-actions", "pep621", "uv"],
+  "baseBranches": ["dev"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
+      "matchStrings": [
+        "py-lib-runtime\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@v(?<currentValue>\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-runtime"
+      ],
+      "depNameTemplate": "py-lib-runtime",
+      "packageNameTemplate": "betabitplus/py-lib-starter",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)pyproject\\.toml$/"],
+      "matchStrings": [
+        "py-lib-tooling\\s*@\\s*git\\+https://github\\.com/betabitplus/py-lib-starter\\.git@v(?<currentValue>\\d+\\.\\d+\\.\\d+)#subdirectory=packages/py-lib-tooling"
+      ],
+      "depNameTemplate": "py-lib-tooling",
+      "packageNameTemplate": "betabitplus/py-lib-starter",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["copier"],
+      "labels": ["lab", "template-update"],
+      "groupName": "Copier template updates"
+    },
+    {
+      "description": "Keep runtime and tooling on the same root tag from their shared source repository.",
+      "matchManagers": ["custom.regex"],
+      "matchDatasources": ["github-tags"],
+      "matchDepNames": ["py-lib-runtime", "py-lib-tooling"],
+      "groupName": "Shared Python Git packages",
+      "groupSlug": "shared-python-git-packages",
+      "minimumGroupSize": 2,
+      "labels": ["lab", "python-git-dependency"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "pinDigests": true,
+      "labels": ["lab", "workflow-dependency"]
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": ["uv lock"],
+    "fileFilters": ["uv.lock"],
+    "executionMode": "branch"
+  }
+}

@@ -1,0 +1,3 @@
+zizmor 1.27.0
+command: uvx zizmor --offline --persona=regular --format=json --no-progress automation-repository/.github/workflows release-please/release-please.yml tooling/direct-quality.yml
+result: PASS, 0 findings

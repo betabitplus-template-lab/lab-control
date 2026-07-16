@@ -1,0 +1,105 @@
+{
+  "schema": "final-experiment-results/v6",
+  "date": "2026-07-16",
+  "architecture_result": "CONDITIONAL_GO",
+  "experiment_acceptance": "FUNCTIONALLY_COMPLETE",
+  "production_mutations": 0,
+  "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
+  "metrics": {
+    "current_root_and_tooling_custom_loc": 11466,
+    "current_strict_template_update_lifecycle_loc": 6673,
+    "projected_required_custom_lifecycle_loc": 165,
+    "projected_unique_policy_loc": 196,
+    "projected_wiring_loc": 12,
+    "projected_total_custom_non_product_loc": 373,
+    "runtime_product_library_loc": 2133,
+    "commands_total": 25,
+    "commands_delete": 8,
+    "commands_replace": 14,
+    "commands_collapsed_to_policy": 2,
+    "commands_defer_optional_utility": 1
+  },
+  "handoff_04": {
+    "bundle_sha256": "ffa83d8f2d252d5a42be4dda64d3185b30dd253c83a84683096b3eb59bbdc136",
+    "source_head": "a1b1555239681195028f8e7eb38a48f47880c191",
+    "status_counts": {"PASS": 3, "NEGATIVE_PASS": 0, "FAIL": 1, "BLOCKED": 0},
+    "passed_ids": ["P04", "T03", "K03"],
+    "failed_ids": ["K06"],
+    "historical_result": true,
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "credential_findings": 0
+  },
+  "k06_final": {
+    "archive_sha256": "7a32d84eb1e11468bd9d4de49be6857e509c47d1a99e8f7e1e26e9f7e63ad811",
+    "source_head": "db66b9aa6062d316548ef85cb0a7daa24303ce01",
+    "status_counts": {"PASS": 1, "NEGATIVE_PASS": 0, "FAIL": 0, "BLOCKED": 0},
+    "passed_ids": ["K06"],
+    "preset": {
+      "repository": "betabitplus-template-lab/automation",
+      "pull_request": 1,
+      "commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
+    },
+    "consumer": {
+      "repository": "betabitplus-template-lab/sandbox-process",
+      "base_commit": "1a512157bcf29e205812c416d84a653f52aa9254",
+      "pull_request": 11,
+      "branch": "renovate-lab/shared-python-git-packages",
+      "head_commit": "23180206f1df692ca3d0627edc69c86aadd19454"
+    },
+    "workflow_run": {
+      "id": 29487631571,
+      "conclusion": "success",
+      "job_ids": [87585796258, 87585796277]
+    },
+    "changed_files": ["pyproject.toml", "uv.lock"],
+    "uv_lock_check_exit": 0,
+    "second_renovate_run_exit": 0,
+    "duplicate_prs": 0,
+    "unrelated_renovate_items_changed": 0,
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "credential_findings": 0
+  },
+  "accepted_live_evidence": [
+    {"id": "P04", "status": "PASS", "evidence": "promotion run 29422268451 attempts 1 and 2; exactly one PR sandbox-process#2"},
+    {"id": "T03", "status": "PASS", "evidence": "repeat bootstrap and OpenTofu plan exit 0; refs unchanged"},
+    {"id": "K03", "status": "PASS", "evidence": "python-lib v0.4.3 release 354495776; sandbox-process#10; CI 29424887496"},
+    {"id": "K06", "status": "PASS", "evidence": "sandbox-process#11 grouped runtime/tooling v0.32.4 update; uv.lock; CI 29487631571; idempotent rerun"},
+    {"id": "private_ordinary_flows", "status": "PASS"},
+    {"id": "public_ruleset_fallback", "status": "PASS"},
+    {"id": "production_isolation", "status": "PASS", "evidence": "zero production mutations across all experiment stages"}
+  ],
+  "remaining_functional_revalidation": [],
+  "external_rollout_blockers": [
+    {"id": "P06", "status": "BLOCKED", "reason": "private branch ruleset capability returns plan-related HTTP 403"},
+    {"id": "T04", "status": "BLOCKED", "reason": "OpenTofu private ruleset phase returns plan-related HTTP 403"},
+    {"id": "L05", "status": "BLOCKED", "reason": "private immutable release-tag ruleset returns plan-related HTTP 403"}
+  ],
+  "visibility_capability": {
+    "current_lab_visibility": "PUBLIC",
+    "private_ordinary_flows": "PASS",
+    "private_rulesets": "BLOCKED_BY_PLAN",
+    "public_rulesets": "PASS",
+    "visibility_change_required_for_experiment_completion": false
+  },
+  "static_security": {
+    "renovate_regression_exit": 0,
+    "actionlint_exit": 0,
+    "zizmor_pedantic_offline_exit": 0,
+    "zizmor_findings": 0,
+    "status": "PASS"
+  },
+  "safety": {
+    "production_mutations": 0,
+    "visibility_mutations_in_final_rerun": 0,
+    "automerge_enables": 0,
+    "credentials_created_or_rotated": 0,
+    "credential_findings": 0,
+    "sandbox_python_lib_pr3_modified": false,
+    "sandbox_python_lib_pr3_head": "82542cf617b2d55b2b609f5f53654e16e44f36bb"
+  },
+  "next_agent_handoff": null,
+  "production_migration_started": false,
+  "primary_pr_should_remain_draft": true
+}

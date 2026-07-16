@@ -1,0 +1,57 @@
+{
+  "schema": "handoff-03-summary/v1",
+  "date": "2026-07-15",
+  "bundle_sha256": "4e541e17fc23872bc9203576debbb63f017d53b7a259eeb9955fd72fae98fb47",
+  "source_head": "9a6ae4d347ed07bd58af3d5d194d3af579a5d415",
+  "status_counts": {
+    "PASS": 8,
+    "NEGATIVE_PASS": 0,
+    "FAIL": 4,
+    "BLOCKED": 0
+  },
+  "unchanged_blocked": {
+    "P06": "BLOCKED",
+    "T04": "BLOCKED",
+    "L05": "BLOCKED"
+  },
+  "acceptance": [
+    {"id":"S03","status":"PASS","result":"All four required actionlint invocations exited 0.","repository":"betabitplus-template-lab/lab-control","commit":"9a6ae4d347ed07bd58af3d5d194d3af579a5d415"},
+    {"id":"S04","status":"PASS","result":"OpenTofu init, fmt check, and JSON validation exited 0 with empty diagnostics.","repository":"betabitplus-template-lab/lab-control","commit":"9a6ae4d347ed07bd58af3d5d194d3af579a5d415"},
+    {"id":"R03","status":"PASS","result":"The repository was created only by OpenTofu, verified private, and finally archived by OpenTofu cleanup.","repository":"betabitplus-template-lab/sandbox-provisioned","commit":"2a79e75a46131b496a621384c7b62441734f245c"},
+    {"id":"P04","status":"FAIL","result":"Compare API and the single promotion PR were correct, but both workflow attempts failed because gh pr list ran outside a checkout without --repo.","repository":"betabitplus-template-lab/sandbox-process","pr":2,"commit":"14cdb2b86ab8bdfee2ee1a04062f5991e0851356","automation_commit":"651d2a3e95bc03a5157276181ec3fbd2f3527951","run_ids":[29410668890]},
+    {"id":"T01","status":"PASS","result":"Repository-only plan returned expected detailed exit code 2 and apply completed.","repository":"betabitplus-template-lab/sandbox-provisioned"},
+    {"id":"T03","status":"FAIL","result":"Apply, no-drift, repeat apply, import recovery and cleanup succeeded, but the second bootstrap authored a new commit and its push was rejected non-fast-forward.","repository":"betabitplus-template-lab/sandbox-provisioned","commit":"2a79e75a46131b496a621384c7b62441734f245c"},
+    {"id":"L04","status":"PASS","result":"Private Linux/macOS/Windows acceptance succeeded; Release Please published v0.4.2 at the exact main SHA.","repository":"betabitplus-template-lab/python-lib","prs":[19,20],"commit":"2940bc355da2a957e0deb6c1660ce57293e9674b","run_ids":[29411155633,29411263815,29411328088,29411397389],"tag":"v0.4.2","release_id":354387791},
+    {"id":"K03","status":"FAIL","result":"Legacy-answer update worked, but uv.lock was absent and the full pre-push hook still expected _copier_answers.yml.","repositories":["betabitplus-template-lab/python-lib","betabitplus-template-lab/sandbox-process"],"pr":9,"run_ids":[29411932482,29412751149],"final_head_commit":"339eba7f9680cab673689c5225082c1a3fe9119a"},
+    {"id":"K05","status":"PASS","result":"The fixture fix merged; exactly two answer files share v0.2.1 and both locks are idempotent.","repository":"betabitplus-template-lab/sandbox-workspace","prs":[8,5],"commits":["95843118d46e599c246e3883687d45d1cf35e07e","f4d428f94f809fa45b910a872a30bde3dec7d29f"],"run_ids":[29405179880,29412193159]},
+    {"id":"K06","status":"FAIL","result":"Dry phases extracted runtime and tooling independently, but live update created no PR due depName mismatch and conflicting Git URLs during uv lock.","repositories":["betabitplus-template-lab/automation","betabitplus-template-lab/sandbox-process"],"automation_commit":"f39049a9df37e4f99b932658b01a310f10dacfd1"},
+    {"id":"D03","status":"PASS","result":"Corrected policy and preserved legacy checker accepted the exact baseline.","repository":"betabitplus-template-lab/sandbox-process","baseline_commit":"d594c0dd80908f89bc5a534681f27765fb985c4b"},
+    {"id":"D05","status":"PASS","result":"The required packaging chain, isolated wheel/sdist installs and pytest all exited 0.","repository":"betabitplus-template-lab/sandbox-process","baseline_commit":"d594c0dd80908f89bc5a534681f27765fb985c4b","artifact_sha256":{"wheel":"d0a4f11f563aeded804fd86ecf82e576f3d1589b454b62055a55223c35553041","sdist":"b88e32fd2068ec8aab65fe9f07a21cc4bfb2c00aeb00ac160369a3ab01933fcc"}}
+  ],
+  "safety": {
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "pull_requests_checked_for_automerge": 53,
+    "sandbox_python_lib_pr_3": {"state":"OPEN","merged":false,"head":"82542cf617b2d55b2b609f5f53654e16e44f36bb"},
+    "credential_scan": {"private_key_files_found":0,"credential_matches_after_redaction":0,"opentofu_state_credential_matches":0}
+  },
+  "scope_deviation": {
+    "lab_repositories_changed_to_public": 11,
+    "repositories": [
+      "betabitplus-template-lab/automation",
+      "betabitplus-template-lab/components",
+      "betabitplus-template-lab/lab-control",
+      "betabitplus-template-lab/python-internal-package",
+      "betabitplus-template-lab/python-lib",
+      "betabitplus-template-lab/python-starter-platform",
+      "betabitplus-template-lab/sandbox-process",
+      "betabitplus-template-lab/sandbox-provisioned",
+      "betabitplus-template-lab/sandbox-python-lib",
+      "betabitplus-template-lab/sandbox-python-platform",
+      "betabitplus-template-lab/sandbox-workspace"
+    ],
+    "interpretation": "Public fallback evidence is supplementary only; it does not satisfy private P06/T04/L05. Restore all lab repositories to private before final acceptance."
+  },
+  "public_fallback": {"P06_PUBLIC_FALLBACK":"PASS","T04_PUBLIC_FALLBACK":"PASS","L05_PUBLIC_FALLBACK":"PASS"},
+  "residual_security": {"zizmor_pedantic_exit":14,"note":"Findings were in inherited first-stage lab-control workflows and are not represented as a whole-repository pass."}
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "k06-final-summary/v1",
+  "date": "2026-07-16",
+  "archive_sha256": "7a32d84eb1e11468bd9d4de49be6857e509c47d1a99e8f7e1e26e9f7e63ad811",
+  "source": {
+    "repository": "betabitplus-template-lab/lab-control",
+    "branch": "experiment/final-platform-20260714",
+    "head_tested": "db66b9aa6062d316548ef85cb0a7daa24303ce01",
+    "pull_request": 9
+  },
+  "functional_ids": ["K06"],
+  "status_counts": {
+    "PASS": 1,
+    "NEGATIVE_PASS": 0,
+    "BLOCKED": 0,
+    "FAIL": 0
+  },
+  "K06": {
+    "status": "PASS",
+    "preset": {
+      "repository": "betabitplus-template-lab/automation",
+      "pull_request": 1,
+      "commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
+    },
+    "consumer": {
+      "repository": "betabitplus-template-lab/sandbox-process",
+      "base_commit": "1a512157bcf29e205812c416d84a653f52aa9254",
+      "pull_request": 11,
+      "branch": "renovate-lab/shared-python-git-packages",
+      "head_commit": "23180206f1df692ca3d0627edc69c86aadd19454"
+    },
+    "updates": [
+      {
+        "depName": "py-lib-runtime",
+        "packageName": "betabitplus/py-lib-starter",
+        "from": "v0.32.3",
+        "to": "v0.32.4"
+      },
+      {
+        "depName": "py-lib-tooling",
+        "packageName": "betabitplus/py-lib-starter",
+        "from": "v0.32.3",
+        "to": "v0.32.4"
+      }
+    ],
+    "changed_files": ["pyproject.toml", "uv.lock"],
+    "uv_lock_check_exit": 0,
+    "workflow_run": {
+      "id": 29487631571,
+      "attempt": 1,
+      "conclusion": "success",
+      "job_ids": [87585796258, 87585796277]
+    },
+    "idempotency": {
+      "second_run_exit": 0,
+      "grouped_pr_count": 1,
+      "duplicate_prs": 0,
+      "head_unchanged": true,
+      "unrelated_prs_and_branches_unchanged": true
+    }
+  },
+  "static_checks": {
+    "renovate_regression_exit": 0,
+    "actionlint_exit": 0,
+    "zizmor_pedantic_offline_exit": 0,
+    "zizmor_findings": 0
+  },
+  "safety": {
+    "production_mutations": 0,
+    "visibility_mutations": 0,
+    "automerge_enables": 0,
+    "credentials_created_or_rotated": 0,
+    "credential_scan_findings": 0,
+    "sandbox_python_lib_pr3_modified": false,
+    "sandbox_python_lib_pr3_head": "82542cf617b2d55b2b609f5f53654e16e44f36bb"
+  }
+}
