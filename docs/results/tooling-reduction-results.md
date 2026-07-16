@@ -10,7 +10,8 @@ Accepted evidence:
 - residual policy parity: **12/12**;
 - exact generated-baseline policy: **PASS**;
 - direct wheel/sdist metadata/install/import/pytest chain: **PASS**;
-- legacy-answer Copier update with real lock change: **PASS** in handoff-04.
+- legacy-answer Copier update with real lock change: **PASS**;
+- grouped runtime/tooling PEP 508 Git update with regenerated lock and idempotent rerun: **PASS**.
 
 ## Direct replacements
 
@@ -26,7 +27,7 @@ Accepted evidence:
 | `py-lib-template-update` | Renovate Copier manager |
 | `py-lib-refresh-shared-lock` | exact allowlisted `uv lock` post-upgrade task |
 
-The obsolete generated `py-lib-template-check` pre-push hook was removed in the `v0.4.3` template line. `sandbox-process#10` proves one atomic update containing answers, generated configuration, dependency metadata and `uv.lock` with green CI.
+The obsolete generated `py-lib-template-check` pre-push hook was removed in the `v0.4.3` template line. `sandbox-process#10` proves one atomic Copier update containing answers, generated configuration, dependency metadata and `uv.lock` with green CI.
 
 ## Packaging smoke
 
@@ -50,23 +51,32 @@ No custom artifact model or package inspector remains necessary.
 
 Two literal regex managers separately identify runtime and tooling while both use the shared source package `betabitplus/py-lib-starter`.
 
-Handoff-04 established the exact remaining configuration defect:
-
-- the literal `v` must remain outside `currentValue` so replacement preserves valid `@vX.Y.Z` syntax;
-- grouping must match `depName` aliases, not the common `packageName`;
-- both updates must be present before branch creation because the current source publishes one root tag stream.
-
-The corrected preset uses:
+The accepted preset configuration is:
 
 ```text
-currentValue = numeric version only
+currentValue = numeric version after a literal v
 matchDepNames = [py-lib-runtime, py-lib-tooling]
 minimumGroupSize = 2
 groupSlug = shared-python-git-packages
 postUpgradeTasks = uv lock
 ```
 
-A Node regression test passes locally and verifies extraction, replacement, re-extraction and grouping configuration. The reviewable publication is `automation#1@1554ac4295daa4c75d983ddab0fca1442b33e675`. One live K06 rerun remains.
+The configuration is published in reviewable `automation#1@1554ac4295daa4c75d983ddab0fca1442b33e675` and has a passing Node regression test.
+
+Final live evidence:
+
+- consumer: `sandbox-process@1a512157bcf29e205812c416d84a653f52aa9254`;
+- grouped PR: `sandbox-process#11`;
+- head: `23180206f1df692ca3d0627edc69c86aadd19454`;
+- runtime and tooling both move `v0.32.3 → v0.32.4`;
+- literal `@v...` syntax remains valid and is successfully re-extracted;
+- changed files are `pyproject.toml` and `uv.lock`;
+- `uv lock --check` exits `0`;
+- CI run `29487631571` succeeds on required Linux and representative macOS jobs;
+- second Renovate run creates no duplicate and changes no unrelated Renovate item;
+- automerge remains disabled.
+
+The shared-root-tag dependency path therefore requires no custom refresh wrapper.
 
 ## Residual policy
 
@@ -74,4 +84,4 @@ Generic import and type rules stay with import-linter, Ruff and Pyright. The ret
 
 ## Runtime package
 
-`py-lib-runtime` remains an ordinary 2,133-LOC product library. It is outside the platform-lifecycle denominator. While runtime and tooling share one root tag stream, Renovate must update their refs atomically; independent package publication can be reconsidered separately.
+`py-lib-runtime` remains an ordinary 2,133-LOC product library. It is outside the platform-lifecycle denominator. While runtime and tooling share one root tag stream, Renovate updates their refs atomically; independent publication can be reconsidered separately.
