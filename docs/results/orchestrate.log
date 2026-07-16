@@ -1,1 +1,24 @@
-Finalizer did not create a log.
++ git config --global user.name Template Lab Orchestrator
++ git config --global user.email 8123085+betabitplus@users.noreply.github.com
++ git config --global url.https://x-access-token:<redacted>@github.com/.insteadOf https://github.com/
++ git clone --no-tags https://github.com/betabitplus/py-lib-starter.git /tmp/template-lab-finalize-zi97gjrz/py-lib-starter
+Cloning into '/tmp/template-lab-finalize-zi97gjrz/py-lib-starter'...
++ git fetch origin d59582375855cff69fb165e467dc5847bc75ca99
+From https://github.com/betabitplus/py-lib-starter
+ * branch            d59582375855cff69fb165e467dc5847bc75ca99 -> FETCH_HEAD
++ git checkout --detach d59582375855cff69fb165e467dc5847bc75ca99
+HEAD is now at d595823 fix: make fleet doctor resilient to GitHub API failures (#296)
++ git rev-parse HEAD
++ git status --porcelain
++ git clone --recurse-submodules https://github.com/betabitplus-template-lab/components.git /tmp/template-lab-finalize-zi97gjrz/components
+Cloning into '/tmp/template-lab-finalize-zi97gjrz/components'...
++ git rev-parse HEAD
+Traceback (most recent call last):
+  File "/home/runner/work/lab-control/lab-control/orchestration/finalize.py", line 174, in <module>
+    main()
+    ~~~~^^
+  File "/home/runner/work/lab-control/lab-control/orchestration/finalize.py", line 48, in main
+    raise pilot.PilotError(
+        f"prepare must finish before C2: components={components_sha}"
+    )
+pilot.PilotError: prepare must finish before C2: components=f95df193b56e6ee51f2a1fd3c36bca7d91efbdf5
