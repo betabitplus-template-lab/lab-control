@@ -12,8 +12,7 @@ jobs:
     name: Ensure one dev to main PR
     permissions:
       contents: read
-      # Required only to inspect and create the review-gated promotion PR.
-      pull-requests: write
+      pull-requests: write # Inspect and create the review-gated promotion PR only.
     runs-on: ubuntu-latest
     steps:
       - name: Ensure one dev to main PR
