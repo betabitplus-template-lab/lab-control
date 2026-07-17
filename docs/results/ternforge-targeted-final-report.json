@@ -1,0 +1,56 @@
+{
+  "date": "2026-07-17",
+  "production_baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
+  "production_mutations": 0,
+  "bundle_sha256": "1d39a1f9e8af91afd073b8a602edecaf5eaee32d981de96c04f2f75f80663785",
+  "verdict": "READY WITH EXPLICIT LIMITATIONS",
+  "architecture_blockers": [],
+  "explicit_limitations": [
+    "The local live run used a credential with production admin/push despite the handoff stop condition; no production mutation was observed, but least privilege was not technically enforced.",
+    "The returned bundle abbreviates raw OpenTofu plan/apply and negative Git command transcripts; repository state and configuration corroborate the result, but traceability is incomplete."
+  ],
+  "required_baseline_changes": [
+    "Set platformCommit=disabled in symlink-bearing template repositories.",
+    "Treat .gitmodules branch=vX.Y.Z only as a Renovate version marker and never use git submodule update --remote for release selection.",
+    "Use built-in Renovate pep621 for tool.uv.sources Git tags; no regex fallback.",
+    "Remove Workflow Publisher App/custom updater from target architecture.",
+    "Do not commit WIRING.json.",
+    "Split runtime, policy, and testkit into standalone repositories.",
+    "Pin integrations/github provider 6.13.0 for the validated OpenTofu configuration.",
+    "Use a least-privilege selected-repository credential before production-like mutations."
+  ],
+  "results": {
+    "composition_without_wiring": "PASS",
+    "copier_infra": "PASS",
+    "copier_py_library": "PASS",
+    "renovate_submodule_release": "PASS",
+    "renovate_platform_commit": "CONDITIONAL",
+    "renovate_copier": "PASS",
+    "renovate_reusable_workflow": "PASS",
+    "renovate_preset": "PASS",
+    "renovate_uv_git_tag_builtin": "PASS",
+    "renovate_uv_git_tag_regex_fallback": "NOT_NEEDED",
+    "renovate_pre_commit": "PASS",
+    "standalone_runtime": "PASS",
+    "standalone_policy": "PASS",
+    "standalone_testkit": "PASS",
+    "consumer_frozen_lock": "PASS",
+    "opentofu_bootstrap_rulesets": "CONDITIONAL",
+    "targeted_rollbacks": "PASS",
+    "production_credential_boundary": "CONDITIONAL"
+  },
+  "authoritative_repositories": {
+    "components": "betabitplus-template-lab/sandbox-ternforge-components-20260717-r2",
+    "template_infra": "betabitplus-template-lab/sandbox-ternforge-template-infra-repository-20260717-r2",
+    "template_py_library": "betabitplus-template-lab/sandbox-ternforge-template-py-library-20260717-r2",
+    "infra_ci": "betabitplus-template-lab/sandbox-ternforge-infra-ci-20260717-r2",
+    "infra_updates": "betabitplus-template-lab/sandbox-ternforge-infra-updates-20260717-r2",
+    "runtime": "betabitplus-template-lab/sandbox-ternforge-tooling-py-runtime-20260717-r2",
+    "policy": "betabitplus-template-lab/sandbox-ternforge-tooling-py-policy-20260717-r2",
+    "testkit": "betabitplus-template-lab/sandbox-ternforge-tooling-py-testkit-20260717-r2",
+    "consumer_infra": "betabitplus-template-lab/sandbox-ternforge-consumer-infra-20260717-r2",
+    "consumer_py": "betabitplus-template-lab/sandbox-ternforge-consumer-py-20260717-r2",
+    "repository_control": "betabitplus-template-lab/sandbox-ternforge-repository-control-20260717",
+    "controlled_repository": "betabitplus-template-lab/sandbox-ternforge-controlled-repository"
+  }
+}
