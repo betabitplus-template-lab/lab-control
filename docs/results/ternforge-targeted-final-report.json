@@ -1,14 +1,13 @@
 {
-  "date": "2026-07-17",
+  "date": "2026-07-18",
   "production_baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
   "production_mutations": 0,
   "bundle_sha256": "1d39a1f9e8af91afd073b8a602edecaf5eaee32d981de96c04f2f75f80663785",
-  "verdict": "READY WITH EXPLICIT LIMITATIONS",
+  "closure_bundle_sha256": "5bd24f74838c2055e886896fce47cb8e7aa378577164978905347c5e37ec5173",
+  "verdict": "READY TO PLAN TERNFORGE",
   "architecture_blockers": [],
-  "explicit_limitations": [
-    "The local live run used a credential with production admin/push despite the handoff stop condition; no production mutation was observed, but least privilege was not technically enforced.",
-    "The returned bundle abbreviates raw OpenTofu plan/apply and negative Git command transcripts; repository state and configuration corroborate the result, but traceability is incomplete."
-  ],
+  "evidence_blockers": [],
+  "explicit_limitations": [],
   "required_baseline_changes": [
     "Set platformCommit=disabled in symlink-bearing template repositories.",
     "Treat .gitmodules branch=vX.Y.Z only as a Renovate version marker and never use git submodule update --remote for release selection.",
@@ -17,14 +16,14 @@
     "Do not commit WIRING.json.",
     "Split runtime, policy, and testkit into standalone repositories.",
     "Pin integrations/github provider 6.13.0 for the validated OpenTofu configuration.",
-    "Use a least-privilege selected-repository credential before production-like mutations."
+    "Use an isolated organization-scoped credential for implementation work."
   ],
   "results": {
     "composition_without_wiring": "PASS",
     "copier_infra": "PASS",
     "copier_py_library": "PASS",
     "renovate_submodule_release": "PASS",
-    "renovate_platform_commit": "CONDITIONAL",
+    "renovate_platform_commit": "PASS_WITH_STANDARD_SETTING",
     "renovate_copier": "PASS",
     "renovate_reusable_workflow": "PASS",
     "renovate_preset": "PASS",
@@ -35,22 +34,23 @@
     "standalone_policy": "PASS",
     "standalone_testkit": "PASS",
     "consumer_frozen_lock": "PASS",
-    "opentofu_bootstrap_rulesets": "CONDITIONAL",
+    "opentofu_bootstrap_rulesets": "PASS",
     "targeted_rollbacks": "PASS",
-    "production_credential_boundary": "CONDITIONAL"
+    "production_credential_boundary": "PASS"
   },
-  "authoritative_repositories": {
-    "components": "betabitplus-template-lab/sandbox-ternforge-components-20260717-r2",
-    "template_infra": "betabitplus-template-lab/sandbox-ternforge-template-infra-repository-20260717-r2",
-    "template_py_library": "betabitplus-template-lab/sandbox-ternforge-template-py-library-20260717-r2",
-    "infra_ci": "betabitplus-template-lab/sandbox-ternforge-infra-ci-20260717-r2",
-    "infra_updates": "betabitplus-template-lab/sandbox-ternforge-infra-updates-20260717-r2",
-    "runtime": "betabitplus-template-lab/sandbox-ternforge-tooling-py-runtime-20260717-r2",
-    "policy": "betabitplus-template-lab/sandbox-ternforge-tooling-py-policy-20260717-r2",
-    "testkit": "betabitplus-template-lab/sandbox-ternforge-tooling-py-testkit-20260717-r2",
-    "consumer_infra": "betabitplus-template-lab/sandbox-ternforge-consumer-infra-20260717-r2",
-    "consumer_py": "betabitplus-template-lab/sandbox-ternforge-consumer-py-20260717-r2",
-    "repository_control": "betabitplus-template-lab/sandbox-ternforge-repository-control-20260717",
-    "controlled_repository": "betabitplus-template-lab/sandbox-ternforge-controlled-repository"
+  "closure_evidence": {
+    "result": "PASS",
+    "credential_boundary": "PASS",
+    "full_opentofu_transcript": "PASS",
+    "secret_scan": "PASS",
+    "command_blocks": 57,
+    "control_repository": "betabitplus-template-lab/sandbox-ternforge-repository-control-20260718-r3",
+    "controlled_repository": "betabitplus-template-lab/sandbox-ternforge-controlled-repository-20260718-r3",
+    "control_commit": "96d2a7b0dccb3befc81723b81e2500d653338f43",
+    "pull_request": 1,
+    "required_check_run_id": 29615656908,
+    "branch_ruleset_id": 19124611,
+    "tag_ruleset_id": 19124609,
+    "production_mutations": 0
   }
 }
