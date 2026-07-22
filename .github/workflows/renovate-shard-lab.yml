@@ -1,0 +1,63 @@
+name: Renovate shard lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  renovate:
+    name: Shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - shard: "0"
+            repositories:
+              - betabitplus-template-lab/sandbox-renovate-shard-01
+              - betabitplus-template-lab/sandbox-renovate-shard-03
+              - betabitplus-template-lab/sandbox-renovate-shard-05
+          - shard: "1"
+            repositories:
+              - betabitplus-template-lab/sandbox-renovate-shard-02
+              - betabitplus-template-lab/sandbox-renovate-shard-04
+              - betabitplus-template-lab/sandbox-renovate-shard-06
+    concurrency:
+      group: renovate-shard-lab-${{ matrix.shard }}
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - name: Mint shard-scoped App token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ join(matrix.repositories, '\n') }}
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run one Renovate process for the shard
+        env:
+          RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          SHARD_REPOSITORIES_JSON: ${{ toJSON(matrix.repositories) }}
+        run: |
+          SECONDS=0
+          docker run --rm \
+            -v "$PWD:/usr/src/app" \
+            -w /usr/src/app \
+            -e RENOVATE_TOKEN \
+            -e SHARD_REPOSITORIES_JSON \
+            -e RENOVATE_CONFIG_FILE=renovate/shard-lab-config.js \
+            -e LOG_LEVEL=info \
+            renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+          printf 'Shard %s duration: %ss\n' "${{ matrix.shard }}" "$SECONDS" >> "$GITHUB_STEP_SUMMARY"
