@@ -1,0 +1,53 @@
+name: Sync dev with App
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Verify and fast-forward dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint repository-scoped sync App token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: sandbox-ternforge-promotion-20260722-r1
+          permission-contents: write
+
+      - name: Verify promotion and update dev ref
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TARGET_REPOSITORY: betabitplus-template-lab/sandbox-ternforge-promotion-20260722-r1
+        run: |
+          main_sha="$(gh api "repos/${TARGET_REPOSITORY}/git/ref/heads/main" --jq .object.sha)"
+          dev_sha="$(gh api "repos/${TARGET_REPOSITORY}/git/ref/heads/dev" --jq .object.sha)"
+
+          if test "$main_sha" = "$dev_sha"; then
+            printf 'dev already equals main: %s\n' "$main_sha" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          parent_count="$(gh api "repos/${TARGET_REPOSITORY}/commits/${main_sha}" --jq '.parents | length')"
+          test "$parent_count" = 2
+
+          second_parent="$(gh api "repos/${TARGET_REPOSITORY}/commits/${main_sha}" --jq .parents[1].sha)"
+          dev_tree="$(gh api "repos/${TARGET_REPOSITORY}/git/commits/${dev_sha}" --jq .tree.sha)"
+          main_tree="$(gh api "repos/${TARGET_REPOSITORY}/git/commits/${main_sha}" --jq .tree.sha)"
+
+          test "$second_parent" = "$dev_sha"
+          test "$dev_tree" = "$main_tree"
+
+          gh api \
+            --method PATCH \
+            "repos/${TARGET_REPOSITORY}/git/refs/heads/dev" \
+            -f sha="$main_sha" \
+            -F force=false \
+            --silent
+
