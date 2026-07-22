@@ -17,19 +17,28 @@ jobs:
         include:
           - shard: "0"
             repositories:
-              - betabitplus-template-lab/sandbox-renovate-shard-01
-              - betabitplus-template-lab/sandbox-renovate-shard-03
-              - betabitplus-template-lab/sandbox-renovate-shard-05
+              - sandbox-renovate-shard-01
+              - sandbox-renovate-shard-03
+              - sandbox-renovate-shard-05
           - shard: "1"
             repositories:
-              - betabitplus-template-lab/sandbox-renovate-shard-02
-              - betabitplus-template-lab/sandbox-renovate-shard-04
-              - betabitplus-template-lab/sandbox-renovate-shard-06
+              - sandbox-renovate-shard-02
+              - sandbox-renovate-shard-04
+              - sandbox-renovate-shard-06
     concurrency:
       group: renovate-shard-lab-${{ matrix.shard }}
       cancel-in-progress: false
       queue: max
     steps:
+      - name: Build App token repository scope
+        id: token-scope
+        env:
+          REPOSITORIES_JSON: ${{ toJSON(matrix.repositories) }}
+        run: |
+          printf 'repositories<<EOF\n' >> "$GITHUB_OUTPUT"
+          jq -r '.[]' <<< "$REPOSITORIES_JSON" >> "$GITHUB_OUTPUT"
+          printf 'EOF\n' >> "$GITHUB_OUTPUT"
+
       - name: Mint shard-scoped App token
         id: app-token
         uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
@@ -37,7 +46,7 @@ jobs:
           app-id: ${{ secrets.LAB_APP_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-          repositories: ${{ join(matrix.repositories, '\n') }}
+          repositories: ${{ steps.token-scope.outputs.repositories }}
           permission-contents: write
           permission-issues: write
           permission-pull-requests: write
@@ -50,6 +59,7 @@ jobs:
         env:
           RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
           SHARD_REPOSITORIES_JSON: ${{ toJSON(matrix.repositories) }}
+          RENOVATE_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           SECONDS=0
           docker run --rm \
@@ -57,6 +67,7 @@ jobs:
             -w /usr/src/app \
             -e RENOVATE_TOKEN \
             -e SHARD_REPOSITORIES_JSON \
+            -e RENOVATE_REPOSITORY_OWNER \
             -e RENOVATE_CONFIG_FILE=renovate/shard-lab-config.js \
             -e LOG_LEVEL=info \
             renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
