@@ -26,14 +26,13 @@ jobs:
           TARGET: betabitplus-template-lab/sandbox-ternforge-dispatch-target-20260723-r1
         run: |
           set -euo pipefail
-          gh api "repos/${TARGET}" --silent
-
           set +e
-          gh api "repos/${GITHUB_REPOSITORY}" --silent
+          jq -n '{event_type:"ternforge-forbidden-source-probe",client_payload:{}}' \
+            | gh api --method POST "repos/${GITHUB_REPOSITORY}/dispatches" --input - --silent
           source_access=$?
           set -e
           test "$source_access" -ne 0
 
           jq -n '{event_type:"ternforge-lab-release",client_payload:{source:"sandbox-ternforge-final-contract-20260723-r1",version:"0.3.0"}}' \
             | gh api --method POST "repos/${TARGET}/dispatches" --input - --silent
-          printf 'target_access=success source_access=denied dispatch=sent\n' >> "$GITHUB_STEP_SUMMARY"
+          printf 'target_dispatch=success source_dispatch=denied\n' >> "$GITHUB_STEP_SUMMARY"
