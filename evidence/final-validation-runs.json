@@ -1,0 +1,644 @@
+{
+  "all_runs_match_expected_conclusion": true,
+  "final_repository": {
+    "current_promoted_sha": "1d18e0b68bc8276b58f2de072e96aea19bde4dc2",
+    "main_sha": "0c69a711760a845847ff12c1338c25f3283c4e96",
+    "repository": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+    "rulesets": [
+      {
+        "_links": {
+          "html": {
+            "href": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rules/19611999"
+          },
+          "self": {
+            "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rulesets/19611999"
+          }
+        },
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "exclude": [],
+            "include": [
+              "refs/heads/dev"
+            ]
+          }
+        },
+        "created_at": "2026-07-23T12:55:46.070+03:00",
+        "current_user_can_bypass": "never",
+        "enforcement": "active",
+        "id": 19611999,
+        "name": "dev-final-contract",
+        "node_id": "RRS_lACqUmVwb3NpdG9yec5OEcUzzgErQV8",
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "non_fast_forward"
+          },
+          {
+            "parameters": {
+              "allowed_merge_methods": [
+                "squash"
+              ],
+              "dismiss_stale_reviews_on_push": false,
+              "dismissal_restriction": {
+                "allowed_actors": [],
+                "enabled": false
+              },
+              "require_code_owner_review": false,
+              "require_last_push_approval": false,
+              "required_approving_review_count": 0,
+              "required_review_thread_resolution": false,
+              "required_reviewers": []
+            },
+            "type": "pull_request"
+          },
+          {
+            "parameters": {
+              "do_not_enforce_on_create": false,
+              "required_status_checks": [
+                {
+                  "context": "ci / required",
+                  "integration_id": 15368
+                }
+              ],
+              "strict_required_status_checks_policy": true
+            },
+            "type": "required_status_checks"
+          }
+        ],
+        "source": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+        "source_type": "Repository",
+        "target": "branch",
+        "updated_at": "2026-07-23T12:55:46.154+03:00"
+      },
+      {
+        "_links": {
+          "html": {
+            "href": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rules/19612002"
+          },
+          "self": {
+            "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rulesets/19612002"
+          }
+        },
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "exclude": [],
+            "include": [
+              "refs/heads/main"
+            ]
+          }
+        },
+        "created_at": "2026-07-23T12:55:46.790+03:00",
+        "current_user_can_bypass": "never",
+        "enforcement": "active",
+        "id": 19612002,
+        "name": "main-final-contract",
+        "node_id": "RRS_lACqUmVwb3NpdG9yec5OEcUzzgErQWI",
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "non_fast_forward"
+          },
+          {
+            "parameters": {
+              "allowed_merge_methods": [
+                "merge"
+              ],
+              "dismiss_stale_reviews_on_push": false,
+              "dismissal_restriction": {
+                "allowed_actors": [],
+                "enabled": false
+              },
+              "require_code_owner_review": false,
+              "require_last_push_approval": false,
+              "required_approving_review_count": 0,
+              "required_review_thread_resolution": false,
+              "required_reviewers": []
+            },
+            "type": "pull_request"
+          },
+          {
+            "parameters": {
+              "do_not_enforce_on_create": false,
+              "required_status_checks": [
+                {
+                  "context": "ci / required",
+                  "integration_id": 15368
+                },
+                {
+                  "context": "promotion / required",
+                  "integration_id": 15368
+                }
+              ],
+              "strict_required_status_checks_policy": false
+            },
+            "type": "required_status_checks"
+          }
+        ],
+        "source": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+        "source_type": "Repository",
+        "target": "branch",
+        "updated_at": "2026-07-23T13:00:25.738+03:00"
+      },
+      {
+        "_links": {
+          "html": {
+            "href": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rules/19612006"
+          },
+          "self": {
+            "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/rulesets/19612006"
+          }
+        },
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "exclude": [],
+            "include": [
+              "refs/tags/v*"
+            ]
+          }
+        },
+        "created_at": "2026-07-23T12:55:47.509+03:00",
+        "current_user_can_bypass": "never",
+        "enforcement": "active",
+        "id": 19612006,
+        "name": "release-tags-immutable",
+        "node_id": "RRS_lACqUmVwb3NpdG9yec5OEcUzzgErQWY",
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "non_fast_forward"
+          }
+        ],
+        "source": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+        "source_type": "Repository",
+        "target": "tag",
+        "updated_at": "2026-07-23T12:55:47.553+03:00"
+      }
+    ],
+    "v0.3.0_release": {
+      "body": "<!-- Release notes generated using configuration in .github/release.yml at v0.3.0 -->\n\n## What's Changed\n* feat: add v0.3.0 contract feature by @betabitplus in https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/pull/5\n\n\n**Full Changelog**: https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/compare/v0.2.0...v0.3.0",
+      "createdAt": "2026-07-23T10:06:20Z",
+      "publishedAt": "2026-07-23T10:06:55Z",
+      "tagName": "v0.3.0",
+      "targetCommitish": "63572768f366530f03379aca7ce144ab5c475e67",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/releases/tag/v0.3.0"
+    },
+    "v0.3.0_tag_matches_release": true,
+    "v0.3.0_tag_sha": "63572768f366530f03379aca7ce144ab5c475e67",
+    "v0.4.0_tag_mismatches_current_promoted_sha": true,
+    "v0.4.0_tag_sha": "825827df193de0c67de2a1ff0322bfea0ce2f70f"
+  },
+  "generated_at": "2026-07-23T11:17:42.337964+00:00",
+  "runs": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:44:21Z",
+      "display_title": "Scalr OIDC positive",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "457c0420c77fe71bea2bfaa5ddccca1487fcd372",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:44:40Z",
+          "conclusion": "success",
+          "name": "state-lifecycle",
+          "started_at": "2026-07-23T09:44:27Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996537630/job/89171439435"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_positive",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 29996537630,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:44:41Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996537630",
+      "workflow": "Scalr OIDC positive"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:45:06Z",
+      "display_title": "Scalr OIDC wrong audience",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "457c0420c77fe71bea2bfaa5ddccca1487fcd372",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:45:14Z",
+          "conclusion": "success",
+          "name": "denied",
+          "started_at": "2026-07-23T09:45:10Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996589078/job/89171599686"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_wrong_audience",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 29996589078,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:45:15Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996589078",
+      "workflow": "Scalr OIDC wrong audience"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:45:08Z",
+      "display_title": "Scalr OIDC permission negative",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "457c0420c77fe71bea2bfaa5ddccca1487fcd372",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:45:15Z",
+          "conclusion": "success",
+          "name": "denied",
+          "started_at": "2026-07-23T09:45:12Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996591159/job/89171606653"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_without_id_token_permission",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 29996591159,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:45:15Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996591159",
+      "workflow": "Scalr OIDC permission negative"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:45:09Z",
+      "display_title": "Scalr OIDC repository negative",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "eeb90c37d7cef8e270115752cfdd8073074bbbd4",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:45:21Z",
+          "conclusion": "success",
+          "name": "denied",
+          "started_at": "2026-07-23T09:45:15Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-denied-20260723-r1/actions/runs/29996593517/job/89171618519"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_wrong_repository",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-denied-20260723-r1",
+      "run_id": 29996593517,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:45:22Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-denied-20260723-r1/actions/runs/29996593517",
+      "workflow": "Scalr OIDC repository negative"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:50:06Z",
+      "display_title": "Scalr RBAC scope negative",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "6dd7f2f45b4156eea08beba8d438d3d084af9cac",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:50:19Z",
+          "conclusion": "success",
+          "name": "scope",
+          "started_at": "2026-07-23T09:50:12Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996924657/job/89172697486"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_rbac_scope",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 29996924657,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:50:19Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996924657",
+      "workflow": "Scalr RBAC scope negative"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T09:50:08Z",
+      "display_title": "Scalr state lock",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "6dd7f2f45b4156eea08beba8d438d3d084af9cac",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T09:50:56Z",
+          "conclusion": "success",
+          "name": "lock",
+          "started_at": "2026-07-23T09:50:13Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996927248/job/89172705490"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_state_lock",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 29996927248,
+      "status": "completed",
+      "updated_at": "2026-07-23T09:50:57Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/29996927248",
+      "workflow": "Scalr state lock"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T11:00:31Z",
+      "display_title": "Scalr OIDC expiry",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "a95a9163d1c2e7d059319014cc1c6a73e70f37b6",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T11:11:50Z",
+          "conclusion": "success",
+          "name": "expiry",
+          "started_at": "2026-07-23T11:00:41Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/30001478357/job/89187460451"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "scalr_token_expiry",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1",
+      "run_id": 30001478357,
+      "status": "completed",
+      "updated_at": "2026-07-23T11:11:51Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-scalr-oidc-20260723-r1/actions/runs/30001478357",
+      "workflow": "Scalr OIDC expiry"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:06:45Z",
+      "display_title": "publish",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "d4c2789ddd9591ee52acc7892a5492fbb4d28339",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:06:57Z",
+          "conclusion": "success",
+          "name": "release",
+          "started_at": "2026-07-23T10:06:48Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998051274/job/89176331536"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "publisher_create",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+      "run_id": 29998051274,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:06:58Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998051274",
+      "workflow": "publish"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:07:17Z",
+      "display_title": "publish",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "d4c2789ddd9591ee52acc7892a5492fbb4d28339",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:07:25Z",
+          "conclusion": "success",
+          "name": "release",
+          "started_at": "2026-07-23T10:07:21Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998084474/job/89176441633"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "publisher_idempotent",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+      "run_id": 29998084474,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:07:26Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998084474",
+      "workflow": "publish"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-07-23T10:09:28Z",
+      "display_title": "publish",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "failure",
+      "head_sha": "0c69a711760a845847ff12c1338c25f3283c4e96",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:09:35Z",
+          "conclusion": "failure",
+          "name": "release",
+          "started_at": "2026-07-23T10:09:31Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998222773/job/89176894944"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "publisher_wrong_tag",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+      "run_id": 29998222773,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:09:36Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998222773",
+      "workflow": "publish"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-07-23T10:10:30Z",
+      "display_title": "probe: non-dev source",
+      "event": "pull_request",
+      "expected_conclusion": "failure",
+      "head_sha": "b424be20b35a884d6df5e8f70467f0dc4494b5eb",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:10:37Z",
+          "conclusion": "failure",
+          "name": "promotion / required",
+          "started_at": "2026-07-23T10:10:33Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998289790/job/89177108642"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "promotion_non_dev_source",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1",
+      "run_id": 29998289790,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:10:37Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-final-contract-20260723-r1/actions/runs/29998289790",
+      "workflow": "promotion"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-07-23T10:11:41Z",
+      "display_title": "Probe stale dev head",
+      "event": "pull_request",
+      "expected_conclusion": "failure",
+      "head_sha": "fdbbc19ee93962e089d80eecb6dc0ea40972773d",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:12:02Z",
+          "conclusion": "failure",
+          "name": "promotion / required",
+          "started_at": "2026-07-23T10:11:43Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1/actions/runs/29998364612/job/89177355822"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "promotion_stale_head",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1",
+      "run_id": 29998364612,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:12:03Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1/actions/runs/29998364612",
+      "workflow": "promotion"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:11:57Z",
+      "display_title": "Probe stale dev head",
+      "event": "pull_request",
+      "expected_conclusion": "success",
+      "head_sha": "e61bb8ec1c14e9ef7ec257ff0cabf757a3bcfe4c",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:12:22Z",
+          "conclusion": "success",
+          "name": "promotion / required",
+          "started_at": "2026-07-23T10:12:00Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1/actions/runs/29998382370/job/89177413030"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "promotion_current_head",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1",
+      "run_id": 29998382370,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:12:23Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-promotion-negative-20260723-r1/actions/runs/29998382370",
+      "workflow": "promotion"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:15:54Z",
+      "display_title": "Router model lab",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "6633dd912137b2195723a6323f3a7b0d523b7f45",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:16:01Z",
+          "conclusion": "success",
+          "name": "validate",
+          "started_at": "2026-07-23T10:15:57Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29998637015/job/89178247043"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "router_model",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29998637015,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:16:01Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29998637015",
+      "workflow": "Router model lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:20:15Z",
+      "display_title": "Dispatch boundary lab",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "9a8bc3fe0700aae9e2f459e53aa0ea2bec774081",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:20:24Z",
+          "conclusion": "success",
+          "name": "dispatch",
+          "started_at": "2026-07-23T10:20:19Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29998914668/job/89179150848"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "dispatch_boundary",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29998914668,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:20:25Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29998914668",
+      "workflow": "Dispatch boundary lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:20:25Z",
+      "display_title": "ternforge-lab-release",
+      "event": "repository_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "f8654d1e3f94573e01ae2c09eac8729deb3ea900",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:20:29Z",
+          "conclusion": "success",
+          "name": "validate",
+          "started_at": "2026-07-23T10:20:27Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-dispatch-target-20260723-r1/actions/runs/29998924315/job/89179178807"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "dispatch_target",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-dispatch-target-20260723-r1",
+      "run_id": 29998924315,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:20:30Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-dispatch-target-20260723-r1/actions/runs/29998924315",
+      "workflow": "dispatch evidence"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T10:22:19Z",
+      "display_title": "Renovate token boundary lab",
+      "event": "workflow_dispatch",
+      "expected_conclusion": "success",
+      "head_sha": "76767b1cc5236558324c946fbdd4bfd2b40bd6c6",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T10:22:32Z",
+          "conclusion": "success",
+          "name": "boundary",
+          "started_at": "2026-07-23T10:22:23Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29999042911/job/89179571519"
+        }
+      ],
+      "matches_expected_conclusion": true,
+      "name": "renovate_token_boundary",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29999042911,
+      "status": "completed",
+      "updated_at": "2026-07-23T10:22:33Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29999042911",
+      "workflow": "Renovate token boundary lab"
+    }
+  ]
+}
