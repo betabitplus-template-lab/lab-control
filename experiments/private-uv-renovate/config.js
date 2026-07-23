@@ -22,7 +22,7 @@ module.exports = {
   packageRules:
     mode === "lock-maintenance"
       ? [{ matchPackageNames: ["*"], enabled: false }]
-      : [],
+      : [{ matchPackageNames: ["packaging"], enabled: false }],
   branchPrefix:
     mode === "lock-maintenance"
       ? "renovate-lab-lock/"
