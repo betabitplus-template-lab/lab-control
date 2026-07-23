@@ -1,0 +1,379 @@
+{
+  "audit_date": "2026-07-23",
+  "audit_findings": {
+    "architecture_valid": true,
+    "baseline_internal_contradictions_found": false,
+    "clarifications_before_implementation": [
+      "Release Please preparation must use a repository-scoped GitHub App token, not GITHUB_TOKEN, so CI starts without manual approval.",
+      "Use client-id rather than the deprecated app-id input in actions/create-github-app-token v3.",
+      "Treat release dispatch as at-least-once and duplicate-safe, not exactly-once.",
+      "Record queue: max capacity of 100 pending runs per shard and rely on nightly self-healing after overflow."
+    ],
+    "native_replacement_found": false
+  },
+  "baseline": {
+    "commit": "d9e92e645491b6d01c723af917b6f1909e7c2d9f",
+    "consistency_checks": {
+      "dispatch_semantics_explicitly_at_least_once": false,
+      "headings_unique": true,
+      "markdown_fences_balanced": true,
+      "obsolete_positive_contracts_absent": {
+        "acceptance limit: \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u043c\u0438\u043d\u0443\u0442": true,
+        "batch size <= 256": true,
+        "fast-forward dev \u043a \u043d\u043e\u0432\u043e\u043c\u0443 main": true,
+        "one Renovate worker \u043d\u0430 \u043e\u0434\u0438\u043d repository": true,
+        "origin/main \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f ancestor exact dev HEAD": true,
+        "release tags \u0441\u043e\u0437\u0434\u0430\u044e\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u0438\u0437 exact main SHA": true
+      },
+      "queue_capacity_100_explicit": false,
+      "release_preparation_token_type_explicit": false,
+      "required_contracts_present": {
+        "allowed merge method = merge commit": true,
+        "allowed merge method = squash": true,
+        "git merge-tree --write-tree --no-messages origin/main HEAD": true,
+        "integration_id = 15368": true,
+        "one Actions job per repository": true,
+        "queue: max": true,
+        "shard(repository) = SHA-256(full_repository_name)[0:8] mod shard_count": true,
+        "skip-github-release = true": true,
+        "skip-labeling = true": true,
+        "tag(vX.Y.Z) = main^2 = promoted dev SHA": true
+      }
+    },
+    "modified_by_audit": false,
+    "path": "ternforge/docs/baseline.md",
+    "sha256": "3769011ea0d40367159c7a3334b0958314611bc7e6ceea4d98cd787410c9b51f"
+  },
+  "release_preparation": {
+    "app_token_action": {
+      "sha": "bcd2ba49218906704ab6c1aa796996da409d3eb1",
+      "version": "v3.2.0"
+    },
+    "assertions": {
+      "app_actor_created_pr": true,
+      "ci_run_completed_without_manual_approval": true,
+      "release_preparation_label_present": true,
+      "v0_3_0_release_not_created": true,
+      "v0_3_0_tag_not_created": true
+    },
+    "pull_request": {
+      "author": {
+        "is_bot": true,
+        "login": "app/betabitplus-template-lab-renovate"
+      },
+      "baseRefName": "dev",
+      "files": [
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": ".release-please-manifest.json"
+        },
+        {
+          "additions": 8,
+          "changeType": "MODIFIED",
+          "deletions": 0,
+          "path": "CHANGELOG.md"
+        }
+      ],
+      "headRefName": "release-please--branches--dev--components--dev-tag-lab",
+      "headRefOid": "17bbdea8fbae2640d8fb9638d3f5ab7744ef098c",
+      "labels": [
+        {
+          "color": "6f42c1",
+          "description": "Release Please preparation PR",
+          "id": "LA_kwDOTgp6yc8AAAACs9-4UA",
+          "name": "release-preparation"
+        }
+      ],
+      "number": 4,
+      "state": "OPEN",
+      "title": "chore(dev): release 0.3.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1/pull/4"
+    },
+    "release_please_action": {
+      "sha": "45996ed1f6d02564a971a2fa1b5860e934307cf7",
+      "version": "v5.0.0"
+    },
+    "releases_after_prepare": [
+      {
+        "isDraft": false,
+        "isPrerelease": false,
+        "name": "v0.2.0",
+        "publishedAt": "2026-07-22T22:31:17Z",
+        "tagName": "v0.2.0"
+      }
+    ],
+    "tags_after_prepare": [
+      "refs/tags/v0.1.0",
+      "refs/tags/v0.2.0"
+    ]
+  },
+  "renovate": {
+    "assertions": {
+      "all_recorded_runs_completed": true,
+      "all_recorded_runs_success": true,
+      "invalid_repository_did_not_fail_shard": true,
+      "three_overlapping_runs_preserved": true
+    },
+    "cold_job_durations_seconds": {
+      "Shard 0": 75,
+      "Shard 1": 79
+    },
+    "failure_isolation_objects": {
+      "healthy_repository_pull_requests": [
+        {
+          "author": {
+            "is_bot": true,
+            "login": "app/betabitplus-template-lab-renovate"
+          },
+          "createdAt": "2026-07-22T21:45:19Z",
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore(deps): update dependency axios to v1.18.1",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-renovate-shard-02/pull/2"
+        },
+        {
+          "author": {
+            "is_bot": true,
+            "login": "app/betabitplus-template-lab-renovate"
+          },
+          "createdAt": "2026-07-22T21:45:59Z",
+          "number": 2,
+          "state": "OPEN",
+          "title": "chore(deps): update dependency axios to v1.18.1",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-renovate-shard-04/pull/2"
+        }
+      ],
+      "invalid_repository_warning_issue": {
+        "author": {
+          "is_bot": true,
+          "login": "app/betabitplus-template-lab-renovate"
+        },
+        "createdAt": "2026-07-22T21:46:02Z",
+        "number": 2,
+        "state": "OPEN",
+        "title": "Action Required: Fix Renovate Configuration",
+        "url": "https://github.com/betabitplus-template-lab/sandbox-renovate-shard-06/issues/2"
+      }
+    },
+    "failure_isolation_run_id": 29960348634,
+    "queue_run_ids": [
+      29960130437,
+      29960132010,
+      29960133762
+    ],
+    "synthetic_evidence": "evidence/renovate-shards.json"
+  },
+  "report": {
+    "path": "evidence/two-direction-audit-20260723.md",
+    "sha256": "8cc7b077b8c580c5097591ca3707157369b6f430bf53b809a92de9aa7b45873f"
+  },
+  "runs": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T12:27:18Z",
+      "event": "workflow_dispatch",
+      "head_sha": "2506a49317016ec6510d39d3072c0bdc0d676979",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T12:27:36Z",
+          "conclusion": "success",
+          "name": "prepare",
+          "started_at": "2026-07-23T12:27:22Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1/actions/runs/30007044394/job/89205441326"
+        }
+      ],
+      "name": "release_app_prepare",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1",
+      "run_id": 30007044394,
+      "status": "completed",
+      "updated_at": "2026-07-23T12:27:37Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1/actions/runs/30007044394",
+      "workflow": "Release Please App preparation lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-23T12:27:35Z",
+      "event": "pull_request",
+      "head_sha": "17bbdea8fbae2640d8fb9638d3f5ab7744ef098c",
+      "jobs": [
+        {
+          "completed_at": "2026-07-23T12:27:44Z",
+          "conclusion": "success",
+          "name": "ci / required",
+          "started_at": "2026-07-23T12:27:38Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1/actions/runs/30007064032/job/89205500687"
+        }
+      ],
+      "name": "release_app_pr_ci",
+      "repository": "betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1",
+      "run_id": 30007064032,
+      "status": "completed",
+      "updated_at": "2026-07-23T12:27:45Z",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-ternforge-release-dev-tag-20260723-r1/actions/runs/30007064032",
+      "workflow": "CI"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-22T21:39:05Z",
+      "event": "workflow_dispatch",
+      "head_sha": "cc762bf47bf1ce453185db61e47c3fb1f2023175",
+      "jobs": [
+        {
+          "completed_at": "2026-07-22T21:40:23Z",
+          "conclusion": "success",
+          "name": "Shard 0",
+          "started_at": "2026-07-22T21:39:08Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960009677/job/89058519404"
+        },
+        {
+          "completed_at": "2026-07-22T21:40:28Z",
+          "conclusion": "success",
+          "name": "Shard 1",
+          "started_at": "2026-07-22T21:39:09Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960009677/job/89058519420"
+        }
+      ],
+      "name": "renovate_cold_shards",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29960009677,
+      "status": "completed",
+      "updated_at": "2026-07-22T21:40:29Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960009677",
+      "workflow": "Renovate shard lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-22T21:41:01Z",
+      "event": "workflow_dispatch",
+      "head_sha": "cc762bf47bf1ce453185db61e47c3fb1f2023175",
+      "jobs": [
+        {
+          "completed_at": "2026-07-22T21:41:54Z",
+          "conclusion": "success",
+          "name": "Shard 1",
+          "started_at": "2026-07-22T21:41:06Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960130437/job/89058909996"
+        },
+        {
+          "completed_at": "2026-07-22T21:41:46Z",
+          "conclusion": "success",
+          "name": "Shard 0",
+          "started_at": "2026-07-22T21:41:05Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960130437/job/89058910018"
+        }
+      ],
+      "name": "renovate_queue_1",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29960130437,
+      "status": "completed",
+      "updated_at": "2026-07-22T21:41:55Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960130437",
+      "workflow": "Renovate shard lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-22T21:41:03Z",
+      "event": "workflow_dispatch",
+      "head_sha": "cc762bf47bf1ce453185db61e47c3fb1f2023175",
+      "jobs": [
+        {
+          "completed_at": "2026-07-22T21:42:28Z",
+          "conclusion": "success",
+          "name": "Shard 0",
+          "started_at": "2026-07-22T21:41:48Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960132010/job/89058913823"
+        },
+        {
+          "completed_at": "2026-07-22T21:42:37Z",
+          "conclusion": "success",
+          "name": "Shard 1",
+          "started_at": "2026-07-22T21:41:56Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960132010/job/89058913875"
+        }
+      ],
+      "name": "renovate_queue_2",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29960132010,
+      "status": "completed",
+      "updated_at": "2026-07-22T21:42:38Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960132010",
+      "workflow": "Renovate shard lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-22T21:41:04Z",
+      "event": "workflow_dispatch",
+      "head_sha": "cc762bf47bf1ce453185db61e47c3fb1f2023175",
+      "jobs": [
+        {
+          "completed_at": "2026-07-22T21:43:26Z",
+          "conclusion": "success",
+          "name": "Shard 1",
+          "started_at": "2026-07-22T21:42:39Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960133762/job/89058918499"
+        },
+        {
+          "completed_at": "2026-07-22T21:43:11Z",
+          "conclusion": "success",
+          "name": "Shard 0",
+          "started_at": "2026-07-22T21:42:30Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960133762/job/89058918559"
+        }
+      ],
+      "name": "renovate_queue_3",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29960133762,
+      "status": "completed",
+      "updated_at": "2026-07-22T21:43:26Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960133762",
+      "workflow": "Renovate shard lab"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-07-22T21:44:27Z",
+      "event": "workflow_dispatch",
+      "head_sha": "cc762bf47bf1ce453185db61e47c3fb1f2023175",
+      "jobs": [
+        {
+          "completed_at": "2026-07-22T21:45:10Z",
+          "conclusion": "success",
+          "name": "Shard 0",
+          "started_at": "2026-07-22T21:44:31Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960348634/job/89059617753"
+        },
+        {
+          "completed_at": "2026-07-22T21:46:05Z",
+          "conclusion": "success",
+          "name": "Shard 1",
+          "started_at": "2026-07-22T21:44:31Z",
+          "status": "completed",
+          "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960348634/job/89059617847"
+        }
+      ],
+      "name": "renovate_failure_isolation",
+      "repository": "betabitplus-template-lab/lab-control",
+      "run_id": 29960348634,
+      "status": "completed",
+      "updated_at": "2026-07-22T21:46:06Z",
+      "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/29960348634",
+      "workflow": "Renovate shard lab"
+    }
+  ],
+  "scope": [
+    "branch-promotion-release",
+    "exact-target-renovate-routing"
+  ]
+}
