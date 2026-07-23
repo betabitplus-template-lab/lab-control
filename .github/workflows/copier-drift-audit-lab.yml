@@ -1,0 +1,72 @@
+name: Copier drift audit lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout lab control
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+
+      - name: Install exact uv
+        run: python -m pip install uv==0.8.17
+
+      - name: Mint exact read-only token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            sandbox-drift-template-20260723-r1
+            sandbox-drift-consumer-20260723-r1
+          permission-contents: read
+
+      - name: Verify token scope and write denial
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t actual < <(gh api installation/repositories --paginate --jq '.repositories[].full_name' | sort)
+          expected=(
+            betabitplus-template-lab/sandbox-drift-consumer-20260723-r1
+            betabitplus-template-lab/sandbox-drift-template-20260723-r1
+          )
+          test "${#actual[@]}" -eq "${#expected[@]}"
+          test "${actual[*]}" = "${expected[*]}"
+
+          sha="$(gh api repos/betabitplus-template-lab/sandbox-drift-consumer-20260723-r1/git/ref/heads/dev --jq .object.sha)"
+          probe_ref="drift-audit-write-probe-${GITHUB_RUN_ID}"
+          set +e
+          gh api --method POST repos/betabitplus-template-lab/sandbox-drift-consumer-20260723-r1/git/refs \
+            -f ref="refs/heads/${probe_ref}" -f sha="$sha" --silent
+          write_result=$?
+          set -e
+          test "$write_result" -ne 0
+          printf 'repository_scope=exact-two contents_read=true contents_write=denied\n' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run disposable Copier drift audit
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: python experiments/copier_drift_audit_lab.py audit
+
+      - name: Upload immutable evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: copier-drift-audit-evidence
+          path: |
+            evidence/copier-drift-audit-20260723.json
+            evidence/copier-drift-audit-20260723.md
+          if-no-files-found: error
+          retention-days: 90

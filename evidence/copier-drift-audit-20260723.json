@@ -1,0 +1,58 @@
+{
+  "assertions": {
+    "answers_file_is_stable": true,
+    "clean_head_unchanged": true,
+    "clean_recopy_has_empty_diff": true,
+    "drift_head_unchanged": true,
+    "drift_paths_match_expected": true,
+    "modified_skip_if_exists_is_preserved": true,
+    "remote_dev_sha_unchanged": true,
+    "unrelated_user_file_is_ignored": true,
+    "version_drift_reported_for_clean_checkout": true,
+    "version_drift_reported_for_drift_checkout": true
+  },
+  "clean_checkout": {
+    "check_update": {
+      "current_version": "1.0.0",
+      "latest_version": "1.1.0",
+      "update_available": true
+    },
+    "head_after": "952cc7238b4e5cedae25a4af1375ff9ad1009d9b",
+    "head_before": "952cc7238b4e5cedae25a4af1375ff9ad1009d9b",
+    "head_unchanged": true,
+    "name_status": {},
+    "name_status_text": "",
+    "patch": "",
+    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[36m identical\u001b[39m\u001b[0m  managed.txt\n\u001b[36m identical\u001b[39m\u001b[0m  README.md\n\u001b[36m identical\u001b[39m\u001b[0m  deleted-managed.txt\n\u001b[36m identical\u001b[39m\u001b[0m  CREATE_ONCE.txt\n",
+    "recopy_stdout": "\n\n",
+    "ref": "clean-state"
+  },
+  "conclusion": "PASS",
+  "consumer_repository": "betabitplus-template-lab/sandbox-drift-consumer-20260723-r1",
+  "copier_version": "9.16.0",
+  "drift_checkout": {
+    "check_update": {
+      "current_version": "1.0.0",
+      "latest_version": "1.1.0",
+      "update_available": true
+    },
+    "head_after": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
+    "head_before": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
+    "head_unchanged": true,
+    "name_status": {
+      "CREATE_ONCE.txt": "A",
+      "deleted-managed.txt": "A",
+      "managed.txt": "M"
+    },
+    "name_status_text": "A\tCREATE_ONCE.txt\nA\tdeleted-managed.txt\nM\tmanaged.txt\n",
+    "patch": "diff --git a/CREATE_ONCE.txt b/CREATE_ONCE.txt\nnew file mode 100644\nindex 0000000..d9140e0\n--- /dev/null\n+++ b/CREATE_ONCE.txt\n@@ -0,0 +1 @@\n+create-once v1\ndiff --git a/deleted-managed.txt b/deleted-managed.txt\nnew file mode 100644\nindex 0000000..94da310\n--- /dev/null\n+++ b/deleted-managed.txt\n@@ -0,0 +1 @@\n+managed deletion probe v1\ndiff --git a/managed.txt b/managed.txt\nindex ec5118b..ef44754 100644\n--- a/managed.txt\n+++ b/managed.txt\n@@ -1 +1 @@\n-consumer-managed override\n+managed v1\n",
+    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  managed.txt\n\u001b[33m\u001b[1m overwrite\u001b[39m\u001b[0m  managed.txt\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  README.md\n\u001b[32m\u001b[1m      skip\u001b[39m\u001b[0m  README.md\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  deleted-managed.txt\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  CREATE_ONCE.txt\n",
+    "recopy_stdout": "\n\n",
+    "ref": "dev"
+  },
+  "generated_at": "2026-07-23T16:24:25.404502+00:00",
+  "remote_dev_sha_after": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
+  "remote_dev_sha_before": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
+  "template_repository": "betabitplus-template-lab/sandbox-drift-template-20260723-r1",
+  "uv_version": "0.8.17"
+}
