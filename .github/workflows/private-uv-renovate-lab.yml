@@ -1,0 +1,190 @@
+name: Private uv Renovate lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validation phase to run.
+        required: true
+        type: choice
+        options:
+          - lock-maintenance
+          - private-update
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out lab control
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+
+      - name: Mint target write token
+        id: target-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: sandbox-private-uv-consumer-20260724-r1
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Mint dependency read token
+        id: dependency-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: sandbox-private-uv-source-20260724-r1
+          permission-contents: read
+
+      - name: Verify token boundaries
+        env:
+          TARGET_TOKEN: ${{ steps.target-token.outputs.token }}
+          DEPENDENCY_TOKEN: ${{ steps.dependency-token.outputs.token }}
+          TARGET_REPOSITORY: betabitplus-template-lab/sandbox-private-uv-consumer-20260724-r1
+          SOURCE_REPOSITORY: betabitplus-template-lab/sandbox-private-uv-source-20260724-r1
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/private-uv-renovate
+
+          GH_TOKEN="$TARGET_TOKEN" gh api installation/repositories --paginate \
+            --jq '.repositories[].full_name' > /tmp/target-repositories.txt
+          GH_TOKEN="$DEPENDENCY_TOKEN" gh api installation/repositories --paginate \
+            --jq '.repositories[].full_name' > /tmp/dependency-repositories.txt
+          test "$(wc -l < /tmp/target-repositories.txt | tr -d ' ')" = 1
+          test "$(cat /tmp/target-repositories.txt)" = "$TARGET_REPOSITORY"
+          test "$(wc -l < /tmp/dependency-repositories.txt | tr -d ' ')" = 1
+          test "$(cat /tmp/dependency-repositories.txt)" = "$SOURCE_REPOSITORY"
+
+          GH_TOKEN="$TARGET_TOKEN" gh api \
+            "repos/${TARGET_REPOSITORY}/contents/pyproject.toml?ref=main" --silent
+          GH_TOKEN="$DEPENDENCY_TOKEN" gh api \
+            "repos/${SOURCE_REPOSITORY}/contents/pyproject.toml?ref=main" --silent
+
+          set +e
+          GH_TOKEN="$TARGET_TOKEN" gh api \
+            "repos/${SOURCE_REPOSITORY}/contents/pyproject.toml?ref=main" --silent \
+            >/dev/null 2>&1
+          target_to_source=$?
+          GH_TOKEN="$DEPENDENCY_TOKEN" gh api \
+            "repos/${TARGET_REPOSITORY}/contents/pyproject.toml?ref=main" --silent \
+            >/dev/null 2>&1
+          dependency_to_target=$?
+          source_sha="$(GH_TOKEN="$DEPENDENCY_TOKEN" gh api \
+            "repos/${SOURCE_REPOSITORY}/git/ref/heads/main" --jq .object.sha)"
+          GH_TOKEN="$DEPENDENCY_TOKEN" gh api --method POST \
+            "repos/${SOURCE_REPOSITORY}/git/refs" \
+            -f ref="refs/heads/read-token-write-probe-${GITHUB_RUN_ID}" \
+            -f sha="$source_sha" --silent >/dev/null 2>&1
+          dependency_write=$?
+          set -e
+
+          test "$target_to_source" -ne 0
+          test "$dependency_to_target" -ne 0
+          test "$dependency_write" -ne 0
+
+          {
+            printf 'mode=%s\n' '${{ inputs.mode }}'
+            printf 'target_repository=%s\n' "$TARGET_REPOSITORY"
+            printf 'source_repository=%s\n' "$SOURCE_REPOSITORY"
+            printf 'target_token_exact_set=pass\n'
+            printf 'dependency_token_exact_set=pass\n'
+            printf 'cross_scope_denial=pass\n'
+            printf 'dependency_token_write_denial=pass\n'
+          } > evidence/private-uv-renovate/token-boundary.txt
+
+      - name: Run pinned Renovate
+        env:
+          RENOVATE_TOKEN: ${{ steps.target-token.outputs.token }}
+          DEPENDENCY_TOKEN: ${{ steps.dependency-token.outputs.token }}
+          LAB_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          set +e
+          set -o pipefail
+          docker run --rm \
+            -v "$PWD:/usr/src/app" \
+            -w /usr/src/app \
+            -e RENOVATE_TOKEN \
+            -e DEPENDENCY_TOKEN \
+            -e LAB_MODE \
+            -e RENOVATE_CONFIG_FILE=experiments/private-uv-renovate/config.js \
+            -e LOG_LEVEL=debug \
+            renovate/renovate:43.262.4 2>&1 | tee /tmp/private-uv-renovate.log
+          status=${PIPESTATUS[0]}
+          set -e
+          sed -E 's#https://[^/@[:space:]]+@github.com/#https://<redacted>@github.com/#g' \
+            /tmp/private-uv-renovate.log \
+            > evidence/private-uv-renovate/renovate.log
+          printf 'status=%s\n' "$status" > evidence/private-uv-renovate/renovate-status.txt
+          exit "$status"
+
+      - name: Verify Renovate pull request
+        env:
+          GH_TOKEN: ${{ steps.target-token.outputs.token }}
+          MODE: ${{ inputs.mode }}
+          TARGET_REPOSITORY: betabitplus-template-lab/sandbox-private-uv-consumer-20260724-r1
+        run: |
+          set -euo pipefail
+          if [ "$MODE" = lock-maintenance ]; then
+            prefix=renovate-lab-lock/
+          else
+            prefix=renovate-lab-private/
+          fi
+
+          gh pr list --repo "$TARGET_REPOSITORY" --state open \
+            --json number,headRefName,title,url > /tmp/pull-requests.json
+          node - "$prefix" /tmp/pull-requests.json <<'NODE' \
+            > evidence/private-uv-renovate/pr-number.txt
+          const fs = require('fs');
+          const prefix = process.argv[2];
+          const path = process.argv[3];
+          const matches = JSON.parse(fs.readFileSync(path, 'utf8'))
+            .filter((pr) => pr.headRefName.startsWith(prefix));
+          if (matches.length !== 1) {
+            throw new Error(`Expected one ${prefix} PR, found ${matches.length}`);
+          }
+          process.stdout.write(`${matches[0].number}\n`);
+          NODE
+
+          pr_number="$(cat evidence/private-uv-renovate/pr-number.txt)"
+          gh pr view "$pr_number" --repo "$TARGET_REPOSITORY" \
+            --json number,headRefName,title,url,files \
+            > evidence/private-uv-renovate/pr.json
+          gh pr diff "$pr_number" --repo "$TARGET_REPOSITORY" \
+            > evidence/private-uv-renovate/pr.diff
+
+          mapfile -t changed_files < <(
+            jq -r '.files[].path' evidence/private-uv-renovate/pr.json | sort
+          )
+          if [ "$MODE" = lock-maintenance ]; then
+            test "${#changed_files[@]}" -eq 1
+            test "${changed_files[0]}" = uv.lock
+            grep -q 'version = "25.0"' evidence/private-uv-renovate/pr.diff
+          else
+            test "${#changed_files[@]}" -eq 2
+            test "${changed_files[0]}" = pyproject.toml
+            test "${changed_files[1]}" = uv.lock
+            grep -q 'tag = "v0.2.0"' evidence/private-uv-renovate/pr.diff
+            grep -q 'tag=v0.2.0' evidence/private-uv-renovate/pr.diff
+          fi
+
+          if grep -E 'https://[^/@[:space:]]+@github.com/' \
+            evidence/private-uv-renovate/pr.diff \
+            evidence/private-uv-renovate/renovate.log; then
+            echo 'Credential-bearing URL appeared in retained evidence.' >&2
+            exit 1
+          fi
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: private-uv-renovate-${{ inputs.mode }}-${{ github.run_id }}
+          path: evidence/private-uv-renovate
+          if-no-files-found: error
