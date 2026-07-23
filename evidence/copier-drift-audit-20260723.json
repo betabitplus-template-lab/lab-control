@@ -23,7 +23,7 @@
     "name_status": {},
     "name_status_text": "",
     "patch": "",
-    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[36m identical\u001b[39m\u001b[0m  managed.txt\n\u001b[36m identical\u001b[39m\u001b[0m  README.md\n\u001b[36m identical\u001b[39m\u001b[0m  deleted-managed.txt\n\u001b[36m identical\u001b[39m\u001b[0m  CREATE_ONCE.txt\n",
+    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[36m identical\u001b[39m\u001b[0m  managed.txt\n\u001b[36m identical\u001b[39m\u001b[0m  README.md\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[36m identical\u001b[39m\u001b[0m  CREATE_ONCE.txt\n\u001b[36m identical\u001b[39m\u001b[0m  deleted-managed.txt\n",
     "recopy_stdout": "\n\n",
     "ref": "clean-state"
   },
@@ -46,11 +46,38 @@
     },
     "name_status_text": "A\tCREATE_ONCE.txt\nA\tdeleted-managed.txt\nM\tmanaged.txt\n",
     "patch": "diff --git a/CREATE_ONCE.txt b/CREATE_ONCE.txt\nnew file mode 100644\nindex 0000000..d9140e0\n--- /dev/null\n+++ b/CREATE_ONCE.txt\n@@ -0,0 +1 @@\n+create-once v1\ndiff --git a/deleted-managed.txt b/deleted-managed.txt\nnew file mode 100644\nindex 0000000..94da310\n--- /dev/null\n+++ b/deleted-managed.txt\n@@ -0,0 +1 @@\n+managed deletion probe v1\ndiff --git a/managed.txt b/managed.txt\nindex ec5118b..ef44754 100644\n--- a/managed.txt\n+++ b/managed.txt\n@@ -1 +1 @@\n-consumer-managed override\n+managed v1\n",
-    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  managed.txt\n\u001b[33m\u001b[1m overwrite\u001b[39m\u001b[0m  managed.txt\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  README.md\n\u001b[32m\u001b[1m      skip\u001b[39m\u001b[0m  README.md\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  deleted-managed.txt\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  CREATE_ONCE.txt\n",
+    "recopy_stderr": "\nCopying from template version 1.0.0\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  managed.txt\n\u001b[33m\u001b[1m overwrite\u001b[39m\u001b[0m  managed.txt\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  README.md\n\u001b[32m\u001b[1m      skip\u001b[39m\u001b[0m  README.md\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  CREATE_ONCE.txt\n\u001b[32m\u001b[1m    create\u001b[39m\u001b[0m  deleted-managed.txt\n",
     "recopy_stdout": "\n\n",
     "ref": "dev"
   },
-  "generated_at": "2026-07-23T16:24:25.404502+00:00",
+  "generated_at": "2026-07-23T16:31:30.122893+00:00",
+  "github_actions": {
+    "artifact": {
+      "digest": "sha256:087c7f7a4c722783e57c2e1d8c9e95ef23dbffafca681103d728219856fd979f",
+      "expires_at": "2026-10-21T16:31:03Z",
+      "id": 8571049711,
+      "name": "copier-drift-audit-evidence",
+      "raw_json_sha256": "9f579ecea59cc0a89d36631d0cb48fbf9166094edfcfa983700a55847bbaeca2",
+      "raw_markdown_sha256": "8664735d1fa283796a7cf138353b8a0c434ad6281a1765dee06ce8e3bfde9fd7",
+      "size_in_bytes": 2028
+    },
+    "conclusion": "success",
+    "contents_permission": "read",
+    "contents_write_probe_denied": true,
+    "created_at": "2026-07-23T16:31:01Z",
+    "exact_repository_scope": [
+      "betabitplus-template-lab/sandbox-drift-consumer-20260723-r1",
+      "betabitplus-template-lab/sandbox-drift-template-20260723-r1"
+    ],
+    "head_sha": "77587a7957a69d1b8bc2559b6b81eae29904194d",
+    "job_id": 89268585229,
+    "repository": "betabitplus-template-lab/lab-control",
+    "run_id": 30025437084,
+    "status": "completed",
+    "updated_at": "2026-07-23T16:31:35Z",
+    "url": "https://github.com/betabitplus-template-lab/lab-control/actions/runs/30025437084",
+    "workflow": "Copier drift audit lab"
+  },
   "remote_dev_sha_after": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
   "remote_dev_sha_before": "d5f00d4f7db84c5a9e2d6eddf9f7b61a83c17816",
   "template_repository": "betabitplus-template-lab/sandbox-drift-template-20260723-r1",
