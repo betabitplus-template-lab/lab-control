@@ -46,7 +46,7 @@ module.exports = {
   force: {
     lockFileMaintenance:
       mode === "lock-maintenance"
-        ? { enabled: true, schedule: ["at any time"] }
+        ? { enabled: true, schedule: ["at any time"], branchTopic: "lock-file-maintenance" }
         : { enabled: false },
   },
 };
