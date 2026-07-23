@@ -19,6 +19,10 @@ module.exports = {
   allowScripts: false,
   dependencyDashboard: false,
   printConfig: true,
+  packageRules:
+    mode === "lock-maintenance"
+      ? [{ matchPackageNames: ["*"], enabled: false }]
+      : [],
   branchPrefix:
     mode === "lock-maintenance"
       ? "renovate-lab-lock/"
