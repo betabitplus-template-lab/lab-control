@@ -1,0 +1,49 @@
+{
+  "algorithm": "sha256(repository)[0:8] mod shard_count",
+  "invalid_inventory_rejections": {
+    "duplicate_repository": "repository names must be unique",
+    "empty_sources": "profile has no update sources: python",
+    "unknown_profile": "unknown profile: missing",
+    "unknown_source": "unknown update sources: ['missing']"
+  },
+  "scenarios": [
+    {
+      "assignment_sample": {
+        "betabitplus-template-lab/generated-00000": 2,
+        "betabitplus-template-lab/generated-00001": 4,
+        "betabitplus-template-lab/generated-00002": 7,
+        "betabitplus-template-lab/generated-00003": 2,
+        "betabitplus-template-lab/generated-00004": 3
+      },
+      "fleet_size": 1000,
+      "matrix_under_256": true,
+      "max_relative_deviation": 0.144,
+      "max_repositories_per_shard": 140,
+      "mean_repositories_per_shard": 125.0,
+      "min_repositories_per_shard": 107,
+      "non_empty_jobs": 8,
+      "shard_count": 8,
+      "stable_across_input_order": true,
+      "token_scope_under_500": true
+    },
+    {
+      "assignment_sample": {
+        "betabitplus-template-lab/generated-00000": 18,
+        "betabitplus-template-lab/generated-00001": 28,
+        "betabitplus-template-lab/generated-00002": 15,
+        "betabitplus-template-lab/generated-00003": 26,
+        "betabitplus-template-lab/generated-00004": 27
+      },
+      "fleet_size": 5000,
+      "matrix_under_256": true,
+      "max_relative_deviation": 0.2096,
+      "max_repositories_per_shard": 189,
+      "mean_repositories_per_shard": 156.25,
+      "min_repositories_per_shard": 132,
+      "non_empty_jobs": 32,
+      "shard_count": 32,
+      "stable_across_input_order": true,
+      "token_scope_under_500": true
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+name: Renovate token boundary lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint one-repository shard token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: sandbox-renovate-shard-01
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+
+      - name: Prove out-of-shard denial
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/betabitplus-template-lab/sandbox-renovate-shard-01 --silent
+
+          set +e
+          gh api repos/betabitplus-template-lab/sandbox-renovate-shard-02 --silent
+          out_of_shard=$?
+          set -e
+          test "$out_of_shard" -ne 0
+          printf 'in_shard=success out_of_shard=denied\n' >> "$GITHUB_STEP_SUMMARY"
