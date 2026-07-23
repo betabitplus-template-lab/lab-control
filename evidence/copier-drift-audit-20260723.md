@@ -40,3 +40,19 @@ fleet target
 The clean checkout produced no local diff while still reporting that template `v1.1.0` exists above recorded `v1.0.0`. The divergent checkout reported only the expected template-footprint deviations: one modified managed file and two recreated missing template files. The existing modified `_skip_if_exists` README and unrelated committed user file were not reported. Local and remote commit SHAs remained unchanged.
 
 Machine-readable evidence: `evidence/copier-drift-audit-20260723.json`.
+
+## GitHub Actions validation
+
+- Workflow run: `30025437084`
+- Job: `89268585229`
+- Head SHA: `77587a7957a69d1b8bc2559b6b81eae29904194d`
+- Conclusion: `success`
+- Exact token repository set: template + consumer sandbox only
+- Token permission: `contents: read`
+- Attempted branch creation: denied
+- Artifact id: `8571049711`
+- Artifact digest: `sha256:087c7f7a4c722783e57c2e1d8c9e95ef23dbffafca681103d728219856fd979f`
+- Raw JSON SHA-256: `9f579ecea59cc0a89d36631d0cb48fbf9166094edfcfa983700a55847bbaeca2`
+- Raw Markdown SHA-256: `8664735d1fa283796a7cf138353b8a0c434ad6281a1765dee06ce8e3bfde9fd7`
+
+The GitHub-hosted run reproduced the local result with current `client-id` input and `actions/upload-artifact` v7.0.1.
