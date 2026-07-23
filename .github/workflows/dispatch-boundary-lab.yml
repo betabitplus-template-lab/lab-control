@@ -1,0 +1,39 @@
+name: Dispatch boundary lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint target-only App token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: sandbox-ternforge-dispatch-target-20260723-r1
+          permission-contents: write
+
+      - name: Prove token scope and dispatch
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TARGET: betabitplus-template-lab/sandbox-ternforge-dispatch-target-20260723-r1
+        run: |
+          set -euo pipefail
+          gh api "repos/${TARGET}" --silent
+
+          set +e
+          gh api "repos/${GITHUB_REPOSITORY}" --silent
+          source_access=$?
+          set -e
+          test "$source_access" -ne 0
+
+          jq -n '{event_type:"ternforge-lab-release",client_payload:{source:"sandbox-ternforge-final-contract-20260723-r1",version:"0.3.0"}}' \
+            | gh api --method POST "repos/${TARGET}/dispatches" --input - --silent
+          printf 'target_access=success source_access=denied dispatch=sent\n' >> "$GITHUB_STEP_SUMMARY"
