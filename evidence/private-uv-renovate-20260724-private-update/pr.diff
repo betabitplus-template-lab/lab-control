@@ -1,0 +1,28 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 600059c..1fa7fcf 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -12,4 +12,4 @@ dependencies = [
+ required-version = "==0.8.17"
+ 
+ [tool.uv.sources]
+-private-uv-dep = { git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git", tag = "v0.1.0" }
++private-uv-dep = { git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git", tag = "v0.2.0" }
+diff --git a/uv.lock b/uv.lock
+index cd4cbd7..b3f9b03 100644
+--- a/uv.lock
++++ b/uv.lock
+@@ -23,10 +23,10 @@ dependencies = [
+ [package.metadata]
+ requires-dist = [
+     { name = "packaging", specifier = ">=24,<26" },
+-    { name = "private-uv-dep", git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git?tag=v0.1.0" },
++    { name = "private-uv-dep", git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git?tag=v0.2.0" },
+ ]
+ 
+ [[package]]
+ name = "private-uv-dep"
+-version = "0.1.0"
+-source = { git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git?tag=v0.1.0#e6817c38a4e61567e6e93b550bbb04169b42ba70" }
++version = "0.2.0"
++source = { git = "https://github.com/betabitplus-template-lab/sandbox-private-uv-source-20260724-r1.git?tag=v0.2.0#db2e2e2d9c1792b62837f603d6d71a62e1520e34" }

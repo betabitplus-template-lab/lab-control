@@ -1,0 +1,7 @@
+mode=lock-maintenance
+target_repository=betabitplus-template-lab/sandbox-private-uv-consumer-20260724-r1
+source_repository=betabitplus-template-lab/sandbox-private-uv-source-20260724-r1
+target_token_exact_set=pass
+dependency_token_exact_set=pass
+cross_scope_denial=pass
+dependency_token_write_denial=pass
