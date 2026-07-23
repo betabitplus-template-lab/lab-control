@@ -25,18 +25,19 @@ jobs:
         id: target-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ secrets.LAB_APP_ID }}
+          client-id: ${{ vars.LAB_APP_CLIENT_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: sandbox-private-uv-consumer-20260724-r1
           permission-contents: write
+          permission-issues: write
           permission-pull-requests: write
 
       - name: Mint dependency read token
         id: dependency-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ secrets.LAB_APP_ID }}
+          client-id: ${{ vars.LAB_APP_CLIENT_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: sandbox-private-uv-source-20260724-r1
