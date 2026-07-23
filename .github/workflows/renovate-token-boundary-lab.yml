@@ -31,15 +31,17 @@ jobs:
           test "${#token_repositories[@]}" -eq 1
           test "${token_repositories[0]}" = betabitplus-template-lab/sandbox-renovate-shard-01
 
-          issue_number="$(gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-01/issues \
-            -f title='Ternforge shard token boundary probe' -f body='Temporary lab evidence.' --jq .number)"
-          gh api --method PATCH "repos/betabitplus-template-lab/sandbox-renovate-shard-01/issues/${issue_number}" \
-            -f state=closed --silent
+          probe_ref="token-boundary-${GITHUB_RUN_ID}"
+          in_shard_sha="$(gh api repos/betabitplus-template-lab/sandbox-renovate-shard-01/git/ref/heads/main --jq .object.sha)"
+          gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-01/git/refs \
+            -f ref="refs/heads/${probe_ref}" -f sha="$in_shard_sha" --silent
+          gh api --method DELETE "repos/betabitplus-template-lab/sandbox-renovate-shard-01/git/refs/heads/${probe_ref}" --silent
 
+          out_of_shard_sha="$(gh api repos/betabitplus-template-lab/sandbox-renovate-shard-02/git/ref/heads/main --jq .object.sha)"
           set +e
-          gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-02/issues \
-            -f title='Unexpected out-of-shard write' -f body='This must not be created.' --silent
+          gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-02/git/refs \
+            -f ref="refs/heads/${probe_ref}" -f sha="$out_of_shard_sha" --silent
           out_of_shard=$?
           set -e
           test "$out_of_shard" -ne 0
-          printf 'in_shard_write=success out_of_shard_write=denied\n' >> "$GITHUB_STEP_SUMMARY"
+          printf 'in_shard_contents_write=success out_of_shard_contents_write=denied\n' >> "$GITHUB_STEP_SUMMARY"
