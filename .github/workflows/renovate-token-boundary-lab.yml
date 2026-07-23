@@ -27,11 +27,15 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
-          gh api repos/betabitplus-template-lab/sandbox-renovate-shard-01 --silent
+          issue_number="$(gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-01/issues \
+            -f title='Ternforge shard token boundary probe' -f body='Temporary lab evidence.' --jq .number)"
+          gh api --method PATCH "repos/betabitplus-template-lab/sandbox-renovate-shard-01/issues/${issue_number}" \
+            -f state=closed --silent
 
           set +e
-          gh api repos/betabitplus-template-lab/sandbox-renovate-shard-02 --silent
+          gh api --method POST repos/betabitplus-template-lab/sandbox-renovate-shard-02/issues \
+            -f title='Unexpected out-of-shard write' -f body='This must not be created.' --silent
           out_of_shard=$?
           set -e
           test "$out_of_shard" -ne 0
-          printf 'in_shard=success out_of_shard=denied\n' >> "$GITHUB_STEP_SUMMARY"
+          printf 'in_shard_write=success out_of_shard_write=denied\n' >> "$GITHUB_STEP_SUMMARY"
