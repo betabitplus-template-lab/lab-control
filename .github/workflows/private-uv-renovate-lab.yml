@@ -175,7 +175,7 @@ jobs:
             grep -q 'tag=v0.2.0' evidence/private-uv-renovate/pr.diff
           fi
 
-          if grep -E 'https://[^/@[:space:]]+@github.com/' \
+          if grep -E 'ghs_[A-Za-z0-9_]+|x-access-token:[^<]' \
             evidence/private-uv-renovate/pr.diff \
             evidence/private-uv-renovate/renovate.log; then
             echo 'Credential-bearing URL appeared in retained evidence.' >&2
