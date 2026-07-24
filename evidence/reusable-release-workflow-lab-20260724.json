@@ -1,0 +1,34 @@
+{
+  "app": {
+    "client_id": "Iv23ctoqDsqbN2jo4gMC",
+    "slug": "betabitplus-template-lab-renovate"
+  },
+  "checks": {
+    "caller_pins_provider_sha": true,
+    "caller_pushes_to_main": true,
+    "client_id_from_repository_variable": true,
+    "client_id_used": true,
+    "exact_repository_scope_verified": true,
+    "named_credential_passed": true,
+    "provider_uses_workflow_call": true
+  },
+  "passed": true,
+  "pins": {
+    "create_github_app_token": "bcd2ba49218906704ab6c1aa796996da409d3eb1",
+    "provider_workflow": "dd9b6896ebdc8e27c138ee066100a7ab5f9a2f03"
+  },
+  "repositories": {
+    "caller": "betabitplus-template-lab/sandbox-release-workflow-caller-20260724-r1",
+    "provider": "betabitplus-template-lab/sandbox-release-workflow-provider-20260724-r1"
+  },
+  "workflow_run": {
+    "conclusion": "success",
+    "createdAt": "2026-07-24T11:56:46Z",
+    "databaseId": 30091307397,
+    "event": "push",
+    "headSha": "4ba69e45c80e30131865c4176673ba22b000dbed",
+    "name": "release caller smoke",
+    "status": "completed",
+    "url": "https://github.com/betabitplus-template-lab/sandbox-release-workflow-caller-20260724-r1/actions/runs/30091307397"
+  }
+}
