@@ -1,0 +1,316 @@
+{
+  "actions_defaults": {
+    "can_approve_pull_request_reviews": false,
+    "default_workflow_permissions": "read"
+  },
+  "checks": {
+    "actions_defaults": true,
+    "dispatch_received": true,
+    "docs_hidden_from_release": true,
+    "docs_not_releasable": true,
+    "labels_with_minimal_permissions": true,
+    "official_release_pr_output": true,
+    "patch_release_pr": true,
+    "python_release_strategy": true,
+    "release_created": true,
+    "release_pr_lockfile_sync": true,
+    "renovate_automerge": true,
+    "renovate_fix_deps": true,
+    "repository_settings": true,
+    "semantic_title_reruns_on_edit": true,
+    "single_main_ruleset": true,
+    "squash_uses_pr_title_body": true
+  },
+  "passed": true,
+  "pins": {
+    "app": "bcd2ba49218906704ab6c1aa796996da409d3eb1",
+    "checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "release": "45996ed1f6d02564a971a2fa1b5860e934307cf7",
+    "setup": "c771a70e6277c0a99b617c7a806ffedaca235ff9",
+    "title": "48f256284bd46cdaab1048c3721360e808335d50"
+  },
+  "provisioned": true,
+  "python_release_contract": {
+    "docs_pr": {
+      "mergedAt": "2026-07-24T10:33:46Z",
+      "number": 9,
+      "state": "MERGED",
+      "title": "docs: clarify release behavior",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/9"
+    },
+    "output_release_pr": {
+      "files": [
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": ".release-please-manifest.json"
+        },
+        {
+          "additions": 7,
+          "changeType": "MODIFIED",
+          "deletions": 0,
+          "path": "CHANGELOG.md"
+        },
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": "pyproject.toml"
+        },
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": "uv.lock"
+        }
+      ],
+      "mergedAt": null,
+      "number": 14,
+      "state": "OPEN",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T10:49:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30087465406/job/89462913540",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T10:48:56Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 1.0.3",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/14"
+    },
+    "output_workflow_pr": {
+      "mergedAt": "2026-07-24T10:47:42Z",
+      "number": 12,
+      "state": "MERGED",
+      "title": "chore: use Release Please PR output",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/12"
+    },
+    "python_release_pr": {
+      "files": [
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": ".release-please-manifest.json"
+        },
+        {
+          "additions": 7,
+          "changeType": "MODIFIED",
+          "deletions": 0,
+          "path": "CHANGELOG.md"
+        },
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": "pyproject.toml"
+        },
+        {
+          "additions": 1,
+          "changeType": "MODIFIED",
+          "deletions": 1,
+          "path": "uv.lock"
+        }
+      ],
+      "mergedAt": "2026-07-24T10:42:38Z",
+      "number": 11,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T10:35:27Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30086683535/job/89460388298",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T10:35:17Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 1.0.2",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/11"
+    },
+    "release": {
+      "publishedAt": "2026-07-24T10:42:49Z",
+      "tagName": "v1.0.2",
+      "targetCommitish": "66beb46fde35bfc819ea266c5e192cd043775e40",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/releases/tag/v1.0.2"
+    },
+    "strategy_pr": {
+      "mergedAt": "2026-07-24T10:33:09Z",
+      "number": 8,
+      "state": "MERGED",
+      "title": "chore: use Python release strategy",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/8"
+    }
+  },
+  "release": {
+    "dispatch": {
+      "conclusion": "success",
+      "createdAt": "2026-07-24T10:07:47Z",
+      "databaseId": 30085085533,
+      "event": "repository_dispatch",
+      "name": "dispatch",
+      "status": "completed",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-target-20260724-r1/actions/runs/30085085533"
+    },
+    "labels": [
+      "autorelease: tagged"
+    ],
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.0.1](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/compare/v1.0.0...v1.0.1) (2026-07-24)\n\n\n### Bug Fixes\n\n* **deps:** update dependency ternforge-release-contract-source to v1.1.0 ([#2](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/issues/2)) ([59b44d2](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/commit/59b44d25c7b512a9a6977a8ef41e819e7cac71da))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--consumer",
+      "headRefOid": "32c458a55d24ed4333567b6ac71460bf52fba9d4",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-24T10:07:26Z",
+      "number": 4,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T10:07:24Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30085048617/job/89455137582",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T10:07:12Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 1.0.1",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/4"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-24T10:07:38Z",
+      "tagName": "v1.0.1",
+      "targetCommitish": "57f3b35ff063d6b6e6bcde7dea8f50254b06c858",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/releases/tag/v1.0.1"
+    }
+  },
+  "renovate": {
+    "log_tail": "ovate.json (etag=\"1072657d643825ac3bc8b8a9c1ce9fef6c755057\", lastModified=Fri, 24 Jul 2026 09:53:52 GMT) (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"branchList\": [\"renovate/ternforge-release-contract-source-1.x\"],\n       \"renovateBranches\": [\"renovate/ternforge-release-contract-source-1.x\"]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"7289d64a16284dcd50f1bbbe2d1a852d20fcd904\"}],\n       \"branches\": [\n         {\n           \"automerge\": true,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"7289d64a16284dcd50f1bbbe2d1a852d20fcd904\",\n           \"branchName\": \"renovate/ternforge-release-contract-source-1.x\",\n           \"branchSha\": \"6b3c85bd2134cadebc5cec21944e8c55c607a1ee\",\n           \"isModified\": false,\n           \"isPristine\": true\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/ternforge-release-contract-source-1.x\",\n           \"prNo\": 2,\n           \"prTitle\": \"fix(deps): update dependency ternforge-release-contract-source to v1.1.0\",\n           \"result\": \"done\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"github-tags\",\n               \"depName\": \"ternforge-release-contract-source\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v1.0.0\",\n               \"currentVersion\": \"v1.0.0\",\n               \"currentValue\": \"v1.0.0\",\n               \"newValue\": \"v1.1.0\",\n               \"newVersion\": \"v1.1.0\",\n               \"packageFile\": \"pyproject.toml\",\n               \"updateType\": \"minor\",\n               \"packageName\": \"betabitplus-template-lab/sandbox-release-contract-source-20260724-r1\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"minor\": 1},\n           \"managers\": {\n             \"pep621\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"minor\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"stats\": {\"total\": 3, \"open\": 1, \"closed\": 0, \"merged\": 2}\nDEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"splits\": {\"init\": 4321, \"onboarding\": 1, \"extract\": 67, \"lookup\": 4517, \"update\": 24111},\n       \"total\": 33341\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"get\": {\"count\": 11, \"avgMs\": 3, \"medianMs\": 1, \"maxMs\": 16, \"totalMs\": 38},\n       \"set\": {\"count\": 11, \"avgMs\": 9, \"medianMs\": 10, \"maxMs\": 16, \"totalMs\": 102}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"python-version\": {\n         \"https://www.python.org/api/v2/downloads/release\": {\n           \"hit\": 0,\n           \"miss\": 1,\n           \"set\": 1,\n           \"skip\": 0\n         }\n       },\n       \"github-tags\": {\n         \"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 2},\n         \"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}\n       },\n       \"github-releases\": {\"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}}\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 17,\n           \"reqAvgMs\": 416,\n           \"reqMedianMs\": 386,\n           \"reqMaxMs\": 881,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 2\n         },\n         \"endoflife.date\": {\n           \"count\": 1,\n           \"reqAvgMs\": 194,\n           \"reqMedianMs\": 194,\n           \"reqMaxMs\": 194,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         },\n         \"www.python.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 2481,\n           \"reqMedianMs\": 2481,\n           \"reqMaxMs\": 2481,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 0\n         }\n       },\n       \"requests\": 19\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/commits/renovate/ternforge-release-contract-source-1.x/check-runs\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/commits/renovate/ternforge-release-contract-source-1.x/status\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/issues/2/comments\": {\n           \"hit\": 1,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-source-20260724-r1\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-release-contract-source-20260724-r1/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"github-tags\": {\"count\": 1, \"avgMs\": 871, \"medianMs\": 871, \"maxMs\": 871, \"totalMs\": 871},\n       \"python-version\": {\"count\": 1, \"avgMs\": 4386, \"medianMs\": 4386, \"maxMs\": 4386, \"totalMs\": 4386}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"stats\": {\n         \"count\": 5,\n         \"avgMs\": 1024,\n         \"medianMs\": 0.610916,\n         \"maxMs\": 4327.642835,\n         \"totalMs\": 5118.528499999999\n       },\n       \"datasources\": {\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 3,\n             \"avgMs\": 264,\n             \"medianMs\": 0.610916,\n             \"maxMs\": 789.874292,\n             \"totalMs\": 790.6531239999999\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 395,\n                 \"medianMs\": 789.874292,\n                 \"maxMs\": 789.874292,\n                 \"totalMs\": 790.485208\n               }\n             },\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.167916,\n                 \"maxMs\": 0.167916,\n                 \"totalMs\": 0.167916\n               }\n             }\n           }\n         },\n         \"python-version\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 4328,\n             \"medianMs\": 4327.642835,\n             \"maxMs\": 4327.642835,\n             \"totalMs\": 4327.642835\n           },\n           \"registryUrls\": {\n             \"https://www.python.org/api/v2/downloads/release\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 4328,\n                 \"medianMs\": 4327.642835,\n                 \"maxMs\": 4327.642835,\n                 \"totalMs\": 4327.642835\n               }\n             }\n           }\n         },\n         \"github-releases\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 0,\n             \"medianMs\": 0.232541,\n             \"maxMs\": 0.232541,\n             \"totalMs\": 0.232541\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.232541,\n                 \"maxMs\": 0.232541,\n                 \"totalMs\": 0.232541\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"other\": {\n         \"count\": 25,\n         \"avgMs\": 53,\n         \"medianMs\": 4.877312,\n         \"maxMs\": 532.11392,\n         \"totalMs\": 1336\n       },\n       \"clone\": {\n         \"count\": 2,\n         \"avgMs\": 579,\n         \"medianMs\": 1147.113728,\n         \"maxMs\": 1147.113728,\n         \"totalMs\": 1158\n       },\n       \"checkout\": {\"count\": 4, \"avgMs\": 7, \"medianMs\": 6.587392, \"maxMs\": 9.767424, \"totalMs\": 27},\n       \"reset\": {\"count\": 5, \"avgMs\": 6, \"medianMs\": 5.557248, \"maxMs\": 8.90752, \"totalMs\": 33},\n       \"merge\": {\n         \"count\": 2,\n         \"avgMs\": 308,\n         \"medianMs\": 556.8832,\n         \"maxMs\": 556.8832,\n         \"totalMs\": 616\n       },\n       \"clean\": {\n         \"count\": 1,\n         \"avgMs\": 58,\n         \"medianMs\": 58.408704,\n         \"maxMs\": 58.408704,\n         \"totalMs\": 59\n       },\n       \"push\": {\n         \"count\": 1,\n         \"avgMs\": 1412,\n         \"medianMs\": 1412.333568,\n         \"maxMs\": 1412.333568,\n         \"totalMs\": 1413\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1)\n       \"cloned\": true,\n       \"durationMs\": 33341,\n       \"result\": \"done\",\n       \"status\": \"activated\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 7ms\n",
+    "pr": {
+      "headRefName": "renovate/ternforge-release-contract-source-1.x",
+      "mergedAt": "2026-07-24T09:54:59Z",
+      "number": 2,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T09:54:49Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30084287712/job/89452730453",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T09:54:42Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T09:54:57Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30084290011/job/89452738135",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T09:54:45Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "fix(deps): update dependency ternforge-release-contract-source to v1.1.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/2"
+    },
+    "release_pr": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.0.1](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/compare/v1.0.0...v1.0.1) (2026-07-24)\n\n\n### Bug Fixes\n\n* **deps:** update dependency ternforge-release-contract-source to v1.1.0 ([#2](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/issues/2)) ([59b44d2](https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/commit/59b44d25c7b512a9a6977a8ef41e819e7cac71da))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--consumer",
+      "headRefOid": "cf39d4216ba6ab10224e5074d3ad44db5db64cd1",
+      "number": 4,
+      "state": "OPEN",
+      "title": "chore(main): release 1.0.1",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/4"
+    }
+  },
+  "repositories": {
+    "consumer": "betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1",
+    "source": "betabitplus-template-lab/sandbox-release-contract-source-20260724-r1",
+    "target": "betabitplus-template-lab/sandbox-release-contract-target-20260724-r1"
+  },
+  "rulesets": [
+    {
+      "_links": {
+        "html": {
+          "href": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/rules/19677196"
+        },
+        "self": {
+          "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/rulesets/19677196"
+        }
+      },
+      "created_at": "2026-07-24T12:48:20.626+03:00",
+      "enforcement": "active",
+      "id": 19677196,
+      "name": "main",
+      "node_id": "RRS_lACqUmVwb3NpdG9yec5OInvjzgEsQAw",
+      "source": "betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1",
+      "source_type": "Repository",
+      "target": "branch",
+      "updated_at": "2026-07-24T12:48:20.709+03:00"
+    }
+  ],
+  "settings": {
+    "allow_auto_merge": true,
+    "allow_merge_commit": false,
+    "allow_rebase_merge": false,
+    "allow_squash_merge": true,
+    "default_branch": "main",
+    "delete_branch_on_merge": true,
+    "squash_merge_commit_message": "PR_BODY",
+    "squash_merge_commit_title": "PR_TITLE"
+  },
+  "title": {
+    "failed": "failure",
+    "message": "docs: document release contract (#1)\n\nThis body must become the squash commit body.",
+    "passed": "success",
+    "pr": {
+      "baseRefName": "main",
+      "body": "This body must become the squash commit body.",
+      "headRefName": "lab/title",
+      "headRefOid": "cc9b8e0dcb1538cb3f6232e433060c80805c92cd",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-24T09:49:10Z",
+      "number": 1,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T09:48:46Z",
+          "conclusion": "FAILURE",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30083917162/job/89451544561",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T09:48:40Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-24T09:49:06Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/actions/runs/30083932019/job/89451593085",
+          "name": "ci / required",
+          "startedAt": "2026-07-24T09:48:55Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "docs: document release contract",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1/pull/1"
+    },
+    "release_prs": []
+  }
+}
