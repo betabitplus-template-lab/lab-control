@@ -1,0 +1,823 @@
+{
+  "checks": {
+    "one_permanent_branch": true,
+    "template_consumer_manual": true,
+    "template_release_minor": true,
+    "template_release_pr_reused": true,
+    "tool_major_manual": true,
+    "tool_pre1_manual": true,
+    "tool_stable_minor_automerge": true
+  },
+  "passed": true,
+  "provisioned": true,
+  "repositories": {
+    "template": "betabitplus-template-lab/sandbox-main-template-20260724-r4",
+    "template_consumer": "betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4",
+    "tool": "betabitplus-template-lab/sandbox-main-tool-20260724-r4",
+    "tool_consumer": "betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4"
+  },
+  "repository_settings": {
+    "template": {
+      "allowAutoMerge": true,
+      "branches": [
+        {
+          "commit": {
+            "sha": "dfbdfba70650c5341924ff4c45aafb8398ad44aa",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/commits/dfbdfba70650c5341924ff4c45aafb8398ad44aa"
+          },
+          "name": "main",
+          "protected": true,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/branches/main/protection"
+        }
+      ],
+      "defaultBranchRef": {
+        "name": "main"
+      },
+      "deleteBranchOnMerge": true,
+      "mergeCommitAllowed": false,
+      "nameWithOwner": "betabitplus-template-lab/sandbox-main-template-20260724-r4",
+      "rebaseMergeAllowed": false,
+      "rulesets": [
+        {
+          "_links": {
+            "html": {
+              "href": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/rules/19646325"
+            },
+            "self": {
+              "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/rulesets/19646325"
+            }
+          },
+          "created_at": "2026-07-24T01:52:05.037+03:00",
+          "enforcement": "active",
+          "id": 19646325,
+          "name": "main",
+          "node_id": "RRS_lACqUmVwb3NpdG9yec5OG5mOzgErx3U",
+          "source": "betabitplus-template-lab/sandbox-main-template-20260724-r4",
+          "source_type": "Repository",
+          "target": "branch",
+          "updated_at": "2026-07-24T01:52:05.071+03:00"
+        }
+      ],
+      "squashMergeAllowed": true,
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4"
+    },
+    "template_consumer": {
+      "allowAutoMerge": true,
+      "branches": [
+        {
+          "commit": {
+            "sha": "a5b9efe3e138ab3940dd6dfe3d08fd584387fc97",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/commits/a5b9efe3e138ab3940dd6dfe3d08fd584387fc97"
+          },
+          "name": "main",
+          "protected": true,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/branches/main/protection"
+        },
+        {
+          "commit": {
+            "sha": "f35e327afd3f0c00c370509624d3887bd0fddc14",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/commits/f35e327afd3f0c00c370509624d3887bd0fddc14"
+          },
+          "name": "renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x",
+          "protected": false,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/branches/renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x/protection"
+        }
+      ],
+      "defaultBranchRef": {
+        "name": "main"
+      },
+      "deleteBranchOnMerge": true,
+      "mergeCommitAllowed": false,
+      "nameWithOwner": "betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4",
+      "rebaseMergeAllowed": false,
+      "rulesets": [
+        {
+          "_links": {
+            "html": {
+              "href": "https://github.com/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/rules/19646334"
+            },
+            "self": {
+              "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/rulesets/19646334"
+            }
+          },
+          "created_at": "2026-07-24T01:52:20.556+03:00",
+          "enforcement": "active",
+          "id": 19646334,
+          "name": "main",
+          "node_id": "RRS_lACqUmVwb3NpdG9yec5OG5pjzgErx34",
+          "source": "betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4",
+          "source_type": "Repository",
+          "target": "branch",
+          "updated_at": "2026-07-24T01:52:20.595+03:00"
+        }
+      ],
+      "squashMergeAllowed": true,
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4"
+    },
+    "tool": {
+      "allowAutoMerge": true,
+      "branches": [
+        {
+          "commit": {
+            "sha": "7286e4fe909f51604a108f877d19ae8970f65223",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commits/7286e4fe909f51604a108f877d19ae8970f65223"
+          },
+          "name": "main",
+          "protected": true,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/branches/main/protection"
+        }
+      ],
+      "defaultBranchRef": {
+        "name": "main"
+      },
+      "deleteBranchOnMerge": true,
+      "mergeCommitAllowed": false,
+      "nameWithOwner": "betabitplus-template-lab/sandbox-main-tool-20260724-r4",
+      "rebaseMergeAllowed": false,
+      "rulesets": [
+        {
+          "_links": {
+            "html": {
+              "href": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/rules/19646329"
+            },
+            "self": {
+              "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/rulesets/19646329"
+            }
+          },
+          "created_at": "2026-07-24T01:52:13.015+03:00",
+          "enforcement": "active",
+          "id": 19646329,
+          "name": "main",
+          "node_id": "RRS_lACqUmVwb3NpdG9yec5OG5n9zgErx3k",
+          "source": "betabitplus-template-lab/sandbox-main-tool-20260724-r4",
+          "source_type": "Repository",
+          "target": "branch",
+          "updated_at": "2026-07-24T01:52:13.058+03:00"
+        }
+      ],
+      "squashMergeAllowed": true,
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4"
+    },
+    "tool_consumer": {
+      "allowAutoMerge": true,
+      "branches": [
+        {
+          "commit": {
+            "sha": "6fd9551cc11e7273f9f87d6146d5030b26256a55",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/commits/6fd9551cc11e7273f9f87d6146d5030b26256a55"
+          },
+          "name": "main",
+          "protected": true,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/branches/main/protection"
+        },
+        {
+          "commit": {
+            "sha": "0ad601351103a4c7d4716214c0232a64855eb594",
+            "url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/commits/0ad601351103a4c7d4716214c0232a64855eb594"
+          },
+          "name": "renovate/ternforge-main-only-lab-tool-2.x",
+          "protected": false,
+          "protection": {
+            "enabled": false,
+            "required_status_checks": {
+              "checks": [],
+              "contexts": [],
+              "enforcement_level": "off"
+            }
+          },
+          "protection_url": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/branches/renovate/ternforge-main-only-lab-tool-2.x/protection"
+        }
+      ],
+      "defaultBranchRef": {
+        "name": "main"
+      },
+      "deleteBranchOnMerge": true,
+      "mergeCommitAllowed": false,
+      "nameWithOwner": "betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4",
+      "rebaseMergeAllowed": false,
+      "rulesets": [
+        {
+          "_links": {
+            "html": {
+              "href": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/19646338"
+            },
+            "self": {
+              "href": "https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rulesets/19646338"
+            }
+          },
+          "created_at": "2026-07-24T01:52:28.696+03:00",
+          "enforcement": "active",
+          "id": 19646338,
+          "name": "main",
+          "node_id": "RRS_lACqUmVwb3NpdG9yec5OG5qmzgErx4I",
+          "source": "betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4",
+          "source_type": "Repository",
+          "target": "branch",
+          "updated_at": "2026-07-24T01:52:28.726+03:00"
+        }
+      ],
+      "squashMergeAllowed": true,
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4"
+    }
+  },
+  "template_features": {
+    "feature_prs": [
+      {
+        "baseRefName": "main",
+        "body": "Main-only lab change.",
+        "headRefName": "lab/feature-a",
+        "headRefOid": "54121546f967ffe2f0e90d0a06d070768898912e",
+        "mergeStateStatus": "UNKNOWN",
+        "mergedAt": "2026-07-23T22:52:53Z",
+        "number": 1,
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-07-23T22:52:50Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/actions/runs/30051387035/job/89354023243",
+            "name": "ci / required",
+            "startedAt": "2026-07-23T22:52:47Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          }
+        ],
+        "title": "feat: add feature A to generated projects",
+        "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/pull/1"
+      },
+      {
+        "baseRefName": "main",
+        "body": "Main-only lab change.",
+        "headRefName": "lab/feature-b",
+        "headRefOid": "7dad9c4c83adaf2e78f5d9a91a9fc3ebd17bc571",
+        "mergeStateStatus": "UNKNOWN",
+        "mergedAt": "2026-07-23T22:53:25Z",
+        "number": 3,
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "__typename": "CheckRun",
+            "completedAt": "2026-07-23T22:53:23Z",
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/actions/runs/30051414797/job/89354106040",
+            "name": "ci / required",
+            "startedAt": "2026-07-23T22:53:16Z",
+            "status": "COMPLETED",
+            "workflowName": "ci"
+          }
+        ],
+        "title": "feat: add feature B to generated projects",
+        "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/pull/3"
+      }
+    ],
+    "release_pr_initial": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [0.2.0](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/compare/v0.1.0...v0.2.0) (2026-07-23)\n\n\n### Features\n\n* add feature A to generated projects ([#1](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/1)) ([f2b421e](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/f2b421e44e28715ec3b1accf686cfb595dfb8a1b))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--template",
+      "headRefOid": "959c0ec8170eff7b06f4314cec5b59c153cc49e4",
+      "number": 2,
+      "state": "OPEN",
+      "title": "chore(main): release 0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/pull/2"
+    },
+    "release_pr_updated": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [0.2.0](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/compare/v0.1.0...v0.2.0) (2026-07-23)\n\n\n### Features\n\n* add feature A to generated projects ([#1](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/1)) ([f2b421e](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/f2b421e44e28715ec3b1accf686cfb595dfb8a1b))\n* add feature B to generated projects ([#3](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/3)) ([c76365d](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/c76365d4d670baf0d55f907c821c9162a358c0f8))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--template",
+      "headRefOid": "4060129a1a516768e946037682eecfe2e4ac8524",
+      "number": 2,
+      "state": "OPEN",
+      "title": "chore(main): release 0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/pull/2"
+    }
+  },
+  "template_release": {
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [0.2.0](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/compare/v0.1.0...v0.2.0) (2026-07-23)\n\n\n### Features\n\n* add feature A to generated projects ([#1](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/1)) ([f2b421e](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/f2b421e44e28715ec3b1accf686cfb595dfb8a1b))\n* add feature B to generated projects ([#3](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/3)) ([c76365d](https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/c76365d4d670baf0d55f907c821c9162a358c0f8))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--template",
+      "headRefOid": "4060129a1a516768e946037682eecfe2e4ac8524",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T22:54:08Z",
+      "number": 2,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T22:53:46Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/actions/runs/30051441401/job/89354183096",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T22:53:42Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/pull/2"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-23T22:54:17Z",
+      "tagName": "v0.2.0",
+      "targetCommitish": "dfbdfba70650c5341924ff4c45aafb8398ad44aa",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/releases/tag/v0.2.0"
+    }
+  },
+  "template_renovate": {
+    "files": [
+      ".copier-answers.yml",
+      "feature-a.txt",
+      "feature-b.txt"
+    ],
+    "log_tail": "branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T22:52:15.000Z\",\n       \"sha\": \"a5b9efe3e138ab3940dd6dfe3d08fd584387fc97\"\n INFO: Branch created (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"commitSha\": \"f35e327afd3f0c00c370509624d3887bd0fddc14\"\nDEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: getBranchPr(renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: findPr(renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: findPr(renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x, undefined, closed) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4 (v0.1.0 -> v0.2.0) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4 (etag=W/\"fffba62610fa660c875bfb12bef161df2a461d4cb756969137970941f6d1e64f\", lastModified=Thu, 23 Jul 2026 22:54:12 GMT) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/git/trees/main (etag=W/\"80b474cbc218c4a9869ccdda145a17d76fc9cd6072bfd2194da15d2c4748ad0a\", lastModified=Thu, 23 Jul 2026 22:54:12 GMT) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/git/blobs/f287c05c97970e5aaf19de6c14fe4636426a4888 (etag=W/\"6ff041c257e3fc1c09c86877b53bd82ffd8136fdb641434ec97a2d9a3b879da9\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: Creating PR (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"prTitle\": \"chore(deps): update dependency https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git to v0.2.0\"\nDEBUG: prHourlyLimit of the upgrades present in this branch (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"limits\": [\n         {\n           \"depName\": \"https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git\",\n           \"prHourlyLimit\": 2\n         }\n       ]\nDEBUG: Calculated lowest prHourlyLimit among the upgrades present in this branch is 2. (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: prConcurrentLimit of the upgrades present in this branch (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"limits\": [\n         {\n           \"depName\": \"https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git\",\n           \"prConcurrentLimit\": 10\n         }\n       ]\nDEBUG: Calculated lowest prConcurrentLimit among the upgrades present in this branch is 10. (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: Creating PR (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"title\": \"chore(deps): update dependency https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git to v0.2.0\",\n       \"head\": \"betabitplus-template-lab:renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x\",\n       \"base\": \"main\",\n       \"draft\": false\nDEBUG: PR created (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"pr\": 1,\n       \"draft\": false\nDEBUG: Adding labels '' to #1 (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n INFO: PR created (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\n       \"pr\": 1,\n       \"prTitle\": \"chore(deps): update dependency https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git to v0.2.0\",\n       \"labels\": []\nDEBUG: addParticipants(pr=1) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: Created Pull Request #1 (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: setBranchCommit() (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4, branch=renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x)\nDEBUG: getBranchPr(renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: findPr(renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Found PR #1 (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: getBranchUpdateDate(): using cached result \"2026-07-23T22:55:37.000+00:00\" (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/contents/renovate.json (etag=\"2443e366ee5ab9e81e7a53f228100179d74cb2c0\", lastModified=Thu, 23 Jul 2026 22:52:15 GMT) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"branchList\": [\n         \"renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x\"\n       ],\n       \"renovateBranches\": [\n         \"renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x\"\n       ]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"a5b9efe3e138ab3940dd6dfe3d08fd584387fc97\"}],\n       \"branches\": [\n         {\n           \"automerge\": false,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"a5b9efe3e138ab3940dd6dfe3d08fd584387fc97\",\n           \"branchName\": \"renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x\",\n           \"branchSha\": \"f35e327afd3f0c00c370509624d3887bd0fddc14\",\n           \"isModified\": false,\n           \"isPristine\": true\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x\",\n           \"prNo\": 1,\n           \"prTitle\": \"chore(deps): update dependency https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git to v0.2.0\",\n           \"result\": \"pr-created\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"git-tags\",\n               \"depName\": \"https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v0.1.0\",\n               \"currentVersion\": \"v0.1.0\",\n               \"currentValue\": \"v0.1.0\",\n               \"newValue\": \"v0.2.0\",\n               \"newVersion\": \"v0.2.0\",\n               \"packageFile\": \".copier-answers.yml\",\n               \"updateType\": \"minor\",\n               \"packageName\": \"https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"minor\": 1},\n           \"managers\": {\n             \"copier\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"minor\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"stats\": {\"total\": 1, \"open\": 1, \"closed\": 0, \"merged\": 0}\nDEBUG: Repository result: done, status: onboarded, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"splits\": {\"init\": 3198, \"onboarding\": 1, \"extract\": 124, \"lookup\": 623, \"update\": 35790},\n       \"total\": 40094\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"get\": {\"count\": 12, \"avgMs\": 1, \"medianMs\": 1, \"maxMs\": 9, \"totalMs\": 17},\n       \"set\": {\"count\": 11, \"avgMs\": 8, \"medianMs\": 7, \"maxMs\": 16, \"totalMs\": 85}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"github-releases\": {\"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}},\n       \"pypi\": {\"https://pypi.org/pypi\": {\"hit\": 0, \"miss\": 1, \"set\": 1, \"skip\": 0}},\n       \"github-tags\": {\"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}}\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 15,\n           \"reqAvgMs\": 442,\n           \"reqMedianMs\": 384,\n           \"reqMaxMs\": 1638,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 1\n         },\n         \"pypi.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 140,\n           \"reqMedianMs\": 140,\n           \"reqMaxMs\": 140,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         }\n       },\n       \"requests\": 16\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/git/blobs/f287c05c97970e5aaf19de6c14fe4636426a4888\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-20260724-r4/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/rules/branches/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"git-tags\": {\"count\": 1, \"avgMs\": 567, \"medianMs\": 567, \"maxMs\": 567, \"totalMs\": 567}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"stats\": {\n         \"count\": 5,\n         \"avgMs\": 498,\n         \"medianMs\": 556.258792,\n         \"maxMs\": 981.212834,\n         \"totalMs\": 2490.679044\n       },\n       \"datasources\": {\n         \"git-tags\": {\n           \"stats\": {\n             \"count\": 2,\n             \"avgMs\": 283,\n             \"medianMs\": 556.258792,\n             \"maxMs\": 556.258792,\n             \"totalMs\": 565.940792\n           },\n           \"registryUrls\": {\n             \"\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 283,\n                 \"medianMs\": 556.258792,\n                 \"maxMs\": 556.258792,\n                 \"totalMs\": 565.940792\n               }\n             }\n           }\n         },\n         \"github-releases\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 981,\n             \"medianMs\": 981.212834,\n             \"maxMs\": 981.212834,\n             \"totalMs\": 981.212834\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 981,\n                 \"medianMs\": 981.212834,\n                 \"maxMs\": 981.212834,\n                 \"totalMs\": 981.212834\n               }\n             }\n           }\n         },\n         \"pypi\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 164,\n             \"medianMs\": 164.492167,\n             \"maxMs\": 164.492167,\n             \"totalMs\": 164.492167\n           },\n           \"registryUrls\": {\n             \"https://pypi.org/pypi\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 164,\n                 \"medianMs\": 164.492167,\n                 \"maxMs\": 164.492167,\n                 \"totalMs\": 164.492167\n               }\n             }\n           }\n         },\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 779,\n             \"medianMs\": 779.033251,\n             \"maxMs\": 779.033251,\n             \"totalMs\": 779.033251\n           },\n           \"registryUrls\": {\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 779,\n                 \"medianMs\": 779.033251,\n                 \"maxMs\": 779.033251,\n                 \"totalMs\": 779.033251\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"other\": {\n         \"count\": 25,\n         \"avgMs\": 40,\n         \"medianMs\": 7.507968,\n         \"maxMs\": 537.469696,\n         \"totalMs\": 995\n       },\n       \"clone\": {\n         \"count\": 2,\n         \"avgMs\": 572,\n         \"medianMs\": 1131.885824,\n         \"maxMs\": 1131.885824,\n         \"totalMs\": 1144\n       },\n       \"checkout\": {\n         \"count\": 4,\n         \"avgMs\": 10,\n         \"medianMs\": 6.387968,\n         \"maxMs\": 23.068928,\n         \"totalMs\": 42\n       },\n       \"reset\": {\"count\": 4, \"avgMs\": 5, \"medianMs\": 4.819712, \"maxMs\": 7.76832, \"totalMs\": 22},\n       \"clean\": {\"count\": 1, \"avgMs\": 3, \"medianMs\": 3.476224, \"maxMs\": 3.476224, \"totalMs\": 4},\n       \"push\": {\n         \"count\": 1,\n         \"avgMs\": 1387,\n         \"medianMs\": 1386.64576,\n         \"maxMs\": 1386.64576,\n         \"totalMs\": 1387\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4)\n       \"cloned\": true,\n       \"durationMs\": 40094,\n       \"result\": \"done\",\n       \"status\": \"onboarded\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 8ms\n",
+    "pr": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4) | template | minor | `v0.1.0` \u2192 `v0.2.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-template-20260724-r4 (https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git)</summary>\n\n### [`v0.2.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/releases/tag/v0.2.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/compare/v0.1.0...v0.2.0)\n\n##### Features\n\n- add feature A to generated projects ([#&#8203;1](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/1)) ([f2b421e](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/f2b421e44e28715ec3b1accf686cfb595dfb8a1b))\n- add feature B to generated projects ([#&#8203;3](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/issues/3)) ([c76365d](https://redirect.github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4/commit/c76365d4d670baf0d55f907c821c9162a358c0f8))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/https-github.com-betabitplus-template-lab-sandbox-main-template-20260724-r4.git-0.x",
+      "headRefOid": "f35e327afd3f0c00c370509624d3887bd0fddc14",
+      "mergeStateStatus": "CLEAN",
+      "mergedAt": null,
+      "number": 1,
+      "state": "OPEN",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T22:55:53Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/actions/runs/30051556502/job/89354530373",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T22:55:49Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency https://github.com/betabitplus-template-lab/sandbox-main-template-20260724-r4.git to v0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-template-consumer-20260724-r4/pull/1"
+    }
+  },
+  "tool_major_release": {
+    "feature_pr": {
+      "baseRefName": "main",
+      "body": "BREAKING CHANGE: value() now returns a mapping.",
+      "headRefName": "lab/stable-major",
+      "headRefOid": "f876b98ad0fc88fc4c85fa5fa48304bc7f523df5",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:18:10Z",
+      "number": 7,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:18:08Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052765226/job/89358125580",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:18:03Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "feat!: replace the value API",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/7"
+    },
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [2.0.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.1.0...v2.0.0) (2026-07-23)\n\n\n### \u26a0 BREAKING CHANGES\n\n* value() now returns a mapping.\n\n### Features\n\n* replace the value API ([#7](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/7)) ([4faa712](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/4faa712c9dbd1b004318dc4bf1d8cdaeb5090865))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "17f19a568b000219834e25da0de8e09fe56b4c86",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:18:33Z",
+      "number": 8,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:18:30Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052786335/job/89358189872",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:18:27Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 2.0.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/8"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-23T23:18:43Z",
+      "tagName": "v2.0.0",
+      "targetCommitish": "7286e4fe909f51604a108f877d19ae8970f65223",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v2.0.0"
+    },
+    "release_pr_before_merge": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [2.0.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.1.0...v2.0.0) (2026-07-23)\n\n\n### \u26a0 BREAKING CHANGES\n\n* value() now returns a mapping.\n\n### Features\n\n* replace the value API ([#7](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/7)) ([4faa712](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/4faa712c9dbd1b004318dc4bf1d8cdaeb5090865))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "17f19a568b000219834e25da0de8e09fe56b4c86",
+      "number": 8,
+      "state": "OPEN",
+      "title": "chore(main): release 2.0.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/8"
+    }
+  },
+  "tool_major_renovate": {
+    "log_tail": "e=at any time, tz=null, now=2026-07-23T23:29:15.018Z) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No schedule defined (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main (etag=W/\"b89f0851702732c3a02daaf2bed6e66a9b55147a24f09498756f1aa492bfe8a3\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: GET https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/branches/main/protection = (code=ERR_NON_2XX_3XX_RESPONSE, statusCode=404 retryCount=0, duration=280) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No branch-protection found for main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Converting rebaseWhen=auto to rebaseWhen=conflicted because no rule for behind-base-branch applies (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch already exists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Skipping behind base branch check due to rebaseWhen=conflicted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: isBranchConflicted(main, renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: branch.isConflicted(): using git to calculate against baseBranch main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting git author name: Renovate Bot (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting git author email: renovate@whitesourcesoftware.com (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: branch.isConflicted(): false (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch does not need rebasing (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Using reuseExistingBranch: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:26:24.000Z\",\n       \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"\nDEBUG: manager.getUpdatedPackageFiles() reuseExistingBranch=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch dep ternforge-main-only-lab-tool in pyproject.toml is already updated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No content changed (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"depName\": \"ternforge-main-only-lab-tool\"\nDEBUG: No package files need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No updated lock files in branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No changes to package files, skipping post-upgrade tasks (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No files to commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:26:24.000Z\",\n       \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"\nDEBUG: Checking if we can automerge branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: mergeStatus=no automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-2.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Found PR #11 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Found existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (v1.1.0 -> v2.0.0) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (etag=W/\"d1d34174aa19fe46b36ca461fa41a90589dd3ee4d6f48345016e8f5901de2a20\", lastModified=Thu, 23 Jul 2026 23:18:37 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main (etag=W/\"b320a2cb6e6c358ebe672f3316dc3b03b6d7b38c97150780439f21a115135155\", lastModified=Thu, 23 Jul 2026 23:18:37 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/fde35d15eaf57e48199d400bdb0bda5b22089d0c (etag=W/\"5be06d1d7c87954cfbb48d12423b01e8d92a3b43fc00fced813966c15c353f27\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Processing existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Pull Request #11 does not need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-2.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Found PR #11 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json (etag=\"ed1113e447e0744db40178ccc09925bc566b285e\", lastModified=Thu, 23 Jul 2026 23:26:24 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchList\": [\"renovate/ternforge-main-only-lab-tool-2.x\"],\n       \"renovateBranches\": [\"renovate/ternforge-main-only-lab-tool-2.x\"]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"}],\n       \"branches\": [\n         {\n           \"automerge\": false,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\",\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-2.x\",\n           \"branchSha\": \"0ad601351103a4c7d4716214c0232a64855eb594\",\n           \"isModified\": false,\n           \"isPristine\": false\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-2.x\",\n           \"prNo\": 11,\n           \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v2\",\n           \"result\": \"done\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"github-tags\",\n               \"depName\": \"ternforge-main-only-lab-tool\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v1.1.0\",\n               \"currentVersion\": \"v1.1.0\",\n               \"currentValue\": \"v1.1.0\",\n               \"newValue\": \"v2.0.0\",\n               \"newVersion\": \"v2.0.0\",\n               \"packageFile\": \"pyproject.toml\",\n               \"updateType\": \"major\",\n               \"packageName\": \"betabitplus-template-lab/sandbox-main-tool-20260724-r4\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"major\": 1},\n           \"managers\": {\n             \"pep621\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"major\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\"total\": 11, \"open\": 1, \"closed\": 1, \"merged\": 9}\nDEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"splits\": {\"init\": 3456, \"onboarding\": 0, \"extract\": 51, \"lookup\": 3354, \"update\": 2410},\n       \"total\": 9704\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"get\": {\"count\": 11, \"avgMs\": 1, \"medianMs\": 0, \"maxMs\": 3, \"totalMs\": 8},\n       \"set\": {\"count\": 11, \"avgMs\": 7, \"medianMs\": 6, \"maxMs\": 18, \"totalMs\": 82}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"python-version\": {\n         \"https://www.python.org/api/v2/downloads/release\": {\n           \"hit\": 0,\n           \"miss\": 1,\n           \"set\": 1,\n           \"skip\": 0\n         }\n       },\n       \"github-tags\": {\n         \"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 2},\n         \"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}\n       }\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 14,\n           \"reqAvgMs\": 353,\n           \"reqMedianMs\": 355,\n           \"reqMaxMs\": 541,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 1\n         },\n         \"endoflife.date\": {\n           \"count\": 1,\n           \"reqAvgMs\": 134,\n           \"reqMedianMs\": 134,\n           \"reqMaxMs\": 134,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         },\n         \"www.python.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 1441,\n           \"reqMedianMs\": 1441,\n           \"reqMaxMs\": 1441,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         }\n       },\n       \"requests\": 16\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/fde35d15eaf57e48199d400bdb0bda5b22089d0c\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"github-tags\": {\"count\": 1, \"avgMs\": 712, \"medianMs\": 712, \"maxMs\": 712, \"totalMs\": 712},\n       \"python-version\": {\"count\": 1, \"avgMs\": 3299, \"medianMs\": 3299, \"maxMs\": 3299, \"totalMs\": 3299}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\n         \"count\": 4,\n         \"avgMs\": 993,\n         \"medianMs\": 701.419167,\n         \"maxMs\": 3269.034876,\n         \"totalMs\": 3970.904751\n       },\n       \"datasources\": {\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 3,\n             \"avgMs\": 234,\n             \"medianMs\": 0.320083,\n             \"maxMs\": 701.419167,\n             \"totalMs\": 701.869875\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 351,\n                 \"medianMs\": 701.419167,\n                 \"maxMs\": 701.419167,\n                 \"totalMs\": 701.73925\n               }\n             },\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.130625,\n                 \"maxMs\": 0.130625,\n                 \"totalMs\": 0.130625\n               }\n             }\n           }\n         },\n         \"python-version\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 3269,\n             \"medianMs\": 3269.034876,\n             \"maxMs\": 3269.034876,\n             \"totalMs\": 3269.034876\n           },\n           \"registryUrls\": {\n             \"https://www.python.org/api/v2/downloads/release\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 3269,\n                 \"medianMs\": 3269.034876,\n                 \"maxMs\": 3269.034876,\n                 \"totalMs\": 3269.034876\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"other\": {\n         \"count\": 21,\n         \"avgMs\": 35,\n         \"medianMs\": 5.455616,\n         \"maxMs\": 519.542784,\n         \"totalMs\": 745\n       },\n       \"clone\": {\n         \"count\": 1,\n         \"avgMs\": 1160,\n         \"medianMs\": 1160.041728,\n         \"maxMs\": 1160.041728,\n         \"totalMs\": 1161\n       },\n       \"checkout\": {\"count\": 3, \"avgMs\": 5, \"medianMs\": 5.321216, \"maxMs\": 5.861632, \"totalMs\": 17},\n       \"reset\": {\"count\": 4, \"avgMs\": 6, \"medianMs\": 5.92128, \"maxMs\": 9.902592, \"totalMs\": 25},\n       \"merge\": {\n         \"count\": 2,\n         \"avgMs\": 288,\n         \"medianMs\": 513.539584,\n         \"maxMs\": 513.539584,\n         \"totalMs\": 576\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cloned\": true,\n       \"durationMs\": 9704,\n       \"result\": \"done\",\n       \"status\": \"activated\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 19ms\n",
+    "manual_pr": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | major | `v1.1.0` \u2192 `v2.0.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v2.0.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v2.0.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.1.0...v2.0.0)\n\n##### \u26a0 BREAKING CHANGES\n\n- value() now returns a mapping.\n\n##### Features\n\n- replace the value API ([#&#8203;7](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/7)) ([4faa712](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/4faa712c9dbd1b004318dc4bf1d8cdaeb5090865))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-2.x",
+      "headRefOid": "0ad601351103a4c7d4716214c0232a64855eb594",
+      "mergeStateStatus": "CLEAN",
+      "mergedAt": null,
+      "number": 11,
+      "state": "OPEN",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:27:18Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30053237990/job/89359578267",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:27:11Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v2",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/11"
+    }
+  },
+  "tool_minor_release": {
+    "feature_pr": {
+      "baseRefName": "main",
+      "body": "Main-only lab change.",
+      "headRefName": "lab/stable-minor",
+      "headRefOid": "40e4f687962844bf64bb49642bd3d62f105bb046",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:16:47Z",
+      "number": 5,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:16:44Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052695266/job/89357906901",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:16:41Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "feat: add stable helper",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/5"
+    },
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.1.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.0.0...v1.1.0) (2026-07-23)\n\n\n### Features\n\n* add stable helper ([#5](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/5)) ([ca84a0e](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/ca84a0e2b2ae2dc8672c3b22a8b0b34abdd82c40))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "d2c09f906b805d58c8d6a9653c84ea9a9fa06017",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:17:13Z",
+      "number": 6,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:17:11Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052717323/job/89357975131",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:17:07Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 1.1.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/6"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-23T23:17:21Z",
+      "tagName": "v1.1.0",
+      "targetCommitish": "ced23aa685068004324fc9c078b1f25f7e3ff428",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v1.1.0"
+    },
+    "release_pr_before_merge": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.1.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.0.0...v1.1.0) (2026-07-23)\n\n\n### Features\n\n* add stable helper ([#5](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/5)) ([ca84a0e](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/ca84a0e2b2ae2dc8672c3b22a8b0b34abdd82c40))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "d2c09f906b805d58c8d6a9653c84ea9a9fa06017",
+      "number": 6,
+      "state": "OPEN",
+      "title": "chore(main): release 1.1.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/6"
+    }
+  },
+  "tool_minor_renovate": {
+    "automerge_pr": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | minor | `v1.0.0` \u2192 `v1.1.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v1.1.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v1.1.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v1.0.0...v1.1.0)\n\n##### Features\n\n- add stable helper ([#&#8203;5](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/5)) ([ca84a0e](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/ca84a0e2b2ae2dc8672c3b22a8b0b34abdd82c40))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Enabled.\n\n\u267b **Rebasing**: Whenever PR is behind base branch, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-1.x",
+      "headRefOid": "6ac410660cf5a62babe6af935367dfcc547bceb8",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:25:39Z",
+      "number": 10,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:25:37Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30053153558/job/89359319875",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:25:31Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v1.1.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/10"
+    },
+    "log_tail": "me, tz=null, now=2026-07-23T23:28:53.277Z) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No schedule defined (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main (etag=W/\"b89f0851702732c3a02daaf2bed6e66a9b55147a24f09498756f1aa492bfe8a3\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: GET https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/branches/main/protection = (code=ERR_NON_2XX_3XX_RESPONSE, statusCode=404 retryCount=0, duration=295) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No branch-protection found for main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Converting rebaseWhen=auto to rebaseWhen=conflicted because no rule for behind-base-branch applies (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch already exists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Skipping behind base branch check due to rebaseWhen=conflicted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: isBranchConflicted(main, renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: branch.isConflicted(): using git to calculate against baseBranch main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting git author name: Renovate Bot (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting git author email: renovate@whitesourcesoftware.com (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: branch.isConflicted(): false (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch does not need rebasing (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Using reuseExistingBranch: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:26:24.000Z\",\n       \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"\nDEBUG: manager.getUpdatedPackageFiles() reuseExistingBranch=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Branch dep ternforge-main-only-lab-tool in pyproject.toml is already updated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No content changed (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"depName\": \"ternforge-main-only-lab-tool\"\nDEBUG: No package files need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No updated lock files in branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No changes to package files, skipping post-upgrade tasks (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: No files to commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:26:24.000Z\",\n       \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"\nDEBUG: Checking if we can automerge branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: mergeStatus=no automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-2.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Found PR #11 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Found existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (v1.1.0 -> v2.0.0) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (etag=W/\"d1d34174aa19fe46b36ca461fa41a90589dd3ee4d6f48345016e8f5901de2a20\", lastModified=Thu, 23 Jul 2026 23:18:37 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main (etag=W/\"b320a2cb6e6c358ebe672f3316dc3b03b6d7b38c97150780439f21a115135155\", lastModified=Thu, 23 Jul 2026 23:18:37 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/fde35d15eaf57e48199d400bdb0bda5b22089d0c (etag=W/\"5be06d1d7c87954cfbb48d12423b01e8d92a3b43fc00fced813966c15c353f27\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Processing existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: Pull Request #11 does not need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-2.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-2.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-2.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Found PR #11 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json (etag=\"ed1113e447e0744db40178ccc09925bc566b285e\", lastModified=Thu, 23 Jul 2026 23:26:24 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchList\": [\"renovate/ternforge-main-only-lab-tool-2.x\"],\n       \"renovateBranches\": [\"renovate/ternforge-main-only-lab-tool-2.x\"]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\"}],\n       \"branches\": [\n         {\n           \"automerge\": false,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"6fd9551cc11e7273f9f87d6146d5030b26256a55\",\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-2.x\",\n           \"branchSha\": \"0ad601351103a4c7d4716214c0232a64855eb594\",\n           \"isModified\": false,\n           \"isPristine\": false\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-2.x\",\n           \"prNo\": 11,\n           \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v2\",\n           \"result\": \"done\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"github-tags\",\n               \"depName\": \"ternforge-main-only-lab-tool\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v1.1.0\",\n               \"currentVersion\": \"v1.1.0\",\n               \"currentValue\": \"v1.1.0\",\n               \"newValue\": \"v2.0.0\",\n               \"newVersion\": \"v2.0.0\",\n               \"packageFile\": \"pyproject.toml\",\n               \"updateType\": \"major\",\n               \"packageName\": \"betabitplus-template-lab/sandbox-main-tool-20260724-r4\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"major\": 1},\n           \"managers\": {\n             \"pep621\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"major\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\"total\": 11, \"open\": 1, \"closed\": 1, \"merged\": 9}\nDEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"splits\": {\"init\": 3219, \"onboarding\": 1, \"extract\": 70, \"lookup\": 2970, \"update\": 2756},\n       \"total\": 9299\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"get\": {\"count\": 11, \"avgMs\": 1, \"medianMs\": 0, \"maxMs\": 4, \"totalMs\": 10},\n       \"set\": {\"count\": 11, \"avgMs\": 7, \"medianMs\": 5, \"maxMs\": 14, \"totalMs\": 79}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"python-version\": {\n         \"https://www.python.org/api/v2/downloads/release\": {\n           \"hit\": 0,\n           \"miss\": 1,\n           \"set\": 1,\n           \"skip\": 0\n         }\n       },\n       \"github-tags\": {\n         \"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 2},\n         \"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}\n       }\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 14,\n           \"reqAvgMs\": 348,\n           \"reqMedianMs\": 322,\n           \"reqMaxMs\": 557,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 1\n         },\n         \"endoflife.date\": {\n           \"count\": 1,\n           \"reqAvgMs\": 135,\n           \"reqMedianMs\": 135,\n           \"reqMaxMs\": 135,\n           \"queueAvgMs\": 2,\n           \"queueMedianMs\": 2,\n           \"queueMaxMs\": 2\n         },\n         \"www.python.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 952,\n           \"reqMedianMs\": 952,\n           \"reqMaxMs\": 952,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         }\n       },\n       \"requests\": 16\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/fde35d15eaf57e48199d400bdb0bda5b22089d0c\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"github-tags\": {\"count\": 1, \"avgMs\": 668, \"medianMs\": 668, \"maxMs\": 668, \"totalMs\": 668},\n       \"python-version\": {\"count\": 1, \"avgMs\": 2923, \"medianMs\": 2923, \"maxMs\": 2923, \"totalMs\": 2923}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\n         \"count\": 4,\n         \"avgMs\": 887,\n         \"medianMs\": 658.368125,\n         \"maxMs\": 2890.723126,\n         \"totalMs\": 3549.5270429999996\n       },\n       \"datasources\": {\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 3,\n             \"avgMs\": 220,\n             \"medianMs\": 0.298375,\n             \"maxMs\": 658.368125,\n             \"totalMs\": 658.803917\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 329,\n                 \"medianMs\": 658.368125,\n                 \"maxMs\": 658.368125,\n                 \"totalMs\": 658.6664999999999\n               }\n             },\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.137417,\n                 \"maxMs\": 0.137417,\n                 \"totalMs\": 0.137417\n               }\n             }\n           }\n         },\n         \"python-version\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 2891,\n             \"medianMs\": 2890.723126,\n             \"maxMs\": 2890.723126,\n             \"totalMs\": 2890.723126\n           },\n           \"registryUrls\": {\n             \"https://www.python.org/api/v2/downloads/release\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 2891,\n                 \"medianMs\": 2890.723126,\n                 \"maxMs\": 2890.723126,\n                 \"totalMs\": 2890.723126\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"other\": {\n         \"count\": 21,\n         \"avgMs\": 35,\n         \"medianMs\": 5.192192,\n         \"maxMs\": 508.288768,\n         \"totalMs\": 728\n       },\n       \"clone\": {\n         \"count\": 1,\n         \"avgMs\": 1134,\n         \"medianMs\": 1133.798912,\n         \"maxMs\": 1133.798912,\n         \"totalMs\": 1134\n       },\n       \"checkout\": {\"count\": 3, \"avgMs\": 7, \"medianMs\": 7.3216, \"maxMs\": 8.584704, \"totalMs\": 21},\n       \"reset\": {\"count\": 4, \"avgMs\": 6, \"medianMs\": 5.462016, \"maxMs\": 8.758784, \"totalMs\": 23},\n       \"merge\": {\n         \"count\": 2,\n         \"avgMs\": 404,\n         \"medianMs\": 747.798272,\n         \"maxMs\": 747.798272,\n         \"totalMs\": 809\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cloned\": true,\n       \"durationMs\": 9299,\n       \"result\": \"done\",\n       \"status\": \"activated\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 7ms\n"
+  },
+  "tool_one_release": {
+    "feature_pr": {
+      "baseRefName": "main",
+      "body": "Release-As: 1.0.0",
+      "headRefName": "lab/stable-release",
+      "headRefOid": "0542de5d79c9edba397a0687151109cda5baf34f",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:14:03Z",
+      "number": 3,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:14:00Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052549451/job/89357473517",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:13:56Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "feat!: stabilize public API",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/3"
+    },
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.0.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.2.0...v1.0.0) (2026-07-23)\n\n\n### \u26a0 BREAKING CHANGES\n\n* stabilize public API ([#3](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3))\n\n### Features\n\n* stabilize public API ([#3](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3)) ([9338493](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/933849332a6bf370a282a862fddf50dca9ee2db2))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "e3d1e00b90a25166c8b8fa6a0edc66e8a7375c82",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:14:28Z",
+      "number": 4,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:14:26Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30052572319/job/89357541674",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:14:23Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 1.0.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/4"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-23T23:14:39Z",
+      "tagName": "v1.0.0",
+      "targetCommitish": "62e4d884dcb8eaf10c88a85ca60afc415e59bb27",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v1.0.0"
+    },
+    "release_pr_before_merge": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [1.0.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.2.0...v1.0.0) (2026-07-23)\n\n\n### \u26a0 BREAKING CHANGES\n\n* stabilize public API ([#3](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3))\n\n### Features\n\n* stabilize public API ([#3](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3)) ([9338493](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/933849332a6bf370a282a862fddf50dca9ee2db2))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "e3d1e00b90a25166c8b8fa6a0edc66e8a7375c82",
+      "number": 4,
+      "state": "OPEN",
+      "title": "chore(main): release 1.0.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/4"
+    }
+  },
+  "tool_one_renovate": {
+    "log_tail": "lab-tool-1.x)\nDEBUG: Setting git author email: renovate@whitesourcesoftware.com (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: git commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"deletedFiles\": [],\n       \"ignoredFiles\": [],\n       \"result\": {\n         \"author\": null,\n         \"branch\": \"renovate/ternforge-main-only-lab-tool-1.x\",\n         \"commit\": \"57b0aa3ed67a3988d2e8f3611829d6c1ef0e65c9\",\n         \"root\": false,\n         \"summary\": {\"changes\": 2, \"insertions\": 4, \"deletions\": 4}\n       }\nDEBUG: Pushing refSpec renovate/ternforge-main-only-lab-tool-1.x:renovate/ternforge-main-only-lab-tool-1.x (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: git push (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"result\": {\n         \"pushed\": [\n           {\n             \"deleted\": false,\n             \"tag\": false,\n             \"branch\": true,\n             \"new\": true,\n             \"alreadyUpdated\": false,\n             \"local\": \"refs/heads/renovate/ternforge-main-only-lab-tool-1.x\",\n             \"remote\": \"refs/heads/renovate/ternforge-main-only-lab-tool-1.x\"\n           }\n         ],\n         \"ref\": {\n           \"local\": \"refs/remotes/origin/renovate/ternforge-main-only-lab-tool-1.x\"\n         },\n         \"remoteMessages\": {\n           \"all\": [\n             \"Create a pull request for 'renovate/ternforge-main-only-lab-tool-1.x' on GitHub by visiting:\",\n             \"https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/new/renovate/ternforge-main-only-lab-tool-1.x\"\n           ],\n           \"pullRequestUrl\": \"https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/new/renovate/ternforge-main-only-lab-tool-1.x\"\n         }\n       }\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:13:29.000Z\",\n       \"sha\": \"4771374b3ec2d88a2aa7800f5a77c5c68f008e67\"\n INFO: Branch created (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"commitSha\": \"57b0aa3ed67a3988d2e8f3611829d6c1ef0e65c9\"\nDEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-1.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-1.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-1.x, undefined, closed) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (v0.2.0 -> v1.0.0) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (etag=W/\"0561ca77fea70b1faa0fad26dc882e7d160710942357bf3555de1fdb3ec1405c\", lastModified=Thu, 23 Jul 2026 23:14:32 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main (etag=W/\"230a63935e2ddd450aae35852ebdd6fb9909cbfa0250180bd3218f61793aa84d\", lastModified=Thu, 23 Jul 2026 23:14:32 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/bccfce5c68401812b48fb9e9b8a625ec14c6e7ba (etag=W/\"41d88c3b7aafa725fad4a3bc22c7e977308c6478f9ed6353cfc4d360d89f8ff8\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: Creating PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v1\"\nDEBUG: prHourlyLimit of the upgrades present in this branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"limits\": [{\"depName\": \"ternforge-main-only-lab-tool\", \"prHourlyLimit\": 2}]\nDEBUG: Calculated lowest prHourlyLimit among the upgrades present in this branch is 2. (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: prConcurrentLimit of the upgrades present in this branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"limits\": [{\"depName\": \"ternforge-main-only-lab-tool\", \"prConcurrentLimit\": 10}]\nDEBUG: Calculated lowest prConcurrentLimit among the upgrades present in this branch is 10. (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: Creating PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"title\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v1\",\n       \"head\": \"betabitplus-template-lab:renovate/ternforge-main-only-lab-tool-1.x\",\n       \"base\": \"main\",\n       \"draft\": false\nDEBUG: PR created (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"pr\": 8,\n       \"draft\": false\nDEBUG: Adding labels '' to #8 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n INFO: PR created (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\n       \"pr\": 8,\n       \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v1\",\n       \"labels\": []\nDEBUG: addParticipants(pr=8) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: Created Pull Request #8 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: setBranchCommit() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-1.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-1.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-1.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Found PR #8 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: getBranchUpdateDate(): using cached result \"2026-07-23T23:15:22.000+00:00\" (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json (etag=\"ed1113e447e0744db40178ccc09925bc566b285e\", lastModified=Thu, 23 Jul 2026 23:13:29 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchList\": [\"renovate/ternforge-main-only-lab-tool-1.x\"],\n       \"renovateBranches\": [\"renovate/ternforge-main-only-lab-tool-1.x\"]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"4771374b3ec2d88a2aa7800f5a77c5c68f008e67\"}],\n       \"branches\": [\n         {\n           \"automerge\": false,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"4771374b3ec2d88a2aa7800f5a77c5c68f008e67\",\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-1.x\",\n           \"branchSha\": \"57b0aa3ed67a3988d2e8f3611829d6c1ef0e65c9\",\n           \"isModified\": false,\n           \"isPristine\": true\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-1.x\",\n           \"prNo\": 8,\n           \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v1\",\n           \"result\": \"pr-created\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"github-tags\",\n               \"depName\": \"ternforge-main-only-lab-tool\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v0.2.0\",\n               \"currentVersion\": \"v0.2.0\",\n               \"currentValue\": \"v0.2.0\",\n               \"newValue\": \"v1.0.0\",\n               \"newVersion\": \"v1.0.0\",\n               \"packageFile\": \"pyproject.toml\",\n               \"updateType\": \"major\",\n               \"packageName\": \"betabitplus-template-lab/sandbox-main-tool-20260724-r4\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"major\": 1},\n           \"managers\": {\n             \"pep621\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"major\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\"total\": 7, \"open\": 1, \"closed\": 1, \"merged\": 5}\nDEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"splits\": {\"init\": 3474, \"onboarding\": 1, \"extract\": 83, \"lookup\": 3577, \"update\": 23726},\n       \"total\": 31115\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"get\": {\"count\": 11, \"avgMs\": 2, \"medianMs\": 1, \"maxMs\": 6, \"totalMs\": 18},\n       \"set\": {\"count\": 11, \"avgMs\": 11, \"medianMs\": 9, \"maxMs\": 32, \"totalMs\": 120}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"python-version\": {\n         \"https://www.python.org/api/v2/downloads/release\": {\n           \"hit\": 0,\n           \"miss\": 1,\n           \"set\": 1,\n           \"skip\": 0\n         }\n       },\n       \"github-tags\": {\n         \"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 2},\n         \"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}\n       },\n       \"github-releases\": {\"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}}\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 15,\n           \"reqAvgMs\": 386,\n           \"reqMedianMs\": 358,\n           \"reqMaxMs\": 891,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 1\n         },\n         \"endoflife.date\": {\n           \"count\": 1,\n           \"reqAvgMs\": 185,\n           \"reqMedianMs\": 185,\n           \"reqMaxMs\": 185,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 0\n         },\n         \"www.python.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 1517,\n           \"reqMedianMs\": 1517,\n           \"reqMaxMs\": 1517,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         }\n       },\n       \"requests\": 17\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/bccfce5c68401812b48fb9e9b8a625ec14c6e7ba\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"github-tags\": {\"count\": 1, \"avgMs\": 707, \"medianMs\": 707, \"maxMs\": 707, \"totalMs\": 707},\n       \"python-version\": {\"count\": 1, \"avgMs\": 3492, \"medianMs\": 3492, \"maxMs\": 3492, \"totalMs\": 3492}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\n         \"count\": 5,\n         \"avgMs\": 826,\n         \"medianMs\": 1.166834,\n         \"maxMs\": 3439.295667,\n         \"totalMs\": 4129.932126999999\n       },\n       \"datasources\": {\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 3,\n             \"avgMs\": 230,\n             \"medianMs\": 1.166834,\n             \"maxMs\": 688.811959,\n             \"totalMs\": 690.131085\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 345,\n                 \"medianMs\": 688.811959,\n                 \"maxMs\": 688.811959,\n                 \"totalMs\": 689.978793\n               }\n             },\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.152292,\n                 \"maxMs\": 0.152292,\n                 \"totalMs\": 0.152292\n               }\n             }\n           }\n         },\n         \"python-version\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 3439,\n             \"medianMs\": 3439.295667,\n             \"maxMs\": 3439.295667,\n             \"totalMs\": 3439.295667\n           },\n           \"registryUrls\": {\n             \"https://www.python.org/api/v2/downloads/release\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 3439,\n                 \"medianMs\": 3439.295667,\n                 \"maxMs\": 3439.295667,\n                 \"totalMs\": 3439.295667\n               }\n             }\n           }\n         },\n         \"github-releases\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 1,\n             \"medianMs\": 0.505375,\n             \"maxMs\": 0.505375,\n             \"totalMs\": 0.505375\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 1,\n                 \"medianMs\": 0.505375,\n                 \"maxMs\": 0.505375,\n                 \"totalMs\": 0.505375\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"other\": {\n         \"count\": 23,\n         \"avgMs\": 40,\n         \"medianMs\": 6.867456,\n         \"maxMs\": 510.5088,\n         \"totalMs\": 915\n       },\n       \"clone\": {\n         \"count\": 2,\n         \"avgMs\": 643,\n         \"medianMs\": 1264.082432,\n         \"maxMs\": 1264.082432,\n         \"totalMs\": 1287\n       },\n       \"checkout\": {\n         \"count\": 4,\n         \"avgMs\": 8,\n         \"medianMs\": 8.290304,\n         \"maxMs\": 10.432256,\n         \"totalMs\": 33\n       },\n       \"reset\": {\"count\": 4, \"avgMs\": 7, \"medianMs\": 6.140928, \"maxMs\": 12.94208, \"totalMs\": 30},\n       \"clean\": {\n         \"count\": 1,\n         \"avgMs\": 59,\n         \"medianMs\": 59.044864,\n         \"maxMs\": 59.044864,\n         \"totalMs\": 60\n       },\n       \"push\": {\n         \"count\": 1,\n         \"avgMs\": 1389,\n         \"medianMs\": 1388.957696,\n         \"maxMs\": 1388.957696,\n         \"totalMs\": 1389\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cloned\": true,\n       \"durationMs\": 31115,\n       \"result\": \"done\",\n       \"status\": \"activated\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 7ms\n",
+    "major_pr": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | major | `v0.2.0` \u2192 `v1.0.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v1.0.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v1.0.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.2.0...v1.0.0)\n\n##### \u26a0 BREAKING CHANGES\n\n- stabilize public API ([#&#8203;3](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3))\n\n##### Features\n\n- stabilize public API ([#&#8203;3](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3)) ([9338493](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/933849332a6bf370a282a862fddf50dca9ee2db2))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-1.x",
+      "headRefOid": "57b0aa3ed67a3988d2e8f3611829d6c1ef0e65c9",
+      "mergeStateStatus": "CLEAN",
+      "mergedAt": null,
+      "number": 8,
+      "state": "OPEN",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:15:39Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30052633915/job/89357719066",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:15:30Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v1",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/8"
+    },
+    "manual_merge": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | major | `v0.2.0` \u2192 `v1.0.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v1.0.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v1.0.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.2.0...v1.0.0)\n\n##### \u26a0 BREAKING CHANGES\n\n- stabilize public API ([#&#8203;3](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3))\n\n##### Features\n\n- stabilize public API ([#&#8203;3](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/3)) ([9338493](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/933849332a6bf370a282a862fddf50dca9ee2db2))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udd15 **Ignore**: Close this PR and you won't be reminded about this update again.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-1.x",
+      "headRefOid": "57b0aa3ed67a3988d2e8f3611829d6c1ef0e65c9",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:16:08Z",
+      "number": 8,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:15:39Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30052633915/job/89357719066",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:15:30Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v1",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/8"
+    }
+  },
+  "tool_pre1_release": {
+    "feature_pr": {
+      "baseRefName": "main",
+      "body": "Main-only lab change.",
+      "headRefName": "lab/pre1-feature",
+      "headRefOid": "2c69a1da165e3dc508704bffa9ea0352a7e6f3f8",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T22:56:43Z",
+      "number": 1,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T22:56:40Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30051600614/job/89354662722",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T22:56:36Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "feat: add greeting helper",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/1"
+    },
+    "pr": {
+      "baseRefName": "main",
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [0.2.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.1.0...v0.2.0) (2026-07-23)\n\n\n### Features\n\n* add greeting helper ([#1](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/1)) ([b6e294a](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/b6e294a8bf850415eaf6aa1d300516a72c208e34))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "eafc5958c62c29bda546596875fdefd14697d381",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T22:57:09Z",
+      "number": 2,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T22:57:06Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/actions/runs/30051622408/job/89354732572",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T22:57:03Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(main): release 0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/2"
+    },
+    "release": {
+      "isDraft": false,
+      "isPrerelease": false,
+      "publishedAt": "2026-07-23T22:57:18Z",
+      "tagName": "v0.2.0",
+      "targetCommitish": "ccf3d99f4dbf853f2eeec8c3f96c47e182d25252",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v0.2.0"
+    },
+    "release_pr_before_merge": {
+      "body": ":robot: I have created a release *beep* *boop*\n---\n\n\n## [0.2.0](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.1.0...v0.2.0) (2026-07-23)\n\n\n### Features\n\n* add greeting helper ([#1](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/1)) ([b6e294a](https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/b6e294a8bf850415eaf6aa1d300516a72c208e34))\n\n---\nThis PR was generated with [Release Please](https://github.com/googleapis/release-please). See [documentation](https://github.com/googleapis/release-please#release-please).",
+      "headRefName": "release-please--branches--main--components--tool",
+      "headRefOid": "eafc5958c62c29bda546596875fdefd14697d381",
+      "number": 2,
+      "state": "OPEN",
+      "title": "chore(main): release 0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/pull/2"
+    }
+  },
+  "tool_pre1_renovate": {
+    "log_tail": "260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No schedule defined (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main (etag=W/\"b89f0851702732c3a02daaf2bed6e66a9b55147a24f09498756f1aa492bfe8a3\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: GET https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/branches/main/protection = (code=ERR_NON_2XX_3XX_RESPONSE, statusCode=404 retryCount=0, duration=284) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No branch-protection found for main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Converting rebaseWhen=auto to rebaseWhen=conflicted because no rule for behind-base-branch applies (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Branch already exists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Skipping behind base branch check due to rebaseWhen=conflicted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: isBranchConflicted(main, renovate/ternforge-main-only-lab-tool-0.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: branch.isConflicted(): using git to calculate against baseBranch main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Setting git author name: Renovate Bot (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Setting git author email: renovate@whitesourcesoftware.com (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: branch.isConflicted(): false (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Branch does not need rebasing (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Using reuseExistingBranch: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:10:54.000Z\",\n       \"sha\": \"7d8eca805cc3997475ea6ca7184ec3298e50da55\"\nDEBUG: manager.getUpdatedPackageFiles() reuseExistingBranch=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No pdm.lock found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Branch dep ternforge-main-only-lab-tool in pyproject.toml is already updated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No content changed (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, packageFile=pyproject.toml, branch=renovate/ternforge-main-only-lab-tool-0.x)\n       \"depName\": \"ternforge-main-only-lab-tool\"\nDEBUG: No package files need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No updated lock files in branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No changes to package files, skipping post-upgrade tasks (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: No files to commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Setting current branch to main (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: latest commit (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\n       \"branchName\": \"main\",\n       \"latestCommitDate\": \"2026-07-23T23:10:54.000Z\",\n       \"sha\": \"7d8eca805cc3997475ea6ca7184ec3298e50da55\"\nDEBUG: Checking if we can automerge branch (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: mergeStatus=no automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Ensuring PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: There are 0 errors and 0 warnings (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-0.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Found PR #6 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Found existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Fetching changelog: https://github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (v0.1.0 -> v0.2.0) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4 (etag=W/\"2f5644b93d97bb2c1075ed3b5bc9989379e9f962a4ad5f343cc48931517f6811\", lastModified=Thu, 23 Jul 2026 22:57:14 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main (etag=W/\"923342adc1a608e5ed2b3b81ff68dc024d389a8b36504f9afd089806cd5cfd92\", lastModified=Thu, 23 Jul 2026 22:57:14 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/8b5ff493f0a39e0335e0867e424e87e3f60eab83 (etag=W/\"022a2eaa44842279a2d0945ec7d10848fc7521acdb140f6354df4a10af2cb0c0\", lastModified=undefined) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Processing existing PR (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: setPrCache() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: Pull Request #6 does not need updating (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: PR is not configured for automerge (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4, branch=renovate/ternforge-main-only-lab-tool-0.x)\nDEBUG: getBranchPr(renovate/ternforge-main-only-lab-tool-0.x) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: findPr(renovate/ternforge-main-only-lab-tool-0.x, undefined, open) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Found PR #6 (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: http cache: saving https://api.github.com/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json (etag=\"451f56f61e0ebbd178866ca05a06a8710d1301d4\", lastModified=Thu, 23 Jul 2026 23:10:54 GMT) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Config does not need migration (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: ensureDependencyDashboard() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Closing Dependency Dashboard (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: checkReconfigureBranch() (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No reconfigure branch found (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"reconfigureBranch\": \"renovate/reconfigure\"\nDEBUG: Removing any stale branches (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: config.repoIsOnboarded=true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch lists (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchList\": [\"renovate/ternforge-main-only-lab-tool-0.x\"],\n       \"renovateBranches\": [\"renovate/ternforge-main-only-lab-tool-0.x\"]\nDEBUG: remainingBranches= (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: No branches to clean up (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: PackageFiles.clear() - Package files deleted (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repo is activated (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Branch summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cacheModified\": undefined,\n       \"baseBranches\": [{\"branchName\": \"main\", \"sha\": \"7d8eca805cc3997475ea6ca7184ec3298e50da55\"}],\n       \"branches\": [\n         {\n           \"automerge\": false,\n           \"baseBranch\": \"main\",\n           \"baseBranchSha\": \"7d8eca805cc3997475ea6ca7184ec3298e50da55\",\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-0.x\",\n           \"branchSha\": \"5fad043933ff5d0d320c3795bfaa786f2559656d\",\n           \"isModified\": false,\n           \"isPristine\": false\n         }\n       ],\n       \"defaultBranch\": \"main\",\n       \"inactiveBranches\": []\nDEBUG: branches info extended (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"branchesInformation\": [\n         {\n           \"branchName\": \"renovate/ternforge-main-only-lab-tool-0.x\",\n           \"prNo\": 6,\n           \"prTitle\": \"chore(deps): update dependency ternforge-main-only-lab-tool to v0.2.0\",\n           \"result\": \"done\",\n           \"upgrades\": [\n             {\n               \"datasource\": \"github-tags\",\n               \"depName\": \"ternforge-main-only-lab-tool\",\n               \"displayPending\": \"\",\n               \"fixedVersion\": \"v0.1.0\",\n               \"currentVersion\": \"v0.1.0\",\n               \"currentValue\": \"v0.1.0\",\n               \"newValue\": \"v0.2.0\",\n               \"newVersion\": \"v0.2.0\",\n               \"packageFile\": \"pyproject.toml\",\n               \"updateType\": \"minor\",\n               \"packageName\": \"betabitplus-template-lab/sandbox-main-tool-20260724-r4\"\n             }\n           ]\n         }\n       ]\nDEBUG: Updates summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"updateSummary\": [\n         {\n           \"baseBranch\": \"main\",\n           \"total\": 1,\n           \"vulnerabilityAlert\": 0,\n           \"updates\": {\"minor\": 1},\n           \"managers\": {\n             \"pep621\": {\"total\": 1, \"vulnerabilityAlert\": 0, \"updates\": {\"minor\": 1}}\n           }\n         }\n       ]\nDEBUG: Renovate repository PR statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\"total\": 5, \"open\": 1, \"closed\": 1, \"merged\": 3}\nDEBUG: Repository result: done, status: activated, enabled: true, onboarded: true (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\nDEBUG: Repository timing splits (milliseconds) (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"splits\": {\"init\": 3562, \"onboarding\": 2, \"extract\": 80, \"lookup\": 3742, \"update\": 2678},\n       \"total\": 10365\nDEBUG: Package cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"get\": {\"count\": 11, \"avgMs\": 1, \"medianMs\": 1, \"maxMs\": 5, \"totalMs\": 16},\n       \"set\": {\"count\": 11, \"avgMs\": 22, \"medianMs\": 14, \"maxMs\": 92, \"totalMs\": 243}\nDEBUG: Datasource cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"python-version\": {\n         \"https://www.python.org/api/v2/downloads/release\": {\n           \"hit\": 0,\n           \"miss\": 1,\n           \"set\": 1,\n           \"skip\": 0\n         }\n       },\n       \"github-tags\": {\n         \"https://github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 2},\n         \"https://api.github.com\": {\"hit\": 0, \"miss\": 0, \"set\": 0, \"skip\": 1}\n       }\nDEBUG: HTTP statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"hosts\": {\n         \"api.github.com\": {\n           \"count\": 14,\n           \"reqAvgMs\": 365,\n           \"reqMedianMs\": 330,\n           \"reqMaxMs\": 601,\n           \"queueAvgMs\": 0,\n           \"queueMedianMs\": 0,\n           \"queueMaxMs\": 1\n         },\n         \"endoflife.date\": {\n           \"count\": 1,\n           \"reqAvgMs\": 147,\n           \"reqMedianMs\": 147,\n           \"reqMaxMs\": 147,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         },\n         \"www.python.org\": {\n           \"count\": 1,\n           \"reqAvgMs\": 1554,\n           \"reqMedianMs\": 1554,\n           \"reqMaxMs\": 1554,\n           \"queueAvgMs\": 1,\n           \"queueMedianMs\": 1,\n           \"queueMaxMs\": 1\n         }\n       },\n       \"requests\": 16\nDEBUG: HTTP cache statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"https://api.github.com\": {\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/blobs/8b5ff493f0a39e0335e0867e424e87e3f60eab83\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-20260724-r4/git/trees/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/contents/renovate.json\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/dependabot/alerts\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pulls\": {\n           \"hit\": 0,\n           \"miss\": 1\n         },\n         \"/repos/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/rules/branches/main\": {\n           \"hit\": 0,\n           \"miss\": 1\n         }\n       }\nDEBUG: Lookup statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"github-tags\": {\"count\": 1, \"avgMs\": 721, \"medianMs\": 721, \"maxMs\": 721, \"totalMs\": 721},\n       \"python-version\": {\"count\": 1, \"avgMs\": 3629, \"medianMs\": 3629, \"maxMs\": 3629, \"totalMs\": 3629}\nDEBUG: getReleases statistics summary (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"stats\": {\n         \"count\": 4,\n         \"avgMs\": 1070,\n         \"medianMs\": 707.308459,\n         \"maxMs\": 3570.507252,\n         \"totalMs\": 4278.234128\n       },\n       \"datasources\": {\n         \"github-tags\": {\n           \"stats\": {\n             \"count\": 3,\n             \"avgMs\": 236,\n             \"medianMs\": 0.318833,\n             \"maxMs\": 707.308459,\n             \"totalMs\": 707.7268760000001\n           },\n           \"registryUrls\": {\n             \"https://github.com\": {\n               \"stats\": {\n                 \"count\": 2,\n                 \"avgMs\": 354,\n                 \"medianMs\": 707.308459,\n                 \"maxMs\": 707.308459,\n                 \"totalMs\": 707.627292\n               }\n             },\n             \"https://api.github.com\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 0,\n                 \"medianMs\": 0.099584,\n                 \"maxMs\": 0.099584,\n                 \"totalMs\": 0.099584\n               }\n             }\n           }\n         },\n         \"python-version\": {\n           \"stats\": {\n             \"count\": 1,\n             \"avgMs\": 3571,\n             \"medianMs\": 3570.507252,\n             \"maxMs\": 3570.507252,\n             \"totalMs\": 3570.507252\n           },\n           \"registryUrls\": {\n             \"https://www.python.org/api/v2/downloads/release\": {\n               \"stats\": {\n                 \"count\": 1,\n                 \"avgMs\": 3571,\n                 \"medianMs\": 3570.507252,\n                 \"maxMs\": 3570.507252,\n                 \"totalMs\": 3570.507252\n               }\n             }\n           }\n         }\n       }\nDEBUG: Cache fallback URLs (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"count\": 0,\n       \"hits\": {}\nDEBUG: Git operations statistics (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"other\": {\n         \"count\": 21,\n         \"avgMs\": 37,\n         \"medianMs\": 6.924288,\n         \"maxMs\": 500.575232,\n         \"totalMs\": 778\n       },\n       \"clone\": {\n         \"count\": 1,\n         \"avgMs\": 1178,\n         \"medianMs\": 1177.512704,\n         \"maxMs\": 1177.512704,\n         \"totalMs\": 1178\n       },\n       \"checkout\": {\n         \"count\": 3,\n         \"avgMs\": 9,\n         \"medianMs\": 9.068032,\n         \"maxMs\": 10.063104,\n         \"totalMs\": 27\n       },\n       \"reset\": {\n         \"count\": 4,\n         \"avgMs\": 7,\n         \"medianMs\": 8.596992,\n         \"maxMs\": 10.192384,\n         \"totalMs\": 30\n       },\n       \"merge\": {\n         \"count\": 2,\n         \"avgMs\": 342,\n         \"medianMs\": 615.6032,\n         \"maxMs\": 615.6032,\n         \"totalMs\": 684\n       }\n INFO: Repository finished (repository=betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4)\n       \"cloned\": true,\n       \"durationMs\": 10365,\n       \"result\": \"done\",\n       \"status\": \"activated\",\n       \"enabled\": true,\n       \"onboarded\": true\nDEBUG: Checking file package cache for expired items\nDEBUG: Deleted 0 of 11 file cached entries in 8ms\n",
+    "manual_merge": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | minor | `v0.1.0` \u2192 `v0.2.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v0.2.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v0.2.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.1.0...v0.2.0)\n\n##### Features\n\n- add greeting helper ([#&#8203;1](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/1)) ([b6e294a](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/b6e294a8bf850415eaf6aa1d300516a72c208e34))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udc7b **Immortal**: This PR will be recreated if closed unmerged. Get [config help](https://redirect.github.com/renovatebot/renovate/discussions) if that's undesired.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-0.x",
+      "headRefOid": "5fad043933ff5d0d320c3795bfaa786f2559656d",
+      "mergeStateStatus": "UNKNOWN",
+      "mergedAt": "2026-07-23T23:12:51Z",
+      "number": 6,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:11:58Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30052435580/job/89357144368",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:11:51Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/6"
+    },
+    "manual_pr": {
+      "baseRefName": "main",
+      "body": "This PR contains the following updates:\n\n| Package | Type | Update | Change |\n|---|---|---|---|\n| [ternforge-main-only-lab-tool](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4) | tool.uv.sources | minor | `v0.1.0` \u2192 `v0.2.0` |\n\n---\n\n### Release Notes\n\n<details>\n<summary>betabitplus-template-lab/sandbox-main-tool-20260724-r4 (ternforge-main-only-lab-tool)</summary>\n\n### [`v0.2.0`](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/releases/tag/v0.2.0)\n\n[Compare Source](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/compare/v0.1.0...v0.2.0)\n\n##### Features\n\n- add greeting helper ([#&#8203;1](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/issues/1)) ([b6e294a](https://redirect.github.com/betabitplus-template-lab/sandbox-main-tool-20260724-r4/commit/b6e294a8bf850415eaf6aa1d300516a72c208e34))\n\n</details>\n\n---\n\n### Configuration\n\n\ud83d\udcc5 **Schedule**: (UTC)\n\n- Branch creation\n  - At any time (no schedule defined)\n- Automerge\n  - At any time (no schedule defined)\n\n\ud83d\udea6 **Automerge**: Disabled by config. Please merge this manually once you are satisfied.\n\n\u267b **Rebasing**: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n\n\ud83d\udc7b **Immortal**: This PR will be recreated if closed unmerged. Get [config help](https://redirect.github.com/renovatebot/renovate/discussions) if that's undesired.\n\n---\n\n - [ ] <!-- rebase-check -->If you want to rebase/retry this PR, check this box\n\n---\n\nThis PR has been generated by [Mend Renovate](https://redirect.github.com/renovatebot/renovate).\n<!--renovate-debug:eyJjcmVhdGVkSW5WZXIiOiI0My4yNzkuMCIsInVwZGF0ZWRJblZlciI6IjQzLjI3OS4wIiwidGFyZ2V0QnJhbmNoIjoibWFpbiIsImxhYmVscyI6W119-->\n",
+      "headRefName": "renovate/ternforge-main-only-lab-tool-0.x",
+      "headRefOid": "5fad043933ff5d0d320c3795bfaa786f2559656d",
+      "mergeStateStatus": "CLEAN",
+      "mergedAt": null,
+      "number": 6,
+      "state": "OPEN",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-07-23T23:11:58Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/actions/runs/30052435580/job/89357144368",
+          "name": "ci / required",
+          "startedAt": "2026-07-23T23:11:51Z",
+          "status": "COMPLETED",
+          "workflowName": "ci"
+        }
+      ],
+      "title": "chore(deps): update dependency ternforge-main-only-lab-tool to v0.2.0",
+      "url": "https://github.com/betabitplus-template-lab/sandbox-main-tool-consumer-20260724-r4/pull/6"
+    }
+  }
+}
