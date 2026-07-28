@@ -1,0 +1,36 @@
+{
+  "readback": {
+    "bypass_actors": [],
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/tags/v*"
+        ]
+      }
+    },
+    "current_user_can_bypass": "never",
+    "enforcement": "active",
+    "name": "immutable-tags",
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "update"
+      }
+    ],
+    "target": "tag"
+  },
+  "schema": "ternforge/tag-ruleset-readback/v1",
+  "scope": "Immutable snapshot of the final active ruleset state. Negative move/delete probe observations remain recorded in EXP-0018.",
+  "source": {
+    "endpoint": "/repos/betabitplus-template-lab/sandbox-tag-ruleset-verify-20260723/rulesets/19634571",
+    "repository": "betabitplus-template-lab/sandbox-tag-ruleset-verify-20260723",
+    "ruleset_id": 19634571,
+    "verification_repository_commit": "914fc30fdbf46ef9b9ffe7fdd959d6af9f9b8ecc"
+  }
+}
