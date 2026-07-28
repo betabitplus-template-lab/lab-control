@@ -54,7 +54,7 @@ def copier_config(mode: OwnershipMode) -> str:
   - README.md
 """,
         "exclude_on_update": """_exclude:
-  - "{% if _copier_operation == 'update' -%}README.md{% endif %}"
+  - "{% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%}README.md{% endif %}"
 """,
     }[mode]
     return f"""_min_copier_version: \"9.16.0\"
@@ -174,11 +174,55 @@ def run_scenario(root: Path, mode: OwnershipMode) -> dict[str, Any]:
     }
 
 
+def run_audit_scenario(root: Path) -> dict[str, Any]:
+    audit_root = root / "audit"
+    audit_root.mkdir()
+    template, template_v1, _ = create_template(audit_root, "exclude_on_update")
+    consumer, deletion_commit = create_consumer(
+        audit_root, "exclude_on_update", template
+    )
+    write(consumer / "managed.txt", "local managed drift\n")
+    drift_commit = commit(consumer, "introduce managed drift")
+    answers_before = (consumer / ".copier-answers.yml").read_text(encoding="utf-8")
+
+    recopy = run(
+        "copier",
+        "recopy",
+        "--defaults",
+        "--overwrite",
+        "--skip-tasks",
+        "--vcs-ref=:current:",
+        "--data",
+        "ternforge_recopy_audit=true",
+        cwd=consumer,
+        check=False,
+    )
+    readme = consumer / "README.md"
+    managed = consumer / "managed.txt"
+    answers_after = (consumer / ".copier-answers.yml").read_text(encoding="utf-8")
+
+    return {
+        "template_v0.1.0_commit": template_v1,
+        "deletion_commit": deletion_commit,
+        "drift_commit": drift_commit,
+        "recopy_returncode": recopy.returncode,
+        "recopy_stdout": recopy.stdout,
+        "recopy_stderr": recopy.stderr,
+        "status_short_after_recopy": git(
+            consumer, "status", "--short"
+        ).stdout.splitlines(),
+        "readme_exists_after_recopy": readme.exists(),
+        "managed_content_after_recopy": managed.read_text(encoding="utf-8"),
+        "answers_unchanged": answers_after == answers_before,
+    }
+
+
 def perform_experiment() -> dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix="copier-create-once-") as temporary:
         root = Path(temporary)
         skip = run_scenario(root, "skip_if_exists")
         exclude = run_scenario(root, "exclude_on_update")
+        audit = run_audit_scenario(root)
 
         assertions = {
             "skip_if_exists_restored_deleted_path": skip["consumer"][
@@ -201,12 +245,26 @@ def perform_experiment() -> dict[str, Any]:
             and skip["checks"]["no_conflict_markers"]
             and exclude["checks"]["no_reject_files"]
             and exclude["checks"]["no_conflict_markers"],
+            "audit_recopy_completed": audit["recopy_returncode"] == 0,
+            "audit_recopy_preserved_deletion": audit[
+                "readme_exists_after_recopy"
+            ]
+            is False,
+            "audit_recopy_exposed_managed_drift": audit[
+                "managed_content_after_recopy"
+            ]
+            == "managed v1\n",
+            "audit_recopy_kept_answers_stable": audit["answers_unchanged"] is True,
+            "audit_recopy_changed_only_managed_path": audit[
+                "status_short_after_recopy"
+            ]
+            == [" M managed.txt"],
         }
 
         return {
             "question": (
                 "Which native Copier 9.16.0 rule expresses create-once ownership "
-                "while preserving an intentional deletion during later updates?"
+                "while preserving intentional deletion during updates and read-only recopy audit?"
             ),
             "environment": {
                 "python": platform.python_version(),
@@ -217,13 +275,15 @@ def perform_experiment() -> dict[str, Any]:
             "scenarios": {
                 "skip_if_exists": skip,
                 "exclude_on_update": exclude,
+                "read_only_recopy_audit": audit,
             },
             "assertions": assertions,
             "outcome": "passed" if all(assertions.values()) else "failed",
             "conclusion": (
                 "_skip_if_exists protects an existing destination but recreates it after "
                 "deletion. A Jinja-templated _exclude rule keyed by _copier_operation "
-                "prevents the path from rendering on update and preserves deletion."
+                "preserves deletion during update; an explicit audit data flag applies the "
+                "same exclusion during recopy while managed drift remains visible."
             ),
         }
 

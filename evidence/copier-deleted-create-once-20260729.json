@@ -1,5 +1,10 @@
 {
   "assertions": {
+    "audit_recopy_changed_only_managed_path": true,
+    "audit_recopy_completed": true,
+    "audit_recopy_exposed_managed_drift": true,
+    "audit_recopy_kept_answers_stable": true,
+    "audit_recopy_preserved_deletion": true,
     "both_answers_advanced": true,
     "both_managed_paths_updated": true,
     "both_updates_clean": true,
@@ -7,7 +12,7 @@
     "exclude_on_update_preserved_deletion": true,
     "skip_if_exists_restored_deleted_path": true
   },
-  "conclusion": "_skip_if_exists protects an existing destination but recreates it after deletion. A Jinja-templated _exclude rule keyed by _copier_operation prevents the path from rendering on update and preserves deletion.",
+  "conclusion": "_skip_if_exists protects an existing destination but recreates it after deletion. A Jinja-templated _exclude rule keyed by _copier_operation preserves deletion during update; an explicit audit data flag applies the same exclusion during recopy while managed drift remains visible.",
   "environment": {
     "copier": "copier 9.16.0",
     "git": "git version 2.50.1 (Apple Git-155)",
@@ -15,7 +20,7 @@
     "python": "3.10.16"
   },
   "outcome": "passed",
-  "question": "Which native Copier 9.16.0 rule expresses create-once ownership while preserving an intentional deletion during later updates?",
+  "question": "Which native Copier 9.16.0 rule expresses create-once ownership while preserving intentional deletion during updates and read-only recopy audit?",
   "scenarios": {
     "exclude_on_update": {
       "checks": {
@@ -26,7 +31,7 @@
         "update_completed": true
       },
       "consumer": {
-        "deletion_commit": "f1a38743f0deaac3ef87ee7d57f8cbf8bec93be4",
+        "deletion_commit": "c90fea1c5c97a713b8b5781d8f8ad8fa119c3316",
         "diff_name_status_after_update": [
           "M\t.copier-answers.yml",
           "M\tmanaged.txt"
@@ -41,14 +46,28 @@
       },
       "mode": "exclude_on_update",
       "template": {
-        "v0.1.0_commit": "b804a47a1ee490d7eeefd4250b19b5661a7d8ea6",
-        "v0.2.0_commit": "7aff603fd2e0732088d02bbdd834f9956bcc6de0"
+        "v0.1.0_commit": "a08254d88e970298c5a8e8b250f44225828891f2",
+        "v0.2.0_commit": "eb3cfda8164df6768b4e3da55c006a947d8a3ec3"
       },
       "update": {
         "returncode": 0,
         "stderr": "Updating to template version 0.2.0\n",
         "stdout": ""
       }
+    },
+    "read_only_recopy_audit": {
+      "answers_unchanged": true,
+      "deletion_commit": "7c0a7711efe8f0c60d1ebb6b87524be5b83cc82d",
+      "drift_commit": "53d6ca65f523f0ad0ef4c8a09b0d234438f2b0fc",
+      "managed_content_after_recopy": "managed v1\n",
+      "readme_exists_after_recopy": false,
+      "recopy_returncode": 0,
+      "recopy_stderr": "\nCopying from template version 0.1.0\n\u001b[36m identical\u001b[39m\u001b[0m  .copier-answers.yml\n\u001b[31m\u001b[1m  conflict\u001b[39m\u001b[0m  managed.txt\n\u001b[33m\u001b[1m overwrite\u001b[39m\u001b[0m  managed.txt\n",
+      "recopy_stdout": "\n\n",
+      "status_short_after_recopy": [
+        " M managed.txt"
+      ],
+      "template_v0.1.0_commit": "d50984bff7ee6551e8ab3db0f24f5fefabe571d6"
     },
     "skip_if_exists": {
       "checks": {
@@ -59,7 +78,7 @@
         "update_completed": true
       },
       "consumer": {
-        "deletion_commit": "95b6d26af005e6d2154f1322cd7cf89dc64d6b64",
+        "deletion_commit": "c06f46021d193129610163cdeece3ed12ff59d15",
         "diff_name_status_after_update": [
           "M\t.copier-answers.yml",
           "M\tmanaged.txt"
@@ -75,8 +94,8 @@
       },
       "mode": "skip_if_exists",
       "template": {
-        "v0.1.0_commit": "9066806cbf62a6220680c5f7f0c12db45c00beb7",
-        "v0.2.0_commit": "083285f481996a7074a1419ed000790caad361b7"
+        "v0.1.0_commit": "cf43bda29294ea6c7224a6283aee21af4799c8a3",
+        "v0.2.0_commit": "60e6f209bda0b200ca4f6a30e6f1518ef1f7f9b3"
       },
       "update": {
         "returncode": 0,
