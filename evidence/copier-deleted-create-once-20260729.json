@@ -26,19 +26,23 @@
         "update_completed": true
       },
       "consumer": {
-        "deletion_commit": "66c0f31337af98074de3ea0cf3c96759aabdded4",
+        "deletion_commit": "f1a38743f0deaac3ef87ee7d57f8cbf8bec93be4",
         "diff_name_status_after_update": [
           "M\t.copier-answers.yml",
           "M\tmanaged.txt"
         ],
         "managed_content_after_update": "managed v2\n",
         "readme_content_after_update": null,
-        "readme_exists_after_update": false
+        "readme_exists_after_update": false,
+        "status_short_after_update": [
+          " M .copier-answers.yml",
+          " M managed.txt"
+        ]
       },
       "mode": "exclude_on_update",
       "template": {
-        "v0.1.0_commit": "bbf98b81e7ddf1b5bfbcbc020e2357f70ec42d9d",
-        "v0.2.0_commit": "ec15c3403b25854b52d7a2ad7fd97fc67e073e83"
+        "v0.1.0_commit": "b804a47a1ee490d7eeefd4250b19b5661a7d8ea6",
+        "v0.2.0_commit": "7aff603fd2e0732088d02bbdd834f9956bcc6de0"
       },
       "update": {
         "returncode": 0,
@@ -55,19 +59,24 @@
         "update_completed": true
       },
       "consumer": {
-        "deletion_commit": "575a7689879dea2ca59e178ff027383157c5fa8f",
+        "deletion_commit": "95b6d26af005e6d2154f1322cd7cf89dc64d6b64",
         "diff_name_status_after_update": [
           "M\t.copier-answers.yml",
           "M\tmanaged.txt"
         ],
         "managed_content_after_update": "managed v2\n",
         "readme_content_after_update": "create-once v2\n",
-        "readme_exists_after_update": true
+        "readme_exists_after_update": true,
+        "status_short_after_update": [
+          " M .copier-answers.yml",
+          " M managed.txt",
+          "?? README.md"
+        ]
       },
       "mode": "skip_if_exists",
       "template": {
-        "v0.1.0_commit": "4bda2a43aedf10d55dfe86dd0383a69ff8939ca9",
-        "v0.2.0_commit": "0115ccb0ca660f1bcc58e5a79c32a5dedf75097f"
+        "v0.1.0_commit": "9066806cbf62a6220680c5f7f0c12db45c00beb7",
+        "v0.2.0_commit": "083285f481996a7074a1419ed000790caad361b7"
       },
       "update": {
         "returncode": 0,

@@ -142,6 +142,9 @@ def run_scenario(root: Path, mode: OwnershipMode) -> dict[str, Any]:
         },
         "consumer": {
             "deletion_commit": deletion_commit,
+            "status_short_after_update": git(
+                consumer, "status", "--short"
+            ).stdout.splitlines(),
             "diff_name_status_after_update": git(
                 consumer, "diff", "--name-status"
             ).stdout.splitlines(),
