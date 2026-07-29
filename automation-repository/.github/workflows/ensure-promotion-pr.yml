@@ -1,0 +1,26 @@
+name: Ensure promotion PR
+on:
+  push:
+    branches: [dev]
+permissions:
+  contents: read
+concurrency:
+  group: promotion-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  ensure:
+    name: Ensure one dev to main PR
+    permissions:
+      contents: read
+      pull-requests: write # Inspect and create the review-gated promotion PR only.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure one dev to main PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          repository="$GITHUB_REPOSITORY"
+          ahead="$(gh api "repos/${repository}/compare/main...dev" --jq '.ahead_by')"
+          test "$ahead" -gt 0 || exit 0
+          existing="$(gh pr list --repo "$repository" --base main --head dev --state open --json number --jq '.[0].number // empty')"
+          test -n "$existing" || gh pr create --repo "$repository" --base main --head dev --title 'chore: promote dev to main' --body 'Idempotent promotion proposal; merge remains review-gated.'

@@ -166,3 +166,15 @@ There are no other open pull requests in the lab organization at report time.
 ## Recommendation
 
 Proceed with the composed-template architecture for production design, subject to the permission, branch-protection and workflow-publication decisions documented in ADR 0001. Keep the current lab organization as reproducible evidence until the production rollout is reviewed.
+
+## Final production-shaped phase
+
+The first-stage evidence above remains unchanged. The final platform-minimization phase is documented separately in:
+
+- [`final-experiment-results.md`](final-experiment-results.md)
+- [`replacement-matrix.md`](replacement-matrix.md)
+- [`minimal-custom-surface.md`](minimal-custom-surface.md)
+- [`production-gap-analysis.md`](production-gap-analysis.md)
+- ADR 0002 and ADR 0003
+
+The final phase concludes **CONDITIONAL GO**: the composed Copier/Renovate design is sound and removes the custom lifecycle engine, while production rollout remains conditional on organization-level private reusable-workflow access, ruleset-capable GitHub licensing, and live OpenTofu/Renovate acceptance runs with lab-only administrative credentials.

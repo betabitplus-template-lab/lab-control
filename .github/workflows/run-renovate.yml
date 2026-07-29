@@ -12,26 +12,43 @@ on:
       - renovate/request.json
       - .github/workflows/run-renovate.yml
   workflow_dispatch:
+concurrency:
+  group: renovate-lab-${{ github.repository }}
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
   renovate:
+    name: Run allowlisted Renovate
     runs-on: ubuntu-latest
     steps:
       - name: Mint Renovate app token
         id: app-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90
         with:
           app-id: ${{ secrets.LAB_APP_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-      - uses: actions/checkout@v6.0.3
+          repositories: |
+            components
+            python-lib
+            python-internal-package
+            python-starter-platform
+            sandbox-python-lib
+            sandbox-python-platform
+            sandbox-workspace
+            lab-control
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
       - name: Validate guarded request
         run: node -e 'require("./renovate/config.js")'
-      - name: Run pinned Renovate container
+      - name: Run digest-pinned Renovate container
         id: renovate
         continue-on-error: true
         shell: bash
@@ -46,7 +63,7 @@ jobs:
             -e RENOVATE_TOKEN \
             -e RENOVATE_CONFIG_FILE=renovate/config.js \
             -e LOG_LEVEL=debug \
-            renovate/renovate:43.262.4 2>&1 | tee /tmp/renovate.log
+            renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe 2>&1 | tee /tmp/renovate.log
           status=${PIPESTATUS[0]}
           printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
           exit "$status"
@@ -56,7 +73,19 @@ jobs:
         env:
           OUTCOME: ${{ steps.renovate.outcome }}
           EXIT_STATUS: ${{ steps.renovate.outputs.status }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
+          askpass="$RUNNER_TEMP/git-askpass.sh"
+          cat > "$askpass" <<'SH'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *Password*) printf '%s\n' "$GH_TOKEN" ;;
+          esac
+          SH
+          chmod 700 "$askpass"
+          export GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0
+          trap 'rm -f "$askpass"' EXIT
           mkdir -p /tmp/renovate-evidence
           cp renovate/request.json /tmp/renovate-evidence/renovate-request.json
           if [ -f /tmp/renovate.log ]; then

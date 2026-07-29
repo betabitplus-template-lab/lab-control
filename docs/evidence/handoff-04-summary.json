@@ -1,0 +1,48 @@
+{
+  "schema": "handoff-04-summary/v1",
+  "generated_at": "2026-07-16T12:04:05+03:00",
+  "bundle_sha256": "ffa83d8f2d252d5a42be4dda64d3185b30dd253c83a84683096b3eb59bbdc136",
+  "source": {
+    "repository": "betabitplus-template-lab/lab-control",
+    "branch": "experiment/final-platform-20260714",
+    "commit": "a1b1555239681195028f8e7eb38a48f47880c191",
+    "draft_pull_request": 9
+  },
+  "status_counts": {"PASS": 3, "NEGATIVE_PASS": 0, "FAIL": 1, "BLOCKED": 0},
+  "acceptance": {
+    "P04": {"status": "PASS", "run_id": 29422268451, "attempts": [1, 2], "promotion_pr": 2},
+    "T03": {"status": "PASS", "bootstrap_exit": 0, "tofu_plan_exit": 0, "unchanged_commit": "2a79e75a46131b496a621384c7b62441734f245c"},
+    "K03": {"status": "PASS", "template_tag": "v0.4.3", "release_id": 354495776, "downstream_pr": 10, "ci_run": 29424887496},
+    "K06": {"status": "FAIL", "reason": "the v prefix was inside currentValue and the grouping rule matched packageName instead of depName; no grouped live PR or lock update was created"}
+  },
+  "static_checks": {
+    "actionlint_exit": 0,
+    "zizmor_exit": 12,
+    "zizmor_low": 1,
+    "zizmor_medium": 0,
+    "zizmor_high": 0,
+    "bash_n_bootstrap_exit": 0
+  },
+  "visibility": {
+    "changed": false,
+    "current": "PUBLIC",
+    "repository_count": 11,
+    "private_ordinary_flows": "PASS",
+    "private_rulesets": "BLOCKED_BY_PLAN",
+    "public_ruleset_fallback": "PASS"
+  },
+  "safety": {
+    "production_mutations": 0,
+    "automerge_enabled": false,
+    "sandbox_python_lib_pr3_modified": false,
+    "credentials_created_or_rotated": 0,
+    "secret_value_scan_matches": 0
+  },
+  "post_handoff_corrections": {
+    "lab_control_preset_commit": "88e756cdead0ffb751c55af50483b6fd48faaf9f",
+    "lab_control_regression_test_commit": "0dbdc7448f201e129670768b4e6d5b2d231e23a2",
+    "zizmor_comment_commit": "415487ffeb5beba6b0c622f96033421328a32c75",
+    "automation_pr": 1,
+    "automation_commit": "1554ac4295daa4c75d983ddab0fca1442b33e675"
+  }
+}

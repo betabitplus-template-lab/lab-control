@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Template repositories: update exact component gitlinks and action references.",
+  "extends": ["local>betabitplus-template-lab/automation//renovate/presets/base.json5"],
+  "enabledManagers": ["git-submodules", "github-actions"],
+  "git-submodules": {"enabled": true},
+  "packageRules": [
+    {
+      "matchManagers": ["git-submodules"],
+      "labels": ["lab", "component-update"],
+      "groupName": "shared template components"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "pinDigests": true,
+      "labels": ["lab", "workflow-dependency"]
+    }
+  ]
+}

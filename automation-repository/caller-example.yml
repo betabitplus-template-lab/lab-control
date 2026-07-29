@@ -1,0 +1,14 @@
+name: CI
+on:
+  pull_request:
+    branches: [dev, main]
+permissions:
+  contents: read
+jobs:
+  ci:
+    uses: betabitplus-template-lab/automation/.github/workflows/python-library-ci.yml@0000000000000000000000000000000000000000
+    with:
+      python-version: "3.13"
+      run-macos: true
+      run-windows: false
+    secrets: inherit

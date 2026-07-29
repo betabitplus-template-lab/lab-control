@@ -1,0 +1,11 @@
+{
+  "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
+  "current_dev_head": "d59582375855cff69fb165e467dc5847bc75ca99",
+  "production_write_access": false,
+  "production_mutations": 0,
+  "lab_repository_count": 8,
+  "renovate_app_key": {"status":"ROTATED","old_keys_deleted":true,"remaining_key_count":1,"installation_repository_count":8},
+  "token_scan": {"status":"PASS","files_scanned":536,"bytes_scanned":26879605,"findings":0},
+  "blocked": ["private rulesets HTTP 403 on all lab repositories","OpenTofu/Renovate/actionlint/zizmor unavailable in handoff 01"],
+  "secrets_included": false
+}
