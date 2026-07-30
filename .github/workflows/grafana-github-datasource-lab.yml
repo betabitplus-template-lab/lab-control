@@ -53,7 +53,7 @@ jobs:
             -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
             -e GF_AUTH_DISABLE_LOGIN_FORM=true \
             -e GF_FEATURE_TOGGLES_ENABLE=sqlExpressions \
-            -e GF_PLUGINS_PREINSTALL_SYNC=grafana-github-datasource@2.8.1 \
+            -e GF_PLUGINS_PREINSTALL_SYNC=grafana-github-datasource@2.8.0 \
             -v "$RUNNER_TEMP/grafana-provisioning/datasources:/etc/grafana/provisioning/datasources:ro" \
             -v "$RUNNER_TEMP/grafana-provisioning/alerting:/etc/grafana/provisioning/alerting:ro" \
             "$GRAFANA_IMAGE"
