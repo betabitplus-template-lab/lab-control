@@ -1,0 +1,153 @@
+name: Full-fleet Renovate scaling lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      sizes_json:
+        description: JSON array of nested cohort sizes
+        required: true
+        default: "[10,25,50,84]"
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      sizes: ${{ steps.matrix.outputs.sizes }}
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Validate matrix
+        id: matrix
+        run: >-
+          python experiments/full_fleet_renovate_lab.py matrix
+          --sizes '${{ inputs.sizes_json }}'
+          --github-output "$GITHUB_OUTPUT"
+
+  scan:
+    needs: prepare
+    name: Scan ${{ matrix.size }} repositories
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        size: ${{ fromJSON(needs.prepare.outputs.sizes) }}
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Select deterministic nested cohort
+        id: cohort
+        run: >-
+          python experiments/full_fleet_renovate_lab.py select
+          --inventory experiments/full-fleet-renovate/repositories.json
+          --size '${{ matrix.size }}'
+          --output "results-${{ matrix.size }}/selection.json"
+          --github-output "$GITHUB_OUTPUT"
+
+      - name: Mint read-only cohort token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ steps.cohort.outputs.repositories }}
+          permission-contents: read
+          permission-issues: read
+          permission-pull-requests: read
+
+      - name: Pull pinned Renovate image
+        id: image
+        env:
+          IMAGE: renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+        run: |
+          started=$(date +%s)
+          docker pull "$IMAGE"
+          elapsed=$(($(date +%s) - started))
+          printf 'elapsed=%s\n' "$elapsed" >> "$GITHUB_OUTPUT"
+
+      - name: Run cold and warm dry scans
+        id: renovate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          FULL_FLEET_REPOSITORIES_JSON: ${{ steps.cohort.outputs.repositories_json }}
+          RENOVATE_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          IMAGE: renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+          COHORT_SIZE: ${{ matrix.size }}
+          IMAGE_PULL_SECONDS: ${{ steps.image.outputs.elapsed }}
+        run: |
+          set -u
+          result_dir="results-${COHORT_SIZE}"
+          cache_dir="$RUNNER_TEMP/renovate-cache-${COHORT_SIZE}"
+          mkdir -p "$result_dir" "$cache_dir"
+
+          printf '| Repositories | Phase | Scan seconds | Seconds/repo | Repo p95 ms | GitHub requests | Exit |\n' >> "$GITHUB_STEP_SUMMARY"
+          printf '|---:|---|---:|---:|---:|---:|---:|\n' >> "$GITHUB_STEP_SUMMARY"
+
+          run_phase() {
+            phase="$1"
+            log="$result_dir/${phase}.log"
+            gh api rate_limit > "$result_dir/${phase}-rate-before.json"
+            started=$(date +%s)
+            set +e
+            docker run --rm \
+              -v "$PWD:/usr/src/app:ro" \
+              -v "$cache_dir:/tmp/renovate-cache" \
+              -w /usr/src/app \
+              -e RENOVATE_TOKEN \
+              -e FULL_FLEET_REPOSITORIES_JSON \
+              -e RENOVATE_REPOSITORY_OWNER \
+              -e RENOVATE_CONFIG_FILE=renovate/full-fleet-lab-config.js \
+              -e RENOVATE_CACHE_DIR=/tmp/renovate-cache \
+              -e LOG_LEVEL=debug \
+              -e LOG_FORMAT=json \
+              "$IMAGE" > "$log" 2>&1
+            status=$?
+            set -e
+            elapsed=$(($(date +%s) - started))
+            gh api rate_limit > "$result_dir/${phase}-rate-after.json"
+            python experiments/full_fleet_renovate_lab.py summarize \
+              --log "$log" \
+              --size "$COHORT_SIZE" \
+              --phase "$phase" \
+              --elapsed-seconds "$elapsed" \
+              --image-pull-seconds "$IMAGE_PULL_SECONDS" \
+              --exit-status "$status" \
+              --rate-before "$result_dir/${phase}-rate-before.json" \
+              --rate-after "$result_dir/${phase}-rate-after.json" \
+              --output "$result_dir/${phase}-summary.json" \
+              >> "$GITHUB_STEP_SUMMARY"
+            printf '%s=%s\n' "${phase}_status" "$status" >> "$GITHUB_OUTPUT"
+          }
+
+          rm -rf "$cache_dir"
+          mkdir -p "$cache_dir"
+          run_phase cold
+          run_phase warm
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: full-fleet-renovate-${{ matrix.size }}
+          path: results-${{ matrix.size }}/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Require successful scans
+        if: always()
+        env:
+          COLD_STATUS: ${{ steps.renovate.outputs.cold_status }}
+          WARM_STATUS: ${{ steps.renovate.outputs.warm_status }}
+        run: |
+          test "$COLD_STATUS" = "0"
+          test "$WARM_STATUS" = "0"
