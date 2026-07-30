@@ -71,14 +71,14 @@ def _request(
             else:
                 try:
                     payload = json.loads(raw)
-                except json.JSONDecodeError:
+                except (json.JSONDecodeError, UnicodeDecodeError):
                     payload = raw
             return response.status, payload
     except urllib.error.HTTPError as exc:
         raw = exc.read()
         try:
             payload = json.loads(raw) if raw else None
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, UnicodeDecodeError):
             payload = raw.decode(errors="replace")
         return exc.code, payload
 
@@ -623,7 +623,7 @@ def _dashboard() -> dict[str, Any]:
                         "refId": "A",
                         "queryType": "Repositories",
                         "owner": "betabitplus-template-lab",
-                        "repository": "repo:betabitplus-template-lab/lab-control",
+                        "repository": "lab-control in:name",
                         "options": {},
                     }
                 ],
@@ -959,7 +959,7 @@ def validate(args: argparse.Namespace) -> None:
             {
                 "queryType": "Repositories",
                 "owner": "betabitplus-template-lab",
-                "repository": "repo:betabitplus-template-lab/lab-control",
+                "repository": "lab-control in:name",
                 "options": {},
             },
         )
