@@ -170,7 +170,9 @@ def prepare_collector(args: argparse.Namespace) -> None:
         "      receivers: [otlp]\n"
         "      exporters: [otlphttp/grafana]\n"
     )
-    os.chmod(path, 0o600)
+    # The container runs under a different UID. The file exists only on the
+    # ephemeral runner and is mounted read-only, so it must be world-readable.
+    os.chmod(path, 0o644)
 
 
 def _metric(name: str, value: float, timestamp_ns: str) -> dict[str, Any]:
