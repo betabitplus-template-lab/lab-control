@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "experiment": "Renovate OpenTelemetry to bounded Prometheus metrics",
+  "workflow_commits": {
+    "initial_pipeline": "bc9b1cad92999bfd2678176dddb5e576f995ad54",
+    "bounded_pipeline": "c52b49d55201b515f8ab2314dee2e6db9e497c25"
+  },
+  "configuration": {
+    "cohort_size": 25,
+    "selection": "Same deterministic nested cohort for control and instrumented scans",
+    "renovate": "43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe",
+    "collector": "otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108",
+    "prometheus": "prom/prometheus:v3.13.1@sha256:3c42b892cf723fa54d2f262c37a0e1f80aa8c8ddb1da7b9b0df9455a35a7f893",
+    "renovate_mode": "dryRun=full",
+    "credential": "Read-only GitHub App installation token scoped to the exact 25 repositories",
+    "transport": "Renovate OTLP/HTTP traces to OpenTelemetry Collector; spanmetrics connector to Prometheus OTLP receiver",
+    "bounded_metric_spans": ["run", "repository", "init", "onboarding", "extract", "lookup", "update"]
+  },
+  "excluded_initial_run": {
+    "run_id": 30560478456,
+    "conclusion": "failure",
+    "reason": "Both Renovate scans and the telemetry pipeline succeeded, but the parser incorrectly required calls_total for the run span. Duration count and duration sum proved the run span existed.",
+    "control_seconds": 127,
+    "instrumented_seconds": 120,
+    "unfiltered_series_count": 1305,
+    "repository_calls": 25,
+    "repository_p95_ms": 27500,
+    "observed_problem": "Unfiltered spanmetrics used high-cardinality span names containing repository paths, branch names and raw commands."
+  },
+  "valid_run": {
+    "run_id": 30561416059,
+    "conclusion": "success",
+    "control_seconds": 140,
+    "instrumented_seconds": 148,
+    "instrumentation_overhead_seconds": 8,
+    "instrumentation_duration_ratio": 1.0571428571428572,
+    "metrics": {
+      "series_count": 105,
+      "repository_calls": 25,
+      "run_duration_count": 1,
+      "run_duration_ms": 143728.247071,
+      "repository_p95_ms": 41250,
+      "span_names": ["extract", "init", "lookup", "onboarding", "repository", "run", "update"],
+      "renovate_splits": ["extract", "init", "lookup", "onboarding", "update"],
+      "metric_names": [
+        "traces_span_metrics_calls_total",
+        "traces_span_metrics_duration_milliseconds_bucket",
+        "traces_span_metrics_duration_milliseconds_count",
+        "traces_span_metrics_duration_milliseconds_sum"
+      ]
+    },
+    "assertions": {
+      "all_repositories_observed": true,
+      "run_span_observed": true,
+      "run_duration_observed": true,
+      "repository_p95_observed": true,
+      "only_bounded_span_names": true,
+      "bounded_series_for_lab": true
+    }
+  },
+  "interpretation": {
+    "pipeline_works": true,
+    "custom_metric_parser_required": false,
+    "declarative_filter_required": true,
+    "cardinality_reduction": "1305 to 105 series for the same 25-repository cohort",
+    "overhead": "The valid instrumented scan was eight seconds slower than its control. One paired run is insufficient for a stable percentage estimate, but no material execution boundary was approached.",
+    "prometheus_alone_is_insufficient": "Renovate emitted traces; OpenTelemetry Collector spanmetrics converted them into Prometheus metrics."
+  },
+  "limitations": [
+    "The performance comparison is one paired run with update-heavy dry-run work and normal runner variance.",
+    "Renovate OpenTelemetry support and the Collector spanmetrics connector can evolve; immutable version pinning and upgrade validation remain necessary.",
+    "The experiment used an ephemeral Prometheus instance and did not validate long-term storage, dashboards, alert delivery or a managed observability vendor.",
+    "Detailed high-cardinality traces were intentionally filtered before spanmetrics in this lab. A production trace backend may retain full traces while generating only bounded metrics."
+  ]
+}
