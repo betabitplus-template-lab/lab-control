@@ -1,0 +1,113 @@
+name: Grafana Cloud Fleet Health lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Mint exact-scope GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.FLEET_HEALTH_GITHUB_APP_ID }}
+          private-key: ${{ secrets.FLEET_HEALTH_GITHUB_APP_PRIVATE_KEY }}
+          owner: betabitplus-template-lab
+          repositories: lab-control
+          permission-actions: read
+          permission-contents: read
+          permission-issues: read
+          permission-pull-requests: read
+
+      - name: Validate experiment code
+        run: python -m py_compile experiments/grafana_cloud_fleet_health_lab.py
+
+      - name: Prepare runtime-only Collector configuration
+        env:
+          GRAFANA_CLOUD_OTEL_ENV: ${{ secrets.GRAFANA_CLOUD_OTEL_ENV }}
+        run: >-
+          python experiments/grafana_cloud_fleet_health_lab.py prepare-collector
+          --output "$RUNNER_TEMP/grafana-cloud-otel-collector.yml"
+
+      - name: Validate and start pinned OpenTelemetry Collector
+        env:
+          OTEL_IMAGE: otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108
+        run: |
+          set -euo pipefail
+          docker pull "$OTEL_IMAGE"
+          docker run --rm \
+            -v "$RUNNER_TEMP/grafana-cloud-otel-collector.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" validate --config=/etc/otelcol-contrib/config.yaml
+          docker run -d \
+            --name grafana-cloud-otel-lab \
+            -p 4318:4318 \
+            -p 13133:13133 \
+            -v "$RUNNER_TEMP/grafana-cloud-otel-collector.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" --config=/etc/otelcol-contrib/config.yaml
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:13133/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" = 60 ]; then
+              echo "OpenTelemetry Collector did not become healthy" >&2
+              docker logs grafana-cloud-otel-lab >&2 || true
+              exit 1
+            fi
+            sleep 2
+          done
+
+      - name: Validate Grafana Cloud Fleet Health end to end
+        env:
+          FLEET_HEALTH_GITHUB_APP_ID: ${{ secrets.FLEET_HEALTH_GITHUB_APP_ID }}
+          FLEET_HEALTH_GITHUB_APP_INSTALLATION_ID: ${{ secrets.FLEET_HEALTH_GITHUB_APP_INSTALLATION_ID }}
+          FLEET_HEALTH_GITHUB_APP_PRIVATE_KEY: ${{ secrets.FLEET_HEALTH_GITHUB_APP_PRIVATE_KEY }}
+          GRAFANA_CLOUD_SERVICE_ACCOUNT_TOKEN: ${{ secrets.GRAFANA_CLOUD_SERVICE_ACCOUNT_TOKEN }}
+          GRAFANA_CLOUD_WEBHOOK_URL: ${{ secrets.GRAFANA_CLOUD_WEBHOOK_URL }}
+          SCOPED_APP_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: >-
+          python experiments/grafana_cloud_fleet_health_lab.py validate
+          --output-dir results-grafana-cloud-fleet-health
+          --workflow-file grafana-cloud-fleet-health-lab.yml
+
+      - name: Collect sanitized service evidence
+        if: always()
+        run: |
+          mkdir -p results-grafana-cloud-fleet-health
+          docker logs grafana-cloud-otel-lab > results-grafana-cloud-fleet-health/otel-collector.log 2>&1 || true
+          rm -f "$RUNNER_TEMP/grafana-cloud-otel-collector.yml"
+
+      - name: Publish sanitized summary
+        if: always()
+        run: |
+          {
+            printf '## Grafana Cloud Fleet Health lab\n\n'
+            if test -f results-grafana-cloud-fleet-health/summary.json; then
+              printf '```json\n'
+              cat results-grafana-cloud-fleet-health/summary.json
+              printf '```\n'
+            else
+              printf 'No summary was produced.\n'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: grafana-cloud-fleet-health
+          path: results-grafana-cloud-fleet-health/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Stop Collector
+        if: always()
+        run: docker rm -f grafana-cloud-otel-lab >/dev/null 2>&1 || true
