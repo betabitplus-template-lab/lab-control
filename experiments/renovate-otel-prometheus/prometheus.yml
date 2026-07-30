@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+storage:
+  tsdb:
+    out_of_order_time_window: 30m
+
+otlp:
+  promote_resource_attributes:
+    - service.name
+    - service.namespace
+    - service.version
+    - deployment.environment.name
+    - github.repository
+    - github.workflow
+    - github.run_id
+
+scrape_configs: []
