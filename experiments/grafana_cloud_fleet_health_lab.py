@@ -160,6 +160,13 @@ def prepare_collector(args: argparse.Namespace) -> None:
         "      initial_interval: 1s\n"
         "      max_interval: 5s\n"
         "      max_elapsed_time: 60s\n\n"
+        "processors:\n"
+        "  transform/fleet_health_labels:\n"
+        "    error_mode: propagate\n"
+        "    metric_statements:\n"
+        "      - context: datapoint\n"
+        "        statements:\n"
+        "          - set(attributes[\"ternforge.trigger\"], resource.attributes[\"ternforge.trigger\"])\n\n"
         "service:\n"
         "  extensions: [health_check]\n"
         "  telemetry:\n"
@@ -168,6 +175,7 @@ def prepare_collector(args: argparse.Namespace) -> None:
         "  pipelines:\n"
         "    metrics:\n"
         "      receivers: [otlp]\n"
+        "      processors: [transform/fleet_health_labels]\n"
         "      exporters: [otlphttp/grafana]\n"
     )
     # The container runs under a different UID. The file exists only on the
@@ -424,6 +432,11 @@ def _github_api_scope(token: str) -> dict[str, Any]:
         "sandbox-private-uv-source-20260724-r1",
         headers=headers,
     )
+    workflow_runs_status, workflow_runs_payload = _request(
+        "https://api.github.com/repos/betabitplus-template-lab/lab-control/"
+        "actions/workflows/grafana-cloud-fleet-health-lab.yml/runs?per_page=5",
+        headers=headers,
+    )
     names = (
         [item.get("full_name") for item in repositories.get("repositories", [])]
         if isinstance(repositories, dict)
@@ -437,6 +450,10 @@ def _github_api_scope(token: str) -> dict[str, Any]:
         "repositories": names,
         "selected_repository_http_status": selected_status,
         "unselected_private_repository_http_status": unselected_status,
+        "workflow_runs_http_status": workflow_runs_status,
+        "workflow_runs_count": workflow_runs_payload.get("total_count")
+        if isinstance(workflow_runs_payload, dict)
+        else None,
         "unselected_private_message": unselected_payload.get("message")
         if isinstance(unselected_payload, dict)
         else None,
@@ -606,7 +623,7 @@ def _dashboard() -> dict[str, Any]:
                         "refId": "A",
                         "queryType": "Repositories",
                         "owner": "betabitplus-template-lab",
-                        "repository": "",
+                        "repository": "repo:betabitplus-template-lab/lab-control",
                         "options": {},
                     }
                 ],
@@ -936,6 +953,16 @@ def validate(args: argparse.Namespace) -> None:
                 "options": {},
             },
         )
+        managed_repositories = _github_query(
+            base_url,
+            grafana_token,
+            {
+                "queryType": "Repositories",
+                "owner": "betabitplus-template-lab",
+                "repository": "repo:betabitplus-template-lab/lab-control",
+                "options": {},
+            },
+        )
         workflows = _github_query(
             base_url,
             grafana_token,
@@ -969,7 +996,9 @@ def validate(args: argparse.Namespace) -> None:
                     "queryType": "Workflow_Runs",
                     "owner": "betabitplus-template-lab",
                     "repository": "lab-control",
-                    "options": {"workflowID": candidate, "branch": ""},
+                    # Plugin 2.8.0 frontend calls this workflowID, but its Go
+                    # backend only deserializes options.workflow.
+                    "options": {"workflow": candidate, "branch": ""},
                 },
             )
             workflow_run_attempts.append(
@@ -992,7 +1021,7 @@ def validate(args: argparse.Namespace) -> None:
                     "queryType": "Workflow_Runs",
                     "owner": "betabitplus-template-lab",
                     "repository": "lab-control",
-                    "options": {"workflowID": workflow_candidates[0], "branch": ""},
+                    "options": {"workflow": workflow_candidates[0], "branch": ""},
                 },
             )
 
@@ -1043,9 +1072,19 @@ def validate(args: argparse.Namespace) -> None:
                 if row.get("name") is not None
             }
         )
+        managed_repository_names = sorted(
+            {
+                str(row.get("name"))
+                for row in managed_repositories["rows"]
+                if row.get("name") is not None
+            }
+        )
         summary["github_datasource"] = {
             "repositories": _query_summary(repositories),
             "repository_names": repository_names,
+            "public_owner_visibility_count": len(repository_names),
+            "managed_repositories": _query_summary(managed_repositories),
+            "managed_repository_names": managed_repository_names,
             "workflows": _query_summary(workflows),
             "workflow_runs": _query_summary(workflow_runs),
             "workflow_identifier": selected_workflow_identifier,
@@ -1198,7 +1237,13 @@ def validate(args: argparse.Namespace) -> None:
                 "health_status"
             ]
             == "OK",
-            "github_datasource_exact_scope": repository_names == ["lab-control"],
+            "app_workflow_runs_permission_works": app_scope["workflow_runs_http_status"]
+            == 200
+            and bool(app_scope["workflow_runs_count"]),
+            "github_owner_query_includes_selected_repository": "lab-control"
+            in repository_names,
+            "github_managed_repository_query_exact": managed_repository_names
+            == ["lab-control"],
             "github_workflows_query_succeeded": workflows["error"] is None
             and bool(workflows["rows"]),
             "github_workflow_runs_query_succeeded": workflow_runs["error"] is None
