@@ -1,0 +1,130 @@
+name: Grafana GitHub data source lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Mint selected-repository read token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: betabitplus
+          repositories: |
+            betabit-notes
+            py-lib-starter
+          permission-actions: read
+          permission-contents: read
+          permission-issues: read
+          permission-pull-requests: read
+
+      - name: Prepare runtime-only Grafana provisioning
+        env:
+          APP_NUMERIC_ID: ${{ secrets.LAB_APP_ID }}
+          APP_INSTALLATION_ID: ${{ steps.app-token.outputs.installation-id }}
+          APP_KEY_MATERIAL: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+        run: >-
+          python experiments/grafana_github_datasource_lab.py prepare
+          --provisioning-dir "$RUNNER_TEMP/grafana-provisioning"
+          --owner betabitplus
+          --workflow-repository py-lib-starter
+          --workflow-file fleet-doctor.yml
+
+      - name: Start pinned Grafana with official GitHub plugin
+        env:
+          GRAFANA_IMAGE: grafana/grafana:13.1.0@sha256:121a7a9ece6dc10b969f1f96eed64b4f07dfac0d0b8abc070f7cb83bbde86f63
+        run: |
+          set -euo pipefail
+          mkdir -p results-grafana-github
+          docker pull "$GRAFANA_IMAGE"
+          docker run -d --rm \
+            --name grafana-github-lab \
+            -p 3000:3000 \
+            -e GF_AUTH_ANONYMOUS_ENABLED=true \
+            -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
+            -e GF_AUTH_DISABLE_LOGIN_FORM=true \
+            -e GF_FEATURE_TOGGLES_ENABLE=sqlExpressions \
+            -e GF_PLUGINS_PREINSTALL_SYNC=grafana-github-datasource@2.8.1 \
+            -v "$RUNNER_TEMP/grafana-provisioning/datasources:/etc/grafana/provisioning/datasources:ro" \
+            -v "$RUNNER_TEMP/grafana-provisioning/alerting:/etc/grafana/provisioning/alerting:ro" \
+            "$GRAFANA_IMAGE"
+
+          for attempt in $(seq 1 90); do
+            if curl --fail --silent http://127.0.0.1:3000/api/health >/dev/null; then
+              break
+            fi
+            if [ "$attempt" = 90 ]; then
+              echo "Grafana did not become ready" >&2
+              docker logs grafana-github-lab >&2 || true
+              exit 1
+            fi
+            sleep 2
+          done
+
+      - name: Validate personal-account queries and alerting
+        env:
+          SCOPED_APP_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: >-
+          python experiments/grafana_github_datasource_lab.py validate
+          --output-dir results-grafana-github
+          --owner betabitplus
+          --workflow-repository py-lib-starter
+          --workflow-file fleet-doctor.yml
+          --selected-repository betabit-notes
+          --selected-repository py-lib-starter
+          --unselected-private-repository labs
+
+      - name: Collect sanitized service evidence
+        if: always()
+        run: |
+          mkdir -p results-grafana-github
+          docker logs grafana-github-lab > results-grafana-github/grafana.log 2>&1 || true
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("results-grafana-github/grafana.log")
+          if path.exists():
+              text = path.read_text(errors="replace")
+              for marker in ("privateKey", "accessToken", "Authorization"):
+                  if marker in text:
+                      path.write_text("Grafana log contained a sensitive-field marker and was suppressed.\n")
+                      break
+          PY
+
+      - name: Publish summary
+        if: always()
+        run: |
+          {
+            printf '## Grafana GitHub data source lab\n\n'
+            if test -f results-grafana-github/summary.json; then
+              printf '```json\n'
+              cat results-grafana-github/summary.json
+              printf '```\n'
+            else
+              printf 'No summary was produced.\n'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: grafana-github-datasource
+          path: results-grafana-github/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Stop Grafana
+        if: always()
+        run: docker rm -f grafana-github-lab >/dev/null 2>&1 || true
