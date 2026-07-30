@@ -1,0 +1,90 @@
+name: Full-fleet Renovate event coalescing lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_version:
+        description: Latest source version expected by this full scan
+        required: true
+        type: string
+      hold_seconds:
+        description: Keep the concurrency slot after observation
+        required: true
+        default: "0"
+        type: string
+
+concurrency:
+  group: full-fleet-renovate-coalescing-lab
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Mint read-only source and consumer token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |-
+            sandbox-release-contract-source-20260724-r1
+            sandbox-release-contract-consumer-20260724-r1
+          permission-contents: read
+          permission-issues: read
+          permission-pull-requests: read
+
+      - name: Run full-scan observation
+        env:
+          RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          RENOVATE_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          RENOVATE_COALESCING_CONSUMER: sandbox-release-contract-consumer-20260724-r1
+          IMAGE: renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+        run: |
+          docker run --rm \
+            -v "$PWD:/usr/src/app:ro" \
+            -w /usr/src/app \
+            -e RENOVATE_TOKEN \
+            -e RENOVATE_REPOSITORY_OWNER \
+            -e RENOVATE_COALESCING_CONSUMER \
+            -e RENOVATE_CONFIG_FILE=renovate/full-fleet-coalescing-lab-config.js \
+            -e LOG_LEVEL=debug \
+            -e LOG_FORMAT=json \
+            "$IMAGE" > renovate-coalescing.log 2>&1
+
+      - name: Assert observed released state
+        id: observation
+        run: |
+          python experiments/renovate_coalescing_lab.py \
+            --log renovate-coalescing.log \
+            --dependency ternforge-release-contract-source \
+            --event-version '${{ inputs.event_version }}' \
+            --output observation.json \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT"
+          cat observation.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload observation
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: full-fleet-coalescing-${{ inputs.event_version }}
+          path: |-
+            observation.json
+            renovate-coalescing.log
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Hold concurrency slot
+        if: ${{ inputs.hold_seconds != '0' }}
+        env:
+          HOLD_SECONDS: ${{ inputs.hold_seconds }}
+        run: sleep "$HOLD_SECONDS"
