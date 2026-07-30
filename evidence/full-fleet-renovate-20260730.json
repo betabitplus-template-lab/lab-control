@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "experiment": "full-fleet Renovate scaling and observability",
+  "valid_run": {
+    "repository": "betabitplus-template-lab/lab-control",
+    "run_id": 30551938503,
+    "head_sha": "6de3f86533602e5097cb10d082e787d2f3f71a8a",
+    "created_at": "2026-07-30T14:29:21Z",
+    "completed_at": "2026-07-30T14:55:34Z",
+    "conclusion": "success"
+  },
+  "excluded_setup_run": {
+    "run_id": 30551413710,
+    "reason": "The disposable mounted cache directory was not writable by the Renovate container user, so no repository scan completed. The lab was corrected before the valid run."
+  },
+  "configuration": {
+    "cohorts": [10, 25, 50, 84],
+    "selection": "Nested deterministic subsets ordered by SHA-256 of repository name",
+    "inventory": "84 existing sandbox repositories",
+    "runner": "GitHub-hosted ubuntu-latest",
+    "renovate": "43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe",
+    "mode": "dryRun=full",
+    "enabled_managers": ["copier", "github-actions", "pep621", "vendir"],
+    "credential": "GitHub App installation token scoped to the exact cohort with read-only repository permissions",
+    "execution": "One Renovate process per cohort; cold scan followed by a warm-cache scan; cohorts executed serially"
+  },
+  "observations": [
+    {
+      "repositories": 10,
+      "image_pull_seconds": 26,
+      "cold_scan_seconds": 58,
+      "cold_total_seconds": 84,
+      "warm_scan_seconds": 48,
+      "warm_saving_seconds": 10,
+      "repository_p50_ms": 268,
+      "repository_p95_ms": 36042,
+      "light_update_repositories": 8,
+      "repositories_over_5_seconds": 2,
+      "repositories_over_20_seconds": 1,
+      "update_share": 0.666987,
+      "github_core_rate_consumed": 5
+    },
+    {
+      "repositories": 25,
+      "image_pull_seconds": 26,
+      "cold_scan_seconds": 140,
+      "cold_total_seconds": 166,
+      "warm_scan_seconds": 136,
+      "warm_saving_seconds": 4,
+      "repository_p50_ms": 1929,
+      "repository_p95_ms": 35823,
+      "light_update_repositories": 17,
+      "repositories_over_5_seconds": 5,
+      "repositories_over_20_seconds": 3,
+      "update_share": 0.713926,
+      "github_core_rate_consumed": 15
+    },
+    {
+      "repositories": 50,
+      "image_pull_seconds": 26,
+      "cold_scan_seconds": 189,
+      "cold_total_seconds": 215,
+      "warm_scan_seconds": 174,
+      "warm_saving_seconds": 15,
+      "repository_p50_ms": 1400,
+      "repository_p95_ms": 18789,
+      "light_update_repositories": 31,
+      "repositories_over_5_seconds": 7,
+      "repositories_over_20_seconds": 2,
+      "update_share": 0.691392,
+      "github_core_rate_consumed": 31
+    },
+    {
+      "repositories": 84,
+      "image_pull_seconds": 28,
+      "cold_scan_seconds": 336,
+      "cold_total_seconds": 364,
+      "warm_scan_seconds": 311,
+      "warm_saving_seconds": 25,
+      "repository_p50_ms": 2125,
+      "repository_p95_ms": 20911,
+      "repository_max_ms": 40646,
+      "light_update_repositories": 55,
+      "repositories_over_5_seconds": 11,
+      "repositories_over_10_seconds": 8,
+      "repositories_over_20_seconds": 5,
+      "phase_seconds": {
+        "init": 46.908,
+        "extract": 43.297,
+        "lookup": 20.926,
+        "update": 194.762,
+        "repository_total": 330.968,
+        "process_overhead": 5.032
+      },
+      "update_share": 0.588462,
+      "github_core_rate_consumed": 53,
+      "github_core_rate_limit": 8500,
+      "repository_http_requests_reported": 474
+    }
+  ],
+  "slowest_repositories_at_84": [
+    {"repository": "sandbox-ternforge-consumer-py-20260717", "total_seconds": 40.646},
+    {"repository": "sandbox-workspace", "total_seconds": 37.852},
+    {"repository": "sandbox-provisioned", "total_seconds": 22.124},
+    {"repository": "sandbox-python-lib", "total_seconds": 21.522},
+    {"repository": "sandbox-process", "total_seconds": 20.911},
+    {"repository": "sandbox-ternforge-consumer-py-20260717-r2", "total_seconds": 11.327},
+    {"repository": "sandbox-private-uv-consumer-20260724-r1", "total_seconds": 11.103},
+    {"repository": "sandbox-ternforge-consumer-infra-20260717", "total_seconds": 10.871},
+    {"repository": "sandbox-ternforge-consumer-infra-20260717-r2", "total_seconds": 9.322},
+    {"repository": "sandbox-drift-consumer-20260723-r1", "total_seconds": 9.203}
+  ],
+  "derived_models": {
+    "observed_update_heavy_mix": {
+      "fixed_scan_seconds": 29.987821,
+      "seconds_per_repository": 3.568336,
+      "r_squared": 0.977811,
+      "estimated_total_five_minute_boundary_repositories": 67,
+      "meaning": "Fit across the four cold scans. It describes this historical lab mixture, in which many repositories repeatedly simulated pending Copier and lockfile updates."
+    },
+    "no_expensive_update_scenario": {
+      "image_pull_seconds": 28,
+      "process_overhead_seconds": 5.032,
+      "non_update_phase_seconds_per_repository": 1.32319,
+      "estimated_total_seconds": {
+        "100_repositories": 165.35,
+        "200_repositories": 297.67,
+        "300_repositories": 429.99,
+        "500_repositories": 694.63
+      },
+      "meaning": "Scenario estimate based on observed init, extract and lookup phases at 84 repositories, with expensive update work removed. It is not a measured capacity limit."
+    }
+  },
+  "interpretation": {
+    "dominant_variable": "The amount of active update work, especially Copier execution and lockfile regeneration, dominated runtime more than repository count alone.",
+    "cache": "Keeping the datasource cache between the two scans reduced the 84-repository scan by 25 seconds but did not remove repeated update work.",
+    "api": "GitHub core API quota was not the limiting resource in the measured range.",
+    "observable_without_external_service": true
+  },
+  "limitations": [
+    "The 84 repositories are heterogeneous historical lab sandboxes, not a representative production fleet sample.",
+    "dryRun=full does not persist branches or pull requests, so each pass simulated all updates that remained available. This creates an intentionally update-heavy workload compared with a converged fleet.",
+    "Repository contents, active updates, Copier and lockfile commands, registries, GitHub latency and runner load can change runtime.",
+    "The scenario estimates are planning evidence, not guarantees and not an architecture decision.",
+    "Event coalescing and replacement of pending GitHub Actions runs were not tested by this experiment."
+  ]
+}
