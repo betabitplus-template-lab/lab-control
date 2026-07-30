@@ -365,7 +365,7 @@ def validate(args: argparse.Namespace) -> None:
             "health_message": health.get("message") if isinstance(health, dict) else None,
         },
         "github_app": {
-            "owner_type": "User",
+            "owner_type": args.owner_type,
             "selected_repositories_expected": sorted(selected_expected),
             "selected_repositories_visible": sorted(selected_expected & repo_names),
             "selected_repositories_all_visible": selected_expected <= repo_names,
@@ -439,6 +439,7 @@ def main() -> None:
     validate_parser.add_argument("--base-url", default="http://127.0.0.1:3000")
     validate_parser.add_argument("--output-dir", required=True)
     validate_parser.add_argument("--owner", required=True)
+    validate_parser.add_argument("--owner-type", choices=("User", "Organization"), required=True)
     validate_parser.add_argument("--workflow-repository", required=True)
     validate_parser.add_argument("--workflow-file", required=True)
     validate_parser.add_argument("--unselected-private-repository", required=True)

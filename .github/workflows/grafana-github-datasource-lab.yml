@@ -21,10 +21,8 @@ jobs:
         with:
           app-id: ${{ secrets.LAB_APP_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
-          owner: betabitplus
-          repositories: |
-            betabit-notes
-            py-lib-starter
+          owner: betabitplus-template-lab
+          repositories: lab-control
           permission-actions: read
           permission-contents: read
           permission-issues: read
@@ -38,9 +36,9 @@ jobs:
         run: >-
           python experiments/grafana_github_datasource_lab.py prepare
           --provisioning-dir "$RUNNER_TEMP/grafana-provisioning"
-          --owner betabitplus
-          --workflow-repository py-lib-starter
-          --workflow-file fleet-doctor.yml
+          --owner betabitplus-template-lab
+          --workflow-repository lab-control
+          --workflow-file grafana-github-datasource-lab.yml
 
       - name: Start pinned Grafana with official GitHub plugin
         env:
@@ -73,17 +71,17 @@ jobs:
             sleep 2
           done
 
-      - name: Validate personal-account queries and alerting
+      - name: Validate official plugin queries and alerting
         env:
           SCOPED_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: >-
           python experiments/grafana_github_datasource_lab.py validate
           --output-dir results-grafana-github
-          --owner betabitplus
-          --workflow-repository py-lib-starter
-          --workflow-file fleet-doctor.yml
-          --selected-repository betabit-notes
-          --selected-repository py-lib-starter
+          --owner betabitplus-template-lab
+          --owner-type Organization
+          --workflow-repository lab-control
+          --workflow-file grafana-github-datasource-lab.yml
+          --selected-repository lab-control
           --unselected-private-repository labs
 
       - name: Collect sanitized service evidence
