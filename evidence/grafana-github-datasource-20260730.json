@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "experiment": "Grafana GitHub data source query and installation-scope validation",
+  "final_workflow_commit": "a42034b41eed2b86b2a43d4fbfdbab309b218749",
+  "final_run": {
+    "run_id": 30584491341,
+    "conclusion": "success",
+    "created_at": "2026-07-30T21:43:06Z",
+    "updated_at": "2026-07-30T21:43:43Z"
+  },
+  "runtime": {
+    "grafana": "grafana/grafana:13.1.0@sha256:121a7a9ece6dc10b969f1f96eed64b4f07dfac0d0b8abc070f7cb83bbde86f63",
+    "github_plugin": "grafana-github-datasource@2.8.0",
+    "authentication": "GitHub App id, installation id and private key provisioned only in the ephemeral runner"
+  },
+  "significant_attempts": [
+    {
+      "run_id": 30579945130,
+      "result": "failed before Grafana startup",
+      "finding": "The existing LAB App was not installed on the personal-account repositories; selected-repository token creation returned repository-not-found."
+    },
+    {
+      "run_id": 30580534743,
+      "result": "failed before Grafana startup",
+      "finding": "The existing lab App installation did not grant Actions: read; requesting that permission was rejected."
+    },
+    {
+      "run_id": 30581427883,
+      "result": "failed during Grafana startup",
+      "finding": "Plugin version 2.8.1 was not available from the Grafana plugin catalog; the published 2.8.0 build was used for the valid run."
+    },
+    {
+      "run_id": 30581878450,
+      "result": "Grafana started; queries failed",
+      "finding": "For GitHub.com the plugin configuration must omit githubUrl, and query time-field values are numeric enums in the 2.8.0 backend contract."
+    },
+    {
+      "run_id": 30582461308,
+      "result": "dashboard queries worked; table-to-SQL alert did not provide a stable alert path",
+      "finding": "The GitHub data source is suitable for current-state tables and drill-down, while critical alerting is simpler through bounded operational metrics."
+    }
+  ],
+  "final_result": {
+    "datasource_health": "OK",
+    "installation_repositories_visible": 90,
+    "runtime_selected_repositories": ["lab-control"],
+    "installation_scope_exceeded_runtime_selection": true,
+    "queries": {
+      "repositories": {"rows": 90, "error": null},
+      "workflows": {"rows": 18, "error": null},
+      "workflow_runs": {"rows": 0, "error": "workflow not found"},
+      "pull_requests": {"rows": 7, "error": null},
+      "configuration_warning_issues": {"rows": 0, "error": null},
+      "releases": {"rows": 0, "error": null}
+    }
+  },
+  "interpretation": {
+    "dashboard_queries_validated": true,
+    "workflow_run_history_validated": false,
+    "plugin_alerting_selected": false,
+    "installation_scope_rule": "The plugin mints its own installation token. Runtime token repository selection does not downscope plugin queries. A production read-only App must therefore be installed only on the managed fleet.",
+    "personal_account_acceptance_complete": false
+  },
+  "remaining_acceptance": [
+    "Create or reuse a dedicated read-only GitHub App installed only on selected personal-account managed repositories.",
+    "Grant Actions: read only if workflow-run history is required from the GitHub data source.",
+    "Repeat the same query and cross-scope checks on the personal-account installation."
+  ]
+}
