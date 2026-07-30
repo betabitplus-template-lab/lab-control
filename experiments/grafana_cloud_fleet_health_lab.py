@@ -623,8 +623,26 @@ def _dashboard() -> dict[str, Any]:
                         "refId": "A",
                         "queryType": "Repositories",
                         "owner": "betabitplus-template-lab",
-                        "repository": "lab-control in:name",
+                        "repository": "",
                         "options": {},
+                    }
+                ],
+                "transformations": [
+                    {
+                        "id": "filterByValue",
+                        "options": {
+                            "filters": [
+                                {
+                                    "config": {
+                                        "id": "equal",
+                                        "options": {"value": "lab-control"},
+                                    },
+                                    "fieldName": "name",
+                                }
+                            ],
+                            "match": "all",
+                            "type": "include",
+                        },
                     }
                 ],
             },
@@ -677,6 +695,9 @@ def _create_dashboard(base_url: str, token: str) -> dict[str, Any]:
         if isinstance(dashboard, dict)
         else []
     )
+    managed_panel = next(
+        (panel for panel in panels if panel.get("id") == 6), {}
+    )
     return {
         "create_http_status": status,
         "get_http_status": get_status,
@@ -684,6 +705,9 @@ def _create_dashboard(base_url: str, token: str) -> dict[str, Any]:
         "url": payload.get("url") if isinstance(payload, dict) else None,
         "panel_count": len(panels),
         "panel_titles": [panel.get("title") for panel in panels],
+        "managed_repository_transformations": managed_panel.get(
+            "transformations", []
+        ),
     }
 
 
@@ -807,6 +831,8 @@ def _active_alert_uids(base_url: str, token: str) -> set[str]:
         labels = alert.get("labels", {})
         state = alert.get("status", {}).get("state")
         if state == "active" and isinstance(labels, dict):
+            if labels.get("alertname") in {"DatasourceNoData", "DatasourceError"}:
+                continue
             uid = labels.get("__alert_rule_uid__")
             if isinstance(uid, str):
                 active.add(uid)
@@ -841,25 +867,39 @@ def _webhook_requests(uuid: str) -> dict[str, Any]:
     return payload
 
 
-def _wait_webhook(uuid: str, baseline: int, timeout_seconds: int = 240) -> dict[str, Any]:
+def _wait_webhook(
+    uuid: str, baseline_request_ids: set[str], timeout_seconds: int = 360
+) -> dict[str, Any]:
     deadline = time.monotonic() + timeout_seconds
     last: dict[str, Any] = {}
     while time.monotonic() < deadline:
         last = _webhook_requests(uuid)
-        total = int(last.get("total") or 0)
-        if total > baseline:
-            item = (last.get("data") or [{}])[0]
-            content = item.get("content", "") if isinstance(item, dict) else ""
+        for item in last.get("data") or []:
+            if not isinstance(item, dict):
+                continue
+            request_id = item.get("uuid")
+            if not isinstance(request_id, str) or request_id in baseline_request_ids:
+                continue
+            content = str(item.get("content", ""))
+            if "DatasourceNoData" in content or "DatasourceError" in content:
+                continue
+            if '"status":"firing"' not in content:
+                continue
+            if "Ternforge update processing exceeds ten minutes" not in content:
+                continue
             return {
-                "total": total,
-                "method": item.get("method") if isinstance(item, dict) else None,
-                "content_type": item.get("content_type") if isinstance(item, dict) else None,
-                "content_mentions_rule": ALERT_UID in str(content)
-                or "exceeds ten minutes" in str(content),
-                "created_at": item.get("created_at") if isinstance(item, dict) else None,
+                "request_uuid": request_id,
+                "total": int(last.get("total") or 0),
+                "method": item.get("method"),
+                "content_type": item.get("content_type"),
+                "content_mentions_rule": True,
+                "created_at": item.get("created_at"),
             }
         time.sleep(10)
-    raise RuntimeError(f"no Grafana webhook received; last total={last.get('total')}")
+    raise RuntimeError(
+        "no new domain Grafana firing webhook received; "
+        f"last total={last.get('total')}"
+    )
 
 
 def _render_dashboard(
@@ -1095,7 +1135,11 @@ def validate(args: argparse.Namespace) -> None:
             "unselected_private_repository": _query_summary(unselected_private),
         }
 
-        webhook_baseline = int(_webhook_requests(webhook_uuid).get("total") or 0)
+        webhook_baseline_request_ids = {
+            str(item.get("uuid"))
+            for item in _webhook_requests(webhook_uuid).get("data") or []
+            if isinstance(item, dict) and item.get("uuid")
+        }
         _emit_metrics(args.local_otlp_endpoint, "unhealthy")
         unhealthy_values = {
             "duration": _wait_scalar(
@@ -1155,10 +1199,19 @@ def validate(args: argparse.Namespace) -> None:
                 "alert_rule": _create_alert_rule(base_url, grafana_token),
             }
         )
+        # Refresh the unhealthy sample after the rule exists so its first
+        # scheduler evaluation cannot race the Cloud ingestion window.
+        _emit_metrics(args.local_otlp_endpoint, "unhealthy")
+        _wait_scalar(
+            base_url,
+            grafana_token,
+            'ternforge_update_processing_duration_seconds{ternforge_trigger="release"}',
+            720,
+        )
         firing_alerts = _wait_alert(
             base_url, grafana_token, expected_active=True
         )
-        webhook = _wait_webhook(webhook_uuid, webhook_baseline)
+        webhook = _wait_webhook(webhook_uuid, webhook_baseline_request_ids)
         dashboard_render = _render_dashboard(base_url, grafana_token, output_dir)
 
         _emit_metrics(args.local_otlp_endpoint, "healthy")
@@ -1242,8 +1295,29 @@ def validate(args: argparse.Namespace) -> None:
             and bool(app_scope["workflow_runs_count"]),
             "github_owner_query_includes_selected_repository": "lab-control"
             in repository_names,
-            "github_managed_repository_query_exact": managed_repository_names
-            == ["lab-control"],
+            "github_repository_name_search_contains_selected": "lab-control"
+            in managed_repository_names,
+            "dashboard_managed_repository_filter_present": summary["resources"][
+                "dashboard"
+            ]["managed_repository_transformations"]
+            == [
+                {
+                    "id": "filterByValue",
+                    "options": {
+                        "filters": [
+                            {
+                                "config": {
+                                    "id": "equal",
+                                    "options": {"value": "lab-control"},
+                                },
+                                "fieldName": "name",
+                            }
+                        ],
+                        "match": "all",
+                        "type": "include",
+                    },
+                }
+            ],
             "github_workflows_query_succeeded": workflows["error"] is None
             and bool(workflows["rows"]),
             "github_workflow_runs_query_succeeded": workflow_runs["error"] is None
@@ -1283,8 +1357,10 @@ def validate(args: argparse.Namespace) -> None:
             == 7,
             "cloud_alert_fired": ALERT_UID in firing_alerts,
             "cloud_alert_resolved": ALERT_UID not in resolved_alerts,
-            "webhook_notification_delivered": webhook["total"] > webhook_baseline
-            and webhook["method"] == "POST",
+            "webhook_notification_delivered": webhook["request_uuid"]
+            not in webhook_baseline_request_ids
+            and webhook["method"] == "POST"
+            and webhook["content_mentions_rule"],
         }
         summary["assertions"] = assertions
         failed = [name for name, passed in assertions.items() if not passed]
