@@ -91,6 +91,7 @@ def parse_rate(path: str | None) -> dict[str, int | None]:
 def parse_log(path: str | Path) -> dict[str, Any]:
     repositories: set[str] = set()
     timings: dict[str, int] = {}
+    timing_splits: dict[str, dict[str, int]] = {}
     warning_count = 0
     error_count = 0
     http_request_count = 0
@@ -128,6 +129,13 @@ def parse_log(path: str | Path) -> dict[str, Any]:
             and isinstance(total, int)
         ):
             timings[repository] = total
+            splits = record.get("splits")
+            if isinstance(splits, dict):
+                timing_splits[repository] = {
+                    key: value
+                    for key in ("init", "onboarding", "extract", "lookup", "update")
+                    if isinstance((value := splits.get(key)), int)
+                }
 
         hosts = record.get("hosts")
         if isinstance(hosts, dict):
@@ -136,6 +144,16 @@ def parse_log(path: str | Path) -> dict[str, Any]:
                     http_request_count += stats["count"]
 
     timing_values = list(timings.values())
+    phase_sums = {
+        phase: sum(splits.get(phase, 0) for splits in timing_splits.values())
+        for phase in ("init", "onboarding", "extract", "lookup", "update")
+    }
+    update_values = [splits.get("update", 0) for splits in timing_splits.values()]
+    light_repositories = [
+        repository
+        for repository, splits in timing_splits.items()
+        if splits.get("update", 0) <= 500
+    ]
     slowest = [
         {"repository": repository, "total_ms": total_ms}
         for repository, total_ms in sorted(
@@ -150,6 +168,20 @@ def parse_log(path: str | Path) -> dict[str, Any]:
             "p95": percentile(timing_values, 0.95),
             "max": max(timing_values) if timing_values else None,
             "sum": sum(timing_values),
+        },
+        "phase_timing_ms": {
+            **phase_sums,
+            "total": sum(timing_values),
+            "update_share": (
+                phase_sums["update"] / sum(timing_values) if timing_values else None
+            ),
+        },
+        "repository_workload": {
+            "light_update_at_most_500ms": len(light_repositories),
+            "over_5_seconds": sum(value > 5_000 for value in timing_values),
+            "over_10_seconds": sum(value > 10_000 for value in timing_values),
+            "over_20_seconds": sum(value > 20_000 for value in timing_values),
+            "max_update_ms": max(update_values) if update_values else None,
         },
         "slowest_repositories": slowest,
         "warning_count": warning_count,
