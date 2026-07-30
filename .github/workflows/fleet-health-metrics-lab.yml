@@ -1,0 +1,131 @@
+name: Fleet health metrics lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate configurations
+        env:
+          PROMETHEUS_IMAGE: prom/prometheus:v3.13.1@sha256:3c42b892cf723fa54d2f262c37a0e1f80aa8c8ddb1da7b9b0df9455a35a7f893
+          OTEL_IMAGE: otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108
+        run: |
+          docker run --rm \
+            -v "$PWD/experiments/fleet-health-metrics/prometheus.yml:/etc/prometheus/prometheus.yml:ro" \
+            --entrypoint /bin/promtool \
+            "$PROMETHEUS_IMAGE" check config /etc/prometheus/prometheus.yml
+          docker run --rm \
+            -v "$PWD/experiments/fleet-health-metrics/otel-collector-config.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" validate --config=/etc/otelcol-contrib/config.yaml
+          python -m py_compile experiments/fleet_health_metrics_lab.py
+
+      - name: Start pinned observability stack
+        env:
+          PROMETHEUS_IMAGE: prom/prometheus:v3.13.1@sha256:3c42b892cf723fa54d2f262c37a0e1f80aa8c8ddb1da7b9b0df9455a35a7f893
+          OTEL_IMAGE: otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108
+          GRAFANA_IMAGE: grafana/grafana:13.1.0@sha256:121a7a9ece6dc10b969f1f96eed64b4f07dfac0d0b8abc070f7cb83bbde86f63
+        run: |
+          set -euo pipefail
+          mkdir -p results-fleet-health-metrics
+          docker pull "$PROMETHEUS_IMAGE"
+          docker pull "$OTEL_IMAGE"
+          docker pull "$GRAFANA_IMAGE"
+          docker network create fleet-health-metrics-lab
+
+          docker run -d \
+            --name otel-collector \
+            --network fleet-health-metrics-lab \
+            -p 4318:4318 \
+            -p 9464:9464 \
+            -v "$PWD/experiments/fleet-health-metrics/otel-collector-config.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" --config=/etc/otelcol-contrib/config.yaml
+
+          docker run -d \
+            --name prometheus \
+            --network fleet-health-metrics-lab \
+            -p 9090:9090 \
+            -v "$PWD/experiments/fleet-health-metrics/prometheus.yml:/etc/prometheus/prometheus.yml:ro" \
+            "$PROMETHEUS_IMAGE" \
+            --config.file=/etc/prometheus/prometheus.yml \
+            --storage.tsdb.path=/prometheus
+
+          docker run -d \
+            --name grafana \
+            --network fleet-health-metrics-lab \
+            -p 3000:3000 \
+            -e GF_AUTH_ANONYMOUS_ENABLED=true \
+            -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
+            -e GF_AUTH_DISABLE_LOGIN_FORM=true \
+            -v "$PWD/experiments/fleet-health-metrics/grafana-datasource.yml:/etc/grafana/provisioning/datasources/ternforge.yml:ro" \
+            -v "$PWD/experiments/fleet-health-metrics/grafana-alerting.yml:/etc/grafana/provisioning/alerting/ternforge.yml:ro" \
+            "$GRAFANA_IMAGE"
+
+          for attempt in $(seq 1 90); do
+            collector_ready=false
+            prometheus_ready=false
+            grafana_ready=false
+            curl --fail --silent http://127.0.0.1:9464/metrics >/dev/null && collector_ready=true || true
+            curl --fail --silent http://127.0.0.1:9090/-/ready >/dev/null && prometheus_ready=true || true
+            curl --fail --silent http://127.0.0.1:3000/api/health >/dev/null && grafana_ready=true || true
+            if $collector_ready && $prometheus_ready && $grafana_ready; then
+              break
+            fi
+            if [ "$attempt" = 90 ]; then
+              echo "Observability stack did not become ready" >&2
+              exit 1
+            fi
+            sleep 2
+          done
+
+      - name: Validate unhealthy and healthy scorecard states
+        run: >-
+          python experiments/fleet_health_metrics_lab.py
+          --output-dir results-fleet-health-metrics
+
+      - name: Collect service evidence
+        if: always()
+        run: |
+          mkdir -p results-fleet-health-metrics
+          docker logs otel-collector > results-fleet-health-metrics/otel-collector.log 2>&1 || true
+          docker logs prometheus > results-fleet-health-metrics/prometheus.log 2>&1 || true
+          docker logs grafana > results-fleet-health-metrics/grafana.log 2>&1 || true
+          curl --silent http://127.0.0.1:9464/metrics > results-fleet-health-metrics/collector-metrics.txt || true
+
+      - name: Publish summary
+        if: always()
+        run: |
+          {
+            printf '## Fleet health metrics lab\n\n'
+            if test -f results-fleet-health-metrics/summary.json; then
+              printf '```json\n'
+              cat results-fleet-health-metrics/summary.json
+              printf '```\n'
+            else
+              printf 'No summary was produced.\n'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fleet-health-metrics
+          path: results-fleet-health-metrics/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Stop services
+        if: always()
+        run: |
+          docker rm -f grafana prometheus otel-collector >/dev/null 2>&1 || true
+          docker network rm fleet-health-metrics-lab >/dev/null 2>&1 || true
