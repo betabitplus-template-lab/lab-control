@@ -131,6 +131,7 @@ jobs:
 
           rm -rf "$cache_dir"
           mkdir -p "$cache_dir"
+          chmod 0777 "$cache_dir"
           run_phase cold
           run_phase warm
 
