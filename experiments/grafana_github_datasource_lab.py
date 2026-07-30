@@ -66,7 +66,6 @@ def prepare(args: argparse.Namespace) -> None:
                 "access": "proxy",
                 "editable": False,
                 "jsonData": {
-                    "githubUrl": "https://api.github.com",
                     "selectedAuthType": "github-app",
                     "appId": os.environ["APP_NUMERIC_ID"],
                     "installationId": os.environ["APP_INSTALLATION_ID"],
@@ -293,7 +292,7 @@ def validate(args: argparse.Namespace) -> None:
             "queryType": "Workflows",
             "owner": args.owner,
             "repository": args.workflow_repository,
-            "options": {"timeField": "CreatedAt", "query": ""},
+            "options": {"timeField": 0, "query": ""},
         },
     )
     workflow_runs = _query(
@@ -311,7 +310,7 @@ def validate(args: argparse.Namespace) -> None:
             "queryType": "Pull_Requests",
             "owner": args.owner,
             "repository": "",
-            "options": {"query": "is:open author:app/renovate", "timeField": "None"},
+            "options": {"query": "is:open author:app/renovate", "timeField": 4},
         },
     )
     issues = _query(
@@ -322,7 +321,7 @@ def validate(args: argparse.Namespace) -> None:
             "repository": "",
             "options": {
                 "query": "is:open label:renovate/config-error",
-                "timeField": "None",
+                "timeField": 2,
             },
         },
     )
@@ -341,7 +340,7 @@ def validate(args: argparse.Namespace) -> None:
             "queryType": "Workflows",
             "owner": args.owner,
             "repository": args.unselected_private_repository,
-            "options": {"timeField": "CreatedAt", "query": ""},
+            "options": {"timeField": 0, "query": ""},
         },
     )
     repo_names = {
