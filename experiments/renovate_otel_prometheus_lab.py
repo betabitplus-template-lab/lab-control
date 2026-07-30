@@ -111,6 +111,9 @@ def main() -> None:
     run_calls = instant_query(
         args.prometheus_url, f'sum({calls_metric}{{span_name="run"}})'
     )
+    run_duration_count = instant_query(
+        args.prometheus_url, f'sum({duration_count_metric}{{span_name="run"}})'
+    )
     run_duration_ms = instant_query(
         args.prometheus_url,
         f'sum({duration_sum_metric}{{span_name="run"}}) '
@@ -125,6 +128,17 @@ def main() -> None:
         args.prometheus_url,
         'count({__name__=~"traces_span_metrics_.*"})',
     )
+
+    span_names = label_values(args.prometheus_url, "span_name")
+    allowed_span_names = {
+        "run",
+        "repository",
+        "init",
+        "onboarding",
+        "extract",
+        "lookup",
+        "update",
+    }
 
     overhead_seconds = args.instrumented_seconds - args.control_seconds
     overhead_ratio = (
@@ -143,20 +157,24 @@ def main() -> None:
             "series_count": span_metric_series,
             "repository_calls": repository_calls,
             "run_calls": run_calls,
+            "run_duration_count": run_duration_count,
             "run_duration_ms": run_duration_ms,
             "repository_p95_ms": repository_p95_ms,
-            "span_names": label_values(args.prometheus_url, "span_name"),
+            "span_names": span_names,
             "renovate_splits": label_values(args.prometheus_url, "renovate_split"),
             "service_names": label_values(args.prometheus_url, "service_name"),
         },
         "assertions": {
             "all_repositories_observed": repository_calls >= args.expected_repositories,
-            "run_span_observed": bool(run_calls and run_calls >= 1),
+            "run_span_observed": bool(
+                run_duration_count and run_duration_count >= 1
+            ),
             "run_duration_observed": run_duration_ms is not None and run_duration_ms > 0,
             "repository_p95_observed": repository_p95_ms is not None
             and repository_p95_ms > 0,
+            "only_bounded_span_names": set(span_names).issubset(allowed_span_names),
             "bounded_series_for_lab": span_metric_series is not None
-            and span_metric_series < 10_000,
+            and span_metric_series < 300,
         },
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
