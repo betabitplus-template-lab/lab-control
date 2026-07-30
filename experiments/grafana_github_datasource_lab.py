@@ -160,8 +160,8 @@ def prepare(args: argparse.Namespace) -> None:
     }
     _write_json(root / "datasources" / "github.yaml", datasource)
     _write_json(root / "alerting" / "rules.yaml", alerting)
-    os.chmod(root / "datasources" / "github.yaml", 0o600)
-    os.chmod(root / "alerting" / "rules.yaml", 0o600)
+    os.chmod(root / "datasources" / "github.yaml", 0o644)
+    os.chmod(root / "alerting" / "rules.yaml", 0o644)
 
 
 def _frame_rows(frame: dict[str, Any]) -> list[dict[str, Any]]:

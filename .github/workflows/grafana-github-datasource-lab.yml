@@ -46,7 +46,7 @@ jobs:
           set -euo pipefail
           mkdir -p results-grafana-github
           docker pull "$GRAFANA_IMAGE"
-          docker run -d --rm \
+          docker run -d \
             --name grafana-github-lab \
             -p 3000:3000 \
             -e GF_AUTH_ANONYMOUS_ENABLED=true \
