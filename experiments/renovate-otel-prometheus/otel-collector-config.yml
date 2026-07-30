@@ -1,0 +1,45 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+
+connectors:
+  spanmetrics:
+    histogram:
+      explicit:
+        buckets: [100ms, 500ms, 1s, 2s, 5s, 10s, 20s, 30s, 60s, 120s, 300s]
+    dimensions:
+      - name: renovate.split
+    dimensions_cache_size: 1000
+    aggregation_temporality: AGGREGATION_TEMPORALITY_CUMULATIVE
+    exemplars:
+      enabled: true
+
+processors:
+  batch:
+    timeout: 1s
+
+exporters:
+  otlphttp/prometheus:
+    endpoint: http://prometheus:9090/api/v1/otlp
+    tls:
+      insecure: true
+  debug:
+    verbosity: basic
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [spanmetrics, debug]
+    metrics:
+      receivers: [spanmetrics]
+      processors: [batch]
+      exporters: [otlphttp/prometheus]

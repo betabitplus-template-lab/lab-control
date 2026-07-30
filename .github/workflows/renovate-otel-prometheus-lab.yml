@@ -1,0 +1,206 @@
+name: Renovate OpenTelemetry Prometheus lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      cohort_size:
+        description: Deterministic full-fleet cohort size
+        required: true
+        default: "25"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Select deterministic cohort
+        id: cohort
+        run: >-
+          python experiments/full_fleet_renovate_lab.py select
+          --inventory experiments/full-fleet-renovate/repositories.json
+          --size '${{ inputs.cohort_size }}'
+          --output results-otel-prometheus/selection.json
+          --github-output "$GITHUB_OUTPUT"
+
+      - name: Mint read-only cohort token
+        id: app-token
+        uses: actions/create-github-app-token@def152b8a737443d7af6c5722c6389146fe90c90 # v2.1.2
+        with:
+          app-id: ${{ secrets.LAB_APP_ID }}
+          private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ steps.cohort.outputs.repositories }}
+          permission-contents: read
+          permission-issues: read
+          permission-pull-requests: read
+
+      - name: Validate standard configurations
+        env:
+          PROMETHEUS_IMAGE: prom/prometheus:v3.13.1@sha256:3c42b892cf723fa54d2f262c37a0e1f80aa8c8ddb1da7b9b0df9455a35a7f893
+          OTEL_IMAGE: otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108
+        run: |
+          docker run --rm \
+            -v "$PWD/experiments/renovate-otel-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro" \
+            --entrypoint /bin/promtool \
+            "$PROMETHEUS_IMAGE" check config /etc/prometheus/prometheus.yml
+          docker run --rm \
+            -v "$PWD/experiments/renovate-otel-prometheus/otel-collector-config.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" validate --config=/etc/otelcol-contrib/config.yaml
+
+      - name: Run control and instrumented scans
+        id: scan
+        env:
+          RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          FULL_FLEET_REPOSITORIES_JSON: ${{ steps.cohort.outputs.repositories_json }}
+          RENOVATE_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          COHORT_SIZE: ${{ inputs.cohort_size }}
+          RENOVATE_IMAGE: renovate/renovate:43.262.4@sha256:2c2f2dc64e0c4ef0d4c9f5795877004ee9667eb3d3f1125ebb1dc503aeeae8fe
+          PROMETHEUS_IMAGE: prom/prometheus:v3.13.1@sha256:3c42b892cf723fa54d2f262c37a0e1f80aa8c8ddb1da7b9b0df9455a35a7f893
+          OTEL_IMAGE: otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108
+        run: |
+          set -euo pipefail
+          result_dir=results-otel-prometheus
+          control_cache="$RUNNER_TEMP/renovate-control-cache"
+          instrumented_cache="$RUNNER_TEMP/renovate-instrumented-cache"
+          prometheus_data="$RUNNER_TEMP/prometheus-data"
+          mkdir -p "$result_dir" "$control_cache" "$instrumented_cache" "$prometheus_data"
+          chmod 0777 "$control_cache" "$instrumented_cache" "$prometheus_data"
+
+          docker pull "$RENOVATE_IMAGE"
+          docker pull "$PROMETHEUS_IMAGE"
+          docker pull "$OTEL_IMAGE"
+          docker network create renovate-observability-lab
+
+          docker run -d --rm \
+            --name prometheus \
+            --network renovate-observability-lab \
+            -p 9090:9090 \
+            -v "$PWD/experiments/renovate-otel-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro" \
+            -v "$prometheus_data:/prometheus" \
+            "$PROMETHEUS_IMAGE" \
+            --config.file=/etc/prometheus/prometheus.yml \
+            --storage.tsdb.path=/prometheus \
+            --web.enable-otlp-receiver
+
+          docker run -d --rm \
+            --name otel-collector \
+            --network renovate-observability-lab \
+            -p 4318:4318 \
+            -p 13133:13133 \
+            -v "$PWD/experiments/renovate-otel-prometheus/otel-collector-config.yml:/etc/otelcol-contrib/config.yaml:ro" \
+            "$OTEL_IMAGE" \
+            --config=/etc/otelcol-contrib/config.yaml
+
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:9090/-/ready >/dev/null \
+              && curl --fail --silent http://127.0.0.1:13133/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" = 30 ]; then
+              echo "observability stack did not become ready" >&2
+              exit 1
+            fi
+            sleep 2
+          done
+
+          run_renovate() {
+            phase="$1"
+            cache_dir="$2"
+            shift 2
+            started=$(date +%s)
+            set +e
+            docker run --rm \
+              --network renovate-observability-lab \
+              -v "$PWD:/usr/src/app:ro" \
+              -v "$cache_dir:/tmp/renovate-cache" \
+              -w /usr/src/app \
+              -e RENOVATE_TOKEN \
+              -e FULL_FLEET_REPOSITORIES_JSON \
+              -e RENOVATE_REPOSITORY_OWNER \
+              -e RENOVATE_CONFIG_FILE=renovate/full-fleet-lab-config.js \
+              -e RENOVATE_CACHE_DIR=/tmp/renovate-cache \
+              -e LOG_LEVEL=debug \
+              -e LOG_FORMAT=json \
+              "$@" \
+              "$RENOVATE_IMAGE" > "$result_dir/${phase}.log" 2>&1
+            status=$?
+            set -e
+            elapsed=$(($(date +%s) - started))
+            printf -v "${phase}_status" '%s' "$status"
+            printf -v "${phase}_seconds" '%s' "$elapsed"
+            printf '%s_status=%s\n' "$phase" "$status" >> "$GITHUB_OUTPUT"
+            printf '%s_seconds=%s\n' "$phase" "$elapsed" >> "$GITHUB_OUTPUT"
+          }
+
+          run_renovate control "$control_cache"
+          run_renovate instrumented "$instrumented_cache" \
+            -e OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318 \
+            -e OTEL_SERVICE_NAME=renovate \
+            -e OTEL_SERVICE_NAMESPACE=ternforge \
+            -e "OTEL_RESOURCE_ATTRIBUTES=deployment.environment.name=lab,github.repository=${GITHUB_REPOSITORY},github.workflow=renovate-otel-prometheus-lab,github.run_id=${GITHUB_RUN_ID}"
+
+          python experiments/renovate_otel_prometheus_lab.py \
+            --expected-repositories "$COHORT_SIZE" \
+            --control-seconds "$control_seconds" \
+            --instrumented-seconds "$instrumented_seconds" \
+            --output "$result_dir/summary.json"
+
+      - name: Collect service logs
+        if: always()
+        run: |
+          mkdir -p results-otel-prometheus
+          docker logs prometheus > results-otel-prometheus/prometheus.log 2>&1 || true
+          docker logs otel-collector > results-otel-prometheus/otel-collector.log 2>&1 || true
+          curl --silent http://127.0.0.1:9090/api/v1/label/__name__/values \
+            > results-otel-prometheus/prometheus-metric-names.json || true
+
+      - name: Publish summary
+        if: always()
+        env:
+          CONTROL_SECONDS: ${{ steps.scan.outputs.control_seconds }}
+          INSTRUMENTED_SECONDS: ${{ steps.scan.outputs.instrumented_seconds }}
+        run: |
+          {
+            printf '## Renovate OpenTelemetry to Prometheus lab\n\n'
+            printf '| Cohort | Control | Instrumented |\n'
+            printf '|---:|---:|---:|\n'
+            printf '| %s | %ss | %ss |\n' '${{ inputs.cohort_size }}' "$CONTROL_SECONDS" "$INSTRUMENTED_SECONDS"
+            if [ -f results-otel-prometheus/summary.json ]; then
+              printf '\n```json\n'
+              cat results-otel-prometheus/summary.json
+              printf '```\n'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: renovate-otel-prometheus-${{ inputs.cohort_size }}
+          path: results-otel-prometheus/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Stop lab services
+        if: always()
+        run: |
+          docker rm -f otel-collector prometheus >/dev/null 2>&1 || true
+          docker network rm renovate-observability-lab >/dev/null 2>&1 || true
+
+      - name: Require successful scans
+        if: always()
+        env:
+          CONTROL_STATUS: ${{ steps.scan.outputs.control_status }}
+          INSTRUMENTED_STATUS: ${{ steps.scan.outputs.instrumented_status }}
+        run: |
+          test "$CONTROL_STATUS" = "0"
+          test "$INSTRUMENTED_STATUS" = "0"
+          test -f results-otel-prometheus/summary.json
