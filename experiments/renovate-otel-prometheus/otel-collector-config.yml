@@ -17,6 +17,11 @@ connectors:
       enabled: true
 
 processors:
+  filter/spanmetrics:
+    error_mode: ignore
+    traces:
+      span:
+        - 'name != "run" and name != "repository" and attributes["renovate.split"] == nil'
   batch:
     timeout: 1s
 
@@ -37,7 +42,7 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
+      processors: [filter/spanmetrics, batch]
       exporters: [spanmetrics, debug]
     metrics:
       receivers: [spanmetrics]
