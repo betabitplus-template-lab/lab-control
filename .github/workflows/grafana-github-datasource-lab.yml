@@ -23,7 +23,6 @@ jobs:
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: betabitplus-template-lab
           repositories: lab-control
-          permission-actions: read
           permission-contents: read
           permission-issues: read
           permission-pull-requests: read

@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 DATASOURCE_UID = "github"
-ALERT_UID = "fleet-doctor-failures"
+ALERT_UID = "github-repositories-visible"
 
 
 def _request(
@@ -87,7 +87,7 @@ def prepare(args: argparse.Namespace) -> None:
                 "rules": [
                     {
                         "uid": ALERT_UID,
-                        "title": "Fleet Doctor failures",
+                        "title": "GitHub repositories visible",
                         "condition": "C",
                         "data": [
                             {
@@ -99,10 +99,10 @@ def prepare(args: argparse.Namespace) -> None:
                                         "type": "grafana-github-datasource",
                                         "uid": DATASOURCE_UID,
                                     },
-                                    "queryType": "Workflow_Runs",
+                                    "queryType": "Repositories",
                                     "owner": args.owner,
-                                    "repository": args.workflow_repository,
-                                    "options": {"workflowID": args.workflow_file},
+                                    "repository": "",
+                                    "options": {},
                                     "intervalMs": 1_000,
                                     "maxDataPoints": 43_200,
                                     "refId": "A",
@@ -115,10 +115,7 @@ def prepare(args: argparse.Namespace) -> None:
                                 "model": {
                                     "datasource": {"type": "__expr__", "uid": "__expr__"},
                                     "type": "sql",
-                                    "expression": (
-                                        "SELECT COUNT(*) AS value FROM A "
-                                        "WHERE conclusion = 'failure'"
-                                    ),
+                                    "expression": "SELECT COUNT(*) AS value FROM A",
                                     "format": "table",
                                     "intervalMs": 1_000,
                                     "maxDataPoints": 43_200,
@@ -153,7 +150,7 @@ def prepare(args: argparse.Namespace) -> None:
                         "for": "0s",
                         "isPaused": False,
                         "annotations": {
-                            "summary": "The selected GitHub workflow has failed runs."
+                            "summary": "The GitHub App can query one or more repositories."
                         },
                         "labels": {"component": "github-datasource-lab"},
                     }
@@ -420,7 +417,12 @@ def validate(args: argparse.Namespace) -> None:
         "alert_fired": alert["firing"],
     }
     _write_json(output_dir / "summary.json", summary)
-    required = list(summary["assertions"])
+    required = [
+        "datasource_healthy",
+        "selected_repositories_visible",
+        "alert_rule_present",
+        "alert_fired",
+    ]
     failed = [name for name in required if not summary["assertions"][name]]
     if failed:
         raise SystemExit("failed assertions: " + ", ".join(failed))
