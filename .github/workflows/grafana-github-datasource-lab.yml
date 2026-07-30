@@ -35,9 +35,6 @@ jobs:
         run: >-
           python experiments/grafana_github_datasource_lab.py prepare
           --provisioning-dir "$RUNNER_TEMP/grafana-provisioning"
-          --owner betabitplus-template-lab
-          --workflow-repository lab-control
-          --workflow-file grafana-github-datasource-lab.yml
 
       - name: Start pinned Grafana with official GitHub plugin
         env:
@@ -52,10 +49,8 @@ jobs:
             -e GF_AUTH_ANONYMOUS_ENABLED=true \
             -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
             -e GF_AUTH_DISABLE_LOGIN_FORM=true \
-            -e GF_FEATURE_TOGGLES_ENABLE=sqlExpressions \
             -e GF_PLUGINS_PREINSTALL_SYNC=grafana-github-datasource@2.8.0 \
             -v "$RUNNER_TEMP/grafana-provisioning/datasources:/etc/grafana/provisioning/datasources:ro" \
-            -v "$RUNNER_TEMP/grafana-provisioning/alerting:/etc/grafana/provisioning/alerting:ro" \
             "$GRAFANA_IMAGE"
 
           for attempt in $(seq 1 90); do
@@ -70,9 +65,7 @@ jobs:
             sleep 2
           done
 
-      - name: Validate official plugin queries and alerting
-        env:
-          SCOPED_APP_TOKEN: ${{ steps.app-token.outputs.token }}
+      - name: Validate official plugin queries and installation scope
         run: >-
           python experiments/grafana_github_datasource_lab.py validate
           --output-dir results-grafana-github
@@ -81,7 +74,8 @@ jobs:
           --workflow-repository lab-control
           --workflow-file grafana-github-datasource-lab.yml
           --selected-repository lab-control
-          --unselected-private-repository labs
+          --grafana-image grafana/grafana:13.1.0@sha256:121a7a9ece6dc10b969f1f96eed64b4f07dfac0d0b8abc070f7cb83bbde86f63
+          --plugin-version 2.8.0
 
       - name: Collect sanitized service evidence
         if: always()
