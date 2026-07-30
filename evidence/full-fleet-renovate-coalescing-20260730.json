@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment": "full-fleet Renovate event coalescing",
+  "workflow_commit": "c30e6c67c7aac96235757cce944b2fef32cba4ce",
+  "controlled_dependency": {
+    "source_repository": "betabitplus-template-lab/sandbox-release-contract-source-20260724-r1",
+    "consumer_repository": "betabitplus-template-lab/sandbox-release-contract-consumer-20260724-r1",
+    "dependency": "ternforge-release-contract-source",
+    "consumer_current_value": "v1.1.0",
+    "temporary_tags": ["v1.2.0", "v1.3.0", "v1.4.0"],
+    "temporary_tags_commit": "a3a5c03340614a590ac933f425c8ede068836f90",
+    "cleanup_verified": true,
+    "remaining_tags_after_cleanup": ["v1.1.0", "v1.0.0"]
+  },
+  "workflow_contract": {
+    "concurrency_group": "full-fleet-renovate-coalescing-lab",
+    "cancel_in_progress": false,
+    "queue_mode": "GitHub default: at most one pending run; a newer pending run replaces the previous pending run",
+    "renovate_mode": "dryRun=full",
+    "enabled_managers": ["pep621"],
+    "credential": "Read-only GitHub App installation token scoped to the controlled source and consumer repositories",
+    "repository_mutations": false
+  },
+  "runs": [
+    {
+      "event_version": "v1.2.0",
+      "run_id": 30556211884,
+      "created_at": "2026-07-30T15:20:42Z",
+      "job_started_at": "2026-07-30T15:20:46Z",
+      "job_completed_at": "2026-07-30T15:24:52Z",
+      "hold_seconds": 180,
+      "conclusion": "success",
+      "renovate_observation": {
+        "current_value": "v1.1.0",
+        "updates": ["v1.2.0"],
+        "latest_observed_value": "v1.2.0"
+      }
+    },
+    {
+      "event_version": "v1.3.0",
+      "run_id": 30556423844,
+      "created_at": "2026-07-30T15:23:18Z",
+      "completed_at": "2026-07-30T15:24:03Z",
+      "job_started": false,
+      "conclusion": "cancelled",
+      "reason": "The run was pending behind v1.2.0 and was replaced by the newer v1.4.0 pending run."
+    },
+    {
+      "event_version": "v1.4.0",
+      "run_id": 30556481913,
+      "created_at": "2026-07-30T15:24:00Z",
+      "job_started_at": "2026-07-30T15:25:12Z",
+      "job_completed_at": "2026-07-30T15:26:13Z",
+      "conclusion": "success",
+      "renovate_observation": {
+        "current_value": "v1.1.0",
+        "updates": ["v1.4.0"],
+        "latest_observed_value": "v1.4.0"
+      }
+    }
+  ],
+  "assertions": {
+    "running_run_was_not_cancelled": true,
+    "intermediate_pending_run_was_replaced": true,
+    "latest_pending_run_started_after_running_run_completed": true,
+    "first_scan_observed_first_released_state": true,
+    "final_scan_observed_latest_released_state": true,
+    "final_correctness_did_not_require_processing_every_event": true
+  },
+  "interpretation": {
+    "safe_condition": "Every queued execution performs a state-based full scan and computes desired updates from current repository and release state. Event payload order is not used as correctness state.",
+    "unsafe_condition": "Coalescing is not safe for event-specific side effects, counters, destructive operations, or routing that requires every individual payload to be processed.",
+    "result": "For state-reconciliation full scans, one running plus one latest pending execution converged to the newest released version while avoiding a redundant intermediate Renovate run."
+  },
+  "limitations": [
+    "The experiment used one controlled consumer, not a large full fleet; EXP-0021 separately covers full-scan scaling.",
+    "The three temporary tags pointed to the same source commit because the test variable was release identity and queue semantics, not source content changes.",
+    "The workflow used workflow_dispatch to create controlled events. A production repository_dispatch trigger must preserve the same state-based full-scan behavior.",
+    "The result does not apply if future processing introduces mandatory per-event side effects."
+  ]
+}
