@@ -13,6 +13,8 @@ Can a Python repository enforce a fail-closed vulnerability gate directly from i
 - Platform: `macOS-26.5.2-arm64-arm-64bit`
 - uv: `uv 0.12.0 (b88d7c5c4 2026-07-28 aarch64-apple-darwin)`
 - pip-audit: `pip-audit 2.10.1`
+- GitHub run: `local`
+- workflow SHA: `local`
 - vulnerable fixture: `setuptools==65.5.0`
 
 ## Results

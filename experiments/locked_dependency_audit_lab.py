@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import platform
 import subprocess
 import tempfile
@@ -210,6 +211,8 @@ Can a Python repository enforce a fail-closed vulnerability gate directly from i
 - Platform: `{result['environment']['platform']}`
 - uv: `{result['environment']['uv']}`
 - pip-audit: `{result['environment']['pip_audit']}`
+- GitHub run: `{result['environment']['github_run_id']}`
+- workflow SHA: `{result['environment']['github_sha']}`
 - vulnerable fixture: `{VULNERABLE_REQUIREMENT}`
 
 ## Results
@@ -366,6 +369,10 @@ def perform_experiment() -> dict[str, Any]:
                 "platform": platform.platform(),
                 "uv": actual_uv,
                 "pip_audit": actual_pip_audit,
+                "github_run_id": os.environ.get("GITHUB_RUN_ID", "local"),
+                "github_sha": os.environ.get("GITHUB_SHA", "local"),
+                "github_ref": os.environ.get("GITHUB_REF", "local"),
+                "runner_os": os.environ.get("RUNNER_OS", "local"),
             },
             "fixtures": {
                 "runtime_vulnerable": VULNERABLE_REQUIREMENT,
