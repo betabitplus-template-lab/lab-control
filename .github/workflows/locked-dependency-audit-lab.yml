@@ -1,0 +1,41 @@
+name: Locked dependency audit lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout lab control
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+
+      - name: Install exact uv
+        run: python -m pip install uv==0.12.0
+
+      - name: Run locked dependency vulnerability experiment
+        run: |
+          python experiments/locked_dependency_audit_lab.py \
+            --output-json evidence/locked-dependency-audit-20260731.json \
+            --output-report evidence/locked-dependency-audit-20260731.md
+
+      - name: Publish summary
+        run: cat evidence/locked-dependency-audit-20260731.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload immutable evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: locked-dependency-audit-evidence
+          path: |
+            evidence/locked-dependency-audit-20260731.json
+            evidence/locked-dependency-audit-20260731.md
+          if-no-files-found: error
+          retention-days: 90
