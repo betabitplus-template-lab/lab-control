@@ -1,0 +1,453 @@
+{
+  "baseline": {
+    "commit": "d59582375855cff69fb165e467dc5847bc75ca99",
+    "repository": "betabitplus/py-lib-starter",
+    "template": "python-lib-standard"
+  },
+  "candidate": {
+    "manifest": {
+      ".agents/skills/changed/SKILL.md": "efe879f462c36a6a266227963408e16e1b82f16eb458c407ee2f0c0345492b1e",
+      ".agents/skills/changed/agents/openai.yaml": "a087f5694d0f6c9e1203b1c05408fa483fef406ed74599919eb8d996e7fc9243",
+      ".agents/skills/code-guardrails/SKILL.md": "813ef82ceaebf5d76576e52c41e50ed5578d4511d2446c6177d368873d684ca9",
+      ".agents/skills/code-guardrails/agents/openai.yaml": "b0c6d3d1f887e0ee0f2634d3d7a8654f62697ced9e2c0482b8db40eebdde0983",
+      ".agents/skills/finish-worktree/SKILL.md": "29abaaa44e7911c39ec122b853337800da865cd51176be8212bbb297de339a69",
+      ".agents/skills/finish-worktree/agents/openai.yaml": "7d6851a61cc1284cffe59ae4a98c54cea614631f877cfe891fff4a00d37993e2",
+      ".agents/skills/git-finish/SKILL.md": "43a4f5a58d4f9bc8a2aacf6541da8df0ac27fd9ec0c89858c0722fbad65facee",
+      ".agents/skills/git-finish/agents/openai.yaml": "4e7e438c7413cd29c329e9f2224bb203a5e94f07a02667882356cb226c7d5dc5",
+      ".agents/skills/git-finish/references/pull_request_template.md": "be95ff9dac3dd029e1ee55db9e0e31c05f625351c5aba6c90f6bde1589ecfc82",
+      ".agents/skills/handoff/SKILL.md": "1adcecb920369ea77bc88579688d957a7575ab21c411425fd1fe979db2ee8859",
+      ".agents/skills/handoff/agents/openai.yaml": "e1a7159a3fc9c7f28ea993f8129b449b1f33a29dfa699852262149b1cdabd3a2",
+      ".agents/skills/plan-internal-from-contract/SKILL.md": "76cb972fdfcd5ed9e09c736f3d9a1b77077f5c45fa438eddacdf15e34d2fdee8",
+      ".agents/skills/plan-internal-from-contract/agents/openai.yaml": "8a2fcc3bdd253ac6eee040d721948db2f605c831a36676bcf31ca84288078643",
+      ".agents/skills/plan-internal-from-contract/references/implementation_notes_template.md": "933012f8648cdf037a4946d99393036cf561a7dcc99e0e203c2bf33bf53b023e",
+      ".agents/skills/plan-internal-from-contract/references/implementation_phase_template.md": "a3f335d5bb0ecc0e3ccea62bef45a09dc25886d5059781ef91967585d9c6b720",
+      ".agents/skills/plan-internal-from-contract/references/plan_root_readme_template.md": "2a16fa2a683316292f9ef6f641f76c79212a3b9375b0f7b543684abe0b781582",
+      ".agents/skills/plan-internal-from-contract/references/planning-protocol.md": "24ca72bc1c3406da1c359d54502893914e16fdd4ace67266d265042066b7914a",
+      ".agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md": "31a70318f0c863e84b76fcb287096d38be64ec65538878c0ae0e58eb3e6cd8f7",
+      ".agents/skills/plan-internal-from-contract/references/protocol/02-discovery-stage.md": "f95c153c2c46b69eeb347958448134aaa5c083d2d654b8aba9c69e04415d5856",
+      ".agents/skills/plan-internal-from-contract/references/protocol/03-implementation-plan-structure.md": "fe2bb235f39e1434eebf4e653d5230cac9276386dc61157d86caf082de04b105",
+      ".agents/skills/plan-internal-from-contract/references/protocol/04-phase-rules.md": "398643450bc916159799e7a0016acd1f6ac31781155ccd225f3bf753e64bde13",
+      ".agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md": "f1cdddfcf8cc0bb179e3ee40563523192badd595d7d6a5bed7d0fe8fe50f6b00",
+      ".agents/skills/plan-internal-from-contract/references/protocol/06-implementation-boundaries.md": "6c638c91da796fdf445babd68508696b906149a93eb60c6e3372894bfd58a734",
+      ".agents/skills/plan-internal-from-contract/references/protocol/README.md": "0be8b0977975940f82d133f6cc2c3f713f8daef4ea5782b56d5a3ce3ac7199f8",
+      ".agents/skills/python-library-rules/SKILL.md": "877e265f1efc1f37d7ced8c1e73091df6e0fbf6c143f2df2514e1c14702f16b4",
+      ".agents/skills/python-library-rules/agents/openai.yaml": "0003766e0d9959d51b91f59ef07b6e2c857d41bced3851ffb2eff793fbf387b8",
+      ".agents/skills/python-library-rules/references/README.md": "9632ba4abc1011650633f86ca229956cb88a4b5e63a1c53e368a44e822f96354",
+      ".agents/skills/python-library-rules/references/authoring/README.md": "a524cb99fd7c204f403b74190eb29c6000147448e105417927e91f4f1283c261",
+      ".agents/skills/python-library-rules/references/authoring/reference_authoring_template.md": "fc04fd7412910097cb1e55e1bcc16b50b72abf8807dc6a51d982d844a82736bd",
+      ".agents/skills/python-library-rules/references/core/README.md": "dd3f2f1a58d32192d9112cab98613a479c75d0f3e1d43df1b30afcf0c06e893b",
+      ".agents/skills/python-library-rules/references/core/comment_template.md": "a161208dda2bf5fcaba2b24fa8d30b60442597eff1556b3ba5bcaf37735be19f",
+      ".agents/skills/python-library-rules/references/core/comment_traceability_pattern.md": "0aaafcde9a8a343729c399e38ffe27bd1c4800bba4beed0114676048cff4ce79",
+      ".agents/skills/python-library-rules/references/core/config_pattern.md": "dc9933ef7ad846a297fdf99dc4d7d5a88d1ba74e3bcc6a9c8909cda7e6f7813b",
+      ".agents/skills/python-library-rules/references/core/defaults_pattern.md": "0f7c8f68d6b35700017001abece73dd34228526025387b46f527ef2dbd714344",
+      ".agents/skills/python-library-rules/references/core/docstring_template.md": "3f133d1754f7317328419820a2d4d2c43f502075002c73bc39428650c97b6f25",
+      ".agents/skills/python-library-rules/references/core/exceptions_pattern.md": "6125af5c8dc1fa44ad84f07a576dadb9b3a5b9cc086e650917810cdbfc82e31f",
+      ".agents/skills/python-library-rules/references/core/logging_pattern.md": "ae15b8c3ed18afbbf2140c98ea1c68805f3adc6952c9a30adc77b2f8511556fd",
+      ".agents/skills/python-library-rules/references/core/public_api_pattern.md": "92d72b2af852db97c6b5a62e55ee1a6f64828d1bc4cb5bec1823264d5cb7d40f",
+      ".agents/skills/python-library-rules/references/docs/README.md": "f46dbd43e6f39fe67cebe74e3d56643db774f3331d8e050a40859b4a9b58d97c",
+      ".agents/skills/python-library-rules/references/docs/dependencies_doc_template.md": "c49210930727b1f3e52c4bd464e8b81b4d987d45a2cb84e38fc8bd95644bf1ab",
+      ".agents/skills/python-library-rules/references/docs/docs_organization_pattern.md": "fb4bc84b6ef602b19854f06be4b02b5c73c8dfbf9ecd62f178daedaa6c71e3f5",
+      ".agents/skills/python-library-rules/references/docs/docs_rules_pattern.md": "395f604f53c8e675b05062bf494d60fa788c0f49cdea4e8ca0dd408e2de5175d",
+      ".agents/skills/python-library-rules/references/docs/index_doc_template.md": "98890eb481c7f58bae733d942d5158d92c1513a8d7f9526cdf5b2344d1bd866e",
+      ".agents/skills/python-library-rules/references/docs/principles_doc_template.md": "0a8b02b29fddc840fe927886f92752be2a38bd1df06926b06db72e2cab8ac258",
+      ".agents/skills/python-library-rules/references/docs/system_doc_template.md": "58b8cb72be07bbd196f21964820fc0c7b5eee702e4946a207805eff375560884",
+      ".agents/skills/python-library-rules/references/docs/usage_doc_template.md": "f5b5944eb414f5895448006f2c51d999232984bd639cd2fcb06462b4573724c3",
+      ".agents/skills/python-library-rules/references/docs/vertical_slice_doc_template.md": "65f6e115c682c4ace764147d702538754c6bc75225d1c51675c10c67d7a43246",
+      ".agents/skills/python-library-rules/references/verification/README.md": "094b72d41e3f5a46d291f1d7425a81f7c1cac3888d08878ce887440990c49773",
+      ".agents/skills/python-library-rules/references/verification/e2e_test_template.md": "09de1b688797f28703af3d1fec4cb44e38caa34bdb7408f8f2f9b12686b60e01",
+      ".agents/skills/python-library-rules/references/verification/property_based_testing_doc_template.md": "4a1829576524d90f96826508d30033388f00148d93a8ae5f8c0d1a007c657a97",
+      ".agents/skills/python-library-rules/references/verification/test_file_template.md": "68b53021a028611fe6da18de66f548c400414a1fe007b6e2ec56a4ffa5b8eed1",
+      ".agents/skills/python-library-rules/references/verification/tests_routing_pattern.md": "d9f90dfdc3b04b496999aa1bab48daf0cd7742fb98fd57c7f02753a7fc6ac728",
+      ".agents/skills/python-library-rules/references/verification/verification_doc_template.md": "5daa8c686aa8ff425625251dacb4d65edc4f014950093cb8f55fffd85e5b530e",
+      ".agents/skills/python-library-rules/references/verification/workbench_script_template.md": "d5a1b89ead1a583c6b618dcb68338d577bc3dd9be79fe4aa8b1f31ac4d2746c2",
+      ".agents/skills/python-library-rules/scripts/_shared/__init__.py": "472bc02ee854a32562ee39666b0ffd72dd2534d44e001c01aea5d36fc959752b",
+      ".agents/skills/python-library-rules/scripts/_shared/context.py": "b97fd6c1aff1e320d6c4ef28ad1ded835f010b8a49924ddb3c7f7e74bfe2449f",
+      ".agents/skills/python-library-rules/scripts/_shared/markdown.py": "6fd505ad09c17010e1a8332e6dcc0447ab3436d8c90550aaa16f4bab09d1e9a4",
+      ".agents/skills/python-library-rules/scripts/_shared/python_source.py": "ae8465e1ae8871505ae168ac3fbeac4203e2edda36a3fcfc2db2d0a4169e4ba2",
+      ".agents/skills/python-library-rules/scripts/_shared/reporting.py": "869ba20bd45cca01f31d1d1cd1fd995a74fe8abd5d7b79687a185a5bd3a8cb00",
+      ".agents/skills/python-library-rules/scripts/_shared/runner.py": "61c9e236bda9f7b3b7fcb0f858107ce599c1f25e9c35753208d8fa8e8eb204b0",
+      ".agents/skills/python-library-rules/scripts/check_docs_shape.py": "944805fdc5a5954e0f530da368903b9ed200fcc968c7d13107738fa97cd415a1",
+      ".agents/skills/python-library-rules/scripts/core/__init__.py": "b7f9aa74db6ba34531c93e89746d7d987abc0ba3a6a64672eb3359e704bd76d0",
+      ".agents/skills/python-library-rules/scripts/core/docstring_template.py": "82c4ae2f62fc19c394405cde96f8042d3876059c1f5b8e8a8bcf40a7feb12385",
+      ".agents/skills/python-library-rules/scripts/docs/__init__.py": "587cdd9bc074c1dc4f1ed36bb7bdf3a3cd7df7c64f06e0a3d9a58ac6cfeb192c",
+      ".agents/skills/python-library-rules/scripts/docs/dependencies_doc_template.py": "899f74599ee7ff7dad864c952ba5724694e309ab12fa6ef2de3cefbc758b937e",
+      ".agents/skills/python-library-rules/scripts/docs/index_doc_template.py": "c803ed6bb66b505e36a7e88198e5646263cdb707bc62349689895592e7baf5fc",
+      ".agents/skills/python-library-rules/scripts/docs/principles_doc_template.py": "1842c8cc7f7280bde6036ee0b77b181eeb269b7ce4b39a79517885e0ac33de59",
+      ".agents/skills/python-library-rules/scripts/docs/system_doc_template.py": "0c6893879650014e2f7e40df45a30e648521e54da0d6a87cef1061ab27767002",
+      ".agents/skills/python-library-rules/scripts/docs/usage_doc_template.py": "294a6223abbc6154422bf5b8e4ebbc56bd1fff19bab02edad2ff5a7f199b3a4c",
+      ".agents/skills/python-library-rules/scripts/docs/vertical_slice_doc_template.py": "6da73fe33720982499b1ca6b1575f3823f464dddab32cfe7c78cdd6f432187b0",
+      ".agents/skills/python-library-rules/scripts/verification/__init__.py": "386536374772d0286c25ec0f80e2b8ad42244253c51a69748a3140145ca5c137",
+      ".agents/skills/python-library-rules/scripts/verification/e2e_test_template.py": "485056169c7e93e3310c3e52a986c29f780585f2736ff71e7ccebc26af23c616",
+      ".agents/skills/python-library-rules/scripts/verification/property_based_testing_doc_template.py": "f63b98b2952ff80ae76c618c83c66376be691ef02ccfc748c77902dd660e7b34",
+      ".agents/skills/python-library-rules/scripts/verification/test_file_template.py": "9192f757fb3ca49d46e94e7cbb948061e974ac0f0863a672e9a89538341e717a",
+      ".agents/skills/python-library-rules/scripts/verification/verification_doc_template.py": "ef20f69cadd97db23f0d509594ce93e38b5395521afa07805994f12405d6c552",
+      ".agents/skills/python-library-rules/scripts/verification/workbench_script_template.py": "f7e8c9f66477a09ba4a1247c330a62c3a27c257abf11f2b4131c854a07d13b9e",
+      ".agents/skills/warmup/SKILL.md": "1b74c98d9a9a90b4377cfb42a69a568799cf9c09c60ee1283cd263c0d7e7b188",
+      ".agents/skills/warmup/agents/openai.yaml": "3db76c79379a0bf84ccec781d6381a060b2a1e62b32c60895789bee86d7f4097",
+      ".devcontainer/Dockerfile": "0a7d0f1e83382bba3c237947e7e32304e00209d7767cecafc2409e431ffb75da",
+      ".devcontainer/devcontainer.json": "b9fb577045ec3d8483cb3d343f8e07856a81f06b189e941aa3d55d5b5027633f",
+      ".editorconfig": "fd8f87cd17ebd1a15581c8b05265ab51953b6c3576cc3ed487999804f81466af",
+      ".envrc": "0d6f7463790a731ca006bc572ebf91a1d2df2a2492cb2a18eaee8c5863eeb219",
+      ".github/MAINTAINER_SETUP.md": "3c3e69a11b074d279a74529ad84c0a09316f0477756a191f534abcc5062d995b",
+      ".github/pull_request_template.md": "d7a3eb5f6dd8fb9093bcb9bf22a11e9d7c5c2d9a8c43e5e193f2c5dfcea32da9",
+      ".github/workflows/ci.yml": "fbeaccf0b4c617c8984387a38e0f17f65333fd4e083957585b2e212ad5991051",
+      ".github/workflows/release.yml": "53def136ca20107ff860720a53fcca27cc7e9d23bb9eab3edc5652e59dc17de8",
+      ".gitignore": "b846e889b82226af63a45c16b64465933b857909b2b6167e18a342a050099cd8",
+      ".gitleaks.toml": "7a940ac260992adaac8a93102b0a2117b3eb5fc336031473efc63ce49666922e",
+      ".markdown-link-check.json": "e068b8f8ae03f7427be37ede270b29cecdc78e68f5bcf591b2c4402121263801",
+      ".markdownlint.yaml": "1a21ed7894b68f0f371caf3985ad484e8e9355b5d12e4388c59eda6b951f6cd9",
+      ".mdformat.toml": "989a41038f077db5e8333e295397947d787b31abcb1751e2aa2fc1560b476c7e",
+      ".pre-commit-config.yaml": "7bb2d322d81a933fb5d741a95c3e9918f8ee786ada34a0a0be7f8f2e8532c83a",
+      ".vscode/extensions.json": "c6a2fc8e67f4e085e3d425d61f5364673419b4f69d0ed19e1be0c8214f706789",
+      ".vscode/settings.json": "22c98d70907714d2373913fd8b4d5f742050293ddbcbe8bfb1c974b931cb47d6",
+      "AGENTS.md": "b177b96925ddc1f007d8766b45abd1cf4cb4088236a9eb95cfafd9e0ad5531c1",
+      "CHANGELOG.md": "0a7f7f66627dad35789b345a98247c684263d923482b5038e7accce1fa920d00",
+      "CONTRIBUTING.md": "09611b632e4caebfc5f46c2a1b0cf122ac09756f256c3e08785070348aa3a8b9",
+      "LICENSE": "b952b4b0f1a82e8acb6479414dd4c0f0a0eea786642b69b0fdd80b43cc56245d",
+      "MANIFEST.in": "0c2b03491a9b3d069d11435d01404bd83cbdd40fdfdfee5d7dd3951b1e045158",
+      "README.md": "9a38cf3b025eeef410912827ae2264f3b4fe6a550b47741695ac886b423c98e4",
+      "RTK.md": "f038118715d1fa594f48756620dacb60bb8a25c2b9367bd0e0c4b0f18a19053d",
+      "SETUP.md": "c6c7c3ee1f3049c7841cff67b7df3909fff700d13b8a24b725d2abb58a64723c",
+      "_copier_answers.yml": "d3fe3369288086c0acf1619238ae9421118008e1063da86d96724a6b1bc9ba49",
+      "docs/README.md": "c7e13b9d0fe4a31697336158eb388aebd73a48f5b963f6a90984544f608cd20a",
+      "docs/sample_lib/README.md": "f2c50cf5c09a3c12ad4cba8e8d456c0901551f44346b01d2eb38885c98402143",
+      "docs/sample_lib/architecture/README.md": "17505b3afeb747feaeaa72348e881a2317a24c920f877d819a9ab405390ca8fa",
+      "docs/sample_lib/architecture/concepts/README.md": "50a92b65b54364e2735468c8990a535970c0a7b9f2ed01f0f8c0fcb84d35b038",
+      "docs/sample_lib/architecture/concepts/public-boundary-and-errors.md": "30c865ed5d9fb3f9b6361b6eb00bc153efb2d0ee9ed8ba0d3f6caad5d66597af",
+      "docs/sample_lib/architecture/flows/README.md": "7a63b359f4e460f27f3fdecaf00f7268585933216f71d2309bcf86fa9a5bad9a",
+      "docs/sample_lib/architecture/system.md": "395805ae5ca74045d429855e072b445d6ea88163b40755bf6f6e9781594710e6",
+      "docs/sample_lib/dependencies.md": "f6ca00ce1912d003616442de5db905be60947c77ad152b8db0ab9e98c91a6c1f",
+      "docs/sample_lib/usage.md": "45c9e773fa49fb417d253a41a92eb578d6dab0f0e03f54a7c14a6613f77c53f5",
+      "docs/sample_lib/verification/README.md": "abc490027c55efd7bbff1d43daa709e528fdfd3c6ef4b7fee47f3de2988eec95",
+      "docs/sample_lib/verification/e2e/README.md": "1957e32b03f468867a5b49252b6cf7f2e289a5e3c88df9b847536c096db26781",
+      "docs/sample_lib/verification/e2e/public-boundary.md": "da25c827197339a11f729f80b88218bfb706655e25c932802e1c826bd4bed5cf",
+      "docs/sample_lib/verification/public-boundary-and-errors.md": "bbed07fe34fc566490c86fc1ead9e12ae7f10fc089c60b6d7fd79451a125003b",
+      "docs/sample_lib/verification/workbench.md": "3d76857c6e3dd5c385980656a4b40f244c6ae2b220156c902ed98fdf43c78521",
+      "examples/__init__.py": "5ae2fa5d8f72f59723b623a3cb7bc82d192d6e6386f0d2e87658cc51df1a85e4",
+      "examples/sample_lib/__init__.py": "b2b2a83257ce83ce4e74842f631a1b4f1d2d48a4505e52eb280e9622c7d91732",
+      "examples/sample_lib/config_demo.py": "12bbdf3b9aaf5341374db7dd806ccc5bc196f43fd12f7c830f842d6a10235363",
+      "pyproject.toml": "5744570256b41ee64ca33e6137d4710e56b3b6e3600dea1d63e1bde370f19a27",
+      "renovate.json5": "8933c41f7f959456a980fc9aa84bd56a52f02a1d82a7552f0fdbbedc09724e41",
+      "scripts/README.md": "151da695ad623abb7e056a7ced664396e267d146e9cb344959d1849dd4dff036",
+      "scripts/env/doctor.sh": "acd84252a98481cc514e46375d2562da271874c68a904b68b5da0877e6f4e101",
+      "scripts/env/project_config.sh": "184fc2d3e7c4309dfc50413e1917c39f6fc1b8772730c6515cee7d147e1cd631",
+      "scripts/env/secrets.sh": "ee4b6049263b85592db6ef917305f6021b6201573088ddc9a9cb4d781385dd85",
+      "scripts/env/setup.sh": "253a9df06df29b0b341caa3cf53592eb6396ba750c05b55d9f867717664a4cb5",
+      "scripts/reproduce_running_loop.py": "b2ca97f5226f4a111830154b08b766123ee2b822f0730f4bcba9b07e19d0e357",
+      "src/sample_lib.egg-info/PKG-INFO": "f41d00c171cb5f873374c15e7430593f222d73fecd632130e07edb08c7f14c2c",
+      "src/sample_lib.egg-info/SOURCES.txt": "a2f52d49125fe22cbc40424ecca8908c7f1391fd0cf1ceab4617b5b0779a85a8",
+      "src/sample_lib.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "src/sample_lib.egg-info/requires.txt": "5194311017e06a52bfa5979c89ae1c80e800e0fb2b4bb5aa4989c21105b92de9",
+      "src/sample_lib.egg-info/top_level.txt": "fbb237e730e5e21e7ecafb53c361ce722f759377106849ccf0c3ccb72a5fc357",
+      "src/sample_lib/__init__.py": "b673f3d7b62017d4f6b49abe346cc4d40194d752e791cafa9762e238fc73e24a",
+      "src/sample_lib/_api/__init__.py": "f3e92aa0276f35194b74bf4117b3647b74e0208136833e9fabf7b34c8699d765",
+      "src/sample_lib/_api/config.py": "3fe7cdc73a508143ce5a03bd127ee9d73908c51eb4551112ccaa2e31fa45792d",
+      "src/sample_lib/_api/defaults.py": "88f47b9041a579c6ebf837757082b1539e8b2b1aaf7b2cd7201e58efa742e58c",
+      "src/sample_lib/_api/errors.py": "25b1aaaff0e32d47207da89ed9864ea7e03155dbc7333ca1f63c6e9cf52b9675",
+      "src/sample_lib/_api/types.py": "7e93cacb4a2847e473896d7a72e5de625d146ca8d0a22784e54d7e25f8a5cdbb",
+      "src/sample_lib/_internal/__init__.py": "70042827d7be4711b950bb2aaf89f1ee16c568153e7db739535b2167a56c9835",
+      "src/sample_lib/_internal/config/__init__.py": "bbb4d8377e8f963c7ba3867db305bba06dbebc0e97086e43668954730a527bc9",
+      "src/sample_lib/_internal/config/assembly.py": "f66122ea5f25e06416f6209b5d0d1059c219118979c0141680a452e6c55aa97f",
+      "src/sample_lib/_internal/config/models.py": "dfc2833b37f57e421ed5607861acd7c43018120e47910a131edec34b58462a61",
+      "src/sample_lib/_internal/config/state.py": "362e2a60c310de491df0cd3c68bb1d92a51e828e3133d1e7f627a269d154ba7c",
+      "src/sample_lib/_internal/config/validation.py": "0b3d7ebc4313c281bfeaae7282ca9ffa47649a81e3dc8fb25af4dc5c03036494",
+      "src/sample_lib/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/README.md": "682f316a34013e50d303aa89d0357f6da3d30c770cdad469ade6aca209817dea",
+      "tests/__init__.py": "4a4ced0d5929cae85b4a947ce93c2fc03238dcd03a2210e32e817c4b5e68d443",
+      "tests/conftest.py": "ff93eb2be3950d3af96d9a4e6c735eabc97371ed8c5028bd271e382ec51c4aa8",
+      "tests/sample_lib/__init__.py": "be9893eb9def76a3574ff76c76125d34554e0c2a6d55f725e0f373830d277ccd",
+      "tests/sample_lib/conftest.py": "711d4d7cd05766132a6161afc988a154da9d94af1c36cb4d1a6e689878cb0a82",
+      "tests/sample_lib/e2e/__init__.py": "6af5aea0fa34f1ff871091c2cdd2cc103f26be6419fc71deeb9ea8fceb5784a6",
+      "tests/sample_lib/e2e/examples/__init__.py": "cedfddb075458b5f93809e1a1bf0ca20b133d823a67d55bd2c721e27e8079604",
+      "tests/sample_lib/e2e/examples/test_examples_smoke.py": "e04e6d13fb327232d95bf0b1e971f4862f18230059adeeb0a8f4958b46d08f80",
+      "tests/sample_lib/e2e/public_boundary/__init__.py": "aa6fa771f88f9d68cd380b486d50e493d60abc6b42ed41ca1ebd477c07abec7b",
+      "tests/sample_lib/e2e/public_boundary/test_public_config_pipeline.py": "5a6818a052c770f33864aa862f7a1905264684acecbada044f5382da39c18cf0",
+      "tests/sample_lib/integration/__init__.py": "054b53824f1d2f991138f3a3a1e2f12b6f42d4e602c3ba24ce26b49d714ae938",
+      "tests/sample_lib/integration/test_config_lifecycle.py": "42d2b318b4a71752994d06ad53f3f6918a76f980805c11c28706fa37521ba9fa",
+      "tests/sample_lib/property_based/__init__.py": "1b5fa096ca55001be39098d46c0c1061f09cdac7c97c9f83c5ed19eccff58e88",
+      "tests/sample_lib/property_based/internal/__init__.py": "c8e3caf8189b8f553c9eaf6c564f7c00f11bc591f1e3e281023bbddedf0b4cba",
+      "tests/sample_lib/property_based/public_contract/__init__.py": "3965ea67e1988993d123bffee296b2f404024fd7a76c00f208abb203ac08c62c",
+      "tests/sample_lib/property_based/public_contract/test_config_contract.py": "b5f0d79518614e1e59ce71eed83b82412dfc1aabda8ebd8b56c7a835dd59b53d",
+      "tests/sample_lib/support/__init__.py": "c557eb27a04f7c529c3daf81ad64dd41662086d123c8f11cadc0de01cd276451",
+      "tests/sample_lib/unit/__init__.py": "70232bdd732f6e1381061e930a27960c2329f64ff58d5fa3769f9a373875eba1",
+      "tests/sample_lib/unit/test_public_package.py": "0ed96736bd3f18903ceecebc144ab2d05fd6c16ed7565a04732ea0eeae06435e",
+      "typos.toml": "e83dd4be2f585d190b103b3697c6c0c426d9bbb1d75fd439778895546448c544",
+      "workbench/__init__.py": "14932d3cc898b997d3f7f674e513089412ec45511664ddc6640827733d979eeb",
+      "workbench/sample_lib/__init__.py": "87fe315960cb2d80ad0f73f3769faaf006dd24dd1e7fcd81987cbe83d979cb59"
+    },
+    "purpose": "full product with platform-owned wiring replaced",
+    "snapshot_file_count": 168,
+    "snapshot_path": "evidence/python-template-product-parity-20260731/rendered-sample"
+  },
+  "checks": [
+    {
+      "name": "uv lock",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "uv sync locked",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "ruff lint",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "ruff format",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "ty",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "pyright",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "import linter",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "Ternforge policy",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "cognitive complexity",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "class attribute order",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "radon cyclomatic complexity",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "radon maintainability",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "bandit",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "interrogate",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "deptry",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "policy tests",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "active event-loop workbench diagnostic",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "runtime export",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "runtime dependency audit",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "build",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "twine metadata",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "wheel contents",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "manifest",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "artifact venv",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "install sample_lib-0.1.0-py3-none-any.whl",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "import sample_lib-0.1.0-py3-none-any.whl",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "artifact venv",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "install sample_lib-0.1.0.tar.gz",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "import sample_lib-0.1.0.tar.gz",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "pre-commit stage",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "pre-push stage",
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "name": "candidate remains clean",
+      "passed": true,
+      "returncode": 0
+    }
+  ],
+  "schema": "ternforge-python-template-product-parity/v1",
+  "static_parity": {
+    "added_product_paths": [
+      "scripts/reproduce_running_loop.py"
+    ],
+    "baseline_file_count": 170,
+    "baseline_hook_count": 45,
+    "byte_identical_paths": 131,
+    "candidate_file_count": 163,
+    "candidate_hook_count": 41,
+    "changed_paths": [
+      ".agents/skills/plan-internal-from-contract/references/protocol/01-architecture-baseline.md",
+      ".agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md",
+      ".agents/skills/python-library-rules/SKILL.md",
+      ".agents/skills/python-library-rules/references/core/logging_pattern.md",
+      ".agents/skills/python-library-rules/references/core/public_api_pattern.md",
+      ".agents/skills/python-library-rules/references/verification/e2e_test_template.md",
+      ".agents/skills/python-library-rules/references/verification/test_file_template.md",
+      ".agents/skills/python-library-rules/references/verification/tests_routing_pattern.md",
+      ".agents/skills/python-library-rules/references/verification/workbench_script_template.md",
+      ".envrc",
+      ".github/MAINTAINER_SETUP.md",
+      ".github/workflows/ci.yml",
+      ".github/workflows/release.yml",
+      ".pre-commit-config.yaml",
+      "CONTRIBUTING.md",
+      "README.md",
+      "SETUP.md",
+      "_copier_answers.yml",
+      "docs/sample_lib/verification/public-boundary-and-errors.md",
+      "pyproject.toml",
+      "renovate.json5",
+      "scripts/README.md",
+      "scripts/env/doctor.sh",
+      "scripts/env/project_config.sh",
+      "scripts/env/secrets.sh",
+      "src/sample_lib/_internal/config/state.py",
+      "tests/README.md",
+      "tests/__init__.py",
+      "tests/sample_lib/e2e/__init__.py",
+      "tests/sample_lib/e2e/public_boundary/test_public_config_pipeline.py",
+      "workbench/__init__.py"
+    ],
+    "removed_platform_hooks": [
+      "check-branch-name",
+      "no-push-to-main",
+      "py-lib-check-legacy-support-cleanup",
+      "py-lib-template-check"
+    ],
+    "removed_platform_paths": [
+      ".devcontainer/Dockerfile.ci",
+      ".github/actions/setup-dev-env/action.yml",
+      ".github/scripts/install-sync-validation-tools.sh",
+      ".github/workflows/build-ci-image.yml",
+      ".github/workflows/python-lib-ci-baseline.yml",
+      ".github/workflows/python-lib-ci-e2e-slice.yml",
+      ".github/workflows/python-lib-ci-package.yml",
+      ".github/workflows/sync-starter-template.yml"
+    ],
+    "retained_hook_ids": [
+      "bandit",
+      "check-added-large-files",
+      "check-ast",
+      "check-case-conflict",
+      "check-json",
+      "check-manifest",
+      "check-merge-conflict",
+      "check-toml",
+      "check-yaml",
+      "commitizen",
+      "deptry",
+      "dotenv-linter",
+      "end-of-file-fixer",
+      "gitleaks",
+      "hadolint",
+      "import-linter",
+      "interrogate",
+      "markdown-link-check",
+      "markdownlint",
+      "mdformat",
+      "public-contract-boundary",
+      "py-lib-audit-runtime-dependencies",
+      "py-lib-check-class-attributes-order",
+      "py-lib-check-cognitive-complexity",
+      "py-lib-check-project-docs-structure",
+      "py-lib-check-project-structure",
+      "pyproject-fmt",
+      "pyright",
+      "pytest",
+      "radon-cc",
+      "radon-mi",
+      "ruff",
+      "ruff-format",
+      "shellcheck",
+      "trailing-whitespace",
+      "ty",
+      "typos",
+      "uv-lock-check",
+      "uv-sync-post-checkout",
+      "uv-sync-post-merge",
+      "validate-pyproject"
+    ]
+  },
+  "summary": {
+    "all_checks_passed": true,
+    "check_count": 32,
+    "legacy_platform_markers_absent": true,
+    "product_contract_preserved": true
+  }
+}
