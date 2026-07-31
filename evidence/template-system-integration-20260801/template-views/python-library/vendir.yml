@@ -7,6 +7,17 @@ directories:
         git:
           url: https://github.com/betabitplus/ternforge-template-components.git
           ref: v0.3.0
+        includePaths:
+          - components/agents/base/**/*
+          - components/agents/py-library/**/*
+          - components/repository/base/**/*
+          - components/repository/copier/**/*
+          - components/project/py/base/**/*
+          - components/project/py/library/**/*
+          - components/quality/py/**/*
+          - components/delivery/updates/**/*
+          - components/delivery/ci/py-library/**/*
+          - components/delivery/release/library/**/*
         excludePaths:
           - .git
           - .git/**/*

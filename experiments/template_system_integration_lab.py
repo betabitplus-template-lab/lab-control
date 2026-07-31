@@ -61,6 +61,25 @@ INFRA_ROOT_ENTRIES = {
     "README.md",
 }
 
+INFRA_COMPONENTS = (
+    "agents/base",
+    "repository/base",
+    "repository/copier",
+)
+
+PYTHON_COMPONENTS = (
+    "agents/base",
+    "agents/py-library",
+    "repository/base",
+    "repository/copier",
+    "project/py/base",
+    "project/py/library",
+    "quality/py",
+    "delivery/updates",
+    "delivery/ci/py-library",
+    "delivery/release/library",
+)
+
 PLATFORM_COMPARE_IGNORES = {
     ".github/MAINTAINER_SETUP.md",
     ".github/workflows/ci.yml",
@@ -162,6 +181,18 @@ def commit(repository: Path, message: str, *, tag: str | None = None) -> str:
     if tag:
         git(repository, "tag", tag)
     return sha
+
+
+def commit_paths(repository: Path, sha: str) -> list[str]:
+    result = git(
+        repository,
+        "diff-tree",
+        "--no-commit-id",
+        "--name-only",
+        "-r",
+        sha,
+    )
+    return sorted(line for line in result.stdout.splitlines() if line)
 
 
 def sha256(path: Path) -> str:
@@ -614,9 +645,15 @@ def include_wrapper(component_path: str) -> str:
 
 
 def write_vendir_config(
-    template_repository: Path, components_repository: Path, ref: str
+    template_repository: Path,
+    components_repository: Path,
+    ref: str,
+    components: Sequence[str],
 ) -> None:
     url = components_repository.resolve().as_uri()
+    include_paths = "\n".join(
+        f"          - components/{component}/**/*" for component in components
+    )
     content = f"""apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
 directories:
@@ -626,6 +663,8 @@ directories:
         git:
           url: {url}
           ref: {ref}
+        includePaths:
+{include_paths}
         excludePaths:
           - .git
           - .git/**/*
@@ -672,7 +711,7 @@ def create_python_template_repository(
     pyproject_wrapper = "".join(include_wrapper(path) for path in pyproject_includes)
     write(template_root / "pyproject.toml", pyproject_wrapper)
 
-    write_vendir_config(repository, components_repository, "v0.1.0")
+    write_vendir_config(repository, components_repository, "v0.1.0", PYTHON_COMPONENTS)
     vendir_sync(repository, vendir)
     commit(repository, "python template v0.1.0", tag="v0.1.0")
 
@@ -745,7 +784,7 @@ def create_infra_template_repository(
         "# [[[ project_title ]]]\n\nInfrastructure repository `[[[ github_owner ]]]/[[[ repository_name ]]]`.\n",
     )
 
-    write_vendir_config(repository, components_repository, "v0.1.0")
+    write_vendir_config(repository, components_repository, "v0.1.0", INFRA_COMPONENTS)
     vendir_sync(repository, vendir)
     commit(repository, "infra template v0.1.0", tag="v0.1.0")
 
@@ -756,8 +795,9 @@ def update_template_components(
     ref: str,
     template_tag: str,
     vendir: Path,
+    components: Sequence[str],
 ) -> str:
-    write_vendir_config(repository, components_repository, ref)
+    write_vendir_config(repository, components_repository, ref, components)
     vendir_sync(repository, vendir)
     return commit(repository, f"components {ref}", tag=template_tag)
 
@@ -1001,6 +1041,8 @@ Status: **PASS**
 
 ```text
 component source files        {result["component_source_file_count"]}
+infra snapshot files          {result["infra_component_snapshot_file_count"]}
+Python snapshot files         {result["python_component_snapshot_file_count"]}
 Python output owners          {result["python_owner_count"]}
 infra rendered files          {result["infra_rendered_file_count"]}
 Python rendered files         {result["python_rendered_file_count"]}
@@ -1013,6 +1055,8 @@ components v0.3.0 SHA         {result["component_shas"]["v0.3.0"]}
 Validated:
 
 * infrastructure fresh output is exact and contains no Python/product leakage;
+* each final template snapshots only its declared component paths through built-in Vendir `includePaths`;
+* a Python-only component release changes only the infra Vendir declaration and lock, not its component files or render;
 * componentized Python render matches the EXP-0031 product candidate outside platform provenance files;
 * default and custom Python renders work through the actual component wrappers;
 * `_components`, `.git`, assembler, manifests, `WIRING.json`, tasks, migrations and extensions do not reach consumers;
@@ -1152,24 +1196,56 @@ def main(argv: list[str] | None = None) -> int:
     shutil.copytree(py_v1, initial_python_check_root, symlinks=True)
     product_checks = parity.run_product_checks(initial_python_check_root)
 
-    update_template_components(
+    infra_snapshot = infra_template / "template" / "_components"
+    python_snapshot = python_template / "template" / "_components"
+    infra_snapshot_count = len(file_map(infra_snapshot))
+    python_snapshot_count = len(file_map(python_snapshot))
+    if infra_snapshot_count != 15:
+        raise RuntimeError(
+            f"unexpected infra component snapshot size: {infra_snapshot_count}"
+        )
+    if any("/py/" in path or "py-library" in path for path in file_map(infra_snapshot)):
+        raise RuntimeError(
+            "Python-specific components leaked into infra template snapshot"
+        )
+
+    infra_v2_commit = update_template_components(
         infra_template,
         components_repository,
         "v0.2.0",
         "v0.2.0",
         vendir,
+        INFRA_COMPONENTS,
     )
-    update_template_components(
+    python_v2_commit = update_template_components(
         python_template,
         components_repository,
         "v0.2.0",
         "v0.2.0",
         vendir,
+        PYTHON_COMPONENTS,
     )
     if yaml_lock_sha(infra_template) != component_meta["v0.2.0"]:
         raise RuntimeError("infra Vendir lock does not match components v0.2.0")
     if yaml_lock_sha(python_template) != component_meta["v0.2.0"]:
         raise RuntimeError("Python Vendir lock does not match components v0.2.0")
+
+    infra_v2_template_paths = commit_paths(infra_template, infra_v2_commit)
+    python_v2_template_paths = commit_paths(python_template, python_v2_commit)
+    if infra_v2_template_paths != ["vendir.lock.yml", "vendir.yml"]:
+        raise RuntimeError(
+            f"Python-only release polluted infra snapshot: {infra_v2_template_paths}"
+        )
+    expected_python_snapshot_change = (
+        "template/_components/components/agents/py-library/template/"
+        ".agents/skills/python-library-rules/SKILL.md"
+    )
+    if python_v2_template_paths != sorted(
+        [expected_python_snapshot_change, "vendir.lock.yml", "vendir.yml"]
+    ):
+        raise RuntimeError(
+            f"unexpected Python template snapshot update: {python_v2_template_paths}"
+        )
 
     infra_v2 = work_dir / "renders" / "infra-v2"
     py_v2 = work_dir / "renders" / "py-v2"
@@ -1220,6 +1296,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.3.0",
         "v0.3.0",
         vendir,
+        INFRA_COMPONENTS,
     )
     update_template_components(
         python_template,
@@ -1227,6 +1304,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.3.0",
         "v0.3.0",
         vendir,
+        PYTHON_COMPONENTS,
     )
     if yaml_lock_sha(infra_template) != component_meta["v0.3.0"]:
         raise RuntimeError("infra Vendir lock does not match components v0.3.0")
@@ -1285,6 +1363,7 @@ def main(argv: list[str] | None = None) -> int:
         "legacy_platform_mechanisms_zero": True,
         "vendir_lock_exact": True,
         "vendir_repeat_sync_clean": True,
+        "component_snapshots_filtered": True,
         "python_only_update_isolated": bool(infra_py_only["equal"]),
         "shared_update_exact": True,
         "copier_user_ownership_preserved": True,
@@ -1304,6 +1383,8 @@ def main(argv: list[str] | None = None) -> int:
             "v0.3.0": component_meta["v0.3.0"],
         },
         "component_source_file_count": len(file_map(components_repository)),
+        "infra_component_snapshot_file_count": infra_snapshot_count,
+        "python_component_snapshot_file_count": python_snapshot_count,
         "python_owner_count": len(ownership),
         "infra_rendered_file_count": len(file_map(infra_v1)),
         "python_rendered_file_count": len(file_map(py_v1)),
@@ -1312,6 +1393,8 @@ def main(argv: list[str] | None = None) -> int:
         "python_only_update": {
             "infra": infra_py_only,
             "python": py_py_only,
+            "infra_template_paths": infra_v2_template_paths,
+            "python_template_paths": python_v2_template_paths,
         },
         "shared_update": {
             "infra": infra_shared,

@@ -16,6 +16,8 @@ Status: **PASS**
 
 ```text
 component source files        169
+infra snapshot files          15
+Python snapshot files         168
 Python output owners          163
 infra rendered files          17
 Python rendered files         163
@@ -28,6 +30,8 @@ components v0.3.0 SHA         fdbeb48d9bc4b71c6a7e66a6f12950db033f98c1
 Validated:
 
 * infrastructure fresh output is exact and contains no Python/product leakage;
+* each final template snapshots only its declared component paths through built-in Vendir `includePaths`;
+* a Python-only component release changes only the infra Vendir declaration and lock, not its component files or render;
 * componentized Python render matches the EXP-0031 product candidate outside platform provenance files;
 * default and custom Python renders work through the actual component wrappers;
 * `_components`, `.git`, assembler, manifests, `WIRING.json`, tasks, migrations and extensions do not reach consumers;
@@ -41,6 +45,7 @@ Validated:
 
 ```text
 component_leakage_zero: PASS
+component_snapshots_filtered: PASS
 copier_user_ownership_preserved: PASS
 custom_python_render: PASS
 full_python_product_checks: PASS
