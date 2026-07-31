@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "experiment": "Grafana Cloud Fleet Health end-to-end validation",
+  "final_workflow_commit": "6b7612b9dadbf14ca7281ced010bc7c6ed7e55ed",
+  "final_run": {
+    "run_id": 30592281594,
+    "conclusion": "success",
+    "created_at": "2026-07-31T00:01:04Z",
+    "updated_at": "2026-07-31T00:04:51Z",
+    "duration_seconds": 227
+  },
+  "environment": {
+    "scope": "betabitplus-template-lab/lab-control only for private GitHub access",
+    "grafana_cloud_region": "EU Germany",
+    "grafana_version": "13.2.0-29856245512",
+    "grafana_github_datasource_version": "2.8.0",
+    "otel_collector": "otel/opentelemetry-collector-contrib:0.156.0@sha256:125bdbeb7590cc1952c5b3430ecf14063568980c2c93d5b38676cc0446ed8108"
+  },
+  "github_app": {
+    "installation_repository_count": 1,
+    "installation_repositories": [
+      "betabitplus-template-lab/lab-control"
+    ],
+    "permissions": {
+      "actions": "read",
+      "contents": "read",
+      "issues": "read",
+      "metadata": "read",
+      "pull_requests": "read"
+    },
+    "selected_repository_http_status": 200,
+    "unselected_private_repository_http_status": 404,
+    "workflow_runs_http_status": 200,
+    "workflow_runs_count": 7
+  },
+  "github_datasource": {
+    "health": "OK",
+    "workflows_rows": 19,
+    "workflow_runs_rows": 7,
+    "open_renovate_pull_requests_rows": 7,
+    "configuration_warning_issues_rows": 0,
+    "releases_rows": 0,
+    "unselected_private_repository_denied": true,
+    "public_owner_repository_rows": 86,
+    "public_visibility_interpretation": "Owner-wide repository search can return public repositories outside the App installation. This does not grant private repository access. Managed fleet rows must be filtered from committed inventory or an exact dashboard transformation.",
+    "workflow_runs_contract": "Plugin 2.8.0 backend expects options.workflow although its frontend type names the field workflowID. The backend field returned workflow runs successfully."
+  },
+  "metrics": {
+    "names": [
+      "ternforge_fleet_expected_repositories",
+      "ternforge_fleet_observed_repositories",
+      "ternforge_fleet_token_scope_ok",
+      "ternforge_update_last_success_unixtime",
+      "ternforge_update_processing_duration_seconds",
+      "ternforge_update_queue_delay_seconds",
+      "ternforge_update_run_success"
+    ],
+    "trigger_values": [
+      "manual",
+      "nightly",
+      "release"
+    ],
+    "series_count": 20,
+    "forbidden_high_cardinality_labels": [],
+    "cloud_mapping": "A standard OpenTelemetry transform processor copied the bounded ternforge.trigger resource attribute onto metric data points before Cloud export.",
+    "unhealthy": {
+      "processing_duration_seconds": 720,
+      "run_success": 0,
+      "coverage_gap": 1,
+      "token_scope_ok": 0,
+      "seconds_since_last_success": 200008.05605983734
+    },
+    "healthy": {
+      "processing_duration_seconds": 180,
+      "run_success": 1,
+      "coverage_gap": 0,
+      "token_scope_ok": 1,
+      "seconds_since_last_success": 8.824108362197876
+    }
+  },
+  "dashboard": {
+    "panel_count": 7,
+    "panels": [
+      "Processing duration",
+      "Last run success",
+      "Fleet coverage gap",
+      "Token scope valid",
+      "Processing and queue delay",
+      "Managed repositories",
+      "Open Renovate pull requests"
+    ],
+    "managed_repository_filter": "Grafana filterByValue transformation: name equals lab-control",
+    "render_http_status": 200,
+    "render_png_bytes": 216951,
+    "render_dimensions": "1600x1000"
+  },
+  "alerting": {
+    "rule": "completed release-triggered processing duration greater than 600 seconds",
+    "firing_observed": true,
+    "healthy_resolution_observed": true,
+    "webhook_http_method": "POST",
+    "webhook_domain_firing_delivered": true,
+    "service_nodata_messages_excluded": true,
+    "lab_dedup_control": "Each repeated experiment used a unique lab-only alert title. Metric labels and the proposed production alert contract remained unchanged."
+  },
+  "cleanup": {
+    "dashboard_http_status": 200,
+    "github_datasource_http_status": 200,
+    "folder_http_status": 200,
+    "alert_rule_http_status": 204,
+    "contact_point_http_status": 202
+  },
+  "assertions": {
+    "all_metrics_ingested": true,
+    "app_installation_exactly_one_repository": true,
+    "app_selected_repository_accessible": true,
+    "app_unselected_private_repository_denied": true,
+    "app_workflow_runs_permission_works": true,
+    "cloud_alert_fired": true,
+    "cloud_alert_resolved": true,
+    "dashboard_created_with_expected_panels": true,
+    "dashboard_managed_repository_filter_present": true,
+    "dashboard_rendered_to_png": true,
+    "fresh_recovery_signal_correct": true,
+    "github_datasource_healthy": true,
+    "github_issues_query_succeeded": true,
+    "github_plugin_installed": true,
+    "github_pull_requests_query_succeeded": true,
+    "github_releases_query_succeeded": true,
+    "github_unselected_private_query_denied": true,
+    "github_workflow_runs_query_succeeded": true,
+    "github_workflows_query_succeeded": true,
+    "grafana_cloud_healthy": true,
+    "healthy_metric_values_correct": true,
+    "metric_series_bounded": true,
+    "metric_trigger_cardinality_bounded": true,
+    "no_high_cardinality_labels": true,
+    "stale_recovery_signal_correct": true,
+    "unhealthy_metric_values_correct": true,
+    "webhook_notification_delivered": true
+  },
+  "significant_attempts": [
+    {
+      "run_id": 30589524004,
+      "finding": "The runtime Collector configuration was unreadable by the container UID when stored as mode 0600. An ephemeral read-only mode 0644 file is required."
+    },
+    {
+      "run_id": 30589643141,
+      "finding": "Grafana Cloud plugin installation is asynchronous. API provisioning failed until the installation UI reached the installed state."
+    },
+    {
+      "run_id": 30589765258,
+      "finding": "Grafana Cloud stored the custom trigger resource attribute in target_info rather than on gauge series. A standard OTel transform processor is required for the validated PromQL contract."
+    },
+    {
+      "run_id": 30590602059,
+      "finding": "GitHub workflow-run queries work when the plugin 2.8.0 backend field options.workflow is used. Dashboard, alert and webhook resources were created; PNG handling required binary response support."
+    },
+    {
+      "run_id": 30590911924,
+      "finding": "The first webhook counter check raced Cloud notification delivery and service NoData messages. Domain and service alerts must be classified separately."
+    },
+    {
+      "run_id": 30591594201,
+      "finding": "Repeated identical alert labels were deduplicated by Alertmanager. Unique lab-only alert titles are required to validate repeated notification cycles without changing production metric cardinality."
+    }
+  ],
+  "remaining_limits": [
+    "The experiment validates organization-owned lab repositories, not personal-account installations by explicit project constraint.",
+    "The exact two-consecutive-slow-runs condition still requires cross-run state and was not introduced.",
+    "The managed repository table must be filtered from committed inventory; GitHub public repository search is not itself a fleet-membership boundary.",
+    "Production thresholds remain candidates until representative production-shaped history exists."
+  ]
+}
