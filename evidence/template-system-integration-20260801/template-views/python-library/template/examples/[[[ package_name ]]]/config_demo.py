@@ -1,0 +1,1 @@
+[[% include "template/_components/components/project/py/library/template/examples/__package__/config_demo.py" %]]

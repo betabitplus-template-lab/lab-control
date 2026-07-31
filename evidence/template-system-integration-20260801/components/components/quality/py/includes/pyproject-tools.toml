@@ -1,0 +1,432 @@
+# ---------------- Ruff configuration ----------------
+[tool.ruff]
+# Target the project runtime Python version.
+target-version = "py313"
+# Match Black's defaults (line length = 88).
+line-length = 88
+# Enable auto-fixes for safe rules (`ruff check --fix`).
+fix = true
+# Format Python snippets inside docstrings.
+format.docstring-code-format = true
+# Useful rule sets:
+# A = flake8-builtins (prevent shadowing builtins like list, dict)
+# ANN = flake8-annotations (public typing discipline)
+# ARG = unused arguments
+# ASYNC = async correctness checks
+# B = flake8-bugbear
+# C4 = flake8-comprehensions
+# C901 = complexity
+# D = pydocstyle
+# ERA = commented-out code
+# F = Pyflakes
+# FAST = FastAPI rules (harmless unless FastAPI appears)
+# FBT = boolean trap checks
+# FLY = prefer f-strings
+# I = import sorting
+# LOG = logging hygiene
+# N = pep8-naming
+# PERF = performance anti-patterns
+# PGH = blanket noqa/type-ignore detection
+# PIE = flake8-pie
+# PLC, PLE, PLW = Pylint convention/error/warning rule groups
+# PT = pytest style
+# RUF = Ruff-specific checks
+# S = Bandit security checks
+# TC = type-checking import placement
+lint.select = [
+  "A",
+  "ANN",
+  "ARG",
+  "ASYNC",
+  "B",
+  "C4",
+  "C901",
+  "COM",
+  "D",
+  "DTZ",
+  "E",
+  "EM",
+  "ERA",
+  "F",
+  "FAST",
+  "FBT",
+  "FLY",
+  "FURB",
+  "G",
+  "I",
+  "ISC",
+  "LOG",
+  "N",
+  "PD",
+  "PERF",
+  "PGH",
+  "PIE",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "PT",
+  "PTH",
+  "Q",
+  "RET",
+  "RSE",
+  "RUF",
+  "S",
+  "SIM",
+  "T10",
+  "TC",
+  "TID",
+  "TRY",
+  "UP",
+  "W",
+  "YTT",
+]
+# Ignore rules that are too noisy or conflict with formatter/project style.
+lint.ignore = [
+  "COM812",  # Trailing comma (conflicts with formatter)
+  "ISC001",  # Implicit string concatenation (conflicts with formatter)
+  "PLC0415", # import-outside-top-level (sometimes needed for lazy loading)
+  "S603",    # subprocess without shell=True (handled by Bandit locally)
+  "TC001",   # typing-only first-party import (enable after cleanup)
+  "TC002",   # typing-only third-party import (enable after cleanup)
+  "TC003",   # typing-only stdlib import (enable after cleanup)
+  "UP047",   # Keep TypeVar-style generics for current type checkers
+]
+lint.per-file-ignores."examples/*" = [
+  "T20", # Examples may print their public API output.
+]
+# Scripts are utility code; keep them readable without production strictness.
+lint.per-file-ignores."scripts/*" = [
+  "ANN",    # No type annotation requirements
+  "D",      # No docstring requirements
+  "ERA001", # Allow commented-out experiments
+  "T20",    # Allow print statements
+]
+lint.per-file-ignores."tests/*" = [
+  "ANN",     # Type annotations not required everywhere
+  "ARG005",  # Allow unused lambda arguments
+  "D",       # Docstrings are useful but not required in every tiny test helper
+  "DTZ",     # Allow naive datetime in fixtures
+  "EM",      # Allow string literals in exceptions
+  "ERA001",  # Allow commented-out exploratory cases
+  "FBT",     # Allow boolean positional arguments
+  "PLR0913", # Allow many function arguments in fixtures
+  "PLR2004", # Allow magic values in assertions
+  "PT012",   # Allow multi-statement pytest.raises blocks
+  "S101",    # Allow assert statements
+  "T20",     # Allow print statements in direct-runnable e2e modules
+  "TRY003",  # Allow long exception messages
+]
+lint.per-file-ignores."workbench/*" = [
+  "ANN",     # Manual probes do not need full typing
+  "D",       # Manual probes can keep lightweight docs
+  "PLR2004", # Allow scenario constants
+  "S101",    # Allow assert statements
+  "T20",     # Allow print statements
+]
+lint.flake8-tidy-imports.ban-relative-imports = "all"
+lint.isort.combine-as-imports = true
+lint.isort.known-first-party = [ "[[[ package_name ]]]" ]
+# Choose docstring convention: "google", "numpy", or "pep257".
+lint.pydocstyle.convention = "google"
+
+# ---------------- Interrogate (docstring coverage) ----------------
+[tool.interrogate]
+fail-under = 100
+# Require docstrings in production code.
+ignore-init-method = false
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = false
+ignore-setters = false
+ignore-overloaded-functions = true
+ignore-regex = [ "^wrapper$" ]
+exclude = [ ".agents", ".artifact-smoke*", "docs", "scripts", "tests" ]
+color = true
+verbose = 1
+quiet = false
+omit-covered-files = true
+
+# ---------------- Manifest validation ----------------
+[tool.check-manifest]
+ignore = [
+  "*.egg-info/**",
+  ".agents/**",
+  ".copier-answers.yml",
+  ".devcontainer/**",
+  ".git/**",
+  ".github/**",
+  ".gitleaks.toml",
+  ".markdown-link-check.json",
+  ".markdownlint.yaml",
+  ".mdformat.toml",
+  ".pre-commit-config.yaml",
+  ".pytest_cache/**",
+  ".ruff_cache/**",
+  ".venv/**",
+  ".vscode/**",
+  "__pycache__/**",
+  "docs/**",
+  "examples/**",
+  "plan/**",
+  "scripts/**",
+  "SETUP.md",
+  "tests/**",
+  "typos.toml",
+  "uv.lock",
+  "workbench/**",
+]
+
+# ---------------- Deptry (dependency hygiene) ----------------
+[tool.deptry]
+extend_exclude = [
+  ".agents",
+  ".artifact-smoke*",
+  ".venv",
+  "examples",
+  "scripts",
+  "tests",
+  "workbench",
+]
+known_first_party = [ "[[[ package_name ]]]" ]
+
+# ---------------- Bandit (security) ----------------
+[tool.bandit]
+exclude_dirs = [ ".agents", ".venv", "scripts", "tests" ]
+
+# ---------------- Pyright configuration ----------------
+[tool.pyright]
+pythonVersion = "3.13"
+venv = ".venv"
+venvPath = "."
+stubPath = "./.stubs"
+typeCheckingMode = "strict"
+# Exclude patterns.
+exclude = [
+  "**/__pycache__",
+  "*.egg-info",
+  ".agents",
+  ".artifact-smoke*",
+  ".devcontainer",
+  ".git",
+  ".github",
+  ".pytest_cache",
+  ".ruff_cache",
+  ".venv",
+  ".vscode",
+  # Utility and verification code are checked by Ruff/pytest instead.
+  "scripts",
+  "tests",
+]
+# Relaxed: third-party stubs and dynamic runtime APIs can report false positives.
+reportArgumentType = false
+reportAttributeAccessIssue = false
+reportInconsistentOverload = false
+reportMissingTypeArgument = false
+reportMissingTypeStubs = false
+reportOptionalMemberAccess = false
+reportOverlappingOverload = false
+# Relaxed: tests may intentionally access private seams.
+reportPrivateUsage = false
+# Relaxed: dynamic library protocols can be stricter than runtime behavior.
+reportReturnType = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = false
+# Relaxed: missing third-party stubs can flood unknown-type reports.
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownVariableType = false
+# Environment setup.
+executionEnvironments = [ { root = "." } ]
+
+[tool.ty]
+# Exclude patterns matching Pyright configuration.
+src.exclude = [
+  "**/__pycache__/",
+  "*.egg-info/",
+  ".agents/",
+  ".artifact-smoke*/",
+  ".devcontainer/",
+  ".git/",
+  ".github/",
+  ".pytest_cache/",
+  ".ruff_cache/",
+  ".venv/",
+  ".vscode/",
+  "scripts/",
+  "tests/",
+]
+# ---------------- ty (Astral type checker) ----------------
+environment.python-version = "3.13"
+# Suppress rules that generate false positives or conflict with Pyright settings.
+rules.invalid-argument-type = "ignore"
+rules.invalid-assignment = "ignore"
+rules.invalid-return-type = "ignore"
+rules.possibly-missing-attribute = "ignore"
+rules.unknown-argument = "ignore"
+rules.unresolved-attribute = "ignore"
+
+[tool.pytest]
+ini_options.pythonpath = [ ".", "src" ]  # Enable imports from project root and src/
+ini_options.norecursedirs = [
+  "*.egg-info",
+  ".artifact-smoke*",
+  ".git",
+  ".hypothesis",
+  ".pytest_cache",
+  ".ruff_cache",
+  ".venv",
+  "build",
+  "dist",
+  "scripts",
+]
+# ---------------- Pytest configuration ----------------
+ini_options.addopts = "--cov --cov-report=term-missing"
+ini_options.markers = [
+  "e2e_behavior: end-to-end behavior tests",
+  "e2e_contract: end-to-end public contract tests",
+  "hermetic: marks tests that run fully offline",
+  "slow: marks tests that are slow and should be skipped in fast runs",
+  "vcr: marks tests that use VCR.py for HTTP recording/replay",
+]
+
+[tool.coverage]
+run.source = [ "src" ]
+# ---------------- pytest coverage ----------------
+report.fail_under = 1
+
+# ---------------- Commitizen (conventional commits + changelog) ----------------
+[tool.commitizen]
+# Version management
+name = "cz_conventional_commits"
+allowed_prefixes = [ "Merge", "Revert", "WIP" ]
+version_provider = "uv"
+# Commit message settings
+major_version_zero = true
+tag_format = "v$version"
+annotated_tag = true
+# Changelog configuration
+changelog_file = "CHANGELOG.md"
+changelog_incremental = true
+update_changelog_on_bump = true
+
+# ---------------- Ternforge project manifest ----------------
+[tool.ternforge]
+primary_package = "[[[ package_name ]]]"
+package_names = [ "[[[ package_name ]]]" ]
+library_lane = "[[[ library_lane ]]]"
+env_prefix = "[[[ env_prefix ]]]"
+secrets.env_files = []
+
+# ---------------- Pip Audit (dependency vulnerability scanning) ----------------
+[tool.pip-audit]
+# Ignore vulnerabilities that are not applicable or have no fix yet.
+ignore-vulns = []
+
+# ---------------- Import-linter architecture contracts ----------------
+[tool.importlinter]
+root_packages = [
+  "examples",
+  "[[[ package_name ]]]",
+  "tests",
+  "workbench",
+]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "Root package must not be imported by the private implementation"
+id = "root-not-imported-by-private-implementation"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]._internal" ]
+forbidden_modules = [ "[[[ package_name ]]]" ]
+as_packages = false
+
+[[tool.importlinter.contracts]]
+name = "Root package must not be imported by the facade layer"
+id = "root-not-imported-by-facade-layer"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]._api" ]
+forbidden_modules = [ "[[[ package_name ]]]" ]
+as_packages = false
+
+[[tool.importlinter.contracts]]
+name = "Private implementation must not depend on public config facade"
+id = "private-implementation-not-dependent-on-config-facade"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]._internal" ]
+forbidden_modules = [ "[[[ package_name ]]]._api.config" ]
+as_packages = false
+
+[[tool.importlinter.contracts]]
+name = "Private implementation is only imported through product code and explicit private-boundary test layers"
+id = "private-implementation-approved-boundaries"
+type = "protected"
+protected_modules = [ "[[[ package_name ]]]._internal" ]
+allowed_importers = [
+  "[[[ package_name ]]]._api",
+  "[[[ package_name ]]]._internal",
+  "tests.[[[ package_name ]]].integration",
+  "tests.[[[ package_name ]]].property_based.internal",
+  "tests.[[[ package_name ]]].unit",
+]
+
+[[tool.importlinter.contracts]]
+name = "Facade layer must import private implementation only through the private root"
+id = "facade-private-imports-through-root"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]._api" ]
+forbidden_modules = [ "[[[ package_name ]]]._internal.**" ]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "[[[ project_title ]]] public-contract verification modules must not import private implementation"
+id = "[[[ project_slug ]]]-public-contract-boundary"
+type = "forbidden"
+source_modules = [
+  "tests.[[[ package_name ]]].e2e",
+  "tests.[[[ package_name ]]].property_based.public_contract",
+  "tests.[[[ package_name ]]].support",
+]
+forbidden_modules = [ "[[[ package_name ]]]._internal", "src" ]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "[[[ project_title ]]] examples must use the public package API"
+id = "[[[ project_slug ]]]-examples-public-api"
+type = "forbidden"
+source_modules = [ "examples.[[[ package_name ]]]" ]
+forbidden_modules = [
+  "[[[ package_name ]]]._api",
+  "[[[ package_name ]]]._internal",
+  "src",
+]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "[[[ project_title ]]] shipped package must not import examples"
+id = "[[[ project_slug ]]]-shipped-package-examples-boundary"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]" ]
+forbidden_modules = [ "examples" ]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "[[[ project_title ]]] workbench must not import shipped package"
+id = "[[[ project_slug ]]]-workbench-boundary"
+type = "forbidden"
+source_modules = [ "workbench.[[[ package_name ]]]" ]
+forbidden_modules = [ "[[[ package_name ]]]", "src" ]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "[[[ project_title ]]] shipped package must not import workbench"
+id = "[[[ project_slug ]]]-shipped-package-workbench-boundary"
+type = "forbidden"
+source_modules = [ "[[[ package_name ]]]" ]
+forbidden_modules = [ "workbench" ]
+allow_indirect_imports = true

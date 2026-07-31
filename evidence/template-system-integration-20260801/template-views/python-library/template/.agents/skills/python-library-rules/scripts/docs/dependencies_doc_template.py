@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/py-library/template/.agents/skills/python-library-rules/scripts/docs/dependencies_doc_template.py" %]]

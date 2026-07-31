@@ -1,0 +1,31 @@
+_min_copier_version: "9.16.0"
+_subdirectory: template
+_answers_file: .copier-answers.yml
+_templates_suffix: .jinja
+_envops:
+  undefined: jinja2.StrictUndefined
+  variable_start_string: "[[["
+  variable_end_string: "]]]"
+  block_start_string: "[[%"
+  block_end_string: "%]]"
+  comment_start_string: "[[#"
+  comment_end_string: "#]]"
+  trim_blocks: true
+  lstrip_blocks: true
+_exclude:
+  - _components
+  - _components/**
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]README.md[[% endif %]]"
+
+repository_name:
+  type: str
+  default: ternforge-infra-sample
+project_title:
+  type: str
+  default: Ternforge Infra Sample
+github_owner:
+  type: str
+  default: betabitplus
+copyright_year:
+  type: str
+  default: "2026"
