@@ -110,16 +110,28 @@ def _contact_point_exists() -> tuple[bool, str | None]:
     return False, None
 
 
+def _wait_datasource_health(timeout: int = 180) -> tuple[dict[str, Any], float]:
+    path = f"/api/datasources/uid/{DATASOURCE_UID}/health"
+    started = time.monotonic()
+    deadline = started + timeout
+    last: tuple[int, Any] | None = None
+    while time.monotonic() < deadline:
+        last = _request(path)
+        status, payload = last
+        if status == 200 and isinstance(payload, dict) and payload.get("status") == "OK":
+            return payload, round(time.monotonic() - started, 3)
+        time.sleep(5)
+    raise RuntimeError(f"GitHub datasource did not become healthy; last={last}")
+
+
 def _verify_created() -> dict[str, Any]:
     plugin = _wait(f"/api/plugins/{PLUGIN_SLUG}/settings", 200)
     folder = _wait(f"/api/folders/{FOLDER_UID}", 200)
     datasource = _wait(f"/api/datasources/uid/{DATASOURCE_UID}", 200)
-    health_status, health = _request(f"/api/datasources/uid/{DATASOURCE_UID}/health")
+    health, health_wait_seconds = _wait_datasource_health()
     dashboard = _wait(f"/api/dashboards/uid/{DASHBOARD_UID}", 200)
     alert = _wait(f"/api/v1/provisioning/alert-rules/{ALERT_UID}", 200)
     contact_exists, contact_uid = _contact_point_exists()
-    if health_status != 200 or not isinstance(health, dict) or health.get("status") != "OK":
-        raise RuntimeError(f"GitHub datasource is not healthy: {health_status} {health}")
     if not contact_exists:
         raise RuntimeError("contact point was not found after apply")
     panels = dashboard.get("dashboard", {}).get("panels", []) if isinstance(dashboard, dict) else []
@@ -128,6 +140,7 @@ def _verify_created() -> dict[str, Any]:
         "folder_uid": folder.get("uid") if isinstance(folder, dict) else None,
         "datasource_uid": datasource.get("uid") if isinstance(datasource, dict) else None,
         "datasource_health": health.get("status"),
+        "datasource_health_wait_seconds": health_wait_seconds,
         "dashboard_uid": dashboard.get("dashboard", {}).get("uid") if isinstance(dashboard, dict) else None,
         "dashboard_panel_count": len(panels),
         "alert_uid": alert.get("uid") if isinstance(alert, dict) else None,
