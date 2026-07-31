@@ -736,10 +736,10 @@ def _create_contact_point(base_url: str, token: str, webhook_url: str) -> dict[s
     return {"http_status": status, "uid": payload.get("uid") if isinstance(payload, dict) else None}
 
 
-def _alert_rule() -> dict[str, Any]:
+def _alert_rule(alert_title: str) -> dict[str, Any]:
     return {
         "uid": ALERT_UID,
-        "title": "Ternforge update processing exceeds ten minutes",
+        "title": alert_title,
         "ruleGroup": "ternforge-cloud-fleet-health",
         "folderUID": FOLDER_UID,
         "orgId": 1,
@@ -798,7 +798,9 @@ def _alert_rule() -> dict[str, Any]:
     }
 
 
-def _create_alert_rule(base_url: str, token: str) -> dict[str, Any]:
+def _create_alert_rule(
+    base_url: str, token: str, alert_title: str
+) -> dict[str, Any]:
     _grafana_request(
         base_url,
         token,
@@ -810,7 +812,7 @@ def _create_alert_rule(base_url: str, token: str) -> dict[str, Any]:
         token,
         "/api/v1/provisioning/alert-rules",
         method="POST",
-        body=_alert_rule(),
+        body=_alert_rule(alert_title),
         timeout=120,
     )
     if status not in {200, 201, 202}:
@@ -868,7 +870,10 @@ def _webhook_requests(uuid: str) -> dict[str, Any]:
 
 
 def _wait_webhook(
-    uuid: str, baseline_request_ids: set[str], timeout_seconds: int = 360
+    uuid: str,
+    baseline_request_ids: set[str],
+    alert_title: str,
+    timeout_seconds: int = 360,
 ) -> dict[str, Any]:
     deadline = time.monotonic() + timeout_seconds
     last: dict[str, Any] = {}
@@ -885,7 +890,7 @@ def _wait_webhook(
                 continue
             if '"status":"firing"' not in content:
                 continue
-            if "Ternforge update processing exceeds ten minutes" not in content:
+            if alert_title not in content:
                 continue
             return {
                 "request_uuid": request_id,
@@ -946,6 +951,11 @@ def validate(args: argparse.Namespace) -> None:
     webhook_url = os.environ["GRAFANA_CLOUD_WEBHOOK_URL"].strip()
     webhook_uuid = webhook_url.rstrip("/").rsplit("/", 1)[-1]
     scoped_app_token = os.environ["SCOPED_APP_TOKEN"].strip()
+    alert_cycle = os.environ.get("GITHUB_RUN_ID", "local")
+    alert_title = (
+        "Ternforge update processing exceeds ten minutes "
+        f"[lab cycle {alert_cycle}]"
+    )
 
     summary: dict[str, Any] = {
         "schema_version": 1,
@@ -953,6 +963,7 @@ def validate(args: argparse.Namespace) -> None:
             "grafana_stack": base_url,
             "github_owner": "betabitplus-template-lab",
             "selected_repository": "lab-control",
+            "alert_title": alert_title,
         },
         "assertions": {},
     }
@@ -1196,7 +1207,9 @@ def validate(args: argparse.Namespace) -> None:
                 "contact_point": _create_contact_point(
                     base_url, grafana_token, webhook_url
                 ),
-                "alert_rule": _create_alert_rule(base_url, grafana_token),
+                "alert_rule": _create_alert_rule(
+                    base_url, grafana_token, alert_title
+                ),
             }
         )
         # Refresh the unhealthy sample after the rule exists so its first
@@ -1211,7 +1224,9 @@ def validate(args: argparse.Namespace) -> None:
         firing_alerts = _wait_alert(
             base_url, grafana_token, expected_active=True
         )
-        webhook = _wait_webhook(webhook_uuid, webhook_baseline_request_ids)
+        webhook = _wait_webhook(
+            webhook_uuid, webhook_baseline_request_ids, alert_title
+        )
         dashboard_render = _render_dashboard(base_url, grafana_token, output_dir)
 
         _emit_metrics(args.local_otlp_endpoint, "healthy")
@@ -1355,6 +1370,8 @@ def validate(args: argparse.Namespace) -> None:
                 "panel_count"
             ]
             == 7,
+            "dashboard_rendered_to_png": dashboard_render["png_created"]
+            and dashboard_render["http_status"] == 200,
             "cloud_alert_fired": ALERT_UID in firing_alerts,
             "cloud_alert_resolved": ALERT_UID not in resolved_alerts,
             "webhook_notification_delivered": webhook["request_uuid"]
