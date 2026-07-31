@@ -1,0 +1,148 @@
+# Markdownlint Configuration
+# https://github.com/DavidAnson/markdownlint
+
+# Default: enable all rules
+default: true
+
+# MD001 - Header levels should only increment by one level at a time
+MD001: true
+
+# MD002 - First heading should be a top-level heading
+MD002:
+  level: 1
+
+# MD003 - Header style
+MD003:
+  style: atx
+
+# MD004 - Unordered list style
+MD004:
+  style: dash
+
+# MD005 - Inconsistent list indentation
+MD005: true
+
+# MD006 - Consider starting bulleted lists at the beginning of the line
+MD006: true
+
+# MD007 - Unordered list indentation
+MD007:
+  indent: 2
+
+# MD009 - Trailing spaces
+MD009: true
+
+# MD010 - Hard tabs
+MD010: true
+
+# MD011 - Reversed link syntax
+MD011: true
+
+# MD012 - Multiple consecutive blank lines
+MD012: true
+
+# MD013 - Line length
+# Disable: Conflicts with prose wrapping preferences
+MD013: false
+
+# MD022 - Headings should be surrounded by blank lines
+MD022: true
+
+# MD023 - Headings must start at the beginning of the line
+MD023: true
+
+# MD024 - Multiple headings with same content
+# Allow siblings with same name (common in specs)
+MD024:
+  siblings_only: true
+
+# MD025 - Multiple top-level headings
+# Disable: Project uses YAML frontmatter title + H1 body pattern
+MD025: false
+
+# MD026 - No trailing punctuation in headings
+MD026: true
+
+# MD031 - Fenced code blocks should be surrounded by blank lines
+MD031: true
+
+# MD032 - Lists should be surrounded by blank lines
+MD032: true
+
+# MD033 - HTML in Markdown
+# Allow certain HTML elements commonly used in GitHub markdown
+MD033:
+  allowed_elements:
+    - br
+    - details
+    - summary
+    - kbd
+    - sub
+    - sup
+
+# MD034 - Bare URLs
+MD034: true
+
+# MD035 - Horizontal rule style
+# Disable: Conflicts with mdformat's opinionated formatting
+MD035: false
+
+# MD036 - Emphasis used as a header
+MD036: true
+
+# MD037 - Spaces inside emphasis markers
+MD037: true
+
+# MD038 - Spaces inside code span markers
+MD038: true
+
+# MD039 - Spaces inside link text
+MD039: true
+
+# MD040 - Fenced code blocks should have a language specified
+MD040: true
+
+# MD041 - First line should be a top-level heading
+# Disable: YAML frontmatter is often first
+MD041: false
+
+# MD042 - No empty links
+MD042: true
+
+# MD045 - Images should have alternate text (alt text)
+MD045: true
+
+# MD046 - Code block style
+# Prefer fenced code blocks for consistency
+MD046:
+  style: fenced
+
+# MD047 - File should end with a single newline character
+MD047: true
+
+# MD048 - Code fence style
+# Use backticks consistently
+MD048:
+  style: backtick
+
+# MD049 - Emphasis style
+MD049:
+  style: underscore
+
+# MD050 - Strong style
+MD050:
+  style: asterisk
+
+# MD051 - Link fragments should be valid
+MD051: true
+
+# MD052 - Reference links should be defined
+MD052: true
+
+# MD053 - Link definitions should be used
+MD053: true
+
+# MD060 - Table column style
+# Enforce consistent spacing around table pipes
+MD060:
+  style: padded

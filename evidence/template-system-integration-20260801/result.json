@@ -1,0 +1,121 @@
+{
+  "checks": {
+    "component_leakage_zero": true,
+    "copier_user_ownership_preserved": true,
+    "custom_python_render": true,
+    "full_python_product_checks": true,
+    "infra_exact_output": true,
+    "legacy_platform_mechanisms_zero": true,
+    "python_only_update_isolated": true,
+    "python_product_parity": true,
+    "shared_update_exact": true,
+    "vendir_lock_exact": true,
+    "vendir_repeat_sync_clean": true
+  },
+  "component_shas": {
+    "v0.1.0": "892754a89d6298fa13525a8ae8b3b0e5e33ec097",
+    "v0.2.0": "0b4e53bc3c8c348f308765b7108652371e3c5216",
+    "v0.3.0": "fdbeb48d9bc4b71c6a7e66a6f12950db033f98c1"
+  },
+  "component_source_file_count": 169,
+  "infra_rendered_file_count": 17,
+  "parity_comparison": {
+    "added": [],
+    "changed": [],
+    "equal": true,
+    "left_count": 158,
+    "missing": [],
+    "mode_changed": [],
+    "right_count": 158
+  },
+  "product_check_names": [
+    "uv lock",
+    "uv sync locked",
+    "ruff lint",
+    "ruff format",
+    "ty",
+    "pyright",
+    "import linter",
+    "Ternforge policy",
+    "cognitive complexity",
+    "class attribute order",
+    "radon cyclomatic complexity",
+    "radon maintainability",
+    "bandit",
+    "interrogate",
+    "deptry",
+    "policy tests",
+    "active event-loop workbench diagnostic",
+    "runtime export",
+    "runtime dependency audit",
+    "build",
+    "twine metadata",
+    "wheel contents",
+    "manifest",
+    "artifact venv",
+    "install sample_lib-0.1.0-py3-none-any.whl",
+    "import sample_lib-0.1.0-py3-none-any.whl",
+    "artifact venv",
+    "install sample_lib-0.1.0.tar.gz",
+    "import sample_lib-0.1.0.tar.gz",
+    "pre-commit stage",
+    "pre-push stage",
+    "candidate remains clean"
+  ],
+  "python_only_update": {
+    "infra": {
+      "added": [],
+      "changed": [],
+      "equal": true,
+      "left_count": 16,
+      "missing": [],
+      "mode_changed": [],
+      "right_count": 16
+    },
+    "python": {
+      "added": [],
+      "changed": [
+        ".agents/skills/python-library-rules/SKILL.md"
+      ],
+      "equal": false,
+      "left_count": 162,
+      "missing": [],
+      "mode_changed": [],
+      "right_count": 162
+    }
+  },
+  "python_owner_count": 163,
+  "python_product_check_count": 32,
+  "python_rendered_file_count": 163,
+  "shared_update": {
+    "infra": {
+      "added": [],
+      "changed": [
+        ".editorconfig"
+      ],
+      "equal": false,
+      "left_count": 16,
+      "missing": [],
+      "mode_changed": [],
+      "right_count": 16
+    },
+    "python": {
+      "added": [],
+      "changed": [
+        ".editorconfig"
+      ],
+      "equal": false,
+      "left_count": 162,
+      "missing": [],
+      "mode_changed": [],
+      "right_count": 162
+    }
+  },
+  "status": "passed",
+  "versions": {
+    "baseline": "d59582375855cff69fb165e467dc5847bc75ca99",
+    "copier": "9.16.0",
+    "uv": "0.12.0",
+    "vendir": "0.46.0"
+  }
+}

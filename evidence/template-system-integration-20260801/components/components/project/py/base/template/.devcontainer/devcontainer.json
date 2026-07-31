@@ -1,0 +1,80 @@
+{
+  "name": "[[[ project_name ]]]-dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "VARIANT": "3.13"
+    }
+  },
+  "runArgs": [
+    "--init"
+  ],
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+    "PYTHONUNBUFFERED": "1",
+    "MPLCONFIGDIR": "/home/vscode/.cache/matplotlib"
+  },
+  "remoteEnv": {
+    "PYTHONPATH": "[[% for path in workspace_python_paths %]]${containerWorkspaceFolder}/[[[ path ]]]:[[% endfor %]]${containerWorkspaceFolder}"
+  },
+  "mounts": [
+    "source=${env:HOME}/.cache/uv,target=/home/vscode/.cache/uv,type=bind",
+    "source=[[[ project_name ]]]-devcontainer-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+  ],
+  // Use an in-container virtual environment to avoid contaminating the host `.venv`
+  // with Linux binaries. This prevents local macOS runs from breaking after a
+  // container build/rebuild. We provision a Linux-specific `.venv` inside the
+  // workspace (backed by a named volume).
+  "postCreateCommand": "bash -lc 'sudo chown -R vscode:vscode .venv && (rm -f /home/vscode/.vscode-server/data/User/globalStorage/ms-python.python/pythonLocator/*.json 2>/dev/null || true) && uv venv --python 3.13 --clear .venv && source .venv/bin/activate && uv sync --group dev --active && python -m ensurepip --upgrade --default-pip'",
+  "postStartCommand": "bash -lc '(rm -f /home/vscode/.vscode-server/data/User/globalStorage/ms-python.python/pythonLocator/*.json 2>/dev/null || true)'",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Inside the container, always use the workspace-local venv that was just provisioned.
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        // Ensure new integrated terminals use the venv by default
+        "python.terminal.activateEnvironment": true,
+        "terminal.integrated.env.linux": {
+          "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+          "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+        },
+        // Avoid accumulating stale port forwards between rebuilds/reloads
+        "remote.restoreForwardedPorts": false,
+        "python.analysis.typeCheckingMode": "standard",
+        "python.analysis.extraPaths": [
+[[% for path in workspace_python_paths %]]
+          "${workspaceFolder}/[[[ path ]]]",
+[[% endfor %]]
+          "${workspaceFolder}"
+        ],
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+[[% for path in workspace_test_paths %]]
+          "[[[ path ]]]"[[[ "," if not loop.last else "" ]]]
+[[% endfor %]]
+        ],
+        "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
+        "python.formatting.provider": "none"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "charliermarsh.ruff",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "eamodio.gitlens",
+        "redhat.vscode-yaml",
+        "astral-sh.ty",
+        "tamasfe.even-better-toml",
+        "chendm.repomix",
+        "DavidAnson.vscode-markdownlint",
+        "tekumara.typos-vscode"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/py-library/template/.agents/skills/python-library-rules/scripts/verification/e2e_test_template.py" %]]

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/delivery/ci/py-library/template/.github/workflows/ci.yml" %]]

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/base/template/.agents/skills/handoff/agents/openai.yaml" %]]

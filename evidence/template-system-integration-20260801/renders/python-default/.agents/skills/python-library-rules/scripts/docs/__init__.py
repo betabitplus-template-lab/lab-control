@@ -1,0 +1,1 @@
+"""Markdown doc-template checkers."""

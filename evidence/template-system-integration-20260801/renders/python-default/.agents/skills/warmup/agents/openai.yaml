@@ -1,0 +1,6 @@
+interface:
+  display_name: "Warmup"
+  short_description: "Research a codebase before working"
+  default_prompt: "Use $warmup to inspect this codebase deeply before making changes."
+policy:
+  allow_implicit_invocation: false

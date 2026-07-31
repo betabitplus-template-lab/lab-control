@@ -1,0 +1,81 @@
+name: Template system integration lab
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/template-system-integration-lab.yml
+      - experiments/template_system_integration_lab.py
+      - experiments/python_template_product_parity_lab.py
+      - evidence/template-system-integration-20260801/**
+
+permissions:
+  contents: read
+
+jobs:
+  template-system:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout lab control
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+
+      - name: Checkout frozen py-lib-starter
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          repository: betabitplus/py-lib-starter
+          ref: d59582375855cff69fb165e467dc5847bc75ca99
+          path: .lab/py-lib-starter
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+
+      - name: Install exact Python tools
+        run: python -m pip install uv==0.12.0 copier==9.16.0 PyYAML==6.0.3
+
+      - name: Install exact Vendir
+        env:
+          VENDIR_SHA256: 878f3c77cae21b9b63d0ea6c11454c0008d41652d2eb3d1844fdcf69cca6ae9e
+        run: |
+          curl -fsSL \
+            -o "$RUNNER_TEMP/vendir" \
+            https://github.com/carvel-dev/vendir/releases/download/v0.46.0/vendir-linux-amd64
+          echo "$VENDIR_SHA256  $RUNNER_TEMP/vendir" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/vendir"
+          "$RUNNER_TEMP/vendir" --version
+
+      - name: Install retained product linters
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          sudo curl -fsSL \
+            -o /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+          sudo chmod +x /usr/local/bin/hadolint
+          shellcheck --version
+          hadolint --version
+
+      - name: Compose and verify both final templates
+        run: |
+          python experiments/template_system_integration_lab.py \
+            --baseline-root .lab/py-lib-starter \
+            --vendir "$RUNNER_TEMP/vendir" \
+            --work-dir "$RUNNER_TEMP/template-system-integration" \
+            --evidence-dir evidence/template-system-integration-20260801
+
+      - name: Verify committed evidence is reproducible
+        run: git diff --exit-code -- evidence/template-system-integration-20260801
+
+      - name: Publish summary
+        run: cat evidence/template-system-integration-20260801/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload complete template-system evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: template-system-integration-20260801
+          path: evidence/template-system-integration-20260801
+          if-no-files-found: error
+          retention-days: 90

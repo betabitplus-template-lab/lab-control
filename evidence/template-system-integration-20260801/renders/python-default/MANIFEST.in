@@ -1,0 +1,16 @@
+# Minimal sdist inputs for the Python library package.
+include pyproject.toml
+include .editorconfig
+include .envrc
+include *.md
+include *.json5
+include LICENSE
+include MANIFEST.in
+
+recursive-include src *.py py.typed
+
+# Exclude common development artifacts.
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store
+global-exclude *.so

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Git Finish"
+  short_description: "Commit, push, PR, or ship"
+  default_prompt: "Use $git-finish to finish Git work cleanly. Default to push mode, or use commit/push/PR/ship as the finish parameter."
+policy:
+  allow_implicit_invocation: false

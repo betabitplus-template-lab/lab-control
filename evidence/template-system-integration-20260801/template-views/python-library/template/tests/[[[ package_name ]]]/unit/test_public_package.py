@@ -1,0 +1,1 @@
+[[% include "template/_components/components/project/py/library/template/tests/__package__/unit/test_public_package.py" %]]
