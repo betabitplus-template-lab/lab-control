@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "experiment": "OpenTofu Grafana Cloud lifecycle validation",
+  "final_workflow_commit": "4d2f06db38f085ab5f5a6b4329cf716760107952",
+  "implementation_commits": {
+    "initial_lifecycle": "f3196d302d2c256c6dc7d7248b8682b3953e37b7",
+    "plugin_readiness": "4d2f06db38f085ab5f5a6b4329cf716760107952"
+  },
+  "final_run": {
+    "run_id": 30638444420,
+    "conclusion": "success",
+    "created_at": "2026-07-31T14:24:15Z",
+    "updated_at": "2026-07-31T14:25:45Z",
+    "job_started_at": "2026-07-31T14:24:26Z",
+    "job_completed_at": "2026-07-31T14:25:44Z",
+    "job_duration_seconds": 78
+  },
+  "environment": {
+    "scope": "betabitplus-template-lab/lab-control and ephemeral Grafana Cloud resources only",
+    "grafana_cloud_stack": "cleverhop2412",
+    "grafana_cloud_region": "EU Germany",
+    "opentofu_version": "1.12.5",
+    "grafana_provider_version": "4.40.1",
+    "grafana_github_datasource_version": "2.8.0",
+    "github_app": "betabitplus-template-lab-renovate",
+    "github_app_installation_id": 146504082
+  },
+  "credentials": {
+    "grafana_http_api": "temporary Admin service account token",
+    "grafana_cloud_api_scopes": [
+      "stack-plugins:read",
+      "stack-plugins:write",
+      "stack-plugins:delete"
+    ],
+    "github_datasource": "existing lab GitHub App private key and installation ID",
+    "temporary_repository_secrets_removed": true,
+    "temporary_service_accounts_removed": true,
+    "temporary_access_policies_and_tokens_removed": true
+  },
+  "lifecycle": {
+    "initial_plan_actions": [
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_cloud_plugin_installation.github"
+      },
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_contact_point.lab"
+      },
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_dashboard.fleet_health"
+      },
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_data_source.github"
+      },
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_folder.fleet_health"
+      },
+      {
+        "actions": [
+          "create"
+        ],
+        "address": "grafana_rule_group.fleet_health"
+      }
+    ],
+    "initial_resource_count": 6,
+    "created": {
+      "alert_uid": "ternforge-opentofu-rule-lab",
+      "contact_point_uid": "bftrzr22jqz9ca",
+      "dashboard_panel_count": 2,
+      "dashboard_uid": "ternforge-opentofu-lab",
+      "datasource_health": "OK",
+      "datasource_health_wait_seconds": 0.802,
+      "datasource_uid": "ternforge-opentofu-github-lab",
+      "folder_uid": "ternforge-opentofu-lab",
+      "plugin_version": "2.8.0"
+    },
+    "no_drift_exit_code": 0,
+    "controlled_change": {
+      "alert_threshold_seconds": {
+        "before": 600,
+        "after": 900
+      },
+      "plan_exit_code": 2,
+      "actions": [
+        {
+          "actions": [
+            "no-op"
+          ],
+          "address": "grafana_cloud_plugin_installation.github"
+        },
+        {
+          "actions": [
+            "no-op"
+          ],
+          "address": "grafana_contact_point.lab"
+        },
+        {
+          "actions": [
+            "no-op"
+          ],
+          "address": "grafana_dashboard.fleet_health"
+        },
+        {
+          "actions": [
+            "no-op"
+          ],
+          "address": "grafana_data_source.github"
+        },
+        {
+          "actions": [
+            "no-op"
+          ],
+          "address": "grafana_folder.fleet_health"
+        },
+        {
+          "actions": [
+            "update"
+          ],
+          "address": "grafana_rule_group.fleet_health"
+        }
+      ]
+    },
+    "post_change_no_drift_exit_code": 0,
+    "state_resources": [
+      "grafana_cloud_plugin_installation.github",
+      "grafana_contact_point.lab",
+      "grafana_dashboard.fleet_health",
+      "grafana_data_source.github",
+      "grafana_folder.fleet_health",
+      "grafana_rule_group.fleet_health"
+    ],
+    "destroyed": {
+      "alert": 404,
+      "contact_point": 404,
+      "dashboard": 404,
+      "datasource": 404,
+      "folder": 404,
+      "plugin": 404
+    },
+    "cleanup_verified": true
+  },
+  "security": {
+    "state_location": "ephemeral GitHub-hosted runner filesystem",
+    "binary_plan_location": "ephemeral GitHub-hosted runner filesystem",
+    "state_uploaded": false,
+    "binary_plans_uploaded": false,
+    "sanitized_evidence_only": true,
+    "secret_scan_passed": true,
+    "sensitive_state_reason": "Grafana data source secure_json_data_encoded is represented in OpenTofu state even when plan output masks it."
+  },
+  "significant_attempts": [
+    {
+      "run_id": 30637100649,
+      "outcome": "excluded credential-transfer failure",
+      "finding": "The first credential handoff wrote invalid values to GitHub Secrets. Both Grafana APIs returned 401 before any managed resource was created. Credentials were recreated and validated with independent HTTP 200 checks before rerun."
+    },
+    {
+      "run_id": 30637998674,
+      "outcome": "lifecycle succeeded but acceptance check raced plugin registration",
+      "finding": "OpenTofu created all six resources and destroyed all six resources. Grafana Cloud briefly returned plugin not registered from the GitHub data-source health endpoint after the plugin installation resource completed. A bounded readiness poll was required."
+    }
+  ],
+  "assertions": {
+    "provider_initialization_locked": true,
+    "configuration_valid_without_warnings": true,
+    "six_resources_created": true,
+    "github_datasource_healthy": true,
+    "initial_no_drift_plan": true,
+    "controlled_change_only_updated_alert_rule": true,
+    "post_change_no_drift_plan": true,
+    "six_resources_destroyed": true,
+    "plugin_removed": true,
+    "temporary_credentials_removed": true,
+    "no_sensitive_evidence_uploaded": true
+  },
+  "interpretation": {
+    "opentofu_grafana_provider_compatible": true,
+    "grafana_resources_can_be_managed_as_code": true,
+    "plugin_installation_is_asynchronous": true,
+    "state_is_sensitive": true,
+    "architecture_decision_ready": false,
+    "reason_decision_not_automatic": "The provider lifecycle is validated, but production ownership, remote state backend, least-privilege Grafana RBAC and repository boundary still require an ADR."
+  },
+  "remaining_limits": [
+    "The experiment used an Admin service account for bounded lab setup; production least-privilege RBAC was not selected.",
+    "Remote state, locking, recovery and state-backend ownership were not tested; state was deliberately ephemeral.",
+    "The GitHub data source used the existing organization-owned lab App, not the still-pending selected-repository personal-account acceptance check.",
+    "Contact-point delivery was not re-tested because EXP-0026 already validated real webhook firing and resolution; this experiment validated provider lifecycle only.",
+    "The stack is still in the 14-day trial; post-trial Free acceptance remains separate."
+  ]
+}
