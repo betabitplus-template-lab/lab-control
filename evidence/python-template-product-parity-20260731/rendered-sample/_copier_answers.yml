@@ -1,0 +1,29 @@
+_commit: v0.1.0-lab
+_src_path: https://github.com/betabitplus/ternforge-template-py-library.git
+author_email: 8123085+betabitplus@users.noreply.github.com
+author_name: betabitplus
+ci_playwright_browsers: []
+config_class_name: SampleLibConfig
+copyright_year: '2026'
+e2e_slices:
+- name: public-boundary
+  path: tests/__PACKAGE_NAME__/e2e/public_boundary
+env_prefix: SAMPLE_LIB
+error_class_name: SampleLibError
+github_owner: betabitplus
+gitignore_extra_patterns: []
+initial_version: 0.1.0
+library_lane: standard-lib
+package_name: sample_lib
+project_description: A reusable Python library.
+project_name: sample-lib
+project_slug: sample-lib
+project_title: Sample Lib
+project_title_lower: sample lib
+renovate_uv_ignored_updates: []
+repository_name: sample-lib
+template_profile: python-lib-standard
+workspace_python_paths:
+- src
+workspace_test_paths:
+- tests

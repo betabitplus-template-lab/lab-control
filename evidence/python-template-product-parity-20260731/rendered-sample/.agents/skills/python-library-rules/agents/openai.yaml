@@ -1,0 +1,4 @@
+interface:
+  display_name: "Python Library Rules"
+  short_description: "Reusable Python library engineering rules"
+  default_prompt: "Use $python-library-rules to shape or review a Python library or service with consistent API, config, logging, exceptions, tests, and docs."
