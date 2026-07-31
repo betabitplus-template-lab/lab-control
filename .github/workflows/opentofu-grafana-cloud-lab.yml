@@ -1,0 +1,57 @@
+name: OpenTofu Grafana Cloud lifecycle lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pinned OpenTofu
+        uses: opentofu/setup-opentofu@a1320f892987e89d278cc92dc5adc984fb93aca4 # v2.0.2
+        with:
+          tofu_version: 1.12.5
+          tofu_wrapper: false
+
+      - name: Validate experiment code
+        run: python -m py_compile experiments/opentofu_grafana_cloud_lab.py
+
+      - name: Validate OpenTofu Grafana Cloud lifecycle
+        env:
+          GRAFANA_URL: https://cleverhop2412.grafana.net
+          GRAFANA_AUTH: ${{ secrets.GRAFANA_LAB_SERVICE_ACCOUNT_TOKEN }}
+          GRAFANA_CLOUD_ACCESS_POLICY_TOKEN: ${{ secrets.GRAFANA_LAB_CLOUD_ACCESS_POLICY_TOKEN }}
+          GITHUB_APP_PRIVATE_KEY: ${{ secrets.LAB_APP_PRIVATE_KEY }}
+          TF_VAR_grafana_stack_slug: cleverhop2412
+          TF_VAR_github_app_id: ${{ secrets.LAB_APP_ID }}
+          TF_VAR_github_app_installation_id: "146504082"
+        run: >-
+          python experiments/opentofu_grafana_cloud_lab.py
+          --working-dir experiments/opentofu-grafana-cloud
+          --output-dir results-opentofu-grafana-cloud
+
+      - name: Publish sanitized summary
+        if: always()
+        run: |
+          if test -f results-opentofu-grafana-cloud/summary.md; then
+            cat results-opentofu-grafana-cloud/summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'No summary was produced.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload sanitized evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: opentofu-grafana-cloud-lifecycle
+          path: results-opentofu-grafana-cloud/
+          if-no-files-found: error
+          retention-days: 30
