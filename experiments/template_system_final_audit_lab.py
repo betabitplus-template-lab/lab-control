@@ -24,23 +24,24 @@ COPIER_VERSION = "9.17.0"
 UV_VERSION = "0.12.0"
 PYTHON_VERSION = "3.13"
 
-INFRA_COMPONENTS = (
-    "agents/base",
-    "repository/base",
-    "repository/copier",
+INFRA_INCLUDE_PATHS = (
+    "components/agents/base/**/*",
+    "components/repository/base/**/*",
+    "components/repository/copier/**/*",
 )
 
-PYTHON_COMPONENTS = (
-    "agents/base",
-    "agents/py-library",
-    "repository/base",
-    "repository/copier",
-    "project/py/base",
-    "project/py/library",
-    "quality/py",
-    "delivery/updates",
-    "delivery/ci/py-library",
-    "delivery/release/library",
+PYTHON_INCLUDE_PATHS = (
+    "components/agents/base/**/*",
+    "components/agents/py-library/**/*",
+    "components/repository/base/template/.editorconfig",
+    "components/repository/base/template/LICENSE",
+    "components/repository/copier/**/*",
+    "components/project/py/base/**/*",
+    "components/project/py/library/**/*",
+    "components/quality/py/**/*",
+    "components/delivery/updates/**/*",
+    "components/delivery/ci/py-library/**/*",
+    "components/delivery/release/library/**/*",
 )
 
 FORBIDDEN_PATH_TOKENS = ("[[[", "[[%", "[[#", "{{", "{%", "{#")
@@ -118,9 +119,9 @@ def vendir_content(view_root: Path) -> dict[str, object]:
     return data["directories"][0]["contents"][0]
 
 
-def validate_vendir_view(view_root: Path, components: Sequence[str]) -> None:
+def validate_vendir_view(view_root: Path, include_paths: Sequence[str]) -> None:
     content = vendir_content(view_root)
-    expected_includes = [f"components/{component}/**/*" for component in components]
+    expected_includes = list(include_paths)
     if content.get("includePaths") != expected_includes:
         raise RuntimeError(f"unexpected includePaths in {view_root}")
     if content.get("excludePaths") != [".git", ".git/**/*"]:
@@ -143,26 +144,58 @@ def wrapper_targets(view_root: Path) -> set[str]:
     return targets
 
 
+def selected_component_files(
+    component_root: Path, include_paths: Sequence[str]
+) -> set[str]:
+    selected: set[str] = set()
+    for include_path in include_paths:
+        if include_path.endswith("/**/*"):
+            prefix = include_path.removesuffix("/**/*")
+            source = component_root / prefix
+            if not source.is_dir():
+                raise RuntimeError(
+                    f"declared component directory does not exist: {prefix}"
+                )
+            selected.update(
+                path.relative_to(component_root).as_posix()
+                for path in source.rglob("*")
+                if path.is_file()
+            )
+            continue
+        source = component_root / include_path
+        if not source.is_file():
+            raise RuntimeError(
+                f"declared component file does not exist: {include_path}"
+            )
+        selected.add(include_path)
+    return selected
+
+
 def validate_wrapper_targets(
-    component_root: Path, view_root: Path, allowed_components: Sequence[str]
+    component_root: Path, view_root: Path, include_paths: Sequence[str]
 ) -> int:
-    allowed_prefixes = tuple(
-        f"components/{component}/" for component in allowed_components
-    )
     targets = wrapper_targets(view_root)
+    selected = selected_component_files(component_root, include_paths)
     for target in sorted(targets):
         if any(token in target for token in FORBIDDEN_PATH_TOKENS):
             raise RuntimeError(f"wrapper target is not stable: {target}")
-        if not target.startswith(allowed_prefixes):
-            raise RuntimeError(f"wrapper references undeclared component: {target}")
         if not (component_root / target).is_file():
             raise RuntimeError(f"wrapper target does not exist: {target}")
+    if selected != targets:
+        raise RuntimeError(
+            f"selected component snapshot does not exactly match wrappers in "
+            f"{view_root}: unused={sorted(selected - targets)}, "
+            f"missing={sorted(targets - selected)}"
+        )
     return len(targets)
 
 
 def validate_action_pins(repository_root: Path) -> int:
     workflow_paths = (
+        repository_root / ".github/workflows/python-template-product-parity-lab.yml",
+        repository_root / ".github/workflows/template-system-integration-lab.yml",
         repository_root / ".github/workflows/template-system-hardening-lab.yml",
+        repository_root / ".github/workflows/template-system-final-audit-lab.yml",
         repository_root / ".github/workflows/copier-matrix.yml",
     )
     count = 0
@@ -221,7 +254,7 @@ def validate_hardening_result(result: dict[str, object]) -> None:
             raise RuntimeError(f"hardening {key} version mismatch")
     if result.get("infra_component_snapshot_file_count") != 15:
         raise RuntimeError("unexpected infra snapshot size")
-    if result.get("python_component_snapshot_file_count") != 168:
+    if result.get("python_component_snapshot_file_count") != 166:
         raise RuntimeError("unexpected Python snapshot size")
 
 
@@ -253,8 +286,8 @@ def main(argv: list[str] | None = None) -> int:
 
     component_path_count = validate_component_source_paths(component_root)
     validate_negative_path_fixture()
-    validate_vendir_view(infra_view, INFRA_COMPONENTS)
-    validate_vendir_view(python_view, PYTHON_COMPONENTS)
+    validate_vendir_view(infra_view, INFRA_INCLUDE_PATHS)
+    validate_vendir_view(python_view, PYTHON_INCLUDE_PATHS)
 
     if (
         not (component_root / "LICENSE").is_file()
@@ -266,10 +299,10 @@ def main(argv: list[str] | None = None) -> int:
         raise RuntimeError("explicit product LICENSE component is missing")
 
     infra_target_count = validate_wrapper_targets(
-        component_root, infra_view, INFRA_COMPONENTS
+        component_root, infra_view, INFRA_INCLUDE_PATHS
     )
     python_target_count = validate_wrapper_targets(
-        component_root, python_view, PYTHON_COMPONENTS
+        component_root, python_view, PYTHON_INCLUDE_PATHS
     )
     if explicit_product_license not in wrapper_targets(infra_view):
         raise RuntimeError("infra template does not explicitly select product LICENSE")
@@ -308,6 +341,7 @@ def main(argv: list[str] | None = None) -> int:
         "component_path_negative_fixture_detected": True,
         "vendir_selection_contract_exact": True,
         "wrapper_targets_exist_and_are_declared": True,
+        "selected_snapshots_match_wrappers_exactly": True,
         "legal_files_explicitly_owned": True,
         "cited_workflow_actions_immutable": True,
         "pull_request_token_boundary": True,
@@ -368,6 +402,7 @@ Validated:
 * Vendir `includePaths`, `excludePaths`, `legalPaths: []` and no-`newRootPath`
   contracts are exact;
 * all final-template wrapper targets exist and belong to declared components;
+* each selected component snapshot equals its wrapper-target set exactly;
 * product LICENSE output is explicitly selected while repository-root legal
   sentinels remain selection tests rather than implicit product files;
 * workflows cited by the current template-system evidence use full action SHAs;

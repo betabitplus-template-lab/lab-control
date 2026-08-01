@@ -10,7 +10,7 @@ new-executable mode checks run on both Ubuntu and macOS.
 component paths audited       274
 infra wrapper targets         15
 Python wrapper targets        166
-immutable action pins         7
+immutable action pins         18
 controlled new file mode      100755
 fileMode=false control        100644
 ```
@@ -22,6 +22,7 @@ Validated:
 * Vendir `includePaths`, `excludePaths`, `legalPaths: []` and no-`newRootPath`
   contracts are exact;
 * all final-template wrapper targets exist and belong to declared components;
+* each selected component snapshot equals its wrapper-target set exactly;
 * product LICENSE output is explicitly selected while repository-root legal
   sentinels remain selection tests rather than implicit product files;
 * workflows cited by the current template-system evidence use full action SHAs;

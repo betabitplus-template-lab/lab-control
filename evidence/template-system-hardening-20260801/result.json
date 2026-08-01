@@ -2,6 +2,7 @@
   "checks": {
     "component_leakage_zero": true,
     "component_snapshots_filtered": true,
+    "component_snapshots_match_wrappers_exactly": true,
     "copier_conditional_exclude_guarded": true,
     "copier_controlled_executable_mode": true,
     "copier_user_ownership_preserved": true,
@@ -74,7 +75,7 @@
     "pre-push stage",
     "candidate remains clean"
   ],
-  "python_component_snapshot_file_count": 168,
+  "python_component_snapshot_file_count": 166,
   "python_only_update": {
     "infra": {
       "added": [],
