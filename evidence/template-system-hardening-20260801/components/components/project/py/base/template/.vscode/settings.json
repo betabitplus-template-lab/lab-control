@@ -1,0 +1,24 @@
+{
+    // Interpreter: always use the workspace-local .venv (container mounts its own copy)
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.globalModuleInstallation": false,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    // Use Pylance as language server; type checking config is in pyproject.toml [tool.pyright]
+    "python.languageServer": "Pylance",
+
+    // Testing configuration: run pytest from workspace root and look in tests/
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}",
+    "python.testing.pytestArgs": [
+[[% for path in workspace_test_paths %]]
+        "[[[ path ]]]"[[[ "," if not loop.last else "" ]]]
+[[% endfor %]]
+    ],
+    "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
+    "python.testing.autoTestDiscoverOnSaveEnabled": false,
+    // Optional: suppress generic recommendation popups (extensions are auto-installed via devcontainer)
+    "extensions.ignoreRecommendations": true
+}

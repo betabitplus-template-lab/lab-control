@@ -1,0 +1,5 @@
+{
+  extends: [
+    "github>betabitplus/ternforge-infra-updates//presets/python-library.json5#v0.1.0",
+  ],
+}

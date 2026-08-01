@@ -1,0 +1,1 @@
+[[% include "template/_components/components/quality/py/template/.pre-commit-config.yaml" %]]

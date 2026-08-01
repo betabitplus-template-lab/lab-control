@@ -60,7 +60,7 @@ def make_template(root: Path) -> Path:
     git(template, "config", "user.name", "acceptance")
     git(template, "config", "user.email", "acceptance@example.invalid")
 
-    copier_v1 = """_min_copier_version: \"9.16.0\"\n_subdirectory: template\n_answers_file: .copier-answers.yml\n_templates_suffix: \"\"\n_skip_if_exists:\n  - user-owned/**\nproject_name:\n  type: str\n  default: sample\n"""
+    copier_v1 = """_min_copier_version: \"9.17.0\"\n_subdirectory: template\n_answers_file: .copier-answers.yml\n_templates_suffix: \"\"\n_skip_if_exists:\n  - user-owned/**\nproject_name:\n  type: str\n  default: sample\n"""
     write(template / "copier.yml", copier_v1)
     write(
         template / "template" / "{{ _copier_conf.answers_file }}",
@@ -179,9 +179,10 @@ def main() -> None:
         ).read_text() == "user replacement\n"
         results["new_file"] = (clean / "new.txt").is_file()
         results["deleted_file"] = not (clean / "removed.txt").exists()
-        results["rename"] = not (clean / "renamed-old.txt").exists() and (
-            clean / "renamed-new.txt"
-        ).is_file()
+        results["rename"] = (
+            not (clean / "renamed-old.txt").exists()
+            and (clean / "renamed-new.txt").is_file()
+        )
         results["executable_bit_update"] = (
             executable(clean / "mode.sh") if os.name != "nt" else True
         )

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/py-library/template/.agents/skills/python-library-rules/scripts/check_docs_shape.py" %]]

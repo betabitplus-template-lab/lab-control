@@ -1,0 +1,28 @@
+_commit: v0.1.0
+_src_path: https://github.com/betabitplus/ternforge-template-py-library.git
+author_email: 8123085+betabitplus@users.noreply.github.com
+author_name: betabitplus
+ci_playwright_browsers: []
+config_class_name: OrbitalKitConfig
+copyright_year: '2026'
+e2e_slices:
+-   name: public-boundary
+    path: tests/__PACKAGE_NAME__/e2e/public_boundary
+env_prefix: ORBITAL_KIT
+error_class_name: OrbitalKitError
+github_owner: betabitplus
+gitignore_extra_patterns: []
+initial_version: 0.1.0
+library_lane: standard-lib
+package_name: orbital_kit
+project_description: A reusable Python library.
+project_name: orbital-kit
+project_slug: orbital-kit
+project_title: Orbital Kit
+project_title_lower: orbital kit
+renovate_uv_ignored_updates: []
+repository_name: orbital-kit
+workspace_python_paths:
+- src
+workspace_test_paths:
+- tests

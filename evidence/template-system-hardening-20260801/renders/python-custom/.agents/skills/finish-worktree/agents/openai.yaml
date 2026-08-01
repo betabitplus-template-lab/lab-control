@@ -1,0 +1,6 @@
+interface:
+  display_name: "Finish Worktree"
+  short_description: "Finish and clean up a git worktree"
+  default_prompt: "Use $finish-worktree to merge a finished worktree branch and clean it up safely."
+policy:
+  allow_implicit_invocation: false

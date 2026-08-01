@@ -1,0 +1,5 @@
+# mdformat configuration
+# https://mdformat.readthedocs.io/
+
+# Keep consecutive numbering (1, 2, 3) instead of all 1s
+number = true

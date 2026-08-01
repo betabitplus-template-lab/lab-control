@@ -1,0 +1,1 @@
+[[% include "template/_components/components/delivery/ci/py-library/template/.github/MAINTAINER_SETUP.md" %]]

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/delivery/release/library/template/.github/workflows/release.yml" %]]

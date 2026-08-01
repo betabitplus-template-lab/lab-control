@@ -1,0 +1,1 @@
+[[% include "template/_components/components/project/py/library/template/.github/pull_request_template.md" %]]

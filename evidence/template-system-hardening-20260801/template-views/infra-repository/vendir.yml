@@ -1,0 +1,17 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+  - path: template/_components
+    contents:
+      - path: .
+        git:
+          url: https://github.com/betabitplus/ternforge-template-components.git
+          ref: v0.3.0
+        includePaths:
+          - components/agents/base/**/*
+          - components/repository/base/**/*
+          - components/repository/copier/**/*
+        excludePaths:
+          - .git
+          - .git/**/*
+        legalPaths: []

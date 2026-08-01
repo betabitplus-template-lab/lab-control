@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/py-library/template/.agents/skills/plan-internal-from-contract/references/implementation_phase_template.md" %]]

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/project/py/library/template/tests/__package__/e2e/public_boundary/test_public_config_pipeline.py" %]]
