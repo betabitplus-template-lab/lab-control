@@ -1,0 +1,7 @@
+$ /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/.artifact-smoke/reddit_scraper-0.3.0-py3-none-any.whl/bin/python -c import reddit_scraper; print(reddit_scraper.__version__)
+
+[stdout]
+0.3.0
+
+
+[stderr]

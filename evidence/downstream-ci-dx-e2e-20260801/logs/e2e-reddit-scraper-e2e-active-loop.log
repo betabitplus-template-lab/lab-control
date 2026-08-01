@@ -1,0 +1,21 @@
+$ uv run --no-sync python scripts/reproduce_running_loop.py tests.reddit_scraper.e2e.search.test_search_pipeline
+
+[stdout]
+────────────────────────── TEST: Reddit Global Search ──────────────────────────
+─────────────────────────────────── Scenario ───────────────────────────────────
+Run a global Reddit search and summarize results.
+──────────────────────────────────── Inputs ────────────────────────────────────
+Query: Avengers: Doomsday
+Limit: 5
+Proxy: off
+──────────────────────────────────── Steps ─────────────────────────────────────
+1) Execute a global search
+2) Summarize top titles and subreddits
+─────────────────────────────────── Results ────────────────────────────────────
+Result count: 0
+Sample titles: []
+Subreddits: []
+─────────────────────────────────── Examples ───────────────────────────────────
+
+
+[stderr]

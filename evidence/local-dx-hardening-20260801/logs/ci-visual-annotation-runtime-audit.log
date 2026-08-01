@@ -1,0 +1,34 @@
+$ uv run --frozen --no-sync pip-audit --requirement /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/visual-annotation/.runtime-requirements.txt --no-deps --disable-pip
+
+[stdout]
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpRMusnG` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+No known vulnerabilities found

@@ -1,0 +1,81 @@
+$ uv run --no-sync ipython --no-banner --quick --colors=NoColor -c %run -m workbench.web_tools.html_conversion_and_visual_manifest
+
+[stdout]
+────────────────────────── What This Demo Is Proving ───────────────────────────
+- Isolates the readability, Markdown, and visual-manifest concept on a live
+- page without importing shipped `web_tools` code.
+──────────────────────── What Success Should Look Like ─────────────────────────
+- If live page HTML is converted to readable HTML, then the page heading
+- remains and navigation-free Markdown is produced.
+- If visual elements are extracted from readable HTML, then picture and table
+- IDs are stable public handles.
+- If the manifest is serialized, then counts stay in caller-facing
+- vocabulary instead of parser-native objects.
+─────────────────────────────────── Scenario ───────────────────────────────────
+Fetching a live table page, then converting it into Markdown and visual IDs.
+- url: https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0
+───────────────────────────── Observed Conversion ──────────────────────────────
+The isolated dependency flow produced Markdown plus manifest evidence.
+- markdown_length: 3671
+- total_elements: 2
+{
+  "markdown_length": 3671,
+  "markdown_has_heading": true,
+  "manifest_counts": {
+    "total": 2,
+    "picture": 0,
+    "table": 2,
+    "math": 0
+  },
+  "manifest_ids": [
+    "T_0",
+    "T_1"
+  ],
+  "first_elements": [
+    {
+      "id": "T_0",
+      "element_type": "table",
+      "label": "Company Contact Country"
+    },
+    {
+      "id": "T_1",
+      "element_type": "table",
+      "label": "Tag Description"
+    }
+  ],
+  "metadata": {
+    "base_url": "https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0",
+    "readable_html_length": "9376",
+    "source": "live_http"
+  }
+}
+────────────────────── MARKDOWN PREVIEW (first 500 chars) ──────────────────────
+# HTML Tables
+
+* * *
+
+**HTML tables** allow web developers to arrange data into rows and columns.
+
+* * *
+
+### Example
+
+Company | Contact | Country
+---|---|---
+Alfreds Futterkiste | Maria Anders | Germany
+Centro comercial Moctezuma | Francisco Chang | Mexico
+Ernst Handel | Roland Mendel | Austria
+Island Trading | Helen Bennett | UK
+Laughing Bacchus Winecellars | Yoshi Tannamuri | Canada
+Magazzini Alimentari Riuniti | Giovanni Rovelli | Italy
+
+[Try it Yourself »](../htmltryit/try
+────────────────────────── Why This Counts As Success ──────────────────────────
+The conversion concept returns readable text and stable visual handles without
+coupling workbench to shipped package code.
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpQoBl0p` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+[0mdirenv: loading ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/web-tools/.envrc
+[0mdirenv: export +PYTHONPATH ~PATH

@@ -1,0 +1,29 @@
+$ uv run --frozen --no-sync pip-audit --requirement /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/llm-router/.runtime-requirements.txt --no-deps --disable-pip
+
+[stdout]
+Name   Version ID              Fix Versions
+------ ------- --------------- ------------
+pyasn1 0.6.3   PYSEC-2026-3456 0.6.4
+pyasn1 0.6.3   PYSEC-2026-3457 0.6.4
+pyasn1 0.6.3   PYSEC-2026-3455 0.6.4
+pyasn1 0.6.3   PYSEC-2026-3455 0.6.4
+
+
+[stderr]
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+Found 4 known vulnerabilities in 1 package

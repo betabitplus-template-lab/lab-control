@@ -1,0 +1,6 @@
+$ git commit -qm local DX hardening
+
+[stdout]
+
+
+[stderr]

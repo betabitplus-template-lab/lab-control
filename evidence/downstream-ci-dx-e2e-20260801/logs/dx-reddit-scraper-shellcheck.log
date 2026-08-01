@@ -1,0 +1,6 @@
+$ shellcheck .envrc scripts/env/setup.sh scripts/env/doctor.sh scripts/env/project_config.sh scripts/env/secrets.sh
+
+[stdout]
+
+
+[stderr]

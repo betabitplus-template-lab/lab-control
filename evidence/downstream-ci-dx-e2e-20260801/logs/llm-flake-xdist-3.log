@@ -1,0 +1,7 @@
+$ uv run --no-sync pytest tests/llm_router/e2e/session_state_and_isolation/test_session_resilience_pipeline.py::test_session_resume_preserves_timeout_fallback_metadata -q --no-cov -p randomly -n auto
+
+bringing up nodes...
+bringing up nodes...
+
+.                                                                        [100%]
+1 passed in 6.15s

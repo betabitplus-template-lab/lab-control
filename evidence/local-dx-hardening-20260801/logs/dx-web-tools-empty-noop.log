@@ -1,0 +1,8 @@
+$ direnv exec . uv run --no-sync python -c print('noop')
+
+[stdout]
+noop
+
+
+[stderr]
+[0mdirenv: loading ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/web-tools/.envrc

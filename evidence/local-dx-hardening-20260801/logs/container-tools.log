@@ -1,0 +1,9 @@
+$ docker run --rm ternforge-local-dx:20260801 bash -lc command -v uv && command -v direnv && command -v git
+
+[stdout]
+/usr/local/bin/uv
+/usr/bin/direnv
+/usr/local/bin/git
+
+
+[stderr]

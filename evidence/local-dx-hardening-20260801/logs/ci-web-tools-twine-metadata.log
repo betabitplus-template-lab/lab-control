@@ -1,0 +1,8 @@
+$ uvx --from twine==6.2.0 twine check dist/*
+
+[stdout]
+Checking dist/web_tools-0.3.7-py3-none-any.whl: PASSED
+Checking dist/web_tools-0.3.7.tar.gz: PASSED
+
+
+[stderr]

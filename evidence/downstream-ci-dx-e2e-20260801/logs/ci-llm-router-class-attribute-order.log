@@ -1,0 +1,6 @@
+$ uv run --no-sync flake8 --select=CCE001 --class-attributes-order=field,nested_class,magic_method,property_method,static_method,class_method,method src
+
+[stdout]
+
+
+[stderr]

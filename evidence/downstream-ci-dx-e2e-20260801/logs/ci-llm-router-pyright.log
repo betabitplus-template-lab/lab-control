@@ -1,0 +1,7 @@
+$ uv run --no-sync pyright --project pyproject.toml
+
+[stdout]
+0 errors, 0 warnings, 0 informations
+
+
+[stderr]

@@ -1,0 +1,9 @@
+$ uv run --no-sync deptry --config pyproject.toml .
+
+[stdout]
+
+
+[stderr]
+Scanning 45 files...
+
+[1m[32mSuccess! No dependency issues found.[m

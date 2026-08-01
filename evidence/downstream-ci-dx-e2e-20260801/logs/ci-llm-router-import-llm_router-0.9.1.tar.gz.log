@@ -1,0 +1,7 @@
+$ /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/llm-router/.artifact-smoke/llm_router-0.9.1.tar.gz/bin/python -c import llm_router; print(llm_router.__version__)
+
+[stdout]
+0.9.1
+
+
+[stderr]

@@ -1,0 +1,13 @@
+$ docker run --rm ternforge-dx-lab:20260801 bash -lc for x in git uv direnv gh sops shellcheck hadolint; do if command -v "$x" >/dev/null 2>&1; then echo "$x=present"; else echo "$x=missing"; fi; done
+
+[stdout]
+git=present
+uv=present
+direnv=missing
+gh=missing
+sops=missing
+shellcheck=present
+hadolint=present
+
+
+[stderr]

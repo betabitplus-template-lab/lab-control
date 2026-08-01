@@ -1,0 +1,7 @@
+$ uv run --no-sync check-manifest --ignore .copier-answers.yml,_copier_answers.yml
+
+[stdout]
+lists of files in version control and sdist match
+
+
+[stderr]

@@ -1,0 +1,6 @@
+$ git config user.email lab@example.invalid
+
+[stdout]
+
+
+[stderr]

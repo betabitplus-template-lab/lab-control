@@ -1,0 +1,28 @@
+$ uvx --from pyproject-fmt==2.23.0 pyproject-fmt --keep-full-version --skip-wrap-for-keys * pyproject.toml
+
+[stdout]
+--- pyproject.toml
+
++++ pyproject.toml
+
+@@ -259,6 +259,7 @@
+
+ ignore = [
+   "*.egg-info/**",
+   ".agents/**",
++  ".copier-answers.yml",
+   ".devcontainer/**",
+   ".git/**",
+   ".github/**",
+@@ -272,7 +273,6 @@
+
+   ".venv/**",
+   ".vscode/**",
+   "__pycache__/**",
+-  ".copier-answers.yml",
+   "docs/**",
+   "examples/**",
+   "plan/**",
+
+
+[stderr]

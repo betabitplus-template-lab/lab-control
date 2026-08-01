@@ -1,0 +1,7 @@
+$ uv run --no-sync py-lib-policy .
+
+[stdout]
+tests/visual_annotation/e2e/box_annotation/test_box_pipeline.py: runnable e2e tests must start with `# %%` for IPython console use
+
+
+[stderr]

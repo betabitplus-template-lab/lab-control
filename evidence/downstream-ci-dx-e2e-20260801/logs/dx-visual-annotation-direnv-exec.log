@@ -1,0 +1,7 @@
+$ direnv exec . uv run --no-sync python -c import os; assert os.environ['PY_LIB_PROJECT_ENV_PREFIX']
+
+[stdout]
+
+
+[stderr]
+[0mdirenv: loading ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/.envrc

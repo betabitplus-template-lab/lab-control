@@ -1,0 +1,15 @@
+$ bash scripts/env/setup.sh
+
+[stdout]
+Setting up development environment...
+pre-commit installed at .git/hooks/pre-commit
+pre-commit installed at .git/hooks/pre-push
+pre-commit installed at .git/hooks/commit-msg
+pre-commit installed at .git/hooks/post-merge
+pre-commit installed at .git/hooks/post-checkout
+Setup complete! All pre-commit hooks installed.
+
+
+[stderr]
+Resolved 136 packages in 29ms
+Audited 134 packages in 56ms

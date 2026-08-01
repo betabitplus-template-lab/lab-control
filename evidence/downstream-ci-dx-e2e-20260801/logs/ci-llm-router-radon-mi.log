@@ -1,0 +1,7 @@
+$ bash -lc output="$(uv run --no-sync radon mi --min B --show src)"; printf '%s\n' "$output"; test -z "$output"
+
+[stdout]
+
+
+
+[stderr]

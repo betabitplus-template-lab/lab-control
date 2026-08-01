@@ -1,0 +1,5 @@
+# Disposable experiment workspaces may contain local checkouts and test keys.
+evidence/**/_work/
+
+# Local Python caches.
+experiments/__pycache__/

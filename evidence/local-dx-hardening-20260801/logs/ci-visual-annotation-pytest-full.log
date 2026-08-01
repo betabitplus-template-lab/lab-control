@@ -1,0 +1,42 @@
+$ uv run --no-sync pytest -q
+
+[stdout]
+.................s...........................                            [100%]
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.13.7-final-0 _______________
+
+Name                                                    Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------
+src/visual_annotation/__init__.py                          10      0   100%
+src/visual_annotation/_api/__init__.py                      0      0   100%
+src/visual_annotation/_api/annotation.py                    8      0   100%
+src/visual_annotation/_api/config.py                        2      0   100%
+src/visual_annotation/_api/defaults.py                     13      0   100%
+src/visual_annotation/_api/errors.py                       76      6    92%   46-48, 135-137
+src/visual_annotation/_api/media.py                         3      1    67%   17
+src/visual_annotation/_api/types.py                       193     27    86%   74-75, 80-81, 111-112, 114, 127-128, 137-138, 141-142, 152-153, 160-161, 168-169, 175-176, 179-180, 184-185, 193-194
+src/visual_annotation/_internal/__init__.py                 3      0   100%
+src/visual_annotation/_internal/annotator/__init__.py      40      3    92%   53-59
+src/visual_annotation/_internal/config/__init__.py          4      0   100%
+src/visual_annotation/_internal/config/assembly.py         11      0   100%
+src/visual_annotation/_internal/config/models.py           23      0   100%
+src/visual_annotation/_internal/config/state.py            27      0   100%
+src/visual_annotation/_internal/config/validation.py       23      2    91%   30-31
+src/visual_annotation/_internal/contracts/__init__.py      19      4    79%   28-29, 31-32
+src/visual_annotation/_internal/handlers/__init__.py        0      0   100%
+src/visual_annotation/_internal/handlers/base.py           31      2    94%   30, 58
+src/visual_annotation/_internal/handlers/box.py            19      1    95%   25
+src/visual_annotation/_internal/handlers/factory.py        30      2    93%   46, 53
+src/visual_annotation/_internal/handlers/mask.py           18      0   100%
+src/visual_annotation/_internal/handlers/point.py          18      0   100%
+src/visual_annotation/_internal/masks/__init__.py          11      0   100%
+src/visual_annotation/_internal/resolver/__init__.py       11      3    73%   25-27
+src/visual_annotation/_internal/service/__init__.py        39      1    97%   72
+-------------------------------------------------------------------------------------
+TOTAL                                                     632     52    92%
+Required test coverage of 1.0% reached. Total coverage: 91.77%
+44 passed, 1 skipped in 44.57s
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpRMusnG` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

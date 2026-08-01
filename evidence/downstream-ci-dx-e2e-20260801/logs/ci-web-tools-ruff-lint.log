@@ -1,0 +1,7 @@
+$ uv run --no-sync ruff check .
+
+[stdout]
+All checks passed!
+
+
+[stderr]

@@ -1,0 +1,55 @@
+$ uv run --no-sync pytest tests -n auto -p randomly -m not slow -q --no-cov
+
+[stdout]
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [ 20%]
+........................................................................ [ 41%]
+........................................................................ [ 62%]
+........................................................................ [ 83%]
+.....................................................F.                  [100%]
+=================================== FAILURES ===================================
+___________ test_session_resume_preserves_timeout_fallback_metadata ____________
+[gw0] darwin -- Python 3.13.7 /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/llm-router/.venv/bin/python
+
+    def test_session_resume_preserves_timeout_fallback_metadata() -> None:
+        """Verify saved sessions keep timeout-fallback assistant metadata."""
+        with ScriptedHTTPServer(port=_PORT, routes=session_resilience_routes()) as server:
+            # First run the recover-save-resume scenario once.
+            result = run_pipeline(server_base_url=server.base_url)
+            # Then prove the saved assistant metadata preserved both fallback traces.
+>           assert_pipeline_result(result, server=server)
+
+tests/llm_router/e2e/session_state_and_isolation/test_session_resilience_pipeline.py:211:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+result = SessionResilienceWorkerResult(ok=False, output_text='', error_type='TimeoutError', error_message='', saved_history_length=0, first_assistant_meta={}, second_assistant_meta={}, returncode=0, stdout='', stderr='')
+server = <tests.llm_router.support.fault_server.ScriptedHTTPServer object at 0x10ff27610>
+
+    def assert_pipeline_result(
+        result: SessionResilienceWorkerResult,
+        *,
+        server: ScriptedHTTPServer,
+    ) -> None:
+        """Assert the saved session preserves resilience metadata."""
+        # The worker should end in success because the router is expected to recover.
+        assert result.returncode == 0
+>       assert result.ok is True, result.stderr or result.error_message
+E       AssertionError:
+E       assert False is True
+E        +  where False = SessionResilienceWorkerResult(ok=False, output_text='', error_type='TimeoutError', error_message='', saved_history_length=0, first_assistant_meta={}, second_assistant_meta={}, returncode=0, stdout='', stderr='').ok
+
+tests/llm_router/e2e/session_state_and_isolation/test_session_resilience_pipeline.py:149: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  llm_router._internal.runtime.router:router.py:712 {'event_type': 'llm_router.routing.attempt.timeout', 'request_id': 'req-9', 'provider': 'openrouter', 'model': 'deepseek-chat-v3', 'route_index': 0, 'error_type': 'TimeoutError', 'error_message': 'TimeoutError', 'event': 'Route attempt failed', 'logger': 'llm_router._internal.runtime.router', 'level': 'warning', 'timestamp': '2026-08-01T18:52:03.579319Z'}
+WARNING  llm_router._internal.runtime.router:router.py:712 {'event_type': 'llm_router.routing.attempt.timeout', 'request_id': 'req-9', 'provider': 'groq', 'model': 'llama-4-scout', 'route_index': 1, 'error_type': 'TimeoutError', 'error_message': 'TimeoutError', 'event': 'Route attempt failed', 'logger': 'llm_router._internal.runtime.router', 'level': 'warning', 'timestamp': '2026-08-01T18:52:04.833223Z'}
+WARNING  llm_router._internal.runtime.router:router.py:648 {'event_type': 'llm_router.router.request.failed', 'request_id': 'req-9', 'error_type': 'TimeoutError', 'error_message': 'TimeoutError', 'event': 'Router request failed', 'logger': 'llm_router._internal.runtime.router', 'level': 'warning', 'timestamp': '2026-08-01T18:52:04.839565Z'}
+=========================== short test summary info ============================
+FAILED tests/llm_router/e2e/session_state_and_isolation/test_session_resilience_pipeline.py::test_session_resume_preserves_timeout_fallback_metadata - AssertionError:
+assert False is True
+ +  where False = SessionResilienceWorkerResult(ok=False, output_text='', error_type='TimeoutError', error_message='', saved_history_length=0, first_assistant_meta={}, second_assistant_meta={}, returncode=0, stdout='', stderr='').ok
+1 failed, 342 passed in 12.57s
+
+
+[stderr]

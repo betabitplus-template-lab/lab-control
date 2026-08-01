@@ -1,0 +1,324 @@
+$ uv build
+
+[stdout]
+
+
+[stderr]
+Building source distribution...
+running egg_info
+writing src/web_tools.egg-info/PKG-INFO
+writing dependency_links to src/web_tools.egg-info/dependency_links.txt
+writing requirements to src/web_tools.egg-info/requires.txt
+writing top-level names to src/web_tools.egg-info/top_level.txt
+reading manifest file 'src/web_tools.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/web_tools.egg-info/SOURCES.txt'
+running sdist
+running egg_info
+writing src/web_tools.egg-info/PKG-INFO
+writing dependency_links to src/web_tools.egg-info/dependency_links.txt
+writing requirements to src/web_tools.egg-info/requires.txt
+writing top-level names to src/web_tools.egg-info/top_level.txt
+reading manifest file 'src/web_tools.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/web_tools.egg-info/SOURCES.txt'
+running check
+creating web_tools-0.3.7
+creating web_tools-0.3.7/src/web_tools
+creating web_tools-0.3.7/src/web_tools.egg-info
+creating web_tools-0.3.7/src/web_tools/_api
+creating web_tools-0.3.7/src/web_tools/_internal
+creating web_tools-0.3.7/src/web_tools/_internal/cache
+creating web_tools-0.3.7/src/web_tools/_internal/config
+creating web_tools-0.3.7/src/web_tools/_internal/html_reader
+creating web_tools-0.3.7/src/web_tools/_internal/media_downloader
+creating web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+creating web_tools-0.3.7/src/web_tools/_internal/quote_manager
+creating web_tools-0.3.7/src/web_tools/_internal/runtime
+copying files to web_tools-0.3.7...
+copying .editorconfig -> web_tools-0.3.7
+copying .envrc -> web_tools-0.3.7
+copying AGENTS.md -> web_tools-0.3.7
+copying CHANGELOG.md -> web_tools-0.3.7
+copying CONTRIBUTING.md -> web_tools-0.3.7
+copying LICENSE -> web_tools-0.3.7
+copying MANIFEST.in -> web_tools-0.3.7
+copying README.md -> web_tools-0.3.7
+copying RTK.md -> web_tools-0.3.7
+copying SETUP.md -> web_tools-0.3.7
+copying pyproject.toml -> web_tools-0.3.7
+copying renovate.json5 -> web_tools-0.3.7
+copying src/web_tools/__init__.py -> web_tools-0.3.7/src/web_tools
+copying src/web_tools/py.typed -> web_tools-0.3.7/src/web_tools
+copying src/web_tools.egg-info/PKG-INFO -> web_tools-0.3.7/src/web_tools.egg-info
+copying src/web_tools.egg-info/SOURCES.txt -> web_tools-0.3.7/src/web_tools.egg-info
+copying src/web_tools.egg-info/dependency_links.txt -> web_tools-0.3.7/src/web_tools.egg-info
+copying src/web_tools.egg-info/requires.txt -> web_tools-0.3.7/src/web_tools.egg-info
+copying src/web_tools.egg-info/top_level.txt -> web_tools-0.3.7/src/web_tools.egg-info
+copying src/web_tools/_api/__init__.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/cache.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/config.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/defaults.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/errors.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/html.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/media.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/quoting.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_api/types.py -> web_tools-0.3.7/src/web_tools/_api
+copying src/web_tools/_internal/__init__.py -> web_tools-0.3.7/src/web_tools/_internal
+copying src/web_tools/_internal/cache/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/cache
+copying src/web_tools/_internal/cache/manager.py -> web_tools-0.3.7/src/web_tools/_internal/cache
+copying src/web_tools/_internal/config/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/config
+copying src/web_tools/_internal/config/assembly.py -> web_tools-0.3.7/src/web_tools/_internal/config
+copying src/web_tools/_internal/config/models.py -> web_tools-0.3.7/src/web_tools/_internal/config
+copying src/web_tools/_internal/config/state.py -> web_tools-0.3.7/src/web_tools/_internal/config
+copying src/web_tools/_internal/config/validation.py -> web_tools-0.3.7/src/web_tools/_internal/config
+copying src/web_tools/_internal/html_reader/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/html_processing.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/markdown.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/mhtml_media.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/service.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/visual_elements.py -> web_tools-0.3.7/src/web_tools/_internal/html_reader
+copying src/web_tools/_internal/media_downloader/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/cache_manager.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_cache.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_http.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_limits.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_routing.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/service.py -> web_tools-0.3.7/src/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/page_artifacts/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/cache.py -> web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/crawl.py -> web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/fetch.py -> web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/types.py -> web_tools-0.3.7/src/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/quote_manager/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/annotation.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/extract_word_boxes.js -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/playwright_loader.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/quote_capture.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/quote_validation.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/service.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/text_normalization.py -> web_tools-0.3.7/src/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/runtime/__init__.py -> web_tools-0.3.7/src/web_tools/_internal/runtime
+copying src/web_tools/_internal/runtime/facade.py -> web_tools-0.3.7/src/web_tools/_internal/runtime
+copying src/web_tools.egg-info/SOURCES.txt -> web_tools-0.3.7/src/web_tools.egg-info
+Writing web_tools-0.3.7/setup.cfg
+Creating tar archive
+removing 'web_tools-0.3.7' (and everything under it)
+Building wheel from source distribution...
+running egg_info
+writing src/web_tools.egg-info/PKG-INFO
+writing dependency_links to src/web_tools.egg-info/dependency_links.txt
+writing requirements to src/web_tools.egg-info/requires.txt
+writing top-level names to src/web_tools.egg-info/top_level.txt
+reading manifest file 'src/web_tools.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/web_tools.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build/lib/web_tools
+copying src/web_tools/__init__.py -> build/lib/web_tools
+creating build/lib/web_tools/_internal
+copying src/web_tools/_internal/__init__.py -> build/lib/web_tools/_internal
+creating build/lib/web_tools/_api
+copying src/web_tools/_api/media.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/config.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/html.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/cache.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/__init__.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/types.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/quoting.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/defaults.py -> build/lib/web_tools/_api
+copying src/web_tools/_api/errors.py -> build/lib/web_tools/_api
+creating build/lib/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/fetch.py -> build/lib/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/crawl.py -> build/lib/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/cache.py -> build/lib/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/__init__.py -> build/lib/web_tools/_internal/page_artifacts
+copying src/web_tools/_internal/page_artifacts/types.py -> build/lib/web_tools/_internal/page_artifacts
+creating build/lib/web_tools/_internal/cache
+copying src/web_tools/_internal/cache/__init__.py -> build/lib/web_tools/_internal/cache
+copying src/web_tools/_internal/cache/manager.py -> build/lib/web_tools/_internal/cache
+creating build/lib/web_tools/_internal/config
+copying src/web_tools/_internal/config/models.py -> build/lib/web_tools/_internal/config
+copying src/web_tools/_internal/config/__init__.py -> build/lib/web_tools/_internal/config
+copying src/web_tools/_internal/config/assembly.py -> build/lib/web_tools/_internal/config
+copying src/web_tools/_internal/config/state.py -> build/lib/web_tools/_internal/config
+copying src/web_tools/_internal/config/validation.py -> build/lib/web_tools/_internal/config
+creating build/lib/web_tools/_internal/runtime
+copying src/web_tools/_internal/runtime/facade.py -> build/lib/web_tools/_internal/runtime
+copying src/web_tools/_internal/runtime/__init__.py -> build/lib/web_tools/_internal/runtime
+creating build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/service.py -> build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/visual_elements.py -> build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/__init__.py -> build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/mhtml_media.py -> build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/html_processing.py -> build/lib/web_tools/_internal/html_reader
+copying src/web_tools/_internal/html_reader/markdown.py -> build/lib/web_tools/_internal/html_reader
+creating build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_http.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/service.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/cache_manager.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/__init__.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_routing.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_cache.py -> build/lib/web_tools/_internal/media_downloader
+copying src/web_tools/_internal/media_downloader/media_limits.py -> build/lib/web_tools/_internal/media_downloader
+creating build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/service.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/annotation.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/playwright_loader.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/quote_capture.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/text_normalization.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/__init__.py -> build/lib/web_tools/_internal/quote_manager
+copying src/web_tools/_internal/quote_manager/quote_validation.py -> build/lib/web_tools/_internal/quote_manager
+running egg_info
+writing src/web_tools.egg-info/PKG-INFO
+writing dependency_links to src/web_tools.egg-info/dependency_links.txt
+writing requirements to src/web_tools.egg-info/requires.txt
+writing top-level names to src/web_tools.egg-info/top_level.txt
+reading manifest file 'src/web_tools.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/web_tools.egg-info/SOURCES.txt'
+copying src/web_tools/py.typed -> build/lib/web_tools
+copying src/web_tools/_internal/quote_manager/extract_word_boxes.js -> build/lib/web_tools/_internal/quote_manager
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/page_artifacts
+copying build/lib/web_tools/_internal/page_artifacts/fetch.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/page_artifacts
+copying build/lib/web_tools/_internal/page_artifacts/crawl.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/page_artifacts
+copying build/lib/web_tools/_internal/page_artifacts/cache.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/page_artifacts
+copying build/lib/web_tools/_internal/page_artifacts/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/page_artifacts
+copying build/lib/web_tools/_internal/page_artifacts/types.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/page_artifacts
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/cache
+copying build/lib/web_tools/_internal/cache/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/cache
+copying build/lib/web_tools/_internal/cache/manager.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/cache
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/config
+copying build/lib/web_tools/_internal/config/models.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/config
+copying build/lib/web_tools/_internal/config/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/config
+copying build/lib/web_tools/_internal/config/assembly.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/config
+copying build/lib/web_tools/_internal/config/state.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/config
+copying build/lib/web_tools/_internal/config/validation.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/config
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/runtime
+copying build/lib/web_tools/_internal/runtime/facade.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/runtime
+copying build/lib/web_tools/_internal/runtime/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/runtime
+copying build/lib/web_tools/_internal/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/service.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/visual_elements.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/mhtml_media.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/html_processing.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+copying build/lib/web_tools/_internal/html_reader/markdown.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/html_reader
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/media_http.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/service.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/cache_manager.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/media_routing.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/media_cache.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+copying build/lib/web_tools/_internal/media_downloader/media_limits.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/media_downloader
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/service.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/annotation.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/playwright_loader.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/quote_capture.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/text_normalization.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/extract_word_boxes.js -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+copying build/lib/web_tools/_internal/quote_manager/quote_validation.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_internal/quote_manager
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools/_api
+copying build/lib/web_tools/_api/media.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/config.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/html.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/cache.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/types.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/quoting.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/defaults.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/_api/errors.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools/_api
+copying build/lib/web_tools/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./web_tools
+copying build/lib/web_tools/py.typed -> build/bdist.macosx-11.0-arm64/wheel/./web_tools
+running install_egg_info
+Copying src/web_tools.egg-info to build/bdist.macosx-11.0-arm64/wheel/./web_tools-0.3.7-py3.13.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/web_tools-0.3.7.dist-info/WHEEL
+creating '/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools/dist/.tmp-2gwkvrbl/web_tools-0.3.7-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'web_tools/__init__.py'
+adding 'web_tools/py.typed'
+adding 'web_tools/_api/__init__.py'
+adding 'web_tools/_api/cache.py'
+adding 'web_tools/_api/config.py'
+adding 'web_tools/_api/defaults.py'
+adding 'web_tools/_api/errors.py'
+adding 'web_tools/_api/html.py'
+adding 'web_tools/_api/media.py'
+adding 'web_tools/_api/quoting.py'
+adding 'web_tools/_api/types.py'
+adding 'web_tools/_internal/__init__.py'
+adding 'web_tools/_internal/cache/__init__.py'
+adding 'web_tools/_internal/cache/manager.py'
+adding 'web_tools/_internal/config/__init__.py'
+adding 'web_tools/_internal/config/assembly.py'
+adding 'web_tools/_internal/config/models.py'
+adding 'web_tools/_internal/config/state.py'
+adding 'web_tools/_internal/config/validation.py'
+adding 'web_tools/_internal/html_reader/__init__.py'
+adding 'web_tools/_internal/html_reader/html_processing.py'
+adding 'web_tools/_internal/html_reader/markdown.py'
+adding 'web_tools/_internal/html_reader/mhtml_media.py'
+adding 'web_tools/_internal/html_reader/service.py'
+adding 'web_tools/_internal/html_reader/visual_elements.py'
+adding 'web_tools/_internal/media_downloader/__init__.py'
+adding 'web_tools/_internal/media_downloader/cache_manager.py'
+adding 'web_tools/_internal/media_downloader/media_cache.py'
+adding 'web_tools/_internal/media_downloader/media_http.py'
+adding 'web_tools/_internal/media_downloader/media_limits.py'
+adding 'web_tools/_internal/media_downloader/media_routing.py'
+adding 'web_tools/_internal/media_downloader/service.py'
+adding 'web_tools/_internal/page_artifacts/__init__.py'
+adding 'web_tools/_internal/page_artifacts/cache.py'
+adding 'web_tools/_internal/page_artifacts/crawl.py'
+adding 'web_tools/_internal/page_artifacts/fetch.py'
+adding 'web_tools/_internal/page_artifacts/types.py'
+adding 'web_tools/_internal/quote_manager/__init__.py'
+adding 'web_tools/_internal/quote_manager/annotation.py'
+adding 'web_tools/_internal/quote_manager/extract_word_boxes.js'
+adding 'web_tools/_internal/quote_manager/playwright_loader.py'
+adding 'web_tools/_internal/quote_manager/quote_capture.py'
+adding 'web_tools/_internal/quote_manager/quote_validation.py'
+adding 'web_tools/_internal/quote_manager/service.py'
+adding 'web_tools/_internal/quote_manager/text_normalization.py'
+adding 'web_tools/_internal/runtime/__init__.py'
+adding 'web_tools/_internal/runtime/facade.py'
+adding 'web_tools-0.3.7.dist-info/licenses/LICENSE'
+adding 'web_tools-0.3.7.dist-info/METADATA'
+adding 'web_tools-0.3.7.dist-info/WHEEL'
+adding 'web_tools-0.3.7.dist-info/top_level.txt'
+adding 'web_tools-0.3.7.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built dist/web_tools-0.3.7.tar.gz
+Successfully built dist/web_tools-0.3.7-py3-none-any.whl

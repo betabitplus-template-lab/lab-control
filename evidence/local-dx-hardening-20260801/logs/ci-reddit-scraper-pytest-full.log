@@ -1,0 +1,58 @@
+$ uv run --no-sync pytest -q
+
+[stdout]
+...........................................s.........                    [100%]
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.13.7-final-0 _______________
+
+Name                                                             Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------------------
+src/reddit_scraper/__init__.py                                      11      2    82%   79-80
+src/reddit_scraper/_api/__init__.py                                  0      0   100%
+src/reddit_scraper/_api/config.py                                    2      0   100%
+src/reddit_scraper/_api/defaults.py                                 58      0   100%
+src/reddit_scraper/_api/errors.py                                   66     30    55%   36, 38, 61-63, 83-87, 114-120, 134-140, 148-154, 168-172
+src/reddit_scraper/_api/scraper.py                                  68     43    37%   56-63, 91-99, 128-134, 162-168, 216-220, 244-248, 275-279, 307-318, 329
+src/reddit_scraper/_api/types.py                                   148      2    99%   241, 267
+src/reddit_scraper/_internal/__init__.py                             4      0   100%
+src/reddit_scraper/_internal/components/__init__.py                  0      0   100%
+src/reddit_scraper/_internal/components/cache.py                    14      0   100%
+src/reddit_scraper/_internal/components/cache_manager.py            24      5    79%   23-25, 43-44
+src/reddit_scraper/_internal/components/feeds.py                   164     31    81%   50-56, 61, 67, 77, 122, 208, 214, 220, 255, 259, 266-270, 302, 331, 337, 343, 385, 392-397, 428
+src/reddit_scraper/_internal/components/fetch.py                    26      8    69%   45, 52-70
+src/reddit_scraper/_internal/components/http.py                     12      1    92%   18
+src/reddit_scraper/_internal/components/parsing.py                   8      1    88%   13
+src/reddit_scraper/_internal/components/post_details.py             18      2    89%   25, 27
+src/reddit_scraper/_internal/components/request.py                  21      0   100%
+src/reddit_scraper/_internal/components/resolver.py                 76     26    66%   58-64, 74-88, 98-122, 138, 157, 194, 219
+src/reddit_scraper/_internal/components/retry.py                    16      8    50%   18, 23-29
+src/reddit_scraper/_internal/components/search.py                   15      3    80%   15, 20, 22
+src/reddit_scraper/_internal/components/search_parsing.py           24      4    83%   25, 44-51
+src/reddit_scraper/_internal/components/setup.py                    43      7    84%   61, 75-76, 78-80, 92
+src/reddit_scraper/_internal/components/users.py                    72      7    90%   48, 61, 91, 130, 134-139, 147
+src/reddit_scraper/_internal/components/utils.py                    21      3    86%   26, 29-30
+src/reddit_scraper/_internal/config/__init__.py                      4      0   100%
+src/reddit_scraper/_internal/config/assembly.py                     11      0   100%
+src/reddit_scraper/_internal/config/models.py                      109      0   100%
+src/reddit_scraper/_internal/config/state.py                        29      0   100%
+src/reddit_scraper/_internal/config/validation.py                   89     12    87%   42, 51-52, 54, 60, 76, 78, 80, 87, 103, 178, 268
+src/reddit_scraper/_internal/media_downloader/__init__.py            0      0   100%
+src/reddit_scraper/_internal/media_downloader/cache_manager.py      13      0   100%
+src/reddit_scraper/_internal/media_downloader/media_cache.py        34      8    76%   42-51, 70, 82-84
+src/reddit_scraper/_internal/media_downloader/media_http.py        112     33    71%   60-67, 86-92, 97-104, 124-132, 137, 154, 158-165, 173-180, 197-203, 225-232, 235-242, 283, 293, 303, 306, 353-361
+src/reddit_scraper/_internal/media_downloader/media_limits.py       18      4    78%   26, 30, 33, 48
+src/reddit_scraper/_internal/media_downloader/media_routing.py      97     64    34%   24-30, 45-46, 51-58, 89-92, 97-106, 111-119, 124-133, 138-156, 163-174
+src/reddit_scraper/_internal/media_downloader/service.py           141     44    69%   99-104, 132, 137-143, 148, 153-156, 168-169, 176-192, 199, 235, 238-243, 257, 262, 271, 281-304, 327
+src/reddit_scraper/_internal/media_downloader/types.py              10      0   100%
+src/reddit_scraper/_internal/scraper/__init__.py                     1      0   100%
+src/reddit_scraper/_internal/scraper/service.py                    156     27    83%   101, 235, 307, 309, 315, 362, 368, 380, 425-433, 464, 484-490, 496, 506-508, 520-527
+----------------------------------------------------------------------------------------------
+TOTAL                                                             1735    375    78%
+Required test coverage of 1.0% reached. Total coverage: 78.39%
+--------------------------- snapshot report summary ----------------------------
+13 snapshots passed.
+52 passed, 1 skipped in 13.12s
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmprWYV4B` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

@@ -1,0 +1,15 @@
+$ uv run --no-sync interrogate -c pyproject.toml
+
+[stdout]
+= Coverage for /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/ =
+----------------------------------- Summary ------------------------------------
+| Name             |        Total |        Miss |        Cover |        Cover% |
+|------------------|--------------|-------------|--------------|---------------|
+| TOTAL            |          427 |           0 |          427 |        100.0% |
+|------------------------------------------------------------------------------|
+|              (68 of 68 files omitted due to complete coverage)               |
+--------------- RESULT: PASSED (minimum: 100.0%, actual: 100.0%) ---------------
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmprWYV4B` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

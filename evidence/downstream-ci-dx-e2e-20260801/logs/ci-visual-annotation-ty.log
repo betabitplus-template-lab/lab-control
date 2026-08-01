@@ -1,0 +1,7 @@
+$ uv run --no-sync ty check --python .venv
+
+[stdout]
+All checks passed!
+
+
+[stderr]

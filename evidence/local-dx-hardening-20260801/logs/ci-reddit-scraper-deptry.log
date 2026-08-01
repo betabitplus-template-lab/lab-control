@@ -1,0 +1,10 @@
+$ uv run --no-sync deptry --config pyproject.toml .
+
+[stdout]
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmprWYV4B` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Scanning 39 files...
+
+[1m[32mSuccess! No dependency issues found.[m

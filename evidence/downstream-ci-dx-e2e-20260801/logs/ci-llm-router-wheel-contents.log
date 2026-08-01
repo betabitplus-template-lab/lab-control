@@ -1,0 +1,7 @@
+$ uvx --from check-wheel-contents==0.6.3 check-wheel-contents dist
+
+[stdout]
+dist/llm_router-0.9.1-py3-none-any.whl: OK
+
+
+[stderr]

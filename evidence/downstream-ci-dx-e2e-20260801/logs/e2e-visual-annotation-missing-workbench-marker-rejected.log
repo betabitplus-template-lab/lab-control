@@ -1,0 +1,7 @@
+$ uv run --no-sync py-lib-policy .
+
+[stdout]
+workbench/visual_annotation/box_annotation.py: runnable workbench modules must start with `# %%` for IPython console use
+
+
+[stderr]

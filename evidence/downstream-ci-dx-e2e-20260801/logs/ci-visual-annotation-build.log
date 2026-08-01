@@ -1,0 +1,240 @@
+$ uv build
+
+[stdout]
+
+
+[stderr]
+Building source distribution...
+running egg_info
+writing src/visual_annotation.egg-info/PKG-INFO
+writing dependency_links to src/visual_annotation.egg-info/dependency_links.txt
+writing requirements to src/visual_annotation.egg-info/requires.txt
+writing top-level names to src/visual_annotation.egg-info/top_level.txt
+reading manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+running sdist
+running egg_info
+writing src/visual_annotation.egg-info/PKG-INFO
+writing dependency_links to src/visual_annotation.egg-info/dependency_links.txt
+writing requirements to src/visual_annotation.egg-info/requires.txt
+writing top-level names to src/visual_annotation.egg-info/top_level.txt
+reading manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+running check
+creating visual_annotation-0.4.6
+creating visual_annotation-0.4.6/src/visual_annotation
+creating visual_annotation-0.4.6/src/visual_annotation.egg-info
+creating visual_annotation-0.4.6/src/visual_annotation/_api
+creating visual_annotation-0.4.6/src/visual_annotation/_internal
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/annotator
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/config
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/contracts
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/masks
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/resolver
+creating visual_annotation-0.4.6/src/visual_annotation/_internal/service
+copying files to visual_annotation-0.4.6...
+copying .editorconfig -> visual_annotation-0.4.6
+copying .envrc -> visual_annotation-0.4.6
+copying AGENTS.md -> visual_annotation-0.4.6
+copying CHANGELOG.md -> visual_annotation-0.4.6
+copying CONTRIBUTING.md -> visual_annotation-0.4.6
+copying LICENSE -> visual_annotation-0.4.6
+copying MANIFEST.in -> visual_annotation-0.4.6
+copying README.md -> visual_annotation-0.4.6
+copying RTK.md -> visual_annotation-0.4.6
+copying SETUP.md -> visual_annotation-0.4.6
+copying pyproject.toml -> visual_annotation-0.4.6
+copying renovate.json5 -> visual_annotation-0.4.6
+copying src/visual_annotation/__init__.py -> visual_annotation-0.4.6/src/visual_annotation
+copying src/visual_annotation/py.typed -> visual_annotation-0.4.6/src/visual_annotation
+copying src/visual_annotation.egg-info/PKG-INFO -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+copying src/visual_annotation.egg-info/SOURCES.txt -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+copying src/visual_annotation.egg-info/dependency_links.txt -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+copying src/visual_annotation.egg-info/requires.txt -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+copying src/visual_annotation.egg-info/top_level.txt -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+copying src/visual_annotation/_api/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/annotation.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/config.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/defaults.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/errors.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/media.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_api/types.py -> visual_annotation-0.4.6/src/visual_annotation/_api
+copying src/visual_annotation/_internal/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal
+copying src/visual_annotation/_internal/annotator/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/annotator
+copying src/visual_annotation/_internal/config/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/assembly.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/models.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/state.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/validation.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/contracts/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/contracts
+copying src/visual_annotation/_internal/handlers/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/base.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/box.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/factory.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/mask.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/point.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/masks/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/masks
+copying src/visual_annotation/_internal/resolver/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/resolver
+copying src/visual_annotation/_internal/service/__init__.py -> visual_annotation-0.4.6/src/visual_annotation/_internal/service
+copying src/visual_annotation.egg-info/SOURCES.txt -> visual_annotation-0.4.6/src/visual_annotation.egg-info
+Writing visual_annotation-0.4.6/setup.cfg
+Creating tar archive
+removing 'visual_annotation-0.4.6' (and everything under it)
+Building wheel from source distribution...
+running egg_info
+writing src/visual_annotation.egg-info/PKG-INFO
+writing dependency_links to src/visual_annotation.egg-info/dependency_links.txt
+writing requirements to src/visual_annotation.egg-info/requires.txt
+writing top-level names to src/visual_annotation.egg-info/top_level.txt
+reading manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build/lib/visual_annotation
+copying src/visual_annotation/__init__.py -> build/lib/visual_annotation
+creating build/lib/visual_annotation/_internal
+copying src/visual_annotation/_internal/__init__.py -> build/lib/visual_annotation/_internal
+creating build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/annotation.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/media.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/config.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/__init__.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/types.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/defaults.py -> build/lib/visual_annotation/_api
+copying src/visual_annotation/_api/errors.py -> build/lib/visual_annotation/_api
+creating build/lib/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/models.py -> build/lib/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/__init__.py -> build/lib/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/assembly.py -> build/lib/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/state.py -> build/lib/visual_annotation/_internal/config
+copying src/visual_annotation/_internal/config/validation.py -> build/lib/visual_annotation/_internal/config
+creating build/lib/visual_annotation/_internal/contracts
+copying src/visual_annotation/_internal/contracts/__init__.py -> build/lib/visual_annotation/_internal/contracts
+creating build/lib/visual_annotation/_internal/annotator
+copying src/visual_annotation/_internal/annotator/__init__.py -> build/lib/visual_annotation/_internal/annotator
+creating build/lib/visual_annotation/_internal/service
+copying src/visual_annotation/_internal/service/__init__.py -> build/lib/visual_annotation/_internal/service
+creating build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/mask.py -> build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/box.py -> build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/__init__.py -> build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/factory.py -> build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/point.py -> build/lib/visual_annotation/_internal/handlers
+copying src/visual_annotation/_internal/handlers/base.py -> build/lib/visual_annotation/_internal/handlers
+creating build/lib/visual_annotation/_internal/masks
+copying src/visual_annotation/_internal/masks/__init__.py -> build/lib/visual_annotation/_internal/masks
+creating build/lib/visual_annotation/_internal/resolver
+copying src/visual_annotation/_internal/resolver/__init__.py -> build/lib/visual_annotation/_internal/resolver
+running egg_info
+writing src/visual_annotation.egg-info/PKG-INFO
+writing dependency_links to src/visual_annotation.egg-info/dependency_links.txt
+writing requirements to src/visual_annotation.egg-info/requires.txt
+writing top-level names to src/visual_annotation.egg-info/top_level.txt
+reading manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no previously-included files matching '__pycache__' found anywhere in distribution
+warning: no previously-included files matching '*.py[cod]' found anywhere in distribution
+warning: no previously-included files matching '.DS_Store' found anywhere in distribution
+warning: no previously-included files matching '*.so' found anywhere in distribution
+adding license file 'LICENSE'
+writing manifest file 'src/visual_annotation.egg-info/SOURCES.txt'
+copying src/visual_annotation/py.typed -> build/lib/visual_annotation
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/config
+copying build/lib/visual_annotation/_internal/config/models.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/config
+copying build/lib/visual_annotation/_internal/config/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/config
+copying build/lib/visual_annotation/_internal/config/assembly.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/config
+copying build/lib/visual_annotation/_internal/config/state.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/config
+copying build/lib/visual_annotation/_internal/config/validation.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/config
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/contracts
+copying build/lib/visual_annotation/_internal/contracts/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/contracts
+copying build/lib/visual_annotation/_internal/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/annotator
+copying build/lib/visual_annotation/_internal/annotator/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/annotator
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/service
+copying build/lib/visual_annotation/_internal/service/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/service
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/mask.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/box.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/factory.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/point.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+copying build/lib/visual_annotation/_internal/handlers/base.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/handlers
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/masks
+copying build/lib/visual_annotation/_internal/masks/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/masks
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_internal/resolver
+copying build/lib/visual_annotation/_internal/resolver/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_internal/resolver
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation/_api
+copying build/lib/visual_annotation/_api/annotation.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/media.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/config.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/types.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/defaults.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/_api/errors.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation/_api
+copying build/lib/visual_annotation/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation
+copying build/lib/visual_annotation/py.typed -> build/bdist.macosx-11.0-arm64/wheel/./visual_annotation
+running install_egg_info
+Copying src/visual_annotation.egg-info to build/bdist.macosx-11.0-arm64/wheel/./visual_annotation-0.4.6-py3.13.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/visual_annotation-0.4.6.dist-info/WHEEL
+creating '/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/dist/.tmp-ubkfsjj6/visual_annotation-0.4.6-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'visual_annotation/__init__.py'
+adding 'visual_annotation/py.typed'
+adding 'visual_annotation/_api/__init__.py'
+adding 'visual_annotation/_api/annotation.py'
+adding 'visual_annotation/_api/config.py'
+adding 'visual_annotation/_api/defaults.py'
+adding 'visual_annotation/_api/errors.py'
+adding 'visual_annotation/_api/media.py'
+adding 'visual_annotation/_api/types.py'
+adding 'visual_annotation/_internal/__init__.py'
+adding 'visual_annotation/_internal/annotator/__init__.py'
+adding 'visual_annotation/_internal/config/__init__.py'
+adding 'visual_annotation/_internal/config/assembly.py'
+adding 'visual_annotation/_internal/config/models.py'
+adding 'visual_annotation/_internal/config/state.py'
+adding 'visual_annotation/_internal/config/validation.py'
+adding 'visual_annotation/_internal/contracts/__init__.py'
+adding 'visual_annotation/_internal/handlers/__init__.py'
+adding 'visual_annotation/_internal/handlers/base.py'
+adding 'visual_annotation/_internal/handlers/box.py'
+adding 'visual_annotation/_internal/handlers/factory.py'
+adding 'visual_annotation/_internal/handlers/mask.py'
+adding 'visual_annotation/_internal/handlers/point.py'
+adding 'visual_annotation/_internal/masks/__init__.py'
+adding 'visual_annotation/_internal/resolver/__init__.py'
+adding 'visual_annotation/_internal/service/__init__.py'
+adding 'visual_annotation-0.4.6.dist-info/licenses/LICENSE'
+adding 'visual_annotation-0.4.6.dist-info/METADATA'
+adding 'visual_annotation-0.4.6.dist-info/WHEEL'
+adding 'visual_annotation-0.4.6.dist-info/top_level.txt'
+adding 'visual_annotation-0.4.6.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built dist/visual_annotation-0.4.6.tar.gz
+Successfully built dist/visual_annotation-0.4.6-py3-none-any.whl

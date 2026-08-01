@@ -1,0 +1,7 @@
+$ uvx --from copier==9.17.0 copier check-update
+
+[stdout]
+
+
+[stderr]
+Cannot check because cannot obtain old template references from `.copier-answers.yml`.

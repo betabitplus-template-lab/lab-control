@@ -1,0 +1,7 @@
+$ bash -lc output="$(uv run --no-sync radon cc --min C --show-complexity src)"; printf '%s\n' "$output"; test -z "$output"
+
+[stdout]
+
+
+
+[stderr]

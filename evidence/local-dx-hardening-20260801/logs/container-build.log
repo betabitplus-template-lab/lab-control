@@ -1,0 +1,119 @@
+$ docker build --file .devcontainer/Dockerfile --tag ternforge-local-dx:20260801 .devcontainer
+
+[stdout]
+
+
+[stderr]
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 645B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 1.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:87999aa3d42bdc6bea60565083ee17e86d1f3339802f543c0d03998580f9cb89
+#3 CACHED
+
+#4 [internal] load metadata for ghcr.io/astral-sh/uv:0.12.1@sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded
+#4 ...
+
+#5 [internal] load metadata for mcr.microsoft.com/devcontainers/python:3.13@sha256:a193ef0a42790e4bcaeeb13665d7bd3cb538a1cf4be721797e18f5dceaa92b1e
+#5 DONE 0.4s
+
+#6 [auth] astral-sh/uv:pull token for ghcr.io
+#6 DONE 0.0s
+
+#4 [internal] load metadata for ghcr.io/astral-sh/uv:0.12.1@sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded
+#4 DONE 1.7s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [stage-0 1/3] FROM mcr.microsoft.com/devcontainers/python:3.13@sha256:a193ef0a42790e4bcaeeb13665d7bd3cb538a1cf4be721797e18f5dceaa92b1e
+#8 CACHED
+
+#9 FROM ghcr.io/astral-sh/uv:0.12.1@sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded
+#9 resolve ghcr.io/astral-sh/uv:0.12.1@sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded 0.0s done
+#9 sha256:a1b07f86759a80e9648e643a4c2dd624f70ac62d2926e0540b61b0605b2c2436 0B / 98B 0.1s
+#9 sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded 2.19kB / 2.19kB done
+#9 sha256:06ea60d2d964b31d9317b5db3f14c166d622ad57ebdc72bac84785a0d48521f1 669B / 669B done
+#9 sha256:baa235358128fb117f9aa801007dbebc027e1be35ffc0c6c4f4eadbb7aea7624 1.30kB / 1.30kB done
+#9 sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 0B / 21.37MB 0.1s
+#9 sha256:a1b07f86759a80e9648e643a4c2dd624f70ac62d2926e0540b61b0605b2c2436 98B / 98B 0.4s done
+#9 sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 9.44MB / 21.37MB 0.5s
+#9 sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 17.83MB / 21.37MB 0.6s
+#9 sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 21.37MB / 21.37MB 0.7s done
+#9 extracting sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 0.1s
+#9 extracting sha256:739bf3a1bfd4dad9ae48d05e60ec94eb99951da390e3b491b2d414c31f0d57e2 0.2s done
+#9 extracting sha256:a1b07f86759a80e9648e643a4c2dd624f70ac62d2926e0540b61b0605b2c2436 done
+#9 DONE 1.0s
+
+#10 [stage-0 2/3] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential ca-certificates direnv git pkg-config     && rm -rf /var/lib/apt/lists/*
+#10 0.448 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#10 0.565 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#10 0.620 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#10 0.671 Get:4 http://deb.debian.org/debian trixie/main arm64 Packages [9607 kB]
+#10 0.905 Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages [4424 B]
+#10 0.942 Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [232 kB]
+#10 1.951 Fetched 10.1 MB in 2s (5991 kB/s)
+#10 1.951 Reading package lists...
+#10 2.602 Reading package lists...
+#10 3.251 Building dependency tree...
+#10 3.418 Reading state information...
+#10 3.759 build-essential is already the newest version (12.12).
+#10 3.759 ca-certificates is already the newest version (20250419).
+#10 3.759 git is already the newest version (1:2.47.3-0+deb13u1).
+#10 3.759 The following NEW packages will be installed:
+#10 3.760   direnv pkg-config
+#10 3.864 0 upgraded, 2 newly installed, 0 to remove and 1 not upgraded.
+#10 3.864 Need to get 2265 kB of archives.
+#10 3.864 After this operation, 7722 kB of additional disk space will be used.
+#10 3.864 Get:1 http://deb.debian.org/debian trixie/main arm64 direnv arm64 2.32.1-2+b16 [2251 kB]
+#10 4.114 Get:2 http://deb.debian.org/debian trixie/main arm64 pkg-config arm64 1.8.1-4 [14.0 kB]
+#10 4.914 Fetched 2265 kB in 0s (6616 kB/s)
+#10 4.939 Selecting previously unselected package direnv.
+#10 4.939 (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 34834 files and directories currently installed.)
+#10 5.025 Preparing to unpack .../direnv_2.32.1-2+b16_arm64.deb ...
+#10 5.027 Unpacking direnv (2.32.1-2+b16) ...
+#10 5.207 Selecting previously unselected package pkg-config:arm64.
+#10 5.210 Preparing to unpack .../pkg-config_1.8.1-4_arm64.deb ...
+#10 5.213 Unpacking pkg-config:arm64 (1.8.1-4) ...
+#10 5.242 Setting up pkg-config:arm64 (1.8.1-4) ...
+#10 5.246 Setting up direnv (2.32.1-2+b16) ...
+#10 5.252 Processing triggers for man-db (2.13.1-1) ...
+#10 DONE 5.9s
+
+#11 [stage-0 3/3] COPY --from=ghcr.io/astral-sh/uv:0.12.1@sha256:cf4eedcaa81655197f625739489effcbe71b61ceb1506f332c3facae5deceded /uv /uvx /usr/local/bin/
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers 0.1s done
+#12 writing image sha256:7693d727375b8eb0cad67aab3819c8075ab1b285b14737788616a4dbd9d57893 done
+#12 naming to docker.io/library/ternforge-local-dx:20260801 done
+#12 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/t1pjcywqimxnnqc1378jf4p8p

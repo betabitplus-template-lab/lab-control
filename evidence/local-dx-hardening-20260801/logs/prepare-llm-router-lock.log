@@ -1,0 +1,18 @@
+$ uv lock
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Resolved 213 packages in 106ms
+Removed copier v9.16.0
+Removed dunamai v1.26.1
+Removed funcy v2.0
+Removed jinja2-ansible-filters v1.3.2
+Removed pathspec v1.1.1
+Removed plumbum v2.0.1
+Added py-lib-policy v0.2.0
+Updated py-lib-runtime v0.11.1 -> v0.2.0
+Updated py-lib-testkit v0.29.2 -> v0.2.0
+Removed pyproject-fmt v2.25.2

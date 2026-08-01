@@ -1,0 +1,23 @@
+$ bash scripts/env/doctor.sh
+
+[stdout]
+Web Tools contributor doctor
+Repo: /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools
+
+[PASS] Found `git`
+[PASS] Found `uv`
+[PASS] Found `direnv`
+[PASS] Project virtualenv exists at `.venv/`
+[PASS] Repo virtualenv uses Python 3.13.7
+[FAIL] Could not read [tool.ternforge] env config from pyproject.toml.
+[PASS] Git hooks are installed
+[PASS] GitHub CLI is installed and authenticated
+
+Summary: 7 passed, 0 warnings, 1 failed
+Suggested fixes: bash scripts/env/setup.sh, direnv allow, and optionally gh auth login.
+
+
+[stderr]
+scripts/env/project_config.sh: line 58: mapfile: command not found
+Exception ignored on flushing sys.stdout:
+BrokenPipeError: [Errno 32] Broken pipe

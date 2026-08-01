@@ -1,0 +1,305 @@
+$ uv run --no-sync ipython --no-banner --quick --colors=NoColor -c %run -m tests.reddit_scraper.e2e.search.test_search_pipeline
+
+[stdout]
+✓ [direnv] Automatically loaded environment variables from .envrc (e.g. HTTP_PROXY, PY_LIB_PROJECT_ENV_PREFIX...)
+────────────────────────── TEST: Reddit Global Search ──────────────────────────
+---------------------------------------------------------------------------
+ProxyError                                Traceback (most recent call last)
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_transports/default.py:101, in map_httpcore_exceptions()
+    100 try:
+--> 101     yield
+    102 except Exception as exc:
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_transports/default.py:250, in HTTPTransport.handle_request(self, request)
+    249 with map_httpcore_exceptions():
+--> 250     resp = self._pool.handle_request(req)
+    252 assert isinstance(resp.stream, typing.Iterable)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py:256, in ConnectionPool.handle_request(self, request)
+    255     self._close_connections(closing)
+--> 256     raise exc from None
+    258 # Return the response. Note that in this case we still have to manage
+    259 # the point at which the response is closed.
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py:236, in ConnectionPool.handle_request(self, request)
+    234 try:
+    235     # Send the request on the assigned connection.
+--> 236     response = connection.handle_request(
+    237         pool_request.request
+    238     )
+    239 except ConnectionNotAvailable:
+    240     # In some cases a connection may initially be available to
+    241     # handle a request, but then become unavailable.
+    242     #
+    243     # In this case we clear the connection and try again.
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpcore/_sync/http_proxy.py:297, in TunnelHTTPConnection.handle_request(self, request)
+    296     self._connection.close()
+--> 297     raise ProxyError(msg)
+    299 stream = connect_response.extensions["network_stream"]
+
+ProxyError: 407 NO_USER
+
+The above exception was the direct cause of the following exception:
+
+ProxyError                                Traceback (most recent call last)
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/components/fetch.py:33, in get_json_response(get_response, url, context)
+     32 try:
+---> 33     response = get_response()
+     34     return response.json()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/scraper/service.py:211, in RedditScraper._get_cached_or_fetch.<locals>.<lambda>()
+    209 """Get response from cache or fetch from network."""
+    210 return get_json_response(
+--> 211     lambda: perform_get(
+    212         RequestSpec(
+    213             client=self.client,
+    214             url=url,
+    215             params=params,
+    216             headers=self._get_headers(),
+    217             max_retries=self._max_retries,
+    218             before_sleep=self._before_sleep_callback,
+    219         )
+    220     ),
+    221     url=url,
+    222 )
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/components/request.py:46, in perform_get(spec)
+     44     return response
+---> 46 return _request()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:331, in BaseRetrying.wraps.<locals>.wrapped_f(*args, **kw)
+    330 wrapped_f.statistics = copy.statistics  # type: ignore[attr-defined]
+--> 331 return copy(f, *args, **kw)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:470, in Retrying.__call__(self, fn, *args, **kwargs)
+    469 while True:
+--> 470     do = self.iter(retry_state=retry_state)
+    471     if isinstance(do, DoAttempt):
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:371, in BaseRetrying.iter(self, retry_state)
+    370 for action in self.iter_state.actions:
+--> 371     result = action(retry_state)
+    372 return result
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:413, in BaseRetrying._post_stop_check_actions.<locals>.exc_check(rs)
+    412 if self.reraise:
+--> 413     raise retry_exc.reraise()
+    414 raise retry_exc from fut.exception()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:184, in RetryError.reraise(self)
+    183 if self.last_attempt.failed:
+--> 184     raise self.last_attempt.result()
+    185 raise self
+
+File ~/.local/share/uv/python/cpython-3.13.7-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py:449, in Future.result(self, timeout)
+    448 elif self._state == FINISHED:
+--> 449     return self.__get_result()
+    451 self._condition.wait(timeout)
+
+File ~/.local/share/uv/python/cpython-3.13.7-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py:401, in Future.__get_result(self)
+    400 try:
+--> 401     raise self._exception
+    402 finally:
+    403     # Break a reference cycle with the exception in self._exception
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/tenacity/__init__.py:473, in Retrying.__call__(self, fn, *args, **kwargs)
+    472 try:
+--> 473     result = fn(*args, **kwargs)
+    474 except BaseException:  # noqa: B902
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/components/request.py:38, in perform_get.<locals>._request()
+     37 """Perform one HTTP attempt (wrapped by tenacity)."""
+---> 38 response = spec.client.get(
+     39     spec.url,
+     40     params=spec.params,
+     41     headers=spec.headers,
+     42 )
+     43 response.raise_for_status()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:1053, in Client.get(self, url, params, headers, cookies, auth, follow_redirects, timeout, extensions)
+   1048 """
+   1049 Send a `GET` request.
+   1050
+   1051 **Parameters**: See `httpx.request`.
+   1052 """
+-> 1053 return self.request(
+   1054     "GET",
+   1055     url,
+   1056     params=params,
+   1057     headers=headers,
+   1058     cookies=cookies,
+   1059     auth=auth,
+   1060     follow_redirects=follow_redirects,
+   1061     timeout=timeout,
+   1062     extensions=extensions,
+   1063 )
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:825, in Client.request(self, method, url, content, data, files, json, params, headers, cookies, auth, follow_redirects, timeout, extensions)
+    812 request = self.build_request(
+    813     method=method,
+    814     url=url,
+   (...)    823     extensions=extensions,
+    824 )
+--> 825 return self.send(request, auth=auth, follow_redirects=follow_redirects)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:914, in Client.send(self, request, stream, auth, follow_redirects)
+    912 auth = self._build_request_auth(request, auth)
+--> 914 response = self._send_handling_auth(
+    915     request,
+    916     auth=auth,
+    917     follow_redirects=follow_redirects,
+    918     history=[],
+    919 )
+    920 try:
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:942, in Client._send_handling_auth(self, request, auth, follow_redirects, history)
+    941 while True:
+--> 942     response = self._send_handling_redirects(
+    943         request,
+    944         follow_redirects=follow_redirects,
+    945         history=history,
+    946     )
+    947     try:
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:979, in Client._send_handling_redirects(self, request, follow_redirects, history)
+    977     hook(request)
+--> 979 response = self._send_single_request(request)
+    980 try:
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_client.py:1014, in Client._send_single_request(self, request)
+   1013 with request_context(request=request):
+-> 1014     response = transport.handle_request(request)
+   1016 assert isinstance(response.stream, SyncByteStream)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_transports/default.py:249, in HTTPTransport.handle_request(self, request)
+    237 req = httpcore.Request(
+    238     method=request.method,
+    239     url=httpcore.URL(
+   (...)    247     extensions=request.extensions,
+    248 )
+--> 249 with map_httpcore_exceptions():
+    250     resp = self._pool.handle_request(req)
+
+File ~/.local/share/uv/python/cpython-3.13.7-macos-aarch64-none/lib/python3.13/contextlib.py:162, in _GeneratorContextManager.__exit__(self, typ, value, traceback)
+    161 try:
+--> 162     self.gen.throw(value)
+    163 except StopIteration as exc:
+    164     # Suppress StopIteration *unless* it's the same exception that
+    165     # was passed to throw().  This prevents a StopIteration
+    166     # raised inside the "with" statement from being suppressed.
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118, in map_httpcore_exceptions()
+    117 message = str(exc)
+--> 118 raise mapped_exc(message) from exc
+
+ProxyError: 407 NO_USER
+
+The above exception was the direct cause of the following exception:
+
+RedditScraperRequestError                 Traceback (most recent call last)
+File <frozen runpy>:226, in run_module(mod_name, init_globals, run_name, alter_sys)
+
+File <frozen runpy>:98, in _run_module_code(code, init_globals, mod_name, mod_spec, pkg_name, script_name)
+
+File <frozen runpy>:88, in _run_code(code, run_globals, init_globals, mod_name, mod_spec, pkg_name, script_name)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/tests/reddit_scraper/e2e/search/test_search_pipeline.py:176
+    169         console.print(
+    170             "[key]Permalink:[/key] "
+    171             f"[value]{item.get('permalink') or item.get('link')}[/value]"
+    172         )
+    175 if __name__ == "__main__":
+--> 176     main()
+    178 # %%
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/tests/reddit_scraper/e2e/search/test_search_pipeline.py:137, in main()
+    135 inputs = load_inputs()
+    136 inputs["proxy"] = proxy
+--> 137 response = run_pipeline(**inputs)
+    138 result_summary = serialize_response(response)
+    139 samples = (response or [])[:2]
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/tests/reddit_scraper/e2e/search/test_search_pipeline.py:83, in run_pipeline(query, limit, proxy, timeout)
+     79 """Run global Reddit search."""
+     80 with reddit_scraper.RedditScraper(
+     81     config=reddit_scraper.ScraperConfig(proxy=proxy, timeout=timeout)
+     82 ) as scraper:
+---> 83     return scraper.search_reddit(
+     84         query,
+     85         options=reddit_scraper.SearchOptions(limit=limit),
+     86     )
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/scraper/service.py:312, in RedditScraper.search_reddit(self, query, options, correlation_id)
+    308 if options.before:
+    309     params["before"] = options.before
+    310 data = cast(
+    311     "dict[str, Any] | None",
+--> 312     self._get_cached_or_fetch(url, params),
+    313 )
+    314 if data is None:
+    315     return []
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/py_lib_runtime/_internal/cache/decorators.py:292, in cached.<locals>.decorator.<locals>.sync_wrapper(*args, **kwargs)
+    289 @wraps(func)
+    290 def sync_wrapper(*args: P.args, **kwargs: P.kwargs) -> object:
+    291     """Sync wrapper for a cached function."""
+--> 292     return _call_cached_sync(
+    293         func,
+    294         sig,
+    295         build_context,
+    296         *args,
+    297         **kwargs,
+    298     )
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/py_lib_runtime/_internal/cache/decorators.py:201, in _call_cached_sync(func, sig, build_context, *args, **kwargs)
+    199 if context.cache is None or context.force_refresh:
+    200     _emit_miss(context)
+--> 201     result = func(*args, **kwargs)
+    202     if _store_cache(context, result):
+    203         _emit_store(context)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/scraper/service.py:210, in RedditScraper._get_cached_or_fetch(self, url, params)
+    193 @cached(
+    194     cache_from_self_attr("_cache"),
+    195     options=CacheConfig(
+   (...)    207     self, url: str, params: dict[str, Any] | None = None
+    208 ) -> object | None:
+    209     """Get response from cache or fetch from network."""
+--> 210     return get_json_response(
+    211         lambda: perform_get(
+    212             RequestSpec(
+    213                 client=self.client,
+    214                 url=url,
+    215                 params=params,
+    216                 headers=self._get_headers(),
+    217                 max_retries=self._max_retries,
+    218                 before_sleep=self._before_sleep_callback,
+    219             )
+    220         ),
+    221         url=url,
+    222     )
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/src/reddit_scraper/_internal/components/fetch.py:61, in get_json_response(get_response, url, context)
+     53 except httpx.RequestError as exc:
+     54     logger.warning(
+     55         "Request failed after retries",
+     56         event_type="reddit.request.failed",
+   (...)     59         error={"message": str(exc), "type": type(exc).__name__},
+     60     )
+---> 61     raise RedditScraperRequestError(url=url, cause=exc) from exc
+     62 except ValueError as exc:
+     63     logger.warning(
+     64         "Failed to parse JSON response",
+     65         event_type="reddit.response.parse.failed",
+   (...)     68         error={"message": str(exc), "type": type(exc).__name__},
+     69     )
+
+RedditScraperRequestError: Request to 'https://www.reddit.com/search.json' failed after retries. Original error: 407 NO_USER
+
+
+[stderr]
+[0mdirenv: loading ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.envrc
+[0mdirenv: export +HTTP_PROXY +PYTHONPATH +PY_LIB_PROJECT_ENV_PREFIX ~PATH
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/IPython/core/interactiveshell.py:3084: UserWarning: Unknown failure executing module: <tests.reddit_scraper.e2e.search.test_search_pipeline>
+  warn('Unknown failure executing module: <%s>' % mod_name)

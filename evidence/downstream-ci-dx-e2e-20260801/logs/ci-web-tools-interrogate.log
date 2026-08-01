@@ -1,0 +1,14 @@
+$ uv run --no-sync interrogate -c pyproject.toml
+
+[stdout]
+= Coverage for /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools/ =
+----------------------------------- Summary ------------------------------------
+| Name             |        Total |        Miss |        Cover |        Cover% |
+|------------------|--------------|-------------|--------------|---------------|
+| TOTAL            |          321 |           0 |          321 |        100.0% |
+|------------------------------------------------------------------------------|
+|              (53 of 53 files omitted due to complete coverage)               |
+--------------- RESULT: PASSED (minimum: 100.0%, actual: 100.0%) ---------------
+
+
+[stderr]

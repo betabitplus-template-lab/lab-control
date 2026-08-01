@@ -1,0 +1,28 @@
+$ uvx --from pyproject-fmt==2.23.0 pyproject-fmt --keep-full-version --skip-wrap-for-keys * pyproject.toml
+
+[stdout]
+--- pyproject.toml
+
++++ pyproject.toml
+
+@@ -249,6 +249,7 @@
+
+   "*.egg-info/**",
+   ".agents/**",
+   ".artifact-smoke*/**",
++  ".copier-answers.yml",
+   ".devcontainer/**",
+   ".flake8",
+   ".git/**",
+@@ -263,7 +264,6 @@
+
+   ".venv/**",
+   ".vscode/**",
+   "__pycache__/**",
+-  ".copier-answers.yml",
+   "docs/**",
+   "examples/**",
+   "plan/**",
+
+
+[stderr]

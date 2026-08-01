@@ -1,0 +1,8 @@
+$ uvx --from twine==6.2.0 twine check dist/*
+
+[stdout]
+Checking dist/llm_router-0.9.1-py3-none-any.whl: PASSED
+Checking dist/llm_router-0.9.1.tar.gz: PASSED
+
+
+[stderr]

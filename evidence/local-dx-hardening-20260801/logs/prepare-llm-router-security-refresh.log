@@ -1,0 +1,9 @@
+$ uv lock --upgrade-package pyasn1==0.6.4
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Resolved 213 packages in 189ms
+Updated pyasn1 v0.6.3 -> v0.6.4

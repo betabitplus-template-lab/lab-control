@@ -1,0 +1,36 @@
+$ uv run --no-sync lint-imports --config pyproject.toml
+
+[stdout]
+
+╔══╗─────────▶╔╗ ╔╗      ╔╗◀───┐
+╚╣╠╝◀─────┐  ╔╝╚╗║║────▶╔╝╚╗   │
+ ║║   ╔══╦══╦╩╗╔╝║║  ╔╦═╩╗╔╝╔═╦══╗
+ ║║╔══╣╔╗║╔╗║╔╣║ ║║ ╔╬╣╔╗║║ ║│║╔═╝
+╔╣╠╣║║║╚╝║╚╝║║║╚╗║╚═╝║║║║║╚╗║═╣║
+╚══╩╩╩╣╔═╩══╩╝╚═╝╚═══╩╩╝╚╩═╩╩═╩╝
+  └──▶║║                    ▲
+      ╚╝────────────────────┘
+
+
+---------
+Contracts
+---------
+
+Analyzed 140 files, 395 dependencies.
+-------------------------------------
+
+Root package must not be imported by the private core KEPT
+Root package must not be imported by the facade layer KEPT
+Private core must not depend on facade entrypoints KEPT
+Private core must stay layered KEPT
+Private core is only imported through product code and explicit private-core
+test layers KEPT
+Facade layer must import private core only through the private root KEPT
+Web tools public-contract verification modules must not import private core KEPT
+Web tools workbench must not import shipped package KEPT
+Web tools shipped package must not import workbench KEPT
+
+Contracts: 9 kept, 0 broken.
+
+
+[stderr]

@@ -1,0 +1,7 @@
+$ uv run --no-sync ruff format --check .
+
+[stdout]
+129 files already formatted
+
+
+[stderr]

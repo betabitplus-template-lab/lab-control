@@ -1,0 +1,53 @@
+$ uv run --frozen --no-sync pip-audit --requirement /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/.runtime-requirements.txt --no-deps --disable-pip
+
+[stdout]
+Name   Version ID              Fix Versions
+------ ------- --------------- ------------
+pillow 12.2.0  PYSEC-2026-2253 12.3.0
+pillow 12.2.0  PYSEC-2026-2255 12.3.0
+pillow 12.2.0  PYSEC-2026-2257 12.3.0
+pillow 12.2.0  PYSEC-2026-2256 12.3.0
+pillow 12.2.0  PYSEC-2026-2254 12.3.0
+pillow 12.2.0  PYSEC-2026-3453 12.3.0
+pillow 12.2.0  PYSEC-2026-3451 12.3.0
+pillow 12.2.0  PYSEC-2026-3452 12.3.0
+pillow 12.2.0  PYSEC-2026-2254 12.3.0
+pillow 12.2.0  PYSEC-2026-2253 12.3.0
+pillow 12.2.0  PYSEC-2026-2256 12.3.0
+pillow 12.2.0  PYSEC-2026-2255 12.3.0
+pillow 12.2.0  PYSEC-2026-3451 12.3.0
+pillow 12.2.0  PYSEC-2026-3452 12.3.0
+pillow 12.2.0  PYSEC-2026-3453 12.3.0
+pillow 12.2.0  PYSEC-2026-3454 12.3.0
+pillow 12.2.0  PYSEC-2026-3495 12.3.0
+pillow 12.2.0  PYSEC-2026-3496 12.3.0
+pillow 12.2.0  PYSEC-2026-3494 12.3.0
+pillow 12.2.0  PYSEC-2026-3493 12.3.0
+
+
+[stderr]
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+WARNING:cachecontrol.controller:Cache entry deserialization failed, entry ignored
+Found 20 known vulnerabilities in 1 package

@@ -1,0 +1,57 @@
+$ docker run --rm --user vscode --volume /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801:/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801 --volume ternforge-dx-postcreate:/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools/.venv --workdir /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools ternforge-dx-lab:20260801 bash -lc sudo chown -R vscode:vscode .venv && (rm -f /home/vscode/.vscode-server/data/User/globalStorage/ms-python.python/pythonLocator/*.json 2>/dev/null || true) && uv venv --python 3.13 --clear .venv && source .venv/bin/activate && uv sync --group dev --active && python -m ensurepip --upgrade --default-pip && bash scripts/env/doctor.sh
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.14 interpreter at: /usr/local/bin/python3.13
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+Resolved 205 packages in 10ms
+   Building py-lib-testkit @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/py-lib-testkit
+   Building py-lib-runtime @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/py-lib-runtime
+   Building py-lib-policy @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/py-lib-policy
+   Building web-tools @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools
+Downloading pygments (1.2MiB)
+Downloading networkx (2.0MiB)
+Downloading jedi (4.7MiB)
+Downloading openai (1.3MiB)
+Downloading brotli (1.5MiB)
+Downloading shapely (2.8MiB)
+Downloading grimp (2.2MiB)
+Downloading pyright (5.8MiB)
+Downloading playwright (45.0MiB)
+Downloading cryptography (4.5MiB)
+Downloading debugpy (5.1MiB)
+Downloading pillow (6.1MiB)
+Downloading ty (11.0MiB)
+Downloading unclecode-litellm (17.2MiB)
+Downloading pip (1.7MiB)
+Downloading deptry (1.8MiB)
+Downloading pydantic-core (1.9MiB)
+Downloading nltk (1.5MiB)
+Downloading tiktoken (1.1MiB)
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (3.8MiB)
+Downloading numpy (14.9MiB)
+Downloading patchright (44.7MiB)
+Downloading tokenizers (3.2MiB)
+Downloading virtualenv (5.6MiB)
+Downloading ruff (10.4MiB)
+Downloading lxml (4.8MiB)
+Downloading scipy (31.4MiB)
+ Downloaded tiktoken
+ Downloaded pygments
+ Downloaded brotli
+ Downloaded aiohttp
+ Downloaded nltk
+ Downloaded pydantic-core
+ Downloaded deptry
+  × Failed to download `pip==26.0.1`
+  ├─▶ Failed to extract archive: pip-26.0.1-py3-none-any.whl
+  ├─▶ I/O operation failed during extraction
+  ╰─▶ failed to create directory
+      `/home/vscode/.cache/uv/.tmpmIdJUB/pip-26.0.1.dist-info/licenses/src/pip/_vendor/pyproject_hooks`:
+      No space left on device (os error 28)
+
+hint: `pip` (v26.0.1) was included because `web-tools:dev` (v0.3.7) depends on `pip-audit` (v2.10.1) which depends on `pip-api` (v0.0.34) which depends on `pip`

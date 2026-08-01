@@ -1,0 +1,6 @@
+$ uv run --no-sync py-lib-policy .
+
+[stdout]
+
+
+[stderr]

@@ -1,0 +1,38 @@
+$ uv pip install --python /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/.artifact-smoke/visual_annotation-0.4.6.tar.gz/bin/python /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/dist/visual_annotation-0.4.6.tar.gz
+
+[stdout]
+
+
+[stderr]
+Using Python 3.13.7 environment at: .artifact-smoke/visual_annotation-0.4.6.tar.gz
+Resolved 26 packages in 21ms
+   Building visual-annotation @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/dist/visual_annotation-0.4.6.tar.gz
+      Built visual-annotation @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/dist/visual_annotation-0.4.6.tar.gz
+Prepared 1 package in 673ms
+Installed 26 packages in 111ms
+ + certifi==2026.7.22
+ + charset-normalizer==3.4.9
+ + contourpy==1.3.3
+ + cycler==0.12.1
+ + defusedxml==0.7.1
+ + fonttools==4.63.0
+ + idna==3.18
+ + kiwisolver==1.5.0
+ + matplotlib==3.11.1
+ + numpy==2.5.1
+ + opencv-python==5.0.0.93
+ + packaging==26.2
+ + pillow==12.3.0
+ + py-lib-runtime==0.2.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/py-lib-runtime)
+ + pydeprecate==0.9.0
+ + pyparsing==3.3.2
+ + python-dateutil==2.9.0.post0
+ + pyyaml==6.0.3
+ + requests==2.34.2
+ + scipy==1.18.0
+ + six==1.17.0
+ + structlog==26.1.0
+ + supervision==0.29.1
+ + tqdm==4.70.0
+ + urllib3==2.7.0
+ + visual-annotation==0.4.6 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/dist/visual_annotation-0.4.6.tar.gz)

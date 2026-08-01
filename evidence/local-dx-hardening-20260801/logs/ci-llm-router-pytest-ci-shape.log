@@ -1,0 +1,16 @@
+$ uv run --no-sync pytest tests -n auto -p randomly -m not slow -q --no-cov
+
+[stdout]
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [ 20%]
+........................................................................ [ 41%]
+........................................................................ [ 62%]
+........................................................................ [ 83%]
+.......................................................                  [100%]
+343 passed in 9.47s
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpmFDzth` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

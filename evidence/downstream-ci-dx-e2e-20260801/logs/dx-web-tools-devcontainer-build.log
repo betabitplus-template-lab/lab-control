@@ -1,0 +1,44 @@
+$ docker build --file .devcontainer/Dockerfile --tag ternforge-dx-lab:20260801 .devcontainer
+
+[stdout]
+
+
+[stderr]
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.26kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.8s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:87999aa3d42bdc6bea60565083ee17e86d1f3339802f543c0d03998580f9cb89
+#3 CACHED
+
+#4 [internal] load metadata for mcr.microsoft.com/devcontainers/python:3.13
+#4 DONE 0.2s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [1/4] FROM mcr.microsoft.com/devcontainers/python:3.13@sha256:a193ef0a42790e4bcaeeb13665d7bd3cb538a1cf4be721797e18f5dceaa92b1e
+#6 DONE 0.0s
+
+#7 [2/4] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     pkg-config     curl     git     shellcheck     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [3/4] RUN set -eux;     arch="$(dpkg --print-architecture)";     case "${arch}" in       amd64) asset="hadolint-Linux-x86_64" ;;       arm64) asset="hadolint-Linux-arm64" ;;       *) echo "Unsupported architecture for hadolint: ${arch}" >&2; exit 2 ;;     esac;     curl -fsSL -o /usr/local/bin/hadolint       "https://github.com/hadolint/hadolint/releases/latest/download/${asset}";     chmod +x /usr/local/bin/hadolint
+#8 CACHED
+
+#9 [4/4] RUN curl -LsSf https://astral.sh/uv/install.sh | sh &&     mv /root/.local/bin/uv /usr/local/bin/uv &&     mv /root/.local/bin/uvx /usr/local/bin/uvx
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:87e47d9678ba8fea605e35bd87cbd61c1ad270d40b5b145895b3fb4f5066bc8a done
+#10 naming to docker.io/library/ternforge-dx-lab:20260801 done
+#10 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/v6a71em8f7dtkj3048eiry85x

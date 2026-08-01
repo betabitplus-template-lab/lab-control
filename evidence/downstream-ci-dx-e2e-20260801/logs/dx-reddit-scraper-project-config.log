@@ -1,0 +1,9 @@
+$ bash -lc source scripts/env/project_config.sh; py_lib_load_project_env_config "$PWD"; test "$PY_LIB_PROJECT_ENV_PREFIX" = "REDDIT_SCRAPER"
+
+[stdout]
+
+
+[stderr]
+scripts/env/project_config.sh: line 58: mapfile: command not found
+Exception ignored on flushing sys.stdout:
+BrokenPipeError: [Errno 32] Broken pipe

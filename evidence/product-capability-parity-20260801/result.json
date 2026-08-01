@@ -1,0 +1,408 @@
+{
+  "capabilities": {
+    "dispositions": {
+      "intentional_removal": 10,
+      "preserved": 40,
+      "standard_replacement": 23
+    },
+    "total": 73,
+    "unresolved": 0
+  },
+  "consumers": {
+    "llm-router": {
+      "answers": {
+        "commit": "v0.1.0-lab",
+        "removed_keys": [
+          "ci_image_copy_paths",
+          "runtime_git_ref",
+          "runtime_git_subdirectory",
+          "runtime_git_url",
+          "tooling_git_ref",
+          "tooling_git_subdirectory",
+          "tooling_git_url"
+        ],
+        "source": "https://github.com/betabitplus/ternforge-template-py-library.git"
+      },
+      "baseline": {
+        "passed": 343,
+        "skipped": 0
+      },
+      "changed_text_files": 109,
+      "import_linter": 0,
+      "managed_surface": {
+        "forbidden_legacy_references": [],
+        "thin_ci_caller": true,
+        "thin_release_caller": true,
+        "workflow_files": [
+          "ci.yml",
+          "release.yml"
+        ]
+      },
+      "managed_template_paths_replaced": [
+        ".agents",
+        ".devcontainer",
+        ".github",
+        ".vscode",
+        ".envrc",
+        ".gitleaks.toml",
+        ".markdown-link-check.json",
+        ".markdownlint.yaml",
+        ".mdformat.toml",
+        ".pre-commit-config.yaml",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "MANIFEST.in",
+        "renovate.json5",
+        "RTK.md",
+        "SETUP.md",
+        "scripts",
+        "typos.toml"
+      ],
+      "migrated": {
+        "passed": 343,
+        "skipped": 0
+      },
+      "normalized_lock_metadata_packages": [],
+      "policy": 0,
+      "removed_legacy_transitive_lock_packages": [
+        "copier",
+        "dunamai",
+        "funcy",
+        "jinja2-ansible-filters",
+        "pathspec",
+        "plumbum",
+        "pyproject-fmt"
+      ],
+      "residual_user_owned_legacy_references": [],
+      "revision": "6e8008a26a3d1b167befa1ca87b25386b10e4308",
+      "testkit_public_imports": [
+        "compare_optional_json_bodies",
+        "compare_optional_multipart_single_file_content",
+        "configure_direct_module_process",
+        "configure_pytest_process",
+        "console",
+        "extract_boundary",
+        "extract_single_part_content",
+        "get_header_value",
+        "get_repo_root",
+        "get_test_data_path",
+        "is_png",
+        "method_case_insensitive",
+        "multipart_signature_prefix",
+        "normalize_inline_media_bytes",
+        "normalize_json_body",
+        "require_vcr_cassette_or_record_mode",
+        "run_async",
+        "to_bytes"
+      ],
+      "unrelated_lock_entries_preserved": 209
+    },
+    "reddit-scraper": {
+      "answers": {
+        "commit": "v0.1.0-lab",
+        "removed_keys": [
+          "ci_image_copy_paths",
+          "runtime_git_ref",
+          "runtime_git_subdirectory",
+          "runtime_git_url",
+          "tooling_git_ref",
+          "tooling_git_subdirectory",
+          "tooling_git_url"
+        ],
+        "source": "https://github.com/betabitplus/ternforge-template-py-library.git"
+      },
+      "baseline": {
+        "passed": 52,
+        "skipped": 1
+      },
+      "changed_text_files": 39,
+      "import_linter": 0,
+      "managed_surface": {
+        "forbidden_legacy_references": [],
+        "thin_ci_caller": true,
+        "thin_release_caller": true,
+        "workflow_files": [
+          "ci.yml",
+          "release.yml"
+        ]
+      },
+      "managed_template_paths_replaced": [
+        ".agents",
+        ".devcontainer",
+        ".github",
+        ".vscode",
+        ".envrc",
+        ".gitleaks.toml",
+        ".markdown-link-check.json",
+        ".markdownlint.yaml",
+        ".mdformat.toml",
+        ".pre-commit-config.yaml",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "MANIFEST.in",
+        "renovate.json5",
+        "RTK.md",
+        "SETUP.md",
+        "scripts",
+        "typos.toml"
+      ],
+      "migrated": {
+        "passed": 52,
+        "skipped": 1
+      },
+      "normalized_lock_metadata_packages": [
+        "cffi"
+      ],
+      "policy": 0,
+      "removed_legacy_transitive_lock_packages": [
+        "annotated-types",
+        "copier",
+        "dunamai",
+        "funcy",
+        "jinja2-ansible-filters",
+        "pathspec",
+        "plumbum",
+        "pydantic",
+        "pydantic-core",
+        "pyproject-fmt",
+        "pywin32",
+        "typing-inspection"
+      ],
+      "residual_user_owned_legacy_references": [],
+      "revision": "c4e5b74b035666d434366ed85a5f447a45d29ea1",
+      "testkit_public_imports": [
+        "configure_direct_module_process",
+        "configure_pytest_process",
+        "console",
+        "get_project_tooling_config",
+        "method_case_insensitive",
+        "require_vcr_cassette_or_record_mode"
+      ],
+      "unrelated_lock_entries_preserved": 128
+    },
+    "visual-annotation": {
+      "answers": {
+        "commit": "v0.1.0-lab",
+        "removed_keys": [
+          "ci_image_copy_paths",
+          "runtime_git_ref",
+          "runtime_git_subdirectory",
+          "runtime_git_url",
+          "tooling_git_ref",
+          "tooling_git_subdirectory",
+          "tooling_git_url"
+        ],
+        "source": "https://github.com/betabitplus/ternforge-template-py-library.git"
+      },
+      "baseline": {
+        "passed": 44,
+        "skipped": 1
+      },
+      "changed_text_files": 16,
+      "import_linter": 0,
+      "managed_surface": {
+        "forbidden_legacy_references": [],
+        "thin_ci_caller": true,
+        "thin_release_caller": true,
+        "workflow_files": [
+          "ci.yml",
+          "release.yml"
+        ]
+      },
+      "managed_template_paths_replaced": [
+        ".agents",
+        ".devcontainer",
+        ".github",
+        ".vscode",
+        ".envrc",
+        ".gitleaks.toml",
+        ".markdown-link-check.json",
+        ".markdownlint.yaml",
+        ".mdformat.toml",
+        ".pre-commit-config.yaml",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "MANIFEST.in",
+        "renovate.json5",
+        "RTK.md",
+        "SETUP.md",
+        "scripts",
+        "typos.toml"
+      ],
+      "migrated": {
+        "passed": 44,
+        "skipped": 1
+      },
+      "normalized_lock_metadata_packages": [
+        "cffi"
+      ],
+      "policy": 0,
+      "removed_legacy_transitive_lock_packages": [
+        "annotated-types",
+        "copier",
+        "dunamai",
+        "funcy",
+        "jinja2-ansible-filters",
+        "pathspec",
+        "plumbum",
+        "pydantic",
+        "pydantic-core",
+        "pyproject-fmt",
+        "pywin32",
+        "typing-inspection"
+      ],
+      "residual_user_owned_legacy_references": [],
+      "revision": "06e5e00bb50f2808e223e0d985a41725ba01298a",
+      "testkit_public_imports": [
+        "configure_direct_module_process",
+        "console",
+        "get_project_tooling_config",
+        "get_repo_root",
+        "get_test_data_path",
+        "get_workbench_output_path",
+        "image_changed",
+        "save_test_output_image"
+      ],
+      "unrelated_lock_entries_preserved": 132
+    },
+    "web-tools": {
+      "answers": {
+        "commit": "v0.1.0-lab",
+        "removed_keys": [
+          "ci_image_copy_paths",
+          "runtime_git_ref",
+          "runtime_git_subdirectory",
+          "runtime_git_url",
+          "tooling_git_ref",
+          "tooling_git_subdirectory",
+          "tooling_git_url"
+        ],
+        "source": "https://github.com/betabitplus/ternforge-template-py-library.git"
+      },
+      "baseline": {
+        "passed": 51,
+        "skipped": 1
+      },
+      "changed_text_files": 28,
+      "import_linter": 0,
+      "managed_surface": {
+        "forbidden_legacy_references": [],
+        "thin_ci_caller": true,
+        "thin_release_caller": true,
+        "workflow_files": [
+          "ci.yml",
+          "release.yml"
+        ]
+      },
+      "managed_template_paths_replaced": [
+        ".agents",
+        ".devcontainer",
+        ".github",
+        ".vscode",
+        ".envrc",
+        ".gitleaks.toml",
+        ".markdown-link-check.json",
+        ".markdownlint.yaml",
+        ".mdformat.toml",
+        ".pre-commit-config.yaml",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "MANIFEST.in",
+        "renovate.json5",
+        "RTK.md",
+        "SETUP.md",
+        "scripts",
+        "typos.toml"
+      ],
+      "migrated": {
+        "passed": 51,
+        "skipped": 1
+      },
+      "normalized_lock_metadata_packages": [],
+      "policy": 0,
+      "removed_legacy_transitive_lock_packages": [
+        "copier",
+        "dunamai",
+        "funcy",
+        "jinja2-ansible-filters",
+        "pathspec",
+        "plumbum",
+        "pyproject-fmt",
+        "pywin32"
+      ],
+      "residual_user_owned_legacy_references": [],
+      "revision": "b0894c8a99598a827a42909c739ff7136d370d38",
+      "testkit_public_imports": [
+        "configure_direct_module_process",
+        "configure_pytest_process",
+        "console",
+        "get_project_tooling_config",
+        "require_vcr_cassette_or_record_mode",
+        "run_async"
+      ],
+      "unrelated_lock_entries_preserved": 201
+    }
+  },
+  "downstream_total": {
+    "passed": 490,
+    "skipped": 3
+  },
+  "migration_contract": {
+    "atomic_consumer_migration": true,
+    "compatibility_package": false,
+    "dual_config_table": false,
+    "forbidden_legacy_references": 0,
+    "managed_template_surface_replaced": true,
+    "policy_yaml_parser": "PyYAML"
+  },
+  "outcome": "passed",
+  "packages": {
+    "policy": {
+      "build": 0,
+      "dependencies": [
+        "PyYAML>=6.0.3"
+      ],
+      "tests": {
+        "passed": 24,
+        "skipped": 0
+      }
+    },
+    "runtime": {
+      "build": 0,
+      "parity": {
+        "python_files": 26
+      },
+      "tests": {
+        "passed": 44,
+        "skipped": 0
+      }
+    },
+    "testkit": {
+      "build": 0,
+      "code_parity": {
+        "modules": 9
+      },
+      "explicit_dependencies": [
+        "nest-asyncio>=1.6",
+        "py-lib-runtime"
+      ],
+      "tests": {
+        "passed": 33,
+        "skipped": 0
+      }
+    }
+  },
+  "revisions": {
+    "consumers": {
+      "llm-router": "6e8008a26a3d1b167befa1ca87b25386b10e4308",
+      "reddit-scraper": "c4e5b74b035666d434366ed85a5f447a45d29ea1",
+      "visual-annotation": "06e5e00bb50f2808e223e0d985a41725ba01298a",
+      "web-tools": "b0894c8a99598a827a42909c739ff7136d370d38"
+    },
+    "legacy": "d59582375855cff69fb165e467dc5847bc75ca99",
+    "policy": "d44737a0887c6bf5d8702d03221845c62e0fed4b",
+    "runtime": "a4fa84809aa9c5aced3c0a367b23fbcc7f5466d0",
+    "testkit": "233ebec6a1106fd1b65b84803019494522338667"
+  },
+  "schema": "ternforge-product-capability-parity/v1"
+}

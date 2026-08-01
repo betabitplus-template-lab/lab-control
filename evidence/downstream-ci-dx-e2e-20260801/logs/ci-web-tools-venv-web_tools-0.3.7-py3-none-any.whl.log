@@ -1,0 +1,9 @@
+$ uv venv /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/web-tools/.artifact-smoke/web_tools-0.3.7-py3-none-any.whl
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Creating virtual environment at: .artifact-smoke/web_tools-0.3.7-py3-none-any.whl
+Activate with: source .artifact-smoke/web_tools-0.3.7-py3-none-any.whl/bin/activate

@@ -1,0 +1,6 @@
+$ git init -q -b main
+
+[stdout]
+
+
+[stderr]

@@ -1,0 +1,9 @@
+$ uv venv /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/reddit-scraper/.artifact-smoke/reddit_scraper-0.3.0.tar.gz
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Creating virtual environment at: .artifact-smoke/reddit_scraper-0.3.0.tar.gz
+Activate with: source .artifact-smoke/reddit_scraper-0.3.0.tar.gz/bin/activate

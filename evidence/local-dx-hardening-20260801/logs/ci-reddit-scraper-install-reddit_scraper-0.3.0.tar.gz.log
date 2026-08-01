@@ -1,0 +1,24 @@
+$ uv pip install --python /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/.artifact-smoke/reddit_scraper-0.3.0.tar.gz/bin/python /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/dist/reddit_scraper-0.3.0.tar.gz
+
+[stdout]
+
+
+[stderr]
+Using Python 3.13.7 environment at: .artifact-smoke/reddit_scraper-0.3.0.tar.gz
+Resolved 12 packages in 17ms
+   Building reddit-scraper @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/dist/reddit_scraper-0.3.0.tar.gz
+      Built reddit-scraper @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/dist/reddit_scraper-0.3.0.tar.gz
+Prepared 1 package in 647ms
+Installed 12 packages in 11ms
+ + anyio==4.14.2
+ + certifi==2026.7.22
+ + diskcache==5.6.3
+ + fake-useragent==2.2.0
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.18
+ + py-lib-runtime==0.2.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/py-lib-runtime)
+ + reddit-scraper==0.3.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/local-dx-hardening-20260801/_work/consumers/reddit-scraper/dist/reddit_scraper-0.3.0.tar.gz)
+ + structlog==26.1.0
+ + tenacity==9.1.4

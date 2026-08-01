@@ -1,0 +1,29 @@
+$ uv run --no-sync pre-commit run --all-files --show-diff-on-failure
+
+[stdout]
+ruff (lint + autofix)....................................................Passed
+ruff-format..............................................................Passed
+ty (fast type checker)...................................................Passed
+uv lock check (verify lockfile is current)...............................Passed
+typos....................................................................Passed
+gitleaks (secret scanner)................................................Passed
+pyproject-fmt............................................................Passed
+validate-pyproject.......................................................Passed
+dotenv-linter........................................(no files to check)Skipped
+markdownlint (general)...................................................Passed
+mdformat.................................................................Passed
+check for added large files..............................................Passed
+check for case conflicts.................................................Passed
+check yaml...............................................................Passed
+check toml...............................................................Passed
+check json...............................................................Passed
+fix end of files.........................................................Passed
+trim trailing whitespace.................................................Passed
+check for merge conflicts................................................Passed
+check python ast.........................................................Passed
+Lint Dockerfiles.........................................................Passed
+shellcheck...............................................................Passed
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpuwUNrs` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

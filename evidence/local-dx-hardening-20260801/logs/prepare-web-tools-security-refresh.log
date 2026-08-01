@@ -1,0 +1,10 @@
+$ uv lock --upgrade-package nltk==3.10.0 --upgrade-package pillow==12.3.0
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Resolved 205 packages in 193ms
+Updated nltk v3.9.4 -> v3.10.0
+Updated pillow v12.2.0 -> v12.3.0

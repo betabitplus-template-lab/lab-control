@@ -1,0 +1,38 @@
+$ uv run --no-sync ipython --no-banner --quick --colors=NoColor -c %run -m workbench.visual_annotation.box_annotation
+
+[stdout]
+✓ [direnv] Automatically loaded environment variables from .envrc (e.g. PY_LIB_PROJECT_ENV_PREFIX...)
+────────────────────────── What This Demo Is Proving ───────────────────────────
+- Confirms that the local supervision/OpenCV drawing stack can render boxes
+- on the shared image fixture without importing the shipped package.
+──────────────────────── What Success Should Look Like ─────────────────────────
+- If normalized boxes are scaled to pixels, then supervision receives
+- concrete `xyxy` coordinates.
+- If the annotators run, then the returned image keeps the fixture size.
+─────────────────────────────────── Scenario ───────────────────────────────────
+Drawing two labeled boxes with supervision.
+─────────────────────────────── Observed Drawing ───────────────────────────────
+The dependency seam returned image evidence.
+{
+  "box_count": 2,
+  "input_size": [
+    515,
+    333
+  ],
+  "output_image": "workbench/.outputs/visual_annotation/box_annotation.png",
+  "output_size": [
+    515,
+    333
+  ]
+}
+Image preview available:
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-par
+ity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/
+visual-annotation/workbench/.outputs/visual_annotation/box_annotation.png
+────────────────────────── Why This Counts As Success ──────────────────────────
+Box annotation dependencies can render the slice.
+
+
+[stderr]
+[0mdirenv: loading ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/visual-annotation/.envrc
+[0mdirenv: export +PYTHONPATH +PY_LIB_PROJECT_ENV_PREFIX ~PATH

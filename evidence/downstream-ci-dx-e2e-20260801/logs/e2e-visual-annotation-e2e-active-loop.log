@@ -1,0 +1,38 @@
+$ uv run --no-sync python scripts/reproduce_running_loop.py tests.visual_annotation.e2e.box_annotation.test_box_pipeline
+
+[stdout]
+────────────────────────── What This Demo Is Proving ───────────────────────────
+- Verifies that the public annotation entrypoint draws labeled boxes on an
+- image and returns public response metadata.
+──────────────────────── What Success Should Look Like ─────────────────────────
+- If labeled boxes are annotated, then the response reports the element count.
+- If labeled boxes are annotated, then the output image keeps the input size.
+- If labeled boxes are annotated, then the output image differs from the input.
+─────────────────────────────────── Scenario ───────────────────────────────────
+Annotating the shared image fixture with two labeled boxes.
+- image: test_image.png
+────────────────────────────── Observed Response ───────────────────────────────
+The public response matched the contract.
+{
+  "element_count": 2,
+  "output_image_mode": "RGB",
+  "output_image_size": [
+    515,
+    333
+  ]
+}
+─────────────────────────────── Annotated Result ───────────────────────────────
+Saved the annotated image for visual review.
+- output:
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-par
+ity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/
+visual-annotation/tests/.outputs/visual_annotation/box_annotation.png
+Image preview available:
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-par
+ity-20260801/lab-control/evidence/downstream-ci-dx-e2e-20260801/_work/consumers/
+visual-annotation/tests/.outputs/visual_annotation/box_annotation.png
+────────────────────────── Why This Counts As Success ──────────────────────────
+The annotated image changed while preserving size.
+
+
+[stderr]
