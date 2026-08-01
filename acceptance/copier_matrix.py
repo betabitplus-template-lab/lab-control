@@ -5,6 +5,7 @@ import json
 import os
 import stat
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -51,6 +52,14 @@ def commit(repo: Path, message: str) -> None:
 
 def executable(path: Path) -> bool:
     return bool(path.stat().st_mode & stat.S_IXUSR)
+
+
+def git_index_mode(repo: Path, relative: str) -> str:
+    result = git(repo, "ls-files", "--stage", "--", relative, capture=True)
+    fields = result.stdout.strip().split()
+    if len(fields) < 4:
+        raise RuntimeError(f"Git index does not contain {relative}")
+    return fields[0]
 
 
 def make_template(root: Path) -> Path:
@@ -102,6 +111,11 @@ def make_template(root: Path) -> Path:
         0o755,
     )
     write(
+        template / "template" / "scripts" / "new-managed-tool.sh",
+        "#!/usr/bin/env bash\nset -euo pipefail\nprintf 'managed tool\\n'\n",
+        0o755,
+    )
+    write(
         template / "template" / "user-owned" / "seed.txt",
         "template seed v2\n",
     )
@@ -130,6 +144,7 @@ def copy_at(template: Path, destination: Path, ref: str = "v0.1.0") -> None:
     git(destination, "init", "-b", "main")
     git(destination, "config", "user.name", "downstream")
     git(destination, "config", "user.email", "downstream@example.invalid")
+    git(destination, "config", "core.fileMode", "true")
     commit(destination, "initial generated state")
 
 
@@ -150,7 +165,11 @@ def update(destination: Path, ref: str, check: bool = True):
 
 
 def main() -> None:
-    results: dict[str, object] = {}
+    copier_version = run("copier", "--version", capture=True).stdout.strip()
+    results: dict[str, object] = {
+        "copier_version": copier_version,
+        "python_version": f"{sys.version_info.major}.{sys.version_info.minor}",
+    }
     with tempfile.TemporaryDirectory(prefix="copier-matrix-") as td:
         root = Path(td)
         template = make_template(root)
@@ -186,6 +205,13 @@ def main() -> None:
         results["executable_bit_update"] = (
             executable(clean / "mode.sh") if os.name != "nt" else True
         )
+        git(clean, "add", "scripts/new-managed-tool.sh")
+        results["new_executable_index_mode"] = git_index_mode(
+            clean, "scripts/new-managed-tool.sh"
+        )
+        results["controlled_new_executable_mode"] = (
+            results["new_executable_index_mode"] == "100755"
+        )
         answers = (clean / ".copier-answers.yml").read_text(encoding="utf-8")
         results["answers_updated"] = "v0.2.0" in answers
         results["new_question_with_default"] = "feature_name" in answers
@@ -206,6 +232,18 @@ def main() -> None:
         required_run = update(required, "v0.3.0", check=False)
         results["required_question_without_default_fails"] = (
             required_run.returncode != 0
+        )
+
+        file_mode_false = root / "file-mode-false"
+        copy_at(template, file_mode_false)
+        git(file_mode_false, "config", "core.fileMode", "false")
+        update(file_mode_false, "v0.2.0")
+        git(file_mode_false, "add", "scripts/new-managed-tool.sh")
+        results["file_mode_false_new_executable_index_mode"] = git_index_mode(
+            file_mode_false, "scripts/new-managed-tool.sh"
+        )
+        results["file_mode_false_negative_control"] = (
+            results["file_mode_false_new_executable_index_mode"] == "100644"
         )
 
         workspace = root / "workspace"
@@ -241,6 +279,8 @@ def main() -> None:
         "deleted_file",
         "rename",
         "executable_bit_update",
+        "controlled_new_executable_mode",
+        "file_mode_false_negative_control",
         "answers_updated",
         "new_question_with_default",
         "true_conflict_markers",
