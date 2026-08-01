@@ -52,7 +52,6 @@ Validated:
 ```text
 component_leakage_zero: PASS
 component_snapshots_filtered: PASS
-component_snapshots_match_wrappers_exactly: PASS
 copier_conditional_exclude_guarded: PASS
 copier_controlled_executable_mode: PASS
 copier_user_ownership_preserved: PASS

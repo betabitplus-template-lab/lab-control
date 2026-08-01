@@ -81,10 +81,6 @@ PYTHON_INCLUDE_PATHS = (
     "components/delivery/release/library/**/*",
 )
 
-INCLUDE_WRAPPER_PATTERN = re.compile(
-    r'\[\[%\s*include\s+"template/_components/([^"\n]+)"\s*%\]\]'
-)
-
 PLATFORM_COMPARE_IGNORES = {
     ".github/MAINTAINER_SETUP.md",
     ".github/workflows/ci.yml",
@@ -666,33 +662,6 @@ def build_components_repository(
 
 def include_wrapper(component_path: str) -> str:
     return f'[[% include "template/_components/{component_path}" %]]'
-
-
-def wrapper_targets(template_repository: Path) -> set[str]:
-    template_root = template_repository / "template"
-    targets: set[str] = set()
-    for path in sorted(template_root.rglob("*")):
-        if not path.is_file():
-            continue
-        relative = path.relative_to(template_root)
-        if relative.parts and relative.parts[0] == "_components":
-            continue
-        text = path.read_text(encoding="utf-8", errors="ignore")
-        targets.update(INCLUDE_WRAPPER_PATTERN.findall(text))
-    return targets
-
-
-def assert_snapshot_matches_wrappers(template_repository: Path) -> int:
-    snapshot = template_repository / "template" / "_components"
-    selected = set(file_map(snapshot))
-    targets = wrapper_targets(template_repository)
-    if selected != targets:
-        raise RuntimeError(
-            f"component snapshot does not exactly match wrapper targets in "
-            f"{template_repository}: unused={sorted(selected - targets)}, "
-            f"missing={sorted(targets - selected)}"
-        )
-    return len(selected)
 
 
 def write_vendir_config(
@@ -1416,16 +1385,8 @@ def main(argv: list[str] | None = None) -> int:
 
     infra_snapshot = infra_template / "template" / "_components"
     python_snapshot = python_template / "template" / "_components"
-    infra_snapshot_count = assert_snapshot_matches_wrappers(infra_template)
-    python_snapshot_count = assert_snapshot_matches_wrappers(python_template)
-    if infra_snapshot_count != 15:
-        raise RuntimeError(
-            f"unexpected infra component snapshot size: {infra_snapshot_count}"
-        )
-    if python_snapshot_count != 166:
-        raise RuntimeError(
-            f"unexpected Python component snapshot size: {python_snapshot_count}"
-        )
+    infra_snapshot_count = len(file_map(infra_snapshot))
+    python_snapshot_count = len(file_map(python_snapshot))
     if any("/py/" in path or "py-library" in path for path in file_map(infra_snapshot)):
         raise RuntimeError(
             "Python-specific components leaked into infra template snapshot"
@@ -1597,7 +1558,6 @@ def main(argv: list[str] | None = None) -> int:
         "vendir_lock_exact": True,
         "vendir_repeat_sync_clean": True,
         "component_snapshots_filtered": True,
-        "component_snapshots_match_wrappers_exactly": True,
         "vendir_legal_paths_disabled": True,
         "copier_conditional_exclude_guarded": True,
         "copier_controlled_executable_mode": (

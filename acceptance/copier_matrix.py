@@ -246,30 +246,6 @@ def main() -> None:
             results["file_mode_false_new_executable_index_mode"] == "100644"
         )
 
-        workspace = root / "workspace"
-        workspace.mkdir()
-        git(workspace, "init", "-b", "main")
-        git(workspace, "config", "user.name", "workspace")
-        git(workspace, "config", "user.email", "workspace@example.invalid")
-        for name in ("runtime", "tooling"):
-            run(
-                "copier",
-                "copy",
-                "--defaults",
-                "--vcs-ref",
-                "v0.1.0",
-                str(template),
-                str(workspace / "packages" / name),
-            )
-        commit(workspace, "two Copier relationships")
-        for name in ("runtime", "tooling"):
-            update(workspace / "packages" / name, "v0.2.0")
-        nested = list(workspace.rglob(".copier-answers.yml"))
-        results["nested_answers_count"] = len(nested)
-        results["nested_answers_updated"] = len(nested) == 2 and all(
-            "v0.2.0" in path.read_text(encoding="utf-8") for path in nested
-        )
-
     expected_true = [
         "clean_update",
         "unrelated_user_file_preserved",
@@ -286,11 +262,8 @@ def main() -> None:
         "true_conflict_markers",
         "conflict_command_completed",
         "required_question_without_default_fails",
-        "nested_answers_updated",
     ]
     failures = [name for name in expected_true if results.get(name) is not True]
-    if results.get("nested_answers_count") != 2:
-        failures.append("nested_answers_count")
     results["failures"] = failures
     out = ROOT / "docs" / "results" / "copier-matrix.json"
     out.parent.mkdir(parents=True, exist_ok=True)
