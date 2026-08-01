@@ -1,5 +1,5 @@
 {
-  "action_pin_count": 7,
+  "action_pin_count": 18,
   "checks": {
     "actual_tool_versions_exact": true,
     "cited_workflow_actions_immutable": true,
@@ -9,6 +9,7 @@
     "hardening_evidence_consistent": true,
     "legal_files_explicitly_owned": true,
     "pull_request_token_boundary": true,
+    "selected_snapshots_match_wrappers_exactly": true,
     "vendir_selection_contract_exact": true,
     "wrapper_targets_exist_and_are_declared": true
   },

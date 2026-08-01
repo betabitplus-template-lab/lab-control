@@ -61,23 +61,28 @@ INFRA_ROOT_ENTRIES = {
     "README.md",
 }
 
-INFRA_COMPONENTS = (
-    "agents/base",
-    "repository/base",
-    "repository/copier",
+INFRA_INCLUDE_PATHS = (
+    "components/agents/base/**/*",
+    "components/repository/base/**/*",
+    "components/repository/copier/**/*",
 )
 
-PYTHON_COMPONENTS = (
-    "agents/base",
-    "agents/py-library",
-    "repository/base",
-    "repository/copier",
-    "project/py/base",
-    "project/py/library",
-    "quality/py",
-    "delivery/updates",
-    "delivery/ci/py-library",
-    "delivery/release/library",
+PYTHON_INCLUDE_PATHS = (
+    "components/agents/base/**/*",
+    "components/agents/py-library/**/*",
+    "components/repository/base/template/.editorconfig",
+    "components/repository/base/template/LICENSE",
+    "components/repository/copier/**/*",
+    "components/project/py/base/**/*",
+    "components/project/py/library/**/*",
+    "components/quality/py/**/*",
+    "components/delivery/updates/**/*",
+    "components/delivery/ci/py-library/**/*",
+    "components/delivery/release/library/**/*",
+)
+
+INCLUDE_WRAPPER_PATTERN = re.compile(
+    r'\[\[%\s*include\s+"template/_components/([^"\n]+)"\s*%\]\]'
 )
 
 PLATFORM_COMPARE_IGNORES = {
@@ -663,15 +668,42 @@ def include_wrapper(component_path: str) -> str:
     return f'[[% include "template/_components/{component_path}" %]]'
 
 
+def wrapper_targets(template_repository: Path) -> set[str]:
+    template_root = template_repository / "template"
+    targets: set[str] = set()
+    for path in sorted(template_root.rglob("*")):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(template_root)
+        if relative.parts and relative.parts[0] == "_components":
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        targets.update(INCLUDE_WRAPPER_PATTERN.findall(text))
+    return targets
+
+
+def assert_snapshot_matches_wrappers(template_repository: Path) -> int:
+    snapshot = template_repository / "template" / "_components"
+    selected = set(file_map(snapshot))
+    targets = wrapper_targets(template_repository)
+    if selected != targets:
+        raise RuntimeError(
+            f"component snapshot does not exactly match wrapper targets in "
+            f"{template_repository}: unused={sorted(selected - targets)}, "
+            f"missing={sorted(targets - selected)}"
+        )
+    return len(selected)
+
+
 def write_vendir_config(
     template_repository: Path,
     components_repository: Path,
     ref: str,
-    components: Sequence[str],
+    include_paths: Sequence[str],
 ) -> None:
     url = components_repository.resolve().as_uri()
-    include_paths = "\n".join(
-        f"          - components/{component}/**/*" for component in components
+    rendered_include_paths = "\n".join(
+        f"          - {include_path}" for include_path in include_paths
     )
     content = f"""apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
@@ -683,7 +715,7 @@ directories:
           url: {url}
           ref: {ref}
         includePaths:
-{include_paths}
+{rendered_include_paths}
         excludePaths:
           - .git
           - .git/**/*
@@ -731,7 +763,9 @@ def create_python_template_repository(
     pyproject_wrapper = "".join(include_wrapper(path) for path in pyproject_includes)
     write(template_root / "pyproject.toml", pyproject_wrapper)
 
-    write_vendir_config(repository, components_repository, "v0.1.0", PYTHON_COMPONENTS)
+    write_vendir_config(
+        repository, components_repository, "v0.1.0", PYTHON_INCLUDE_PATHS
+    )
     vendir_sync(repository, vendir)
     commit(repository, "python template v0.1.0", tag="v0.1.0")
 
@@ -804,7 +838,9 @@ def create_infra_template_repository(
         "# [[[ project_title ]]]\n\nInfrastructure repository `[[[ github_owner ]]]/[[[ repository_name ]]]`.\n",
     )
 
-    write_vendir_config(repository, components_repository, "v0.1.0", INFRA_COMPONENTS)
+    write_vendir_config(
+        repository, components_repository, "v0.1.0", INFRA_INCLUDE_PATHS
+    )
     vendir_sync(repository, vendir)
     commit(repository, "infra template v0.1.0", tag="v0.1.0")
 
@@ -815,9 +851,9 @@ def update_template_components(
     ref: str,
     template_tag: str,
     vendir: Path,
-    components: Sequence[str],
+    include_paths: Sequence[str],
 ) -> str:
-    write_vendir_config(repository, components_repository, ref, components)
+    write_vendir_config(repository, components_repository, ref, include_paths)
     vendir_sync(repository, vendir)
     return commit(repository, f"components {ref}", tag=template_tag)
 
@@ -1047,13 +1083,13 @@ def yaml_lock_sha(template_repository: Path) -> str:
 
 
 def assert_selective_vendir_config(
-    template_repository: Path, components: Sequence[str]
+    template_repository: Path, include_paths: Sequence[str]
 ) -> None:
     data = yaml.safe_load(
         (template_repository / "vendir.yml").read_text(encoding="utf-8")
     )
     content = data["directories"][0]["contents"][0]
-    expected = [f"components/{component}/**/*" for component in components]
+    expected = list(include_paths)
     if content.get("includePaths") != expected:
         raise RuntimeError(
             f"unexpected includePaths in {template_repository}: "
@@ -1290,8 +1326,8 @@ def main(argv: list[str] | None = None) -> int:
         vendir,
     )
 
-    assert_selective_vendir_config(infra_template, INFRA_COMPONENTS)
-    assert_selective_vendir_config(python_template, PYTHON_COMPONENTS)
+    assert_selective_vendir_config(infra_template, INFRA_INCLUDE_PATHS)
+    assert_selective_vendir_config(python_template, PYTHON_INCLUDE_PATHS)
     assert_no_platform_mechanisms(infra_template)
     assert_no_platform_mechanisms(python_template)
 
@@ -1380,11 +1416,15 @@ def main(argv: list[str] | None = None) -> int:
 
     infra_snapshot = infra_template / "template" / "_components"
     python_snapshot = python_template / "template" / "_components"
-    infra_snapshot_count = len(file_map(infra_snapshot))
-    python_snapshot_count = len(file_map(python_snapshot))
+    infra_snapshot_count = assert_snapshot_matches_wrappers(infra_template)
+    python_snapshot_count = assert_snapshot_matches_wrappers(python_template)
     if infra_snapshot_count != 15:
         raise RuntimeError(
             f"unexpected infra component snapshot size: {infra_snapshot_count}"
+        )
+    if python_snapshot_count != 166:
+        raise RuntimeError(
+            f"unexpected Python component snapshot size: {python_snapshot_count}"
         )
     if any("/py/" in path or "py-library" in path for path in file_map(infra_snapshot)):
         raise RuntimeError(
@@ -1406,7 +1446,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.2.0",
         "v0.2.0",
         vendir,
-        INFRA_COMPONENTS,
+        INFRA_INCLUDE_PATHS,
     )
     python_v2_commit = update_template_components(
         python_template,
@@ -1414,7 +1454,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.2.0",
         "v0.2.0",
         vendir,
-        PYTHON_COMPONENTS,
+        PYTHON_INCLUDE_PATHS,
     )
     if yaml_lock_sha(infra_template) != component_meta["v0.2.0"]:
         raise RuntimeError("infra Vendir lock does not match components v0.2.0")
@@ -1487,7 +1527,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.3.0",
         "v0.3.0",
         vendir,
-        INFRA_COMPONENTS,
+        INFRA_INCLUDE_PATHS,
     )
     update_template_components(
         python_template,
@@ -1495,7 +1535,7 @@ def main(argv: list[str] | None = None) -> int:
         "v0.3.0",
         "v0.3.0",
         vendir,
-        PYTHON_COMPONENTS,
+        PYTHON_INCLUDE_PATHS,
     )
     if yaml_lock_sha(infra_template) != component_meta["v0.3.0"]:
         raise RuntimeError("infra Vendir lock does not match components v0.3.0")
@@ -1557,6 +1597,7 @@ def main(argv: list[str] | None = None) -> int:
         "vendir_lock_exact": True,
         "vendir_repeat_sync_clean": True,
         "component_snapshots_filtered": True,
+        "component_snapshots_match_wrappers_exactly": True,
         "vendir_legal_paths_disabled": True,
         "copier_conditional_exclude_guarded": True,
         "copier_controlled_executable_mode": (

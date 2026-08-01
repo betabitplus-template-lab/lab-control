@@ -17,7 +17,7 @@ Status: **PASS**
 ```text
 component source files        171
 infra snapshot files          15
-Python snapshot files         168
+Python snapshot files         166
 Python output owners          163
 infra rendered files          17
 Python rendered files         163
@@ -52,6 +52,7 @@ Validated:
 ```text
 component_leakage_zero: PASS
 component_snapshots_filtered: PASS
+component_snapshots_match_wrappers_exactly: PASS
 copier_conditional_exclude_guarded: PASS
 copier_controlled_executable_mode: PASS
 copier_user_ownership_preserved: PASS

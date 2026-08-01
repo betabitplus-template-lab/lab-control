@@ -10,7 +10,8 @@ directories:
         includePaths:
           - components/agents/base/**/*
           - components/agents/py-library/**/*
-          - components/repository/base/**/*
+          - components/repository/base/template/.editorconfig
+          - components/repository/base/template/LICENSE
           - components/repository/copier/**/*
           - components/project/py/base/**/*
           - components/project/py/library/**/*
