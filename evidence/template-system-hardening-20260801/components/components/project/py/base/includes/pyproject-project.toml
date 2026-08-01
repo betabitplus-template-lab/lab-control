@@ -1,0 +1,36 @@
+# ==============================================================================
+# Build System Configuration
+# ==============================================================================
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [ "setuptools>=82.0.1" ]
+
+# ==============================================================================
+# Project Metadata
+# ==============================================================================
+[project]
+name = "[[[ project_name ]]]"
+version = "[[[ initial_version ]]]"
+description = "[[[ project_description ]]]"
+readme = "README.md"
+keywords = [ "library", "python" ]
+license = "MIT"
+authors = [ { name = "[[[ author_name ]]]", email = "[[[ author_email ]]]" } ]
+requires-python = ">=3.13"
+classifiers = [
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+]
+# --- Main Dependencies ---
+dependencies = [
+  "py-lib-runtime @ git+https://github.com/betabitplus-template-lab/sandbox-ternforge-tooling-py-runtime-20260717-r2.git@a4fa84809aa9c5aced3c0a367b23fbcc7f5466d0",
+]
+# --- Project URLs ---
+urls."Bug Tracker" = "https://github.com/[[[ github_owner ]]]/[[[ repository_name ]]]/issues"
+urls.Documentation = "https://github.com/[[[ github_owner ]]]/[[[ repository_name ]]]/tree/main/docs"
+urls.Homepage = "https://github.com/[[[ github_owner ]]]/[[[ repository_name ]]]"
+urls.Repository = "https://github.com/[[[ github_owner ]]]/[[[ repository_name ]]]"
+

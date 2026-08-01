@@ -1,0 +1,11 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: shared component update
+      sha: 3a5465a217f8b29535a5b73063363f0374a0021e
+      tags:
+      - v0.3.0
+    path: .
+  path: template/_components
+kind: LockConfig

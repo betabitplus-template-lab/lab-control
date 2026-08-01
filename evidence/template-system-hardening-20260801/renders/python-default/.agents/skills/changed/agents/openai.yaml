@@ -1,0 +1,6 @@
+interface:
+  display_name: "Changed"
+  short_description: "Realign with local user changes"
+  default_prompt: "Use $changed to inspect the current workspace, refresh your assumptions, and continue without undoing intentional user edits."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,1 @@
+[[% include "template/_components/components/project/py/base/template/scripts/env/doctor.sh" %]]

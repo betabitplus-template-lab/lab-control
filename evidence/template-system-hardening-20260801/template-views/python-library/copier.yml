@@ -1,0 +1,141 @@
+_min_copier_version: "9.17.0"
+_subdirectory: template
+_answers_file: .copier-answers.yml
+_templates_suffix: ""
+_envops:
+  undefined: jinja2.StrictUndefined
+  variable_start_string: "[[["
+  variable_end_string: "]]]"
+  block_start_string: "[[%"
+  block_end_string: "%]]"
+  comment_start_string: "[[#"
+  comment_end_string: "#]]"
+  trim_blocks: true
+  lstrip_blocks: true
+_exclude:
+  - _components
+  - _components/**
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]src/**[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]tests/**[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]docs/**[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]examples/**[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]workbench/**[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]README.md[[% endif %]]"
+  - "[[% if _copier_operation == 'update' or (ternforge_recopy_audit | default(false)) -%]]CHANGELOG.md[[% endif %]]"
+
+project_name:
+  type: str
+  help: Python distribution name.
+  default: sample-lib
+
+package_name:
+  type: str
+  help: Importable top-level package name.
+  default: "[[[ project_name|replace('-', '_') ]]]"
+
+project_slug:
+  type: str
+  help: Lowercase slug used in docs, CI image names, and import-linter contract ids.
+  default: "[[[ project_name|lower ]]]"
+
+project_title:
+  type: str
+  help: Human-readable project name for docs and UI labels.
+  default: "[[[ project_name|replace('-', ' ')|title ]]]"
+
+project_title_lower:
+  type: str
+  help: Lowercase human-readable project name for prose.
+  default: "[[[ project_name|replace('-', ' ')|lower ]]]"
+
+project_description:
+  type: str
+  help: Short package description for pyproject metadata.
+  default: A reusable Python library.
+
+initial_version:
+  type: str
+  help: Initial package version for generated projects.
+  default: 0.1.0
+
+author_name:
+  type: str
+  help: Package author or maintainer name.
+  default: betabitplus
+
+author_email:
+  type: str
+  help: Package author or maintainer email.
+  default: 8123085+betabitplus@users.noreply.github.com
+
+copyright_year:
+  type: str
+  help: Copyright year rendered into LICENSE.
+  default: "2026"
+
+github_owner:
+  type: str
+  help: GitHub owner or organization.
+  default: betabitplus
+
+repository_name:
+  type: str
+  help: GitHub repository name.
+  default: "[[[ project_name ]]]"
+
+library_lane:
+  type: str
+  help: Platform lane for template, tooling, and policy checks.
+  choices:
+    - standard-lib
+  default: standard-lib
+
+env_prefix:
+  type: str
+  help: Uppercase environment variable prefix.
+  default: "[[[ package_name|upper ]]]"
+
+error_class_name:
+  type: str
+  help: Public package base exception class name.
+  default: SampleLibError
+
+config_class_name:
+  type: str
+  help: Public runtime config class name.
+  default: SampleLibConfig
+
+e2e_slices:
+  type: yaml
+  help: CI e2e slices to run as hermetic pytest paths.
+  default:
+    - name: public-boundary
+      path: tests/__PACKAGE_NAME__/e2e/public_boundary
+
+ci_playwright_browsers:
+  type: yaml
+  help: Playwright browser names to install in CI before browser-backed tests.
+  default: []
+
+renovate_uv_ignored_updates:
+  type: yaml
+  help: Renovate uv dependency update rules to ignore. Each entry uses package_name and Renovate update_types such as major, minor, or patch.
+  default: []
+
+gitignore_extra_patterns:
+  type: yaml
+  help: Repo-specific .gitignore patterns allowed beyond the starter baseline.
+  default: []
+
+workspace_python_paths:
+  type: yaml
+  help: Python source paths used by shared editor and environment configuration.
+  default:
+    - src
+
+workspace_test_paths:
+  type: yaml
+  help: Pytest paths used by shared editor and devcontainer configuration.
+  default:
+    - tests
+

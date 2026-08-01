@@ -1,0 +1,1 @@
+[[% include "template/_components/components/agents/py-library/template/.agents/skills/plan-internal-from-contract/references/protocol/05-final-state-and-pass-criteria.md" %]]

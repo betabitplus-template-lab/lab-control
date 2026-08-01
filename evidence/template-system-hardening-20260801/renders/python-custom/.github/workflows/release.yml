@@ -1,0 +1,16 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    uses: betabitplus/ternforge-infra-ci/.github/workflows/release.yml@1111111111111111111111111111111111111111 # lab contract placeholder
+    with:
+      release-type: python
+    secrets: inherit

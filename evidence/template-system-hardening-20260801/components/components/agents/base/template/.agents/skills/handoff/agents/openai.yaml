@@ -1,0 +1,6 @@
+interface:
+  display_name: "Handoff"
+  short_description: "Write a clear HANDOFF.md file"
+  default_prompt: "Use $handoff to write a complete HANDOFF.md for the current project state."
+policy:
+  allow_implicit_invocation: false

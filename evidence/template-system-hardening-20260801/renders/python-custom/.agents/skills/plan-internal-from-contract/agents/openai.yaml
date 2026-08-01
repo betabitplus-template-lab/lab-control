@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan `_internal` From Contract"
+  short_description: "Create `_internal` implementation plans"
+  default_prompt: "Use $plan-internal-from-contract to create a detailed implementation plan for src/<package_name>/_internal from the current _api, optional _support, docs, workbench, and tests."

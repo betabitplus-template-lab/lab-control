@@ -1,0 +1,9 @@
+[tool.setuptools]
+# Package discovery is scoped to `src/`; keep non-package code outside `src/`.
+packages.find.where = [ "src" ]
+packages.find.include = [ "*" ]
+# ==============================================================================
+# Setuptools Configuration
+# ==============================================================================
+package-dir."" = "src"
+
