@@ -10,8 +10,6 @@
   "file_mode_false_negative_control": true,
   "file_mode_false_new_executable_index_mode": "100644",
   "mixed_nonconflict_preserved": true,
-  "nested_answers_count": 2,
-  "nested_answers_updated": true,
   "new_executable_index_mode": "100755",
   "new_file": true,
   "new_question_with_default": true,
