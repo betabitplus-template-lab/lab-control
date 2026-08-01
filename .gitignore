@@ -2,4 +2,4 @@
 evidence/**/_work/
 
 # Local Python caches.
-experiments/__pycache__/
+experiments/**/__pycache__/

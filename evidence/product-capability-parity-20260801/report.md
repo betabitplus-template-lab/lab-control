@@ -4,6 +4,10 @@
 
 PASS. Every inventoried legacy capability has exactly one accepted disposition, split packages pass independent acceptance, and all four frozen downstream suites retain exact results after the atomic migration.
 
+## Reproducibility inputs
+
+The unresolved 73-row capability inventory, the frozen structural inventory, and the extractor that produced it are committed under `experiments/product-capability-parity/`. The structural snapshot records the exact `betabit-notes`, `py-lib-starter`, and `lab-control` revisions used by this experiment.
+
 ## Capability dispositions
 
 | Disposition | Count |

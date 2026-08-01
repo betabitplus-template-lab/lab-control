@@ -13,8 +13,26 @@ uv run --python 3.13 --with PyYAML python \
   --runtime ../runtime-prototype \
   --policy ../policy-prototype \
   --testkit ../testkit-prototype \
-  --inventory ../capability_matrix.json \
+  --inventory experiments/product-capability-parity/capability_matrix.json \
   --output evidence/product-capability-parity-20260801
+```
+
+The experiment inputs are committed with the runner:
+
+* `capability_matrix.json` — the 73-row unresolved capability inventory passed
+  to `prepare`;
+* `legacy-inventory.json` — the frozen structural inventory from which the
+  capability review was derived;
+* `inventory_extract.py` — the reproducible extractor for that structural
+  snapshot.
+
+Regenerate the structural inventory when the sibling repositories are checked
+out at the recorded revisions:
+
+```bash
+uv run --python 3.13 python experiments/product-capability-parity/inventory_extract.py \
+  --workspace .. \
+  --output /tmp/ternforge-legacy-inventory.json
 ```
 
 For each frozen consumer, record the unchanged baseline and then validate the
