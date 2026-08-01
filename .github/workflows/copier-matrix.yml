@@ -21,17 +21,25 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Mint isolated lab token
+        if: github.event_name != 'pull_request'
         id: app-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           app-id: ${{ secrets.LAB_APP_ID }}
           private-key: ${{ secrets.LAB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-      - uses: actions/checkout@v6.0.3
+      - name: Checkout pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          fetch-depth: 0
+      - name: Checkout trusted run
+        if: github.event_name != 'pull_request'
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.13"
       - name: Install pinned Copier
@@ -48,7 +56,7 @@ jobs:
           printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
           exit "$status"
       - name: Persist result from Linux lane
-        if: always() && matrix.os == 'ubuntu-latest'
+        if: always() && matrix.os == 'ubuntu-latest' && github.event_name != 'pull_request'
         env:
           OUTCOME: ${{ steps.matrix-run.outcome }}
           EXIT_STATUS: ${{ steps.matrix-run.outputs.status }}
@@ -74,9 +82,8 @@ jobs:
             git commit -m "docs: record Copier update matrix"
             git push origin HEAD:main
           fi
-          test "$OUTCOME" = success
-      - name: Enforce macOS result
-        if: always() && matrix.os == 'macos-latest'
+      - name: Enforce matrix result
+        if: always()
         env:
           OUTCOME: ${{ steps.matrix-run.outcome }}
         run: test "$OUTCOME" = success

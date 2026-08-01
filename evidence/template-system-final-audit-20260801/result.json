@@ -1,0 +1,29 @@
+{
+  "action_pin_count": 7,
+  "checks": {
+    "actual_tool_versions_exact": true,
+    "cited_workflow_actions_immutable": true,
+    "component_path_negative_fixture_detected": true,
+    "component_source_paths_stable": true,
+    "cross_platform_new_executable_matrix": true,
+    "hardening_evidence_consistent": true,
+    "legal_files_explicitly_owned": true,
+    "pull_request_token_boundary": true,
+    "vendir_selection_contract_exact": true,
+    "wrapper_targets_exist_and_are_declared": true
+  },
+  "component_path_count": 274,
+  "infra_wrapper_target_count": 15,
+  "matrix_modes": {
+    "controlled": "100755",
+    "core_file_mode_false": "100644"
+  },
+  "python_wrapper_target_count": 166,
+  "status": "passed",
+  "versions": {
+    "copier": "9.17.0",
+    "python": "3.13",
+    "uv": "0.12.0",
+    "vendir": "0.46.0"
+  }
+}
