@@ -1,0 +1,7 @@
+$ uvx --from copier==9.17.0 copier update --trust --defaults --vcs-ref v0.1.2
+
+[stdout]
+
+
+[stderr]
+Updating to template version 0.1.2

@@ -1,0 +1,21 @@
+$ bash scripts/env/doctor.sh
+
+[stdout]
+Reddit Scraper contributor doctor
+Repo: /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper
+
+[PASS] Found git
+[PASS] Found uv
+[PASS] Found direnv
+[PASS] Project virtualenv exists
+[PASS] Project Python is 3.13+
+[PASS] uv.lock matches pyproject.toml
+[PASS] Found sops
+[PASS] Declared secrets decrypt and load
+[PASS] Git hooks are installed
+[WARN] GitHub CLI is not authenticated.
+
+Summary: 9 passed, 1 warnings, 0 failed
+
+
+[stderr]

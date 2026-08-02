@@ -1,0 +1,102 @@
+$ uv run --no-sync ipython --no-banner --quick --colors=NoColor -c %run -m workbench.reddit_scraper.search.global_query
+
+[stdout]
+────────────────────────── What This Demo Is Proving ───────────────────────────
+- Proves the core global search flow with direct Reddit JSON requests,
+- independent from the shipped scraper runtime.
+──────────────────────── What Success Should Look Like ─────────────────────────
+- If the global query returns results, then the evidence includes a positive
+- result count.
+- If sampled post results are present, then each sample keeps title,
+- subreddit, and permalink evidence.
+─────────────────────────────────── Scenario ───────────────────────────────────
+Running one live global search through Reddit JSON.
+- query: Avengers: Doomsday
+- limit: 5
+- proxy: off
+---------------------------------------------------------------------------
+HTTPStatusError                           Traceback (most recent call last)
+File <frozen runpy>:226, in run_module(mod_name, init_globals, run_name, alter_sys)
+
+File <frozen runpy>:98, in _run_module_code(code, init_globals, mod_name, mod_spec, pkg_name, script_name)
+
+File <frozen runpy>:88, in _run_code(code, run_globals, init_globals, mod_name, mod_spec, pkg_name, script_name)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/workbench/reddit_scraper/search/global_query.py:174
+    168     console.demo_outcome(
+    169         "The live search flow produced inspectable Reddit result evidence.",
+    170     )
+    173 if __name__ == "__main__":
+--> 174     main()
+    177 # =============================================================================
+    178 # Expected Output
+    179 # =============================================================================
+    180 EXPECTED_OUTPUT = """
+    181 Real run:
+    182 {
+   (...)    187 }
+    188 """.strip()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/workbench/reddit_scraper/search/global_query.py:151, in main()
+    140 proxy = get_proxy()
+    141 console.demo_step(
+    142     "Scenario",
+    143     "Running one live global search through Reddit JSON.",
+   (...)    148     ),
+    149 )
+--> 151 evidence = run_pipeline(proxy=proxy)
+    152 samples = evidence["samples"]
+    153 first_sample = samples[0] if samples else {}
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/workbench/reddit_scraper/search/global_query.py:123, in run_pipeline(proxy)
+    121 def run_pipeline(*, proxy: str | None = None) -> dict[str, Any]:
+    122     """Run the isolated global search behavior."""
+--> 123     results = _search_reddit(
+    124         SEARCH_QUERY,
+    125         limit=SEARCH_LIMIT,
+    126         timeout=DEFAULT_TIMEOUT_SECONDS,
+    127         proxy=proxy,
+    128     )
+    129     return _summarize(results)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/workbench/reddit_scraper/search/global_query.py:74, in _search_reddit(query, limit, timeout, proxy)
+     66 def _search_reddit(
+     67     query: str,
+     68     *,
+   (...)     71     proxy: str | None = None,
+     72 ) -> list[dict[str, Any]]:
+     73     """Run the one global post search this scenario owns."""
+---> 74     payload = fetch_json(
+     75         f"{REDDIT_BASE_URL}/search.json",
+     76         params={
+     77             "limit": limit,
+     78             "q": query,
+     79             "raw_json": 1,
+     80             "sort": "relevance",
+     81             "type": "link",
+     82         },
+     83         timeout=timeout,
+     84         proxy=proxy,
+     85     )
+     86     return _extract_post_results(payload)
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/workbench/reddit_scraper/_reddit_json.py:52, in fetch_json(url, params, timeout, proxy)
+     50 with httpx.Client(**client_kwargs) as client:
+     51     response = client.get(url, params=params)
+---> 52     response.raise_for_status()
+     53     return response.json()
+
+File ~/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/httpx/_models.py:829, in Response.raise_for_status(self)
+    827 error_type = error_types.get(status_class, "Invalid status code")
+    828 message = message.format(self, error_type=error_type)
+--> 829 raise HTTPStatusError(message, request=request, response=self)
+
+HTTPStatusError: Client error '403 Blocked' for url 'https://www.reddit.com/search.json?limit=5&q=Avengers%3A+Doomsday&raw_json=1&sort=relevance&type=link'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpKiAn4p` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+[31mdirenv: error /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/.envrc is blocked. Run `direnv allow` to approve its content[0m
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/.venv/lib/python3.13/site-packages/IPython/core/interactiveshell.py:3084: UserWarning: Unknown failure executing module: <workbench.reddit_scraper.search.global_query>
+  warn('Unknown failure executing module: <%s>' % mod_name)

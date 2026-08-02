@@ -1,0 +1,7 @@
+$ /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/web-tools/.artifact-smoke/web_tools-0.3.7.tar.gz/bin/python -c import web_tools; print(web_tools.__version__)
+
+[stdout]
+0.3.7
+
+
+[stderr]

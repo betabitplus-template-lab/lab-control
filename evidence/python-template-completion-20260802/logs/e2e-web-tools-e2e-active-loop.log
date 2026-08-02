@@ -1,0 +1,50 @@
+$ uv run --no-sync python scripts/reproduce_running_loop.py tests.web_tools.e2e.html_conversion_and_visual_manifest.test_html2md_pipeline
+
+[stdout]
+────────────────────────── What This Demo Is Proving ───────────────────────────
+- Verifies that public fetching and conversion produce Markdown plus stable
+- visual manifest evidence.
+──────────────────────── What Success Should Look Like ─────────────────────────
+- If the public fetch returns page HTML, then the public conversion returns
+- non-empty Markdown.
+- If visual elements are detected, then the serialized response exposes
+- counts and table IDs through public manifest fields.
+─────────────────────────────────── Scenario ───────────────────────────────────
+Fetching a table-heavy page, then converting it to Markdown.
+- URL: https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0
+───────────────────────────── Observed Conversion ──────────────────────────────
+The public response contains Markdown and visual manifest evidence.
+- markdown_length: 4129
+- total_elements: 2
+{
+  "markdown_length": 4129,
+  "markdown_has_content": true,
+  "element_counts": {
+    "picture": 0,
+    "table": 2,
+    "math": 0
+  },
+  "table_ids": [
+    "T_0",
+    "T_1"
+  ],
+  "total_elements": 2,
+  "metadata": {}
+}
+───────────────────── MARKDOWN PREVIEW (first 1000 chars) ──────────────────────
+<IPython.core.display.Markdown object>
+────────────────────────── Why This Counts As Success ──────────────────────────
+This proves fetched HTML can become public Markdown and manifest data.
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpkUjYwg` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+[INIT].... → Crawl4AI 0.9.1
+[MHTML]... ℹ Wait for load state timed out: Timeout 5000ms exceeded.
+=========================== logs ===========================
+"load" event fired
+============================================================
+[EXPORT].. ℹ Exporting media (PDF/MHTML/screenshot) took 5.56s
+[FETCH]... ↓ https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0                                     | ✓ | ⏱: 6.10s
+[SCRAPE].. ◆ https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0                                     | ✓ | ⏱: 0.07s
+[COMPLETE] ● https://w3schoolsua.github.io/html/html_tables_en.html#gsc.tab=0                                     | ✓ | ⏱: 6.21s

@@ -1,0 +1,21 @@
+$ bash scripts/env/doctor.sh
+
+[stdout]
+LLM Router contributor doctor
+Repo: /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/llm-router
+
+[PASS] Found git
+[PASS] Found uv
+[PASS] Found direnv
+[PASS] Project virtualenv exists
+[PASS] Project Python is 3.13+
+[PASS] uv.lock matches pyproject.toml
+[PASS] Found sops
+[PASS] Declared secrets decrypt and load
+[PASS] Git hooks are installed
+[PASS] GitHub CLI is authenticated
+
+Summary: 10 passed, 0 warnings, 0 failed
+
+
+[stderr]

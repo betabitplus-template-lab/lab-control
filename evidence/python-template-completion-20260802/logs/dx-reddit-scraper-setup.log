@@ -1,0 +1,17 @@
+$ bash scripts/env/setup.sh
+
+[stdout]
+Setting up development environment...
+pre-commit installed at .git/hooks/pre-commit
+pre-commit installed at .git/hooks/pre-push
+pre-commit installed at .git/hooks/commit-msg
+pre-commit installed at .git/hooks/post-merge
+pre-commit installed at .git/hooks/post-checkout
+Setup complete. Locked dependencies and configured hook stages are installed.
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpzQalUp` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Resolved 132 packages in 9ms
+Audited 130 packages in 37ms
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpzQalUp` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

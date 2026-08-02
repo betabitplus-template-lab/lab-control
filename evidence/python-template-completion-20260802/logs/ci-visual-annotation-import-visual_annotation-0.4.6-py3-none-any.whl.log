@@ -1,0 +1,7 @@
+$ /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/visual-annotation/.artifact-smoke/visual_annotation-0.4.6-py3-none-any.whl/bin/python -c import visual_annotation; print(visual_annotation.__version__)
+
+[stdout]
+0.4.6
+
+
+[stderr]

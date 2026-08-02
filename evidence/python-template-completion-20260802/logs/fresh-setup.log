@@ -1,0 +1,147 @@
+$ bash scripts/env/setup.sh
+
+[stdout]
+Setting up development environment...
+Creating the initial uv.lock...
+pre-commit installed at .git/hooks/pre-commit
+pre-commit installed at .git/hooks/pre-push
+pre-commit installed at .git/hooks/commit-msg
+pre-commit installed at .git/hooks/post-merge
+pre-commit installed at .git/hooks/post-checkout
+Setup complete. Locked dependencies and configured hook stages are installed.
+
+
+[stderr]
+Using CPython 3.13.7
+Resolved 124 packages in 422ms
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpdnEvNs` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Using CPython 3.13.7
+Creating virtual environment at: .venv
+Resolved 124 packages in 13ms
+   Building sample-lib @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/fresh-final
+      Built sample-lib @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/fresh-final
+Prepared 1 package in 627ms
+Installed 122 packages in 389ms
+ + appnope==0.1.4
+ + argcomplete==3.7.0
+ + asttokens==3.0.2
+ + attrs==26.1.0
+ + bandit==1.9.4
+ + boolean-py==5.0
+ + build==1.5.0
+ + cachecontrol==0.14.4
+ + certifi==2026.7.22
+ + cfgv==3.5.0
+ + charset-normalizer==3.4.9
+ + check-manifest==0.51
+ + click==8.4.2
+ + cognitive-complexity==1.3.0
+ + colorama==0.4.6
+ + comm==0.2.3
+ + commitizen==4.17.0
+ + coverage==7.15.2
+ + cyclonedx-python-lib==11.11.0
+ + debugpy==1.8.21
+ + decli==0.6.3
+ + defusedxml==0.7.1
+ + deprecated==1.3.1
+ + deptry==0.25.1
+ + distlib==0.4.3
+ + execnet==2.1.2
+ + executing==2.2.1
+ + filelock==3.32.2
+ + flake8==7.3.0
+ + flake8-class-attributes-order==0.3.0
+ + flake8-cognitive-complexity==0.1.0
+ + grimp==3.15
+ + hypothesis==6.164.0
+ + identify==2.6.19
+ + idna==3.18
+ + import-linter==2.13
+ + iniconfig==2.3.0
+ + interrogate==1.7.0
+ + ipykernel==7.3.0
+ + ipython==9.16.0
+ + ipython-pygments-lexers==1.1.1
+ + jedi==0.20.0
+ + jinja2==3.1.6
+ + jupyter-client==8.9.1
+ + jupyter-core==5.9.1
+ + license-expression==30.4.4
+ + mando==0.7.1
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + matplotlib-inline==0.2.2
+ + mccabe==0.7.0
+ + mdurl==0.1.2
+ + msgpack==1.2.1
+ + nest-asyncio==1.6.0
+ + nest-asyncio2==1.7.2
+ + nodeenv==1.10.0
+ + packageurl-python==0.17.6
+ + packaging==26.2
+ + parso==0.8.7
+ + pexpect==4.9.0
+ + pillow==12.3.0
+ + pip==26.2
+ + pip-api==0.0.34
+ + pip-audit==2.10.1
+ + pip-requirements-parser==32.0.1
+ + platformdirs==4.11.0
+ + pluggy==1.6.0
+ + pre-commit==4.6.1
+ + prompt-toolkit==3.0.53
+ + psutil==7.2.2
+ + ptyprocess==0.7.0
+ + pure-eval==0.2.3
+ + py==1.11.0
+ + py-lib-policy==0.2.0 (from git+https://github.com/betabitplus-template-lab/sandbox-ternforge-tooling-py-policy-20260717-r2.git@d44737a0887c6bf5d8702d03221845c62e0fed4b)
+ + py-lib-runtime==0.2.0 (from git+https://github.com/betabitplus-template-lab/sandbox-ternforge-tooling-py-runtime-20260717-r2.git@a4fa84809aa9c5aced3c0a367b23fbcc7f5466d0)
+ + py-lib-testkit==0.2.0 (from git+https://github.com/betabitplus-template-lab/sandbox-ternforge-tooling-py-testkit-20260717-r2.git@233ebec6a1106fd1b65b84803019494522338667)
+ + py-serializable==2.1.0
+ + pycodestyle==2.14.0
+ + pyflakes==3.4.0
+ + pygments==2.20.0
+ + pyparsing==3.3.2
+ + pyproject-hooks==1.2.0
+ + pyright==1.1.411
+ + pytest==9.1.1
+ + pytest-cov==7.1.0
+ + pytest-randomly==4.1.0
+ + pytest-recording==0.13.4
+ + pytest-xdist==3.8.0
+ + python-dateutil==2.9.0.post0
+ + python-discovery==1.5.1
+ + pyyaml==6.0.3
+ + pyzmq==27.1.0
+ + questionary==2.1.1
+ + radon==6.0.1
+ + requests==2.34.2
+ + requirements-parser==0.13.1
+ + rich==15.0.0
+ + ruff==0.16.1
+ + sample-lib==0.1.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/fresh-final)
+ + setuptools==83.0.0
+ + six==1.17.0
+ + sortedcontainers==2.4.0
+ + stack-data==0.6.3
+ + stevedore==5.9.0
+ + structlog==26.1.0
+ + syrupy==5.5.3
+ + tabulate==0.10.0
+ + termcolor==3.3.0
+ + tomli==2.4.1
+ + tomli-w==1.2.0
+ + tomlkit==0.15.1
+ + tornado==6.5.7
+ + traitlets==5.16.0
+ + ty==0.0.65
+ + types-pillow==10.2.0.20240822
+ + typing-extensions==4.16.0
+ + urllib3==2.7.0
+ + vcrpy==8.3.0
+ + virtualenv==21.7.1
+ + wcwidth==0.8.2
+ + wheel==0.47.0
+ + wrapt==2.3.0
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpdnEvNs` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

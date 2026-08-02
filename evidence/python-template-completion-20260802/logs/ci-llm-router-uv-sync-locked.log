@@ -1,0 +1,225 @@
+$ uv sync --locked --all-groups
+
+[stdout]
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpSIMi41` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Using CPython 3.13.7
+Creating virtual environment at: .venv
+Resolved 213 packages in 10ms
+   Building llm-router @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/llm-router
+   Building py-lib-policy @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-policy
+   Building py-lib-testkit @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-testkit
+      Built py-lib-testkit @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-testkit
+      Built py-lib-policy @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-policy
+      Built llm-router @ file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/llm-router
+Prepared 3 packages in 672ms
+Installed 207 packages in 1.21s
+ + annotated-types==0.7.0
+ + anyio==4.12.1
+ + appnope==0.1.4
+ + argcomplete==3.6.3
+ + argon2-cffi==25.1.0
+ + argon2-cffi-bindings==25.1.0
+ + arrow==1.4.0
+ + asttokens==3.0.1
+ + async-lru==2.1.0
+ + attrs==25.4.0
+ + babel==2.18.0
+ + bandit==1.9.4
+ + beartype==0.22.9
+ + beautifulsoup4==4.14.3
+ + bleach==6.3.0
+ + boolean-py==5.0
+ + brotli==1.2.0
+ + browser-cookie3==0.20.1
+ + build==1.4.0
+ + cachecontrol==0.14.4
+ + certifi==2026.1.4
+ + cffi==2.0.0
+ + cfgv==3.5.0
+ + charset-normalizer==3.4.4
+ + check-manifest==0.51
+ + click==8.3.1
+ + cognitive-complexity==1.3.0
+ + colorama==0.4.6
+ + comm==0.2.3
+ + commitizen==4.16.4
+ + coverage==7.13.4
+ + cryptography==49.0.0
+ + cyclonedx-python-lib==11.6.0
+ + debugpy==1.8.20
+ + decli==0.6.3
+ + decorator==5.2.1
+ + defusedxml==0.7.1
+ + deprecated==1.3.1
+ + deptry==0.25.1
+ + distlib==0.4.0
+ + distro==1.9.0
+ + execnet==2.1.2
+ + executing==2.2.1
+ + fastjsonschema==2.21.2
+ + filelock==3.20.3
+ + flake8==7.3.0
+ + flake8-class-attributes-order==0.3.0
+ + flake8-cognitive-complexity==0.1.0
+ + fqdn==1.5.1
+ + gemini-webapi==1.19.2
+ + google-auth==2.49.2
+ + google-genai==1.73.1
+ + grimp==3.14
+ + h11==0.16.0
+ + h2==4.3.0
+ + hpack==4.1.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + hyperframe==6.1.0
+ + hypothesis==6.156.1
+ + identify==2.6.16
+ + idna==3.18
+ + import-linter==2.11
+ + iniconfig==2.3.0
+ + interrogate==1.7.0
+ + ipykernel==7.3.0
+ + ipython==9.15.0
+ + ipython-pygments-lexers==1.1.1
+ + ipywidgets==8.1.8
+ + isoduration==20.11.0
+ + jedi==0.19.2
+ + jinja2==3.1.6
+ + jiter==0.11.1
+ + json5==0.13.0
+ + jsonpointer==3.0.0
+ + jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + jupyter==1.1.1
+ + jupyter-client==8.9.1
+ + jupyter-console==6.6.3
+ + jupyter-core==5.9.1
+ + jupyter-events==0.12.0
+ + jupyter-lsp==2.3.0
+ + jupyter-server==2.17.0
+ + jupyter-server-terminals==0.5.4
+ + jupyterlab==4.5.4
+ + jupyterlab-pygments==0.3.0
+ + jupyterlab-server==2.28.0
+ + jupyterlab-widgets==3.0.16
+ + lark==1.3.1
+ + license-expression==30.4.4
+ + llm-router==0.9.1 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/llm-router)
+ + loguru==0.7.3
+ + lz4==4.4.5
+ + mando==0.6.4
+ + markdown-it-py==4.0.0
+ + markupsafe==3.0.3
+ + matplotlib-inline==0.2.1
+ + mccabe==0.7.0
+ + mdurl==0.1.2
+ + mistune==3.2.0
+ + msgpack==1.1.2
+ + nbclient==0.10.4
+ + nbconvert==7.17.0
+ + nbformat==5.10.4
+ + nest-asyncio==1.6.0
+ + nest-asyncio2==1.7.2
+ + nodeenv==1.10.0
+ + notebook==7.5.3
+ + notebook-shim==0.2.4
+ + openai==2.32.0
+ + orjson==3.11.8
+ + packageurl-python==0.17.6
+ + packaging==26.0
+ + pandocfilters==1.5.1
+ + parso==0.8.6
+ + pexpect==4.9.0
+ + pillow==12.3.0
+ + pip==26.0.1
+ + pip-api==0.0.34
+ + pip-audit==2.10.1
+ + pip-requirements-parser==32.0.1
+ + platformdirs==4.5.1
+ + pluggy==1.6.0
+ + pre-commit==4.6.0
+ + prometheus-client==0.24.1
+ + prompt-toolkit==3.0.51
+ + psutil==7.2.2
+ + ptyprocess==0.7.0
+ + pure-eval==0.2.3
+ + py==1.11.0
+ + py-lib-policy==0.2.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-policy)
+ + py-lib-runtime==0.2.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-runtime)
+ + py-lib-testkit==0.2.0 (from file:///Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/py-lib-testkit)
+ + py-serializable==2.1.0
+ + pyasn1==0.6.4
+ + pyasn1-modules==0.4.2
+ + pycodestyle==2.14.0
+ + pycparser==3.0
+ + pycryptodomex==3.23.0
+ + pydantic==2.12.5
+ + pydantic-core==2.41.5
+ + pyflakes==3.4.0
+ + pygments==2.20.0
+ + pymupdf==1.27.2.2
+ + pyparsing==3.3.2
+ + pyproject-hooks==1.2.0
+ + pyright==1.1.411
+ + pytest==9.1.1
+ + pytest-asyncio==1.3.0
+ + pytest-cov==7.1.0
+ + pytest-randomly==4.1.0
+ + pytest-recording==0.13.4
+ + pytest-xdist==3.8.0
+ + python-dateutil==2.9.0.post0
+ + python-json-logger==4.0.0
+ + pyyaml==6.0.3
+ + pyzmq==27.1.0
+ + questionary==2.1.1
+ + radon==6.0.1
+ + referencing==0.37.0
+ + requests==2.33.0
+ + requirements-parser==0.13.0
+ + rfc3339-validator==0.1.4
+ + rfc3986-validator==0.1.1
+ + rfc3987-syntax==1.1.0
+ + rich==15.0.0
+ + rpds-py==0.30.0
+ + ruff==0.15.20
+ + send2trash==2.1.0
+ + setuptools==82.0.0
+ + six==1.17.0
+ + sniffio==1.3.1
+ + sortedcontainers==2.4.0
+ + soupsieve==2.8.3
+ + stack-data==0.6.3
+ + stevedore==5.6.0
+ + structlog==25.5.0
+ + syrupy==5.4.0
+ + tabulate==0.9.0
+ + tenacity==9.1.4
+ + termcolor==3.3.0
+ + terminado==0.18.1
+ + tinycss2==1.4.0
+ + tomli==2.4.0
+ + tomli-w==1.2.0
+ + tomlkit==0.14.0
+ + tornado==6.5.5
+ + tqdm==4.67.3
+ + traitlets==5.14.3
+ + ty==0.0.56
+ + types-pillow==10.2.0.20240822
+ + typing-extensions==4.15.0
+ + typing-inspection==0.4.2
+ + tzdata==2025.3
+ + uri-template==1.3.0
+ + urllib3==2.7.0
+ + vcrpy==8.1.1
+ + virtualenv==20.36.1
+ + wcwidth==0.6.0
+ + webcolors==25.10.0
+ + webencodings==0.5.1
+ + websocket-client==1.9.0
+ + websockets==15.0.1
+ + wheel==0.47.0
+ + widgetsnbextension==4.0.15
+ + wrapt==2.1.1

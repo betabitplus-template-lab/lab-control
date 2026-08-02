@@ -1,0 +1,659 @@
+[
+  {
+    "capability": "Full python-lib-standard generated product surface",
+    "current": "ternforge-template-py-library candidate",
+    "domain": "templates",
+    "evidence": "EXP-0031, EXP-0032, EXP-0033, EXP-0035; 163-file current candidate and 32/32 product checks",
+    "id": "TPL-01",
+    "legacy": "template-builds/python-lib-standard (170 files)",
+    "status": "preserved"
+  },
+  {
+    "capability": "python-internal-package file/product scaffold",
+    "current": "superset of ternforge-template-py-library output",
+    "domain": "templates",
+    "evidence": "all 143 normalized internal-package paths exist in the 163-file candidate; 20 additional repository files",
+    "id": "TPL-02",
+    "legacy": "template-builds/python-internal-package (143 files)",
+    "status": "preserved"
+  },
+  {
+    "capability": "Package-root portability and independent validation of internal packages",
+    "current": "required standalone build/test/install acceptance for runtime, policy, and testkit repositories",
+    "domain": "templates",
+    "evidence": "EXP candidate runs full package tests and uv build from each independent repository root",
+    "id": "TPL-03",
+    "legacy": "scripts/platform/verify_package_portability.sh; internal-packages-structure-policy; package-local CI tests",
+    "status": "preserved"
+  },
+  {
+    "capability": "python-starter-platform as root self-Copier profile",
+    "current": "no platform monorepository; nine responsibility-owned repositories",
+    "domain": "templates",
+    "evidence": "ADR-0015 and legacy-migration-boundary remove legacy platform root/topology",
+    "id": "TPL-04",
+    "legacy": "template-builds/python-starter-platform; _copier_answers.platform.yml",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Legacy platform CI image, local reusable job bodies and self-sync profile files",
+    "current": "GitHub-hosted direct tools, ternforge-infra-ci thin callers, Renovate/Copier",
+    "domain": "templates",
+    "evidence": "baseline sections 12-14; EXP-0031 explicitly removes only these platform-owned files",
+    "id": "TPL-05",
+    "legacy": "python-starter-platform .github/actions, build-ci-image, python-lib-ci-* and sync workflow",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Generated contributor setup/doctor/project_config/secrets scripts",
+    "current": "ternforge-template-py-library product",
+    "domain": "templates",
+    "evidence": "EXP-0031 candidate retains all four scripts; setup byte-identical, other changes are identity/table migration",
+    "id": "TPL-06",
+    "legacy": "python-lib-standard scripts/env/*.sh",
+    "status": "preserved"
+  },
+  {
+    "capability": "Python library agent kit and python-library-rules references/scripts",
+    "current": "agents/base + agents/py-library components",
+    "domain": "templates",
+    "evidence": "EXP-0031/0032 exact product surface and candidate files",
+    "id": "TPL-07",
+    "legacy": "python-lib-standard and python-internal-package .agents",
+    "status": "preserved"
+  },
+  {
+    "capability": "starter-docs-rules taxonomy/templates for platform documentation",
+    "current": "Ternforge typed records and repository-local runbooks",
+    "domain": "templates",
+    "evidence": "starter-docs-rules exists only for the removed py-lib-starter platform monorepo taxonomy and conflicts with the typed-record model",
+    "id": "TPL-08",
+    "legacy": "python-starter-platform/.agents/skills/starter-docs-rules",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Public root imports and complete runtime API symbol surface",
+    "current": "runtime prototype a4fa848...",
+    "domain": "runtime",
+    "evidence": "source tree and tests identical except package version; all real-consumer runtime imports exist",
+    "id": "RUN-01",
+    "legacy": "py_lib_runtime root __all__ and _api modules",
+    "status": "preserved"
+  },
+  {
+    "capability": "Configuration models, validation, install/get lifecycle and defaults",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "normalized code and complete legacy test tree identical",
+    "id": "RUN-02",
+    "legacy": "_api/config/defaults/errors/types and _internal/config",
+    "status": "preserved"
+  },
+  {
+    "capability": "Cache manager persistence, stats, events, TTL and invalid namespace behavior",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "byte-identical code and cache integration tests",
+    "id": "RUN-03",
+    "legacy": "_internal/cache/base.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "cached/cache_from_self_attr sync+async decorators, refresh and bypass",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "byte-identical code and decorator tests",
+    "id": "RUN-04",
+    "legacy": "_internal/cache/decorators.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Concurrent same-key coalescing and get_or_set behavior",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "identical tests and implementation",
+    "id": "RUN-05",
+    "legacy": "cache implementation/tests",
+    "status": "preserved"
+  },
+  {
+    "capability": "Cache path precedence, environment directory and optional diskcache extra",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "same implementation and optional cache dependency",
+    "id": "RUN-06",
+    "legacy": "cache paths + optional-dependencies.cache",
+    "status": "preserved"
+  },
+  {
+    "capability": "Logging settings, stdlib/structlog configuration, null handlers and module levels",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "byte-identical code and logging integration tests",
+    "id": "RUN-07",
+    "legacy": "_api/logging and _internal/logging",
+    "status": "preserved"
+  },
+  {
+    "capability": "Operation-duration and retry logging helpers",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "identical code/tests; real consumers import the same names",
+    "id": "RUN-08",
+    "legacy": "logging service/public API",
+    "status": "preserved"
+  },
+  {
+    "capability": "Preview formatting helpers",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "identical code/tests",
+    "id": "RUN-09",
+    "legacy": "_api/previews and _internal/previews",
+    "status": "preserved"
+  },
+  {
+    "capability": "Numeric validation, public errors/types, docs, examples and import boundaries",
+    "current": "runtime prototype",
+    "domain": "runtime",
+    "evidence": "tree and tests identical; only version metadata changed",
+    "id": "RUN-10",
+    "legacy": "validation/public package/docs/examples/tests",
+    "status": "preserved"
+  },
+  {
+    "capability": "Console scripts must target <package>._api.cli and callable must exist",
+    "current": "py-lib-policy prototype",
+    "domain": "policy",
+    "evidence": "focused positive/negative tests",
+    "id": "POL-01",
+    "legacy": "project_structure_policy root_entrypoint/project checks",
+    "status": "preserved"
+  },
+  {
+    "capability": "Root facade cannot import private implementation",
+    "current": "py-lib-policy prototype",
+    "domain": "policy",
+    "evidence": "focused tests",
+    "id": "POL-02",
+    "legacy": "root entrypoint/facade checks",
+    "status": "preserved"
+  },
+  {
+    "capability": "Literal dynamic private-import rejection",
+    "current": "py-lib-policy prototype",
+    "domain": "policy",
+    "evidence": "focused test",
+    "id": "POL-03",
+    "legacy": "project policy AST checks",
+    "status": "preserved"
+  },
+  {
+    "capability": "Runnable examples require # %% marker",
+    "current": "py-lib-policy prototype",
+    "domain": "policy",
+    "evidence": "focused tests",
+    "id": "POL-04",
+    "legacy": "project_structure_policy/examples.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Read [tool.ternforge], primary_package, package_names and workspace/multi-package topology",
+    "current": "py-lib-policy reads [tool.ternforge], exact package_names/primary_package, public namespaces, and uv workspaces",
+    "domain": "policy",
+    "evidence": "candidate positive/negative tests include non-default distribution/package names and two workspace members",
+    "id": "POL-05",
+    "legacy": "ProjectToolingConfig + discover_project_roots",
+    "status": "preserved"
+  },
+  {
+    "capability": "Exact source/API/private/config/test skeleton and package-root namespace layout",
+    "current": "py-lib-policy exact source/API/config/test skeleton and root namespace rules",
+    "domain": "policy",
+    "evidence": "candidate tests cover every retained structural rule and all migrated consumers must pass policy",
+    "id": "POL-06",
+    "legacy": "project.py, api.py, api_declarations.py, tests.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Declaration-module semantics, __all__ scope and facade-definition shape",
+    "current": "py-lib-policy declaration modules, facade shape, flat-private, and root-only __all__ rules",
+    "domain": "policy",
+    "evidence": "candidate focused tests cover config/defaults/errors/types/_api init/product facade/__all__ behavior",
+    "id": "POL-07",
+    "legacy": "api_declarations.py + api.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Examples live under examples/<package> and avoid private imports/string references",
+    "current": "py-lib-policy keeps example placement, cell-marker, and private string-reference rules; import-linter owns static imports",
+    "domain": "policy",
+    "evidence": "candidate explicitly proves retained rules and proves generic static imports are not duplicated",
+    "id": "POL-08",
+    "legacy": "examples.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Runnable e2e tests and workbench modules require # %%",
+    "current": "py-lib-policy checks runnable e2e and workbench cell markers",
+    "domain": "policy",
+    "evidence": "candidate positive/negative tests and migrated-consumer policy runs",
+    "id": "POL-09",
+    "legacy": "tests.py + workbench.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Complete docs taxonomy and Copier-configured e2e slice docs/paths",
+    "current": "py-lib-policy keeps the complete docs skeleton and YAML e2e_slices path/document contract using PyYAML",
+    "domain": "policy",
+    "evidence": "candidate tests cover all package docs, custom e2e slices, malformed YAML semantics, and real consumer answers",
+    "id": "POL-10",
+    "legacy": "project_structure_policy/docs.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Static import-layer/public-contract constraints expressible by mature tools",
+    "current": "import-linter + Ruff + Pyright + pytest",
+    "domain": "policy",
+    "evidence": "candidate pyproject has explicit forbidden/protected contracts; EXP-0019/0031 run them",
+    "id": "POL-11",
+    "legacy": "public_contract.py, api import checks, public-boundary tests",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "VCR, console, image, path, setup and matcher module code plus public helper facade",
+    "current": "py_lib_testkit prototype",
+    "domain": "testkit",
+    "evidence": "all nine internal modules and public facade are identical after namespace normalization",
+    "id": "KIT-01",
+    "legacy": "py_lib_tooling._internal.test_support and _api/test_support.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "Read Ternforge project configuration and preserve env-prefix/repository-scoped semantics",
+    "current": "py-lib-testkit owns complete Ternforge project test/workbench configuration semantics",
+    "domain": "testkit",
+    "evidence": "candidate uses [tool.ternforge] and preserves distribution/package/env/logging/VCR behavior",
+    "id": "KIT-02",
+    "legacy": "ProjectToolingConfig-backed test helpers",
+    "status": "preserved"
+  },
+  {
+    "capability": "Public get_project_tooling_config / typed repository configuration helper",
+    "current": "py_lib_testkit.get_project_tooling_config with the full ProjectToolingConfig contract",
+    "domain": "testkit",
+    "evidence": "candidate public API tests plus full reddit-scraper, visual-annotation, and web-tools suites",
+    "id": "KIT-03",
+    "legacy": "public py_lib_tooling export",
+    "status": "preserved"
+  },
+  {
+    "capability": "Public get_repo_root helper with fail-closed upward pyproject discovery",
+    "current": "py_lib_testkit.get_repo_root with fail-closed upward pyproject discovery",
+    "domain": "testkit",
+    "evidence": "candidate tests plus full llm-router and visual-annotation suites",
+    "id": "KIT-04",
+    "legacy": "public py_lib_tooling export + config/state.py",
+    "status": "preserved"
+  },
+  {
+    "capability": "configure_direct_module_process runtime logging behavior",
+    "current": "py-lib-testkit configure_direct_module_process with complete runtime logging configuration",
+    "domain": "testkit",
+    "evidence": "legacy setup tests and candidate regression test execute the logging branch without AttributeError",
+    "id": "KIT-05",
+    "legacy": "setup helper + test_configure_direct_module_process_uses_runtime_logging",
+    "status": "preserved"
+  },
+  {
+    "capability": "run_async inside an already-running event loop as a standalone package contract",
+    "current": "py-lib-testkit run_async with an explicit nest-asyncio dependency",
+    "domain": "testkit",
+    "evidence": "candidate executes run_async from inside an active event loop",
+    "id": "KIT-06",
+    "legacy": "run_async + nest-asyncio development dependency and running-loop tests",
+    "status": "preserved"
+  },
+  {
+    "capability": "Repository-specific VCR multipart signature compatibility",
+    "current": "repository-specific <ENV_PREFIX>_MULTIPART_SIGNATURE bytes",
+    "domain": "testkit",
+    "evidence": "candidate config and VCR tests preserve the frozen behavior used by llm-router",
+    "id": "KIT-07",
+    "legacy": "<ENV_PREFIX>_MULTIPART_SIGNATURE derived from ProjectToolingConfig",
+    "status": "preserved"
+  },
+  {
+    "capability": "Product-specific documentation for testkit helpers and usage contracts",
+    "current": "testkit repository carries the transformed test-support usage documentation",
+    "domain": "testkit",
+    "evidence": "candidate copies the complete legacy test-support guide under the new package identity",
+    "id": "KIT-08",
+    "legacy": "docs/py_lib_tooling/test-support-usage.md and linked architecture/usage docs",
+    "status": "preserved"
+  },
+  {
+    "capability": "Migration of existing public py_lib_tooling imports to py_lib_testkit",
+    "current": "one-time atomic consumer migration from py_lib_tooling to py_lib_testkit; no permanent compatibility package",
+    "domain": "testkit",
+    "evidence": "all user-owned imports in four frozen consumers are migrated and the exact complete suites retain pass/skip counts",
+    "id": "KIT-09",
+    "legacy": "public root imports in consumer tests/examples/workbench/docs",
+    "status": "preserved"
+  },
+  {
+    "capability": "Runtime dependency vulnerability audit",
+    "current": "uv export + pinned pip-audit",
+    "domain": "standard-tools",
+    "evidence": "EXP-0030 and corrected full-product command in EXP-0031",
+    "id": "STD-01",
+    "legacy": "py-lib-audit-runtime-dependencies",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Cognitive complexity and class attribute order",
+    "current": "direct flake8 plugins",
+    "domain": "standard-tools",
+    "evidence": "EXP-0019 and full product checks",
+    "id": "STD-02",
+    "legacy": "custom CLI wrappers",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Cyclomatic complexity and maintainability thresholds",
+    "current": "direct radon commands",
+    "domain": "standard-tools",
+    "evidence": "EXP-0019/0031",
+    "id": "STD-03",
+    "legacy": "py-lib-check-radon-cc/mi wrappers",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Build, metadata, wheel/manifest and isolated wheel/sdist installation smoke",
+    "current": "uv build, metadata checks, check-wheel-contents, check-manifest, isolated installs",
+    "domain": "standard-tools",
+    "evidence": "EXP-0031 32-check suite",
+    "id": "STD-04",
+    "legacy": "smoke-built-artifacts and smoke-installed-artifact",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Public API smoke",
+    "current": "pytest public-boundary/import tests + import-linter",
+    "domain": "standard-tools",
+    "evidence": "EXP-0031",
+    "id": "STD-05",
+    "legacy": "py-lib-smoke-public-api",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Project information command",
+    "current": "uv version/tree, tomllib and GitHub contexts",
+    "domain": "standard-tools",
+    "evidence": "replacement matrix/RES-0003; no unique product behavior identified",
+    "id": "STD-06",
+    "legacy": "py-lib-project-info and ProjectInfo formatting",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "PR/change title validation",
+    "current": "pinned semantic PR-title action and Conventional Commit contract",
+    "domain": "standard-tools",
+    "evidence": "baseline section 12.3",
+    "id": "STD-07",
+    "legacy": "quality_gates/change_title.py",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Active-event-loop diagnostic utility",
+    "current": "scripts/reproduce_running_loop.py",
+    "domain": "standard-tools",
+    "evidence": "EXP-0031 reclassified as product DX and tests it",
+    "id": "STD-08",
+    "legacy": "py-lib-reproduce-running-loop",
+    "status": "preserved"
+  },
+  {
+    "capability": "One-time legacy support cleanup checker",
+    "current": "migration checklist/review only",
+    "domain": "standard-tools",
+    "evidence": "replacement matrix and legacy-migration-boundary reject compatibility machinery without a consumer",
+    "id": "STD-09",
+    "legacy": "py-lib-check-legacy-support-cleanup",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Custom assembler, manifests and committed template builds",
+    "current": "explicit final-template composition + Vendir snapshots + Copier",
+    "domain": "template-update",
+    "evidence": "ADR-0005/0006 and EXP-0032-0035",
+    "id": "UPD-01",
+    "legacy": "template-components + template-manifests + assembler + template-builds",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Component/profile drift validation",
+    "current": "render/update/product acceptance and Vendir integrity gate",
+    "domain": "template-update",
+    "evidence": "baseline sections 5 and 14",
+    "id": "UPD-02",
+    "legacy": "check-template-components/check-platform-profile",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Normal answer reading/writing and template update lifecycle",
+    "current": "Copier answers file/check-update/update via Renovate",
+    "domain": "template-update",
+    "evidence": "ADR-0002, baseline 7/13",
+    "id": "UPD-03",
+    "legacy": "template-answer/check/update commands",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "First migration from old _src_path/_commit and legacy answers fields to Ternforge template provenance",
+    "current": "explicit one-time answers/provenance migration to ternforge-template-py-library",
+    "domain": "template-update",
+    "evidence": "experiment rewrites _src_path/_commit, removes legacy source fields, regenerates uv.lock, and rejects residual user-owned legacy imports",
+    "id": "UPD-04",
+    "legacy": "all four real consumers point at py-lib-starter and carry legacy runtime/tooling/profile fields",
+    "status": "preserved"
+  },
+  {
+    "capability": "User-owned/create-once preservation, conflict visibility, add/delete/rename and executable modes",
+    "current": "native Copier + conditional _exclude + acceptance matrix",
+    "domain": "template-update",
+    "evidence": "EXP-0003, 0020, 0033, 0035",
+    "id": "UPD-05",
+    "legacy": "custom update policy/wrappers",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Shared tooling refs and lock refresh",
+    "current": "Renovate pep621 atomic group + uv.lock",
+    "domain": "template-update",
+    "evidence": "ADR-0012/0018 and EXP-0012",
+    "id": "UPD-06",
+    "legacy": "refresh-shared-lock/shared_package_refs/custom updater",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Immutable trusted template/component sources",
+    "current": "immutable tags, exact SHAs, Vendir lock and GitHub rulesets",
+    "domain": "template-update",
+    "evidence": "ADR-0014 and template acceptance",
+    "id": "UPD-07",
+    "legacy": "trusted_update/source checks",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Read-only local template drift report",
+    "current": "manual fleet Copier recopy audit",
+    "domain": "template-update",
+    "evidence": "baseline section 13.7, EXP-0004/0020",
+    "id": "UPD-08",
+    "legacy": "template check/render drift helpers",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Mixed-file policy, output ownership and template hygiene",
+    "current": "single output owner, explicit wrappers/fragments and observable acceptance",
+    "domain": "template-update",
+    "evidence": "baseline section 5, EXP-0032-0035",
+    "id": "UPD-09",
+    "legacy": "mixed_policy/ownership/hygiene modules",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Nested multiple-Copier relationships and permanent canary repositories",
+    "current": "one final template/lifecycle per repository and ephemeral acceptance",
+    "domain": "template-update",
+    "evidence": "ADR-0019 and EXP-0035 remove speculative nested fixture",
+    "id": "UPD-10",
+    "legacy": "lab/legacy support paths",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Copier tasks/migrations/extensions/--trust orchestration",
+    "current": "safe Copier without these features",
+    "domain": "template-update",
+    "evidence": "baseline section 7.7 and migration boundary",
+    "id": "UPD-11",
+    "legacy": "trusted/custom Copier execution possibilities",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Authoritative managed-fleet membership",
+    "current": "fleet.auto.tfvars.json",
+    "domain": "platform-ops",
+    "evidence": "ADR-0021 and baseline section 10.5",
+    "id": "OPS-01",
+    "legacy": ".github/py-lib-downstream-registry.json",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Custom registry CRUD/table/JSON CLI",
+    "current": "reviewed native OpenTofu input file and Git PR",
+    "domain": "platform-ops",
+    "evidence": "migration boundary rejects custom fleet registry/service",
+    "id": "OPS-02",
+    "legacy": "py-lib-platform-registry",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Fleet health report and scheduled Repo Doctor",
+    "current": "GitHub evidence, OpenTofu plan and bounded Grafana Fleet Health",
+    "domain": "platform-ops",
+    "evidence": "ADR-0022 and baseline 13.8",
+    "id": "OPS-03",
+    "legacy": "py-lib-platform-health-report, repo_doctor.sh, Fleet Doctor workflow",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Repository creation/settings/rulesets/permissions/topics/variables",
+    "current": "ternforge-infra-repository-control with OpenTofu",
+    "domain": "platform-ops",
+    "evidence": "ADR-0009/0010 and baseline section 10",
+    "id": "OPS-04",
+    "legacy": "managed onboarding and setup/protect scripts",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "One-command resumable onboarding, dry-run, retry, validation wait and PR reuse semantics",
+    "current": "OpenTofu plan/apply plus bootstrap CI/ruleset sequencing",
+    "domain": "platform-ops",
+    "evidence": "dry-run becomes tofu plan; resumability/idempotence become declarative re-apply; validation is required CI before phase-two rulesets; legacy PR-reuse orchestration is removed",
+    "id": "OPS-05",
+    "legacy": "py-lib-create-managed-repository plus 31 onboarding tests",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Standalone generated repository setup without managed-fleet membership",
+    "current": "released Python template remains usable outside the managed fleet; repository-control automation is optional",
+    "domain": "platform-ops",
+    "evidence": "standalone product capability is retained while the py-lib-starter-specific App setup script is not migrated",
+    "id": "OPS-06",
+    "legacy": "setup_github_app_repository.sh and managed-vs-standalone contract",
+    "status": "preserved"
+  },
+  {
+    "capability": "Short-lived scoped GitHub App credentials and production denial",
+    "current": "credential boundary and scoped installation tokens",
+    "domain": "platform-ops",
+    "evidence": "ADR-0013, EXP-0015, baseline sections 11-13",
+    "id": "OPS-07",
+    "legacy": "GitHub App automation policy and scripts",
+    "status": "preserved"
+  },
+  {
+    "capability": "Main branch rules, squash titles/body, required source and auto-merge",
+    "current": "OpenTofu rulesets",
+    "domain": "platform-ops",
+    "evidence": "EXP-0001/0013 and baseline 10.7-10.9",
+    "id": "OPS-08",
+    "legacy": "branch-protection/setup scripts",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Release, version, tag and downstream update delivery",
+    "current": "Release Please reusable workflow + immutable tags + full-fleet Renovate dispatch",
+    "domain": "platform-ops",
+    "evidence": "ADR-0004/0017/0021 and baseline 12-15",
+    "id": "OPS-09",
+    "legacy": "root release workflow and dispatcher",
+    "status": "standard_replacement"
+  },
+  {
+    "capability": "Private-repository on-demand self-hosted CI fallback with public repos hosted",
+    "current": "GitHub-hosted CI with no custom runner image or runner lifecycle control plane",
+    "domain": "platform-ops",
+    "evidence": "the fallback exists only for legacy py-lib-starter infrastructure and contradicts the chosen hosted, direct-tool CI model",
+    "id": "OPS-10",
+    "legacy": "REQ-01/REQ-02, ci-runner-switch-guide, local_ci_runners.sh and fail-closed runner image",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Custom CI image build and runner-owned generic environment",
+    "current": "GitHub-hosted runner + direct pinned tools",
+    "domain": "platform-ops",
+    "evidence": "EXP-0031 removes these files and verifies full product",
+    "id": "OPS-11",
+    "legacy": "Dockerfile.ci, build-ci-image, setup-dev-env action",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "dev-to-main permanent branch model",
+    "current": "main-only GitHub flow",
+    "domain": "platform-ops",
+    "evidence": "ADR-0001 and EXP-0001",
+    "id": "OPS-12",
+    "legacy": "dev/main flow",
+    "status": "intentional_removal"
+  },
+  {
+    "capability": "Same automation identity/workflow topology across public/private/mixed visibility",
+    "current": "one workflow/ruleset model across visibility states; visibility changes access scope, not product workflow topology",
+    "domain": "platform-ops",
+    "evidence": "scoped App credentials and repository-control visibility fields preserve the contract without local runner branching",
+    "id": "OPS-13",
+    "legacy": "REQ-07 and GitHub App visibility policy/tests",
+    "status": "preserved"
+  },
+  {
+    "capability": "Detailed operator documentation/runbooks for bootstrap, recovery and failure handling",
+    "current": "implementation-owned bootstrap, recovery, rollback, and credential-boundary runbooks",
+    "domain": "platform-ops",
+    "evidence": "runbooks remain a required implementation deliverable; only the legacy starter taxonomy is removed",
+    "id": "OPS-14",
+    "legacy": "platform-ops guides/toolkits/policies",
+    "status": "preserved"
+  },
+  {
+    "capability": "PyPI publication of internal tooling",
+    "current": "immutable Git tags and uv exact commits",
+    "domain": "platform-ops",
+    "evidence": "ADR-0018 and migration boundary explicitly say PyPI not used",
+    "id": "OPS-15",
+    "legacy": "possible distribution option, not active product path",
+    "status": "intentional_removal"
+  }
+]

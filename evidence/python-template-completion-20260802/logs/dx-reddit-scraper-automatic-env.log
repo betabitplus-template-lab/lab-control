@@ -1,0 +1,7 @@
+$ direnv exec . bash -lc test "$LAB_DX_SENTINEL" = ok
+
+[stdout]
+
+
+[stderr]
+[0mdirenv: loading /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/.envrc

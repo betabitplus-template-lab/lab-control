@@ -1,0 +1,9 @@
+$ uv lock --upgrade-package pillow==12.3.0
+
+[stdout]
+
+
+[stderr]
+Using CPython 3.13.7
+Resolved 136 packages in 143ms
+Updated pillow v12.2.0 -> v12.3.0

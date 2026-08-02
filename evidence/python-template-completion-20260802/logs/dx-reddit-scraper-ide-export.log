@@ -1,0 +1,8 @@
+$ bash -lc direnv export json | grep -q LAB_DX_SENTINEL
+
+[stdout]
+
+
+[stderr]
+[0mdirenv: loading /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/reddit-scraper/.envrc
+[0mdirenv: export +LAB_DX_SENTINEL +PYTHONPATH ~PATH ~VIRTUAL_ENV

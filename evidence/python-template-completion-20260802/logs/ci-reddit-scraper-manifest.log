@@ -1,0 +1,8 @@
+$ uv run --no-sync check-manifest --ignore .copier-answers.yml,_copier_answers.yml
+
+[stdout]
+lists of files in version control and sdist match
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpioUqHt` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

@@ -1,0 +1,10 @@
+$ docker run --rm ternforge-template-complete:20260802 bash -lc command -v uv && command -v direnv && command -v git && command -v sops
+
+[stdout]
+/usr/local/bin/uv
+/usr/bin/direnv
+/usr/local/bin/git
+/usr/local/bin/sops
+
+
+[stderr]

@@ -1,0 +1,87 @@
+$ uv run --no-sync pytest -q
+
+[stdout]
+...........................s........................                     [100%]
+=============================== warnings summary ===============================
+tests/web_tools/e2e/public_output_and_errors/test_public_boundary_contracts.py::test_public_success_outputs_are_boundary_values
+  /Users/stas/.local/share/uv/python/cpython-3.13.7-macos-aarch64-none/lib/python3.13/re/_parser.py:292: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x10dfcb6a0>
+    def tell(self):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/web_tools/e2e/fetch_cache_and_page_artifacts/test_cache_behavior.py::test_fetch_html_cache_hit
+  /Users/stas/.local/share/uv/python/cpython-3.13.7-macos-aarch64-none/lib/python3.13/pathlib/_local.py:128: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x10d9b31f0>
+    path = os.fspath(arg)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/web_tools/e2e/html_conversion_and_visual_manifest/test_html2md_pipeline.py::test_html2md_pipeline_hermetic
+  /Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/web-tools/.venv/lib/python3.13/site-packages/playwright/_impl/_connection.py:625: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x10e2f57b0>
+    parsed_frames.append(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.13.7-final-0 _______________
+
+Name                                                          Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------
+src/web_tools/__init__.py                                        12      0   100%
+src/web_tools/_api/__init__.py                                    0      0   100%
+src/web_tools/_api/cache.py                                       5      0   100%
+src/web_tools/_api/config.py                                      2      0   100%
+src/web_tools/_api/defaults.py                                   35      0   100%
+src/web_tools/_api/errors.py                                     84     42    50%   57-58, 83-90, 103-109, 123-130, 146-161, 169-170
+src/web_tools/_api/html.py                                        9      0   100%
+src/web_tools/_api/media.py                                      28      0   100%
+src/web_tools/_api/quoting.py                                     7      0   100%
+src/web_tools/_api/types.py                                      89      0   100%
+src/web_tools/_internal/__init__.py                               5      0   100%
+src/web_tools/_internal/cache/__init__.py                         0      0   100%
+src/web_tools/_internal/cache/manager.py                         38      2    95%   108-109
+src/web_tools/_internal/config/__init__.py                        4      0   100%
+src/web_tools/_internal/config/assembly.py                       11      0   100%
+src/web_tools/_internal/config/models.py                         55      0   100%
+src/web_tools/_internal/config/state.py                          48      1    98%   62
+src/web_tools/_internal/config/validation.py                     55      9    84%   31, 54, 60, 84-90, 99-101
+src/web_tools/_internal/html_reader/__init__.py                   0      0   100%
+src/web_tools/_internal/html_reader/html_processing.py           28      9    68%   31-38, 46-53, 61-68
+src/web_tools/_internal/html_reader/markdown.py                   7      0   100%
+src/web_tools/_internal/html_reader/mhtml_media.py               45     35    22%   14-18, 30-56, 61-64, 69-77
+src/web_tools/_internal/html_reader/service.py                   46     23    50%   59-121
+src/web_tools/_internal/html_reader/visual_elements.py           71     11    85%   15, 81-92, 133-136, 139-141
+src/web_tools/_internal/media_downloader/__init__.py              0      0   100%
+src/web_tools/_internal/media_downloader/cache_manager.py        14      0   100%
+src/web_tools/_internal/media_downloader/media_cache.py          33      8    76%   41-50, 69, 81-83
+src/web_tools/_internal/media_downloader/media_http.py          114     34    70%   62-69, 88-94, 99-106, 121-134, 161, 165-172, 180-187, 204-210, 232-239, 242-249, 290, 300, 310, 313
+src/web_tools/_internal/media_downloader/media_limits.py         18      4    78%   26, 30, 33, 48
+src/web_tools/_internal/media_downloader/media_routing.py        99     13    87%   51, 56-57, 66-68, 74, 110, 124, 136, 150, 165, 180
+src/web_tools/_internal/media_downloader/service.py             147     31    79%   81, 90-91, 95-100, 116, 127-132, 140, 156, 161-164, 177-178, 188-207, 276, 300, 307-312, 341
+src/web_tools/_internal/page_artifacts/__init__.py                0      0   100%
+src/web_tools/_internal/page_artifacts/cache.py                  21      0   100%
+src/web_tools/_internal/page_artifacts/crawl.py                  22      1    95%   46
+src/web_tools/_internal/page_artifacts/fetch.py                  11      0   100%
+src/web_tools/_internal/page_artifacts/types.py                   8      0   100%
+src/web_tools/_internal/quote_manager/__init__.py                 0      0   100%
+src/web_tools/_internal/quote_manager/annotation.py              24      0   100%
+src/web_tools/_internal/quote_manager/playwright_loader.py       36     13    64%   52-53, 58-75
+src/web_tools/_internal/quote_manager/quote_capture.py           51      3    94%   248, 270, 275
+src/web_tools/_internal/quote_manager/quote_validation.py        18      1    94%   34
+src/web_tools/_internal/quote_manager/service.py                 95     17    82%   49, 71-82, 88, 119, 161-163, 203-205
+src/web_tools/_internal/quote_manager/text_normalization.py      36      4    89%   17, 44, 79, 109
+src/web_tools/_internal/runtime/__init__.py                       1      0   100%
+src/web_tools/_internal/runtime/facade.py                        26      0   100%
+-------------------------------------------------------------------------------------------
+TOTAL                                                          1458    261    82%
+Required test coverage of 1.0% reached. Total coverage: 82.10%
+--------------------------- snapshot report summary ----------------------------
+11 snapshots passed.
+51 passed, 1 skipped, 3 warnings in 35.49s
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpND18nk` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+/Users/stas/Documents/3.Projects/1.Playground/ternforge-review/audit-product-parity-20260801/lab-control/evidence/python-template-completion-20260802/_work/consumers/web-tools/.venv/lib/python3.13/site-packages/_pytest/unraisableexception.py:33: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x10e7e5b70>
+  gc.collect()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback

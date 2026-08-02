@@ -1,0 +1,23 @@
+$ uv run --no-sync pre-commit run --all-files --hook-stage pre-push --show-diff-on-failure
+
+[stdout]
+pyright (strict type checker)............................................Passed
+import-linter (product architecture).....................................Passed
+public-contract boundary.................................................Passed
+radon (cyclomatic complexity)............................................Passed
+radon (maintainability index)............................................Passed
+flake8 (cognitive complexity)............................................Passed
+flake8 (class attributes order)..........................................Passed
+bandit (security scanner)................................................Passed
+pip-audit (uv dependencies)..............................................Passed
+py-lib project docs structure............................................Passed
+interrogate (docstring coverage).........................................Passed
+py-lib project structure.................................................Passed
+deptry (dependency hygiene)..............................................Passed
+check-manifest...........................................................Passed
+markdown-link-check......................................................Passed
+pytest (full, randomized, non-slow)......................................Passed
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmphldDhh` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

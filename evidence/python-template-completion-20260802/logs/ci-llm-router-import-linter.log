@@ -1,0 +1,41 @@
+$ uv run --no-sync lint-imports --config pyproject.toml
+
+[stdout]
+
+╔══╗─────────▶╔╗ ╔╗      ╔╗◀───┐
+╚╣╠╝◀─────┐  ╔╝╚╗║║────▶╔╝╚╗   │
+ ║║   ╔══╦══╦╩╗╔╝║║  ╔╦═╩╗╔╝╔═╦══╗
+ ║║╔══╣╔╗║╔╗║╔╣║ ║║ ╔╬╣╔╗║║ ║│║╔═╝
+╔╣╠╣║║║╚╝║╚╝║║║╚╗║╚═╝║║║║║╚╗║═╣║
+╚══╩╩╩╣╔═╩══╩╝╚═╝╚═══╩╩╝╚╩═╩╩═╩╝
+  └──▶║║                    ▲
+      ╚╝────────────────────┘
+
+
+---------
+Contracts
+---------
+
+Analyzed 330 files, 1735 dependencies.
+--------------------------------------
+
+Root package must not be imported by the private implementation KEPT
+Root package must not be imported by the facade layer KEPT
+Private implementation must not depend on public config facade KEPT
+Private implementation is only imported through product code and explicit
+private-boundary test layers KEPT
+Facade layer must import private implementation only through the private root KEPT
+LLM Router public-contract verification modules must not import private
+implementation KEPT
+LLM Router examples must use the public package API KEPT
+LLM Router shipped package must not import examples KEPT
+LLM Router workbench must not import shipped package KEPT
+LLM Router shipped package must not import workbench KEPT
+Private implementation must not depend on facade entrypoints KEPT
+Private implementation must stay layered KEPT
+
+Contracts: 12 kept, 0 broken.
+
+
+[stderr]
+warning: `VIRTUAL_ENV=/Users/stas/.cache/uv/builds-v0/.tmpSIMi41` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

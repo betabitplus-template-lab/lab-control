@@ -1,0 +1,7 @@
+$ uvx --from check-wheel-contents==0.6.3 check-wheel-contents dist
+
+[stdout]
+dist/visual_annotation-0.4.6-py3-none-any.whl: OK
+
+
+[stderr]
